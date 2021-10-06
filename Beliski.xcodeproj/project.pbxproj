@@ -13,6 +13,16 @@
 		29C46C00270D5E8A00754817 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* ContentView.swift */; };
 		29C46C01270D5E8A00754817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C46BEF270D5E8A00754817 /* Assets.xcassets */; };
 		29C46C02270D5E8A00754817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C46BEF270D5E8A00754817 /* Assets.xcassets */; };
+		29C46C0C270D5FB200754817 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C46C0B270D5FB200754817 /* Launch Screen.storyboard */; };
+		29C46C25270D600900754817 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C0F270D600900754817 /* User.swift */; };
+		29C46C26270D600900754817 /* Struct & Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C10270D600900754817 /* Struct & Enum.swift */; };
+		29C46C27270D600900754817 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C12270D600900754817 /* UserViewModel.swift */; };
+		29C46C28270D600900754817 /* SquadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C15270D600900754817 /* SquadView.swift */; };
+		29C46C2A270D600900754817 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C18270D600900754817 /* ProfileView.swift */; };
+		29C46C2B270D600900754817 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C1A270D600900754817 /* JournalView.swift */; };
+		29C46C2C270D600900754817 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C1C270D600900754817 /* ScoreView.swift */; };
+		29C46C2F270D600900754817 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C21270D600900754817 /* CreateView.swift */; };
+		29C46C30270D600900754817 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C23270D600900754817 /* CommunityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +32,16 @@
 		29C46BF4270D5E8A00754817 /* Beliski.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beliski.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C46BFA270D5E8A00754817 /* Beliski.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beliski.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C46BFC270D5E8A00754817 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		29C46C0B270D5FB200754817 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		29C46C0F270D600900754817 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		29C46C10270D600900754817 /* Struct & Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Struct & Enum.swift"; sourceTree = "<group>"; };
+		29C46C12270D600900754817 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		29C46C15270D600900754817 /* SquadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadView.swift; sourceTree = "<group>"; };
+		29C46C18270D600900754817 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		29C46C1A270D600900754817 /* JournalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		29C46C1C270D600900754817 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		29C46C21270D600900754817 /* CreateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		29C46C23270D600900754817 /* CommunityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +74,14 @@
 		29C46BEC270D5E8800754817 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				29C46C0E270D600900754817 /* Model */,
+				29C46C0D270D600900754817 /* Repository */,
+				29C46C13270D600900754817 /* View */,
+				29C46C11270D600900754817 /* ViewModel */,
 				29C46BED270D5E8800754817 /* BeliskiApp.swift */,
 				29C46BEE270D5E8800754817 /* ContentView.swift */,
 				29C46BEF270D5E8A00754817 /* Assets.xcassets */,
+				29C46C0B270D5FB200754817 /* Launch Screen.storyboard */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -76,6 +101,99 @@
 				29C46BFC270D5E8A00754817 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		29C46C0D270D600900754817 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		29C46C0E270D600900754817 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				29C46C0F270D600900754817 /* User.swift */,
+				29C46C10270D600900754817 /* Struct & Enum.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		29C46C11270D600900754817 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				29C46C12270D600900754817 /* UserViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		29C46C13270D600900754817 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				29C46C14270D600900754817 /* Squad */,
+				29C46C17270D600900754817 /* Profile */,
+				29C46C19270D600900754817 /* Journal */,
+				29C46C1B270D600900754817 /* Score */,
+				29C46C1D270D600900754817 /* Authenticate */,
+				29C46C20270D600900754817 /* Create */,
+				29C46C22270D600900754817 /* Community */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		29C46C14270D600900754817 /* Squad */ = {
+			isa = PBXGroup;
+			children = (
+				29C46C15270D600900754817 /* SquadView.swift */,
+			);
+			path = Squad;
+			sourceTree = "<group>";
+		};
+		29C46C17270D600900754817 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				29C46C18270D600900754817 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		29C46C19270D600900754817 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				29C46C1A270D600900754817 /* JournalView.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		29C46C1B270D600900754817 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				29C46C1C270D600900754817 /* ScoreView.swift */,
+			);
+			path = Score;
+			sourceTree = "<group>";
+		};
+		29C46C1D270D600900754817 /* Authenticate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Authenticate;
+			sourceTree = "<group>";
+		};
+		29C46C20270D600900754817 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				29C46C21270D600900754817 /* CreateView.swift */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		29C46C22270D600900754817 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				29C46C23270D600900754817 /* CommunityView.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29C46C0C270D5FB200754817 /* Launch Screen.storyboard in Resources */,
 				29C46C01270D5E8A00754817 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,8 +295,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29C46C30270D600900754817 /* CommunityView.swift in Sources */,
+				29C46C2A270D600900754817 /* ProfileView.swift in Sources */,
 				29C46BFF270D5E8A00754817 /* ContentView.swift in Sources */,
+				29C46C28270D600900754817 /* SquadView.swift in Sources */,
 				29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */,
+				29C46C26270D600900754817 /* Struct & Enum.swift in Sources */,
+				29C46C2F270D600900754817 /* CreateView.swift in Sources */,
+				29C46C2B270D600900754817 /* JournalView.swift in Sources */,
+				29C46C27270D600900754817 /* UserViewModel.swift in Sources */,
+				29C46C25270D600900754817 /* User.swift in Sources */,
+				29C46C2C270D600900754817 /* ScoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +445,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -347,6 +476,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
