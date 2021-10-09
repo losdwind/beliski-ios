@@ -37,6 +37,7 @@ class AuthViewModel: ObservableObject {
     
     func register(withEmail email: String, password: String,
                   image: UIImage?, fullname: String, username: String) {
+        
         guard let image = image else { return }
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
@@ -49,7 +50,7 @@ class AuthViewModel: ObservableObject {
             print("Successfully registered user...")
             
             
-        ImageUploader.uploadImage(image: image, type: .profile) { imageUrl in
+        MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
            
                 
                 let data = ["email": email,

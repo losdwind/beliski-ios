@@ -10,11 +10,16 @@ import FirebaseFirestoreSwift
 
 struct User: Identifiable, Decodable {
     @DocumentID var id: String?
-    let username: String
-    let email: String
-    let profileImageUrl: String
-    let fullname: String
+    var username: String
+    var email: String
+    var profileImageUrl: String
+    var fullname: String
     var bio: String?
     var isCurrentUser: Bool { return AuthViewModel.shared.userSession?.uid == id }
+    
+    
+    
+    
+    
     
 }

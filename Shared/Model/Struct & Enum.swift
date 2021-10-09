@@ -40,33 +40,12 @@ struct DatabaseUserField { // Fields within the User Document in Database
     
 }
 
-struct DatabasePostField { // Fields within Post Document in Database
+struct DatabaseJournalField { // Fields within Post Document in Database
     
     static let postID = "post_id"
     static let userID = "user_id"
     static let displayName = "display_name"
     static let caption = "caption"
-    static let dateCreated = "date_created"
-    static let likeCount = "like_count" // Int
-    static let likedBy = "liked_by" // array
-    static let comments = "comments" // sub-collection
-    
-}
-
-struct DatabaseCommentsField { // Fields within the Comment SUBcollection of a Post Document
-    
-    static let commentID = "comment_id"
-    static let displayName = "display_name"
-    static let userID = "user_id"
-    static let content = "content"
-    static let dateCreated = "date_created"
-    
-}
-
-struct DatabaseReportsField { // Fields within Report Document in Database
-    
-    static let content = "content"
-    static let postID = "post_id"
     static let dateCreated = "date_created"
     
 }

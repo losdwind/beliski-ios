@@ -22,13 +22,13 @@ struct ContentView: View {
             TabView(selection: $selectedTab){
                 
                 // Show the timeline of user journals
-                JournalView()
+                JournalListView()
                     .tabItem{
                         Image(systemName: "text.redaction")
                     }.tag(MainTab.timeline)
                 
                 // Show the Panel of statistics based on the journals of the user
-                ScoreView()
+                PanelView()
                     .tabItem {
                         Image(systemName: "chart.bar.xaxis")
                     }.tag(MainTab.score)

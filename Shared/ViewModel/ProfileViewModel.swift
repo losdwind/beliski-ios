@@ -12,11 +12,9 @@ import Foundation
 class ProfileViewModel: ObservableObject{
     
     
-    @Published var user: User
+    @Published var user: User? = AuthViewModel.shared.currentUser
     
-    init(user: User) {
-        self.user = user
-    }
+
     
     
 }
