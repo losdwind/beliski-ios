@@ -9,7 +9,9 @@ import SwiftUI
 
 struct JournalListView: View {
     
-    @StateObject var journalvm = JournalViewModel()
+    @ObservedObject var journalvm:JournalViewModel
+    
+    @State var isUpdatingJournal = false
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -27,16 +29,18 @@ struct JournalListView: View {
                                     icon: { Image(systemName: "trash.circle") })})
                         
                             Button(action:{
-                                journalvm.journalInUpdation = journal
-                                journalvm.isUpdatingJournal = true
-                                journalvm.updateJournal() { _ in }
+                                journalvm.journal = journal
+                                isUpdatingJournal = true
+
                             }
                                    ,label:{Label(
                                     title: { Text("Edit") },
                                     icon: { Image(systemName: "pencil.circle") })})
                             
                         })
-                        .sheet(isPresented: $journalvm.isUpdatingJournal, content: {
+                        .sheet(isPresented: $isUpdatingJournal, onDismiss: {
+                            journalvm.journal = Journal()
+                        }, content: {
                             JournalEditorView(journalvm: journalvm)
                         })
                         .padding(.vertical, 0)
@@ -53,6 +57,6 @@ struct JournalListView: View {
 
 struct JournalView_Previews: PreviewProvider {
     static var previews: some View {
-        JournalListView()
+        JournalListView(journalvm: JournalViewModel())
     }
 }

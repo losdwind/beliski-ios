@@ -27,10 +27,24 @@ enum UploadType {
 }
 
 struct MediaUploader {
-    static func uploadImage(image: UIImage, type: UploadType, completion: @escaping(String) -> Void) {
+    
+    static func uploadImages(images: [UIImage], type: UploadType, completion: @escaping (_ imageURLs: [String]) -> () ){
+        var imageURLs:[String] = []
+        for image in images {
+            uploadImage(image: image, type: type){
+                imageURL in
+                imageURLs.append(imageURL)
+            }
+            completion(imageURLs)
+            return
+        }
+        
+    }
+    
+    static func uploadImage(image: UIImage, type: UploadType, completion: @escaping (_ imageURL: String) -> ()) {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
         let ref = type.filePath
-                
+        
         ref.putData(imageData, metadata: nil) { _, error in
             if let error = error {
                 print("DEBUG: Failed to upload image \(error.localizedDescription)")
@@ -40,17 +54,23 @@ struct MediaUploader {
             print("Successfully uploaded image...")
             
             ref.downloadURL { url, _ in
-                guard let imageUrl = url?.absoluteString else { return }
+                guard let imageUrl = url?.absoluteString else {
+                    
+                    print("failed to upload one image")
+                    return
+                    
+                }
                 completion(imageUrl)
             }
         }
     }
     
-    static func uploadVideo(video: NSData, type: UploadType, completion: @escaping(String) -> Void) {
+    
+    static func uploadVideo(video: NSData, type: UploadType, completion: @escaping (_ videoURL: String) -> ()) {
         guard let videoData = try? video.compressed(using: .zlib) else { return }
         
         let ref = type.filePath
-                
+        
         ref.putData(videoData as Data, metadata: nil) { _, error in
             if let error = error {
                 print("DEBUG: Failed to upload video \(error.localizedDescription)")

@@ -10,10 +10,15 @@ import SwiftUI
 struct ContentView: View {
     
     @State var selectedTab = MainTab.timeline
-
-    
     @State var email:String = ""
     @State var password: String = ""
+    
+    
+    @StateObject var journalvm = JournalViewModel()
+    @StateObject var taskvm = TaskViewModel()
+    @StateObject var profilevm = ProfileViewModel()
+
+    
     var body: some View {
         
         if AuthViewModel.shared.userSession == nil {
@@ -24,19 +29,19 @@ struct ContentView: View {
             TabView(selection: $selectedTab){
                 
                 // Show the timeline of user journals
-                JournalListView()
+                JournalListView(journalvm: journalvm)
                     .tabItem{
                         Image(systemName: "text.redaction")
                     }.tag(MainTab.timeline)
                 
                 // Show the Panel of statistics based on the journals of the user
-                PanelView()
+                PanelView(profilevm: profilevm)
                     .tabItem {
                         Image(systemName: "chart.bar.xaxis")
                     }.tag(MainTab.score)
                 
                 // Show the create launcher with multiple categories of journal type
-                CreateView()
+                CreateView(journalvm: journalvm, taskvm: taskvm)
                     .tabItem {
                         Image(systemName: "plus.circle")
                     }.tag(MainTab.create)

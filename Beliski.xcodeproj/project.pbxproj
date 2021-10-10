@@ -70,6 +70,11 @@
 		29ED10FC2710423800E67D8B /* JournalEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED10FB2710423800E67D8B /* JournalEditorView.swift */; };
 		29ED10FD2710423800E67D8B /* JournalEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED10FB2710423800E67D8B /* JournalEditorView.swift */; };
 		29ED11032711D26400E67D8B /* VideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 29ED11022711D26400E67D8B /* VideoPlayer */; };
+		29ED110827133D6E00E67D8B /* sound-rise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29ED110527133D6E00E67D8B /* sound-rise.mp3 */; };
+		29ED110927133D6E00E67D8B /* sound-ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29ED110627133D6E00E67D8B /* sound-ding.mp3 */; };
+		29ED110A27133D6E00E67D8B /* sound-tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29ED110727133D6E00E67D8B /* sound-tap.mp3 */; };
+		29ED110C2713436B00E67D8B /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED110B2713436B00E67D8B /* SoundPlayer.swift */; };
+		29ED110E2713462700E67D8B /* CustomedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED110D2713462700E67D8B /* CustomedViewModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +115,11 @@
 		29ED10F427103D7900E67D8B /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		29ED10F82710422600E67D8B /* JournalItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalItemView.swift; sourceTree = "<group>"; };
 		29ED10FB2710423800E67D8B /* JournalEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditorView.swift; sourceTree = "<group>"; };
+		29ED110527133D6E00E67D8B /* sound-rise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-rise.mp3"; sourceTree = "<group>"; };
+		29ED110627133D6E00E67D8B /* sound-ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-ding.mp3"; sourceTree = "<group>"; };
+		29ED110727133D6E00E67D8B /* sound-tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-tap.mp3"; sourceTree = "<group>"; };
+		29ED110B2713436B00E67D8B /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		29ED110D2713462700E67D8B /* CustomedViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomedViewModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,11 +150,13 @@
 		29552A36270D88F90056E675 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				29ED110D2713462700E67D8B /* CustomedViewModifier.swift */,
 				29552A37270D89150056E675 /* CustomTextField.swift */,
 				29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */,
 				29552A50270F0EC40056E675 /* Constants.swift */,
 				29552A53270F0F2E0056E675 /* ImagePicker.swift */,
 				29552A61271009900056E675 /* ImagePickers.swift */,
+				29ED110B2713436B00E67D8B /* SoundPlayer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -179,6 +191,7 @@
 		29C46BEC270D5E8800754817 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				29ED110427133D6E00E67D8B /* Alerts */,
 				29552A56270F0FD30056E675 /* API */,
 				29552A36270D88F90056E675 /* Utils */,
 				29C46C0E270D600900754817 /* Model */,
@@ -316,6 +329,16 @@
 			path = Journal;
 			sourceTree = "<group>";
 		};
+		29ED110427133D6E00E67D8B /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				29ED110527133D6E00E67D8B /* sound-rise.mp3 */,
+				29ED110627133D6E00E67D8B /* sound-ding.mp3 */,
+				29ED110727133D6E00E67D8B /* sound-tap.mp3 */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -409,7 +432,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29ED110A27133D6E00E67D8B /* sound-tap.mp3 in Resources */,
+				29ED110927133D6E00E67D8B /* sound-ding.mp3 in Resources */,
 				29C46C0C270D5FB200754817 /* Launch Screen.storyboard in Resources */,
+				29ED110827133D6E00E67D8B /* sound-rise.mp3 in Resources */,
 				29552A5E270F10F60056E675 /* GoogleService-Info.plist in Resources */,
 				29C46C01270D5E8A00754817 /* Assets.xcassets in Resources */,
 			);
@@ -431,8 +457,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29ED110C2713436B00E67D8B /* SoundPlayer.swift in Sources */,
 				29552A6E271010160056E675 /* Person.swift in Sources */,
 				29ED10F527103D7900E67D8B /* TaskViewModel.swift in Sources */,
+				29ED110E2713462700E67D8B /* CustomedViewModifier.swift in Sources */,
 				29552A6527100CD70056E675 /* JournalViewModel.swift in Sources */,
 				29C46C30270D600900754817 /* CommunityView.swift in Sources */,
 				29552A62271009900056E675 /* ImagePickers.swift in Sources */,

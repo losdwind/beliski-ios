@@ -15,27 +15,30 @@ import MapKit
 struct Journal:Identifiable, Codable, Hashable{
     
     @DocumentID var id: String?
-    var timestamp: Timestamp?
-    var ownerID:String?
-    var content: String?
-    var imageURLs: [String]?
-    var audioURLs: [String]?
-    var videoURLs: [String]?
-    var linkedJournals: [String]?
+    @ServerTimestamp var serverTimestamp: Timestamp?
+    
+    var localTimestamp: Timestamp?
+    var ownerID:String = ""
+    var content: String = ""
+    var wordCount: Int = 0
+    var imageURLs: [String] = []
+    var audioURLs: [String] = []
+    var videoURLs: [String] = []
+    var linkedJournals: [String] = []
     
     //    https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
     //    var location: CLLocation? it is not support by codable protocal, pending solved
     
     
-    func convertFIRTimestamptoString() -> String? {
+    func convertFIRTimestamptoString(timestamp: Timestamp?) -> String {
         if timestamp != nil {
             let formatter = DateComponentsFormatter()
             formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
             formatter.maximumUnitCount = 1
             formatter.unitsStyle = .abbreviated
-            return formatter.string(from: self.timestamp!.dateValue(), to: Date())
+            return formatter.string(from: timestamp!.dateValue(), to: Date()) ?? "Timestamp cannot be converted"
         } else {
-            return nil
+            return "Timestamp is nil"
         }
 
     }

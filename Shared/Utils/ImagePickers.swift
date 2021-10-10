@@ -7,7 +7,7 @@
 
 import SwiftUI
 import PhotosUI
-struct ImagePickerView: UIViewControllerRepresentable {
+struct ImagePickers: UIViewControllerRepresentable {
     
     @Binding var images: [UIImage]
     @Environment(\.presentationMode) var presentationMode
@@ -31,9 +31,9 @@ struct ImagePickerView: UIViewControllerRepresentable {
     
     class Coordinator: NSObject, PHPickerViewControllerDelegate {
 
-        var parent: ImagePickerView
+        var parent: ImagePickers
         
-        init(parent: ImagePickerView) {
+        init(parent: ImagePickers) {
             self.parent = parent
         }
         
@@ -44,6 +44,7 @@ struct ImagePickerView: UIViewControllerRepresentable {
             
             
             for img in results {
+                
                 if img.itemProvider.canLoadObject(ofClass: UIImage.self) {
                     img.itemProvider.loadObject(ofClass: UIImage.self) { (image, err) in
                         guard let image1 = image else { return }

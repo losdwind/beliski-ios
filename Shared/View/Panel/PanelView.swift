@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PanelView: View {
     
-    @StateObject var profilevm =  ProfileViewModel()
+    @ObservedObject var profilevm:ProfileViewModel
     
     var body: some View {
         NavigationView{
@@ -36,6 +36,6 @@ struct PanelView: View {
 
 struct PanelView_Previews: PreviewProvider {
     static var previews: some View {
-        PanelView()
+        PanelView(profilevm: ProfileViewModel())
     }
 }

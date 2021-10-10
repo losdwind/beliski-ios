@@ -50,21 +50,24 @@ class AuthViewModel: ObservableObject {
             print("Successfully registered user...")
             
             
-        MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
-           
+            MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
                 
-                let data = ["email": email,
-                            "username": username,
-                            "fullname": fullname,
-                            "profileImageUrl": imageUrl,
-                            "uid": user.uid]
+                let data = User(username: username, email: email, profileImageUrl: imageUrl, fullname: fullname, bio: "")
                 
-                COLLECTION_USERS.document(user.uid).setData(data) { _ in
-                    print("Successfully uploaded user data...")
+                do {
+                    try COLLECTION_USERS.document(user.uid).setData(from:data)
+                    print("Successfully uploaded user data to firestore...")
                     self.userSession = user
                     self.fetchUser()
+                    
+                    
+                } catch let error {
+                    print("Error upload User to Firestore: \(error)")
                 }
             }
+            
+            
+            
         }
     }
     
@@ -91,5 +94,5 @@ class AuthViewModel: ObservableObject {
             self.currentUser = user
         }
     }
-
+    
 }
