@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct JournalEditorView: View {
+    @ObservedObject var journalvm:JournalViewModel
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,6 +17,6 @@ struct JournalEditorView: View {
 
 struct JournalEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        JournalEditorView()
+        JournalEditorView(journalvm: JournalViewModel())
     }
 }

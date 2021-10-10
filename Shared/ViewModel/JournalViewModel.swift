@@ -11,24 +11,36 @@ import UIKit
 
 class JournalViewModel:ObservableObject {
     
-    @Published var journal = Journal()
+    
+    init(){
+        
+        self.fetchJournals() { success in
+            print("successfully fetched the journals")
+        }
+    }
+
+    @Published var journalInCreation = Journal()
+    @Published var journalInUpdation = Journal()
+    @Published var fetchedJournals = [Journal]()
+    
+    
     @Published var images:[UIImage]?
     @Published var audios:[NSData]?
     @Published var videos:[NSData]?
     
-    @Published var fetchedJournals: [Journal]?
     
-    @Published var journalInUpdation:Journal
     
     @Published var isUpdatingJournal: Bool = false
     
     func uploadJournal(handler: @escaping (_ success: Bool) -> ()) {
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else { return }
+        guard let userID = AuthViewModel.shared.currentUser?.id else {
+            print("userID is not valid")
+            return }
         
         let document = COLLECTION_USERS.document(userID).collection("journals").document()
         
-        journal.ownerID = userID
+        journalInCreation.ownerID = userID
         
         if self.images != nil {
             
@@ -37,7 +49,7 @@ class JournalViewModel:ObservableObject {
                 MediaUploader.uploadImage(image: img, type: .journal) { imageUrl in
                     imageURLs.append(imageUrl)
                 }
-                journal.imageURLs = imageURLs
+                journalInCreation.imageURLs = imageURLs
             }}
         
         if self.videos != nil {
@@ -47,7 +59,7 @@ class JournalViewModel:ObservableObject {
                 MediaUploader.uploadVideo(video: video, type: .journal) { videoUrl in
                     videoURLs.append(videoUrl)
                 }
-                journal.videoURLs = videoURLs
+                journalInCreation.videoURLs = videoURLs
             }
         }
         
@@ -66,33 +78,83 @@ class JournalViewModel:ObservableObject {
         
         
         do {
-            try document.setData(from: journal)
-            
+            try document.setData(from: journalInCreation)
             handler(true)
             return
         } catch let error {
-            print("Error writing journal to Firestore: \(error)")
+            print("Error upload journal to Firestore: \(error)")
             handler(false)
             return
         }
+        
         
     }
     
     
     
     func updateJournal(handler: @escaping (_ success: Bool) -> ()){
-        handler(true)
+        guard let userID = AuthViewModel.shared.currentUser?.id else {
+            print("userID is not valid")
+            return }
+        
+        if journalInUpdation.id != nil {
+            let document = COLLECTION_USERS.document(userID).collection("journals").document(journalInUpdation.id!)
+            
+            do {
+                try document.setData(from: journalInUpdation)
+                handler(true)
+                return
+            } catch let error {
+                print("Error updating journal to Firestore: \(error)")
+                handler(false)
+                return
+            }
+            
+        } else {
+            self.journalInCreation = self.journalInUpdation
+            self.updateJournal { success in
+                print("suppose to update journal but the journal is not exist in database, so we help you uploaded it")
+                handler(true)
+                return
+            }
+
+
+        }
     }
     
-    func deleteJournal(handler: @escaping (_ success: Bool) -> ()){
-        handler(true)
+    func deleteJournal(journal: Journal, handler: @escaping (_ success: Bool) -> ()){
+        
+        guard let userID = AuthViewModel.shared.currentUser?.id else {
+            print("userID is not valid")
+            return }
+        
+        if journal.id != nil {
+            let document = COLLECTION_USERS.document(userID).collection("journals").document(journal.id!)
+            document.delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                    handler(false)
+                    return
+                } else {
+                    print("Document successfully removed!")
+                    handler(true)
+                    return
+                }
+            }
+        } else {
+            print("journal id is not available, means it's not yet uploaded into the firestore")
+            handler(false)
+            return
+        }
     }
     
     
     
     
     func fetchJournals(handler: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else { return }
+        guard let userID = AuthViewModel.shared.currentUser?.id else {
+            print("userID is not valid")
+            return }
         
         COLLECTION_USERS.document(userID).collection("journals").order(by: "timestamp", descending: true).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }

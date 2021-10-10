@@ -16,46 +16,37 @@ struct ProfileCompactView: View {
     var body: some View {
         NavigationView {
             
-            if profilevm.user == nil {
-                NavigationLink(destination: LogInView(), label: {
-                    Text("Log In")
+            HStack(alignment: .center, spacing: 20){
+                
+                KFImage(URL(string: profilevm.user!.profileImageUrl))
+                    .resizable()
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .frame(width: 80, height: 80, alignment: .center)
+                
+                VStack(alignment: .leading, spacing: 10){
+                    Text(profilevm.user!.fullname)
                         .font(.headline)
                         .foregroundColor(.primary)
-                })
-            } else{
-                
-
-                    HStack(alignment: .center, spacing: 20){
-                        
-                        KFImage(URL(string: profilevm.user!.profileImageUrl))
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(10)
-                            .frame(width: 80, height: 80, alignment: .center)
-                        
-                        VStack(alignment: .leading, spacing: 10){
-                            Text(profilevm.user!.fullname)
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                            
-                            Text(profilevm.user!.email)
-                                .font(.footnote)
-                            
-                            Text(profilevm.user!.username)
-                                .font(.footnote)
-                            
-                            
-                        
-                        
-                    }
+                    
+                    Text(profilevm.user!.email)
+                        .font(.footnote)
+                    
+                    Text(profilevm.user!.username)
+                        .font(.footnote)
+                    
+                    
+                    
+                    
                 }
-                
-                
-                
-                
-                
-                
             }
+            
+            
+            
+            
+            
+            
+            
         }
         
         

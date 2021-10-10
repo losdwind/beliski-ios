@@ -21,13 +21,16 @@ struct PanelView: View {
                 } label: {
                     ProfileCompactView(profilevm: profilevm)
                 }
-
-                ScoreView()
-                
-                Spacer()
+                NavigationLink{
+                    Text("here is the detail view of wellbeing index")
+                } label: {
+                    ScoreView()
+                }
             }
-        }
+            
 
+        }
+        
     }
 }
 

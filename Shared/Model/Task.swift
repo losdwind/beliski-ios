@@ -10,10 +10,10 @@ import FirebaseFirestoreSwift
 struct Task:Identifiable {
     @DocumentID var id:String?
     
-    var task:String
+    var task:String?
     var description:String?
-    var timestamp: Date
-    var completion: Bool
+    var timestamp: Date?
+    var completion: Bool?
     var reminder: Date?
     
     

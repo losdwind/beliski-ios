@@ -12,7 +12,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-struct Journal:Identifiable, Codable{
+struct Journal:Identifiable, Codable, Hashable{
     
     @DocumentID var id: String?
     var timestamp: Timestamp?

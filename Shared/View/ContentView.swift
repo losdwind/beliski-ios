@@ -17,7 +17,9 @@ struct ContentView: View {
     var body: some View {
         
         if AuthViewModel.shared.userSession == nil {
+            
             LogInView()
+            
         } else {
             TabView(selection: $selectedTab){
                 
