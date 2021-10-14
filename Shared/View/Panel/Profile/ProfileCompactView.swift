@@ -10,7 +10,6 @@ import Kingfisher
 
 struct ProfileCompactView: View {
     
-    @ObservedObject var profilevm: ProfileViewModel
     
     
     var body: some View {
@@ -18,21 +17,21 @@ struct ProfileCompactView: View {
             
             HStack(alignment: .center, spacing: 20){
                 
-                KFImage(URL(string: profilevm.user!.profileImageUrl))
+                KFImage(URL(string: AuthViewModel.shared.currentUser?.profileImageUrl ?? ""))
                     .resizable()
                     .scaledToFit()
                     .cornerRadius(10)
                     .frame(width: 80, height: 80, alignment: .center)
                 
                 VStack(alignment: .leading, spacing: 10){
-                    Text(profilevm.user!.fullname)
+                    Text(AuthViewModel.shared.currentUser?.fullname ?? "fullname")
                         .font(.headline)
                         .foregroundColor(.primary)
                     
-                    Text(profilevm.user!.email)
+                    Text(AuthViewModel.shared.currentUser?.email ?? "email" )
                         .font(.footnote)
                     
-                    Text(profilevm.user!.username)
+                    Text(AuthViewModel.shared.currentUser?.username ?? "username")
                         .font(.footnote)
                     
                     
@@ -40,22 +39,16 @@ struct ProfileCompactView: View {
                     
                 }
             }
-            
-            
-            
-            
-            
-            
+
             
         }
-        
-        
+
     }
 }
 
 struct ProfileView_Previews: PreviewProvider{
     static var previews: some View {
-        ProfileCompactView(profilevm: ProfileViewModel())
+        ProfileCompactView()
             .previewLayout(.sizeThatFits)
         
     }

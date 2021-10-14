@@ -173,7 +173,7 @@ struct TimestampView: View {
     let time: String
     
     var body: some View {
-        Text(time)
+        Text("\(time) ago")
             .foregroundColor(.secondary)
             .font(.system(size: 14))
     }

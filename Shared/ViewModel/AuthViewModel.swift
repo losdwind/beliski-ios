@@ -15,10 +15,13 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var didSendResetPasswordLink = false
     
+    @Published var isShowingAuthView:Bool = false
+    
     static let shared = AuthViewModel()
     
     init() {
         userSession = Auth.auth().currentUser
+        isShowingAuthView = (userSession?.uid == nil)
         fetchUser()
     }
     
@@ -91,8 +94,9 @@ class AuthViewModel: ObservableObject {
         guard let uid = userSession?.uid else { return }
         COLLECTION_USERS.document(uid).getDocument { snapshot, _ in
             guard let user = try? snapshot?.data(as: User.self) else { return }
-            self.currentUser = user
-        }
+            
+            print(user.email)
+            self.currentUser = user }
     }
     
 }

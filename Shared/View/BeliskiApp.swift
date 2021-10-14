@@ -11,6 +11,7 @@ import Firebase
 @main
 struct BeliskiApp: App {
     
+    
     init(){
         FirebaseApp.configure()
     }

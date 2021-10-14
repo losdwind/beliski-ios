@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct PanelView: View {
-    
-    @ObservedObject var profilevm:ProfileViewModel
-    
+        
     var body: some View {
         NavigationView{
             
             VStack(alignment:.center){
                 
                 NavigationLink {
-                    ProfileDetailView(profilevm: profilevm)
+                    ProfileDetailView()
                 } label: {
-                    ProfileCompactView(profilevm: profilevm)
+                    ProfileCompactView()
                 }
                 NavigationLink{
                     Text("here is the detail view of wellbeing index")
@@ -36,6 +34,6 @@ struct PanelView: View {
 
 struct PanelView_Previews: PreviewProvider {
     static var previews: some View {
-        PanelView(profilevm: ProfileViewModel())
+        PanelView()
     }
 }

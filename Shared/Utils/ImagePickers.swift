@@ -17,7 +17,7 @@ struct ImagePickers: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
         var config = PHPickerConfiguration()
         config.filter = mediaType
-//        config.selectionLimit = selectionLimit
+        config.selectionLimit = 9
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
         return picker

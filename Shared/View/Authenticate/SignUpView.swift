@@ -31,7 +31,7 @@ struct SignUpView: View {
                 } else {
                     Button(action: {
                         isShowingimagePicker.toggle() }, label: {
-                        Image("plus_photo")
+                        Image(systemName:"plus")
                             .renderingMode(.template)
                             .resizable()
                             .scaledToFill()

@@ -28,21 +28,31 @@ enum UploadType {
 
 struct MediaUploader {
     
-    static func uploadImages(images: [UIImage], type: UploadType, completion: @escaping (_ imageURLs: [String]) -> () ){
-        var imageURLs:[String] = []
+    static func uploadImages(images: [UIImage], type: UploadType, completion: @escaping (_ imageURLs: [String]) -> ()) {
+        var imageURLs = [String]()
+        let group = DispatchGroup()
         for image in images {
-            uploadImage(image: image, type: type){
-                imageURL in
+            group.enter()
+            uploadImage(image: image, type: type){imageURL in
                 imageURLs.append(imageURL)
+                for url in imageURLs {
+                    print("?????????????????????????\(url)")
+                }
+                group.leave()
             }
-            completion(imageURLs)
-            return
         }
-        
+        group.notify(queue: .main) {
+            print("Finished all requests.")
+        }
+        completion(imageURLs)
+        return
     }
     
     static func uploadImage(image: UIImage, type: UploadType, completion: @escaping (_ imageURL: String) -> ()) {
-        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+            
+            print("cannot compress the image")
+            return }
         let ref = type.filePath
         
         ref.putData(imageData, metadata: nil) { _, error in
@@ -85,7 +95,5 @@ struct MediaUploader {
             }
         }
     }
-    
-    
     
 }

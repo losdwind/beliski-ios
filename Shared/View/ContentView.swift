@@ -14,6 +14,7 @@ struct ContentView: View {
     @State var password: String = ""
     
     
+    @StateObject var authvm = AuthViewModel.shared
     @StateObject var journalvm = JournalViewModel()
     @StateObject var taskvm = TaskViewModel()
     @StateObject var profilevm = ProfileViewModel()
@@ -21,7 +22,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        if AuthViewModel.shared.userSession == nil {
+        if authvm.isShowingAuthView {
             
             LogInView()
             
@@ -35,7 +36,7 @@ struct ContentView: View {
                     }.tag(MainTab.timeline)
                 
                 // Show the Panel of statistics based on the journals of the user
-                PanelView(profilevm: profilevm)
+                PanelView()
                     .tabItem {
                         Image(systemName: "chart.bar.xaxis")
                     }.tag(MainTab.score)
@@ -60,6 +61,7 @@ struct ContentView: View {
                     }.tag(MainTab.community)
                 
             }
+            .environmentObject(authvm)
             .accentColor(.primary)
             
         }

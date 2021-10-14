@@ -17,9 +17,9 @@ class JournalViewModel:ObservableObject {
         self.fetchJournals() { success in
             
             if success {
-                print("successfully fetched the journals")
+                print("-------->successfully fetched the journals")
             } else {
-                print("failed to fetch the journals")
+                print("-------->failed to fetch the journals")
             }
         }
     }
@@ -36,7 +36,7 @@ class JournalViewModel:ObservableObject {
     func uploadJournal(handler: @escaping (_ success: Bool) -> ()) {
         
         guard let userID = AuthViewModel.shared.currentUser?.id else {
-            print("userID is not valid")
+            print("userID is not valid in uploadJournal func")
             return }
         var document = COLLECTION_USERS.document(userID).collection("journals").document()
         if journal.id != nil {
@@ -44,6 +44,8 @@ class JournalViewModel:ObservableObject {
         } else {
             journal.ownerID = userID
         }
+        
+        print("check if there are image urls in the journal.imageURLs before upload------->\(journal.imageURLs)")
         
         
         // MARK: - here I disabled the uploadImage because i want to upload right after the imagePicker
@@ -139,6 +141,7 @@ class JournalViewModel:ObservableObject {
             handler(false)
             return
         }
+        
     }
     
     
@@ -146,10 +149,11 @@ class JournalViewModel:ObservableObject {
     
     func fetchJournals(handler: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.currentUser?.id else {
-            print("userID is not valid")
-            return }
+            print("userID is not valid here in fetchJournal function")
+            return
+        }
         
-        COLLECTION_USERS.document(userID).collection("journals").order(by: "timestamp", descending: true).getDocuments { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("journals").order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             self.fetchedJournals = documents.compactMap({try? $0.data(as: Journal.self)})
             handler(true)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct CreateView: View {
     
@@ -19,6 +20,7 @@ struct CreateView: View {
             Button(action: {
                 isShowingJournalEditor = true
                 playSound(sound: "sound-ding", type: "mp3")
+                journalvm.journal.localTimestamp = Timestamp(date:Date())
             }, label: {
                 Image(systemName: "plus.circle")
                     .font(.system(size: 30, weight: .semibold, design: .rounded))
@@ -33,6 +35,7 @@ struct CreateView: View {
         
             
         }
+        .padding()
     }
 }
 

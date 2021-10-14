@@ -11,6 +11,7 @@ struct LogInView: View {
         
     @State private var email:String = ""
     @State private var password: String = ""
+    @Environment(\.presentationMode) var mode
     
     var body: some View {
         NavigationView {
@@ -57,7 +58,12 @@ struct LogInView: View {
                 Spacer()
                 
                 NavigationLink(
-                    destination: SignUpView().navigationBarHidden(true),
+                    destination:
+                        SignUpView().navigationBarHidden(true)
+                        .onDisappear(perform: {
+                            mode.wrappedValue.dismiss()
+                        })
+                    ,
                     label: {
                         HStack {
                             Text("Don't have an account?")
