@@ -12,12 +12,18 @@ struct JournalListView: View {
     @ObservedObject var journalvm:JournalViewModel
     
     @State var isUpdatingJournal = false
+    @State var isShowingJournalSearchView = false
+    @State var isShowingJournalFilterView = false
+    
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack {
-                if journalvm.fetchedJournals.isEmpty == false {
-                ForEach(journalvm.fetchedJournals, id:\.self ) { journal in
+        
+        NavigationView() {
+            List(journalvm.fetchedJournals){
+                journal in
+                
+                
+                NavigationLink(destination: JournalLinkedView()){
                     JournalItemView(journal: journal)
                         .contextMenu(menuItems:{
                             Button(action:{
@@ -27,11 +33,11 @@ struct JournalListView: View {
                                    ,label:{Label(
                                     title: { Text("Delete") },
                                     icon: { Image(systemName: "trash.circle") })})
-                        
+                            
                             Button(action:{
                                 journalvm.journal = journal
                                 isUpdatingJournal = true
-
+                                
                             }
                                    ,label:{Label(
                                     title: { Text("Edit") },
@@ -45,14 +51,46 @@ struct JournalListView: View {
                         })
                         .padding(.vertical, 0)
                         .frame(maxWidth: 640)
+                        .background(Color.gray)
+                        .cornerRadius(10)
+                    
+                    
                 }
-                } else {
-                    Text("fetched journals is Empty")
+                .listRowSeparator(.hidden)
+                
+                
+            }
+            .listStyle(.inset)
+            .refreshable {
+                journalvm.fetchJournals { _ in }
+            }
+            .navigationTitle(LocalizedStringKey("Timeline"))
+            .toolbar {
+                ToolbarItem(placement:.navigationBarLeading){
+                    Button(
+                        action: {
+                            isShowingJournalSearchView.toggle()
+                        },
+                        label: {
+                            Image(systemName: "line.3.horizontal.decrease.circle")})
+                    
+                }
+                
+                ToolbarItem(placement:.navigationBarTrailing){
+                    Button(
+                        action: {
+                            isShowingJournalFilterView.toggle()
+                        },
+                        label: {
+                            Image(systemName: "magnifyingglass.circle")})
+                    
                 }
             }
+            
         }
-
+        
     }
+    
 }
 
 struct JournalView_Previews: PreviewProvider {

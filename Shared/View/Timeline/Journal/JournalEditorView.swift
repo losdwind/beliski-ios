@@ -9,8 +9,8 @@ import SwiftUI
 
 struct JournalEditorView: View {
     @ObservedObject var journalvm:JournalViewModel
+    @State var imagePickerPresented = false
     
-
     @Environment(\.presentationMode) var presentationMode
     
     // new in iOS 15
@@ -20,7 +20,7 @@ struct JournalEditorView: View {
     
     
     
-
+    
     
     var body: some View {
         
@@ -36,7 +36,24 @@ struct JournalEditorView: View {
                 .padding(0)
                 .cornerRadius(10)
             
-            ImageEditorView(journalvm: journalvm, journal: $journalvm.journal)
+            if journalvm.images.isEmpty == true {
+                
+                
+                Button(action: { imagePickerPresented.toggle() }, label: {
+                    Image(systemName:"plus")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+                }).sheet(isPresented: $imagePickerPresented
+                         , content: {
+                    ImagePickers(images: $journalvm.images)
+                })
+                
+            } else {
+                
+                ImageGridDataView(images: journalvm.images)
+                
+            }
             
             
             TimestampView(time:journalvm.journal.convertFIRTimestamptoString(timestamp: journalvm.journal.localTimestamp))
@@ -45,7 +62,20 @@ struct JournalEditorView: View {
                 
                 // SAVE BUTTON
                 Button(action: {
-                    journalvm.uploadJournal { _ in }
+                    MediaUploader.uploadImages(images: journalvm.images, type: .journal)
+                    { urls in
+                        journalvm.journal.imageURLs = urls
+                        journalvm.uploadJournal { success in
+                            if success {
+                                journalvm.journal = Journal()
+                                journalvm.images = [UIImage]()
+                                journalvm.audios = [NSData]()
+                                journalvm.videos = [NSData]()
+                                journalvm.fetchJournals { _ in }
+                            }
+                        }
+                    }
+                    
                     playSound(sound: "sound-ding", type: "mp3")
                     //                        UINotificationFeedbackGenerator().notificationOccurred(.success)
                     
@@ -81,14 +111,9 @@ struct JournalEditorView: View {
         .padding(.horizontal)
         .padding(.vertical, 20)
         .cornerRadius(16)
-        .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.65), radius: 24)
         .frame(maxWidth: 640)
-        
-        
-        
-        
-        
     }
+    
 }
 
 struct JournalEditorView_Previews: PreviewProvider {
@@ -96,52 +121,3 @@ struct JournalEditorView_Previews: PreviewProvider {
         JournalEditorView(journalvm: JournalViewModel())
     }
 }
-
-
-
-struct ImageEditorView: View {
-    
-    @ObservedObject var journalvm:JournalViewModel
-    
-    @Binding var journal:Journal
-    
-    @State var imagePickerPresented = false
-
-    
-    func didDismiss(){
-        
-        
-        print("=================================================")
-        MediaUploader.uploadImages(images: journalvm.images, type: .journal)
-        { urls in
-            journal.imageURLs = urls
-        }
-    }
-    
-    
-    var body: some View {
-        
-        
-        if journal.imageURLs.isEmpty {
-            
-            
-            Button(action: { imagePickerPresented.toggle() }, label: {
-                Image(systemName:"plus")
-                    .resizable()
-                    .scaledToFit()
-            }).sheet(isPresented: $imagePickerPresented, onDismiss: didDismiss
-            , content: {
-                ImagePickers(images: $journalvm.images)
-            })
-            
-        } else {
-
-            ImageGridView(imageURLs: journal.imageURLs)
-
-            
-        }
-    }
-    
-    
-}
-

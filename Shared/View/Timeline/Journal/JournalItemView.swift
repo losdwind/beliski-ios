@@ -17,44 +17,44 @@ struct JournalItemView: View {
     
     
     var body: some View {
-                    VStack(alignment: .leading, spacing: 10) {
-                        
-                        if journal.content.isEmpty == false {
-                            TextContentView(text: journal.content)
-                        } else{
-                            TextContentView(text: "You didn't put any words here")
-                        }
-                        
-                        if journal.imageURLs.isEmpty == false {
-                            if journal.imageURLs.count == 1 {
-                                SingleImageView(imageURL: journal.imageURLs[0])
-                            } else {
-                                ImageGridView(imageURLs: journal.imageURLs)
-                            }
-                        }
-                        
-                        if journal.videoURLs.isEmpty == false {
-                            LazyVStack{
-                                ForEach(journal.videoURLs, id: \.self){
-                                    videoURL in
-                                    SingleVideoView(videoURL: videoURL)
-                                }
-                            }
-                        }
-                        
-                        HStack {
-                            TimestampView(time:journal.convertFIRTimestamptoString(timestamp: journal.localTimestamp))
-                            
-                            Spacer()
-                            
-                            Image(systemName: "ellipsis")
-                        }
-                        
+        VStack(alignment: .leading, spacing: 10) {
             
-                    }
-                .padding(.init(top: 12, leading: 12, bottom: 14, trailing: 12))
+            if journal.content.isEmpty == false {
+                TextContentView(text: journal.content)
+            } else{
+                TextContentView(text: "You didn't put any words here")
             }
-
+            
+            if journal.imageURLs.isEmpty == false {
+                if journal.imageURLs.count == 1 {
+                    SingleImageView(imageURL: journal.imageURLs[0])
+                } else {
+                    ImageGridView(imageURLs: journal.imageURLs)
+                }
+            }
+            
+            if journal.videoURLs.isEmpty == false {
+                LazyVStack{
+                    ForEach(journal.videoURLs, id: \.self){
+                        videoURL in
+                        SingleVideoView(videoURL: videoURL)
+                    }
+                }
+            }
+            
+            HStack {
+                TimestampView(time:journal.convertFIRTimestamptoString(timestamp: journal.localTimestamp))
+                
+                Spacer()
+                
+                Image(systemName: "ellipsis")
+            }
+            
+            
+        }
+        .padding(.init(top: 12, leading: 12, bottom: 14, trailing: 12))
+    }
+    
 }
 
 struct JournalItemView_Previews: PreviewProvider {
@@ -87,15 +87,29 @@ struct SingleImageView: View {
         .aspectRatio(contentMode: .fit)
         .frame(maxWidth: 180, maxHeight: 180, alignment: .leading)
         
-           
+        
+    }
+}
+
+// the variational version of SingleImageView which receiving UIImage data
+struct SingleImageDataView: View {
+    let uiImage: UIImage
+    var body: some View {
+        // 按照最大区域 180x180 等比缩放
+        Image(uiImage: uiImage)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(maxWidth: 180, maxHeight: 180, alignment: .leading)
+        
+        
     }
 }
 
 struct ImageGridView: View {
     let imageURLs: [String]
     
-    var rows: Int { imageURLs.count / cols }
     var cols: Int { imageURLs.count == 4 ? 2 : min(imageURLs.count, 3) }
+    var rows: Int { imageURLs.count / cols }
     var lastRowCols: Int { imageURLs.count % cols }
     
     var body: some View {
@@ -114,7 +128,7 @@ struct ImageGridView: View {
             ForEach(0 ..< (isLast ? self.lastRowCols : self.cols), id: \.self) { col in
                 AsyncImage(url: URL(string: imageURLs[row * self.cols + col])) { image in
                     image.resizable()
-                
+                    
                 } placeholder: {
                     ProgressView()
                 }
@@ -122,12 +136,45 @@ struct ImageGridView: View {
                 .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
                 .aspectRatio(1, contentMode: .fill)
                 .clipped()
-
+                
             }
         }
     }
 }
 
+
+struct ImageGridDataView: View {
+    let images: [UIImage]
+    
+    var cols: Int { images.count == 4 ? 2 : min(images.count, 3) }
+    var rows: Int { images.count / cols }
+    var lastRowCols: Int { images.count % cols }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            ForEach(0 ..< rows, id: \.self) { row in
+                self.rowBody(row: row, isLast: false)
+            }
+            if lastRowCols > 0 {
+                self.rowBody(row: rows, isLast: true)
+            }
+        }
+    }
+    
+    func rowBody(row: Int, isLast: Bool) -> some View {
+        HStack(spacing: 6) {
+            ForEach(0 ..< (isLast ? self.lastRowCols : self.cols), id: \.self) { col in
+                Image(uiImage: images[row * self.cols + col])
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
+                    .aspectRatio(1, contentMode: .fill)
+                    .clipped()
+                
+            }
+        }
+    }
+}
 
 
 
@@ -152,16 +199,16 @@ struct SingleVideoView: View {
                     default:        self.isPlaying = false
                     }
                 }
-                // 可见时播放，不可见时暂停
+            // 可见时播放，不可见时暂停
                 .onAppear { self.play = true }
                 .onDisappear { self.play = false }
             
-        // MARK: - here pending solved to show the video cover
-//            if !isPlaying {
-//                // 非播放状态下显示封面图
-//                Image(video.cover!)
-//                    .resizable()
-//            }
+            // MARK: - here pending solved to show the video cover
+            //            if !isPlaying {
+            //                // 非播放状态下显示封面图
+            //                Image(video.cover!)
+            //                    .resizable()
+            //            }
         }
         // 按照最大区域 225x225 等比缩放
         .aspectRatio(contentMode: .fit)

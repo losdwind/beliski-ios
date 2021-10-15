@@ -74,14 +74,12 @@ class JournalViewModel:ObservableObject {
         do {
             try document.setData(from: journal)
             handler(true)
+            
         } catch let error {
             print("Error upload journal to Firestore: \(error)")
             handler(false)
         }
-        self.journal = Journal()
-        self.images = [UIImage]()
-        self.audios = [NSData]()
-        self.videos = [NSData]()
+
 
     }
     

@@ -35,17 +35,13 @@ struct MediaUploader {
             group.enter()
             uploadImage(image: image, type: type){imageURL in
                 imageURLs.append(imageURL)
-                for url in imageURLs {
-                    print("?????????????????????????\(url)")
-                }
                 group.leave()
             }
         }
         group.notify(queue: .main) {
             print("Finished all requests.")
+            completion(imageURLs)
         }
-        completion(imageURLs)
-        return
     }
     
     static func uploadImage(image: UIImage, type: UploadType, completion: @escaping (_ imageURL: String) -> ()) {

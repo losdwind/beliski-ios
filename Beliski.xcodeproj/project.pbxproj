@@ -75,6 +75,14 @@
 		29ED110A27133D6E00E67D8B /* sound-tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29ED110727133D6E00E67D8B /* sound-tap.mp3 */; };
 		29ED110C2713436B00E67D8B /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED110B2713436B00E67D8B /* SoundPlayer.swift */; };
 		29ED110E2713462700E67D8B /* CustomedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED110D2713462700E67D8B /* CustomedViewModifier.swift */; };
+		29ED11102718979100E67D8B /* JournalLinkedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED110F2718979100E67D8B /* JournalLinkedView.swift */; };
+		29ED11112718979100E67D8B /* JournalLinkedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED110F2718979100E67D8B /* JournalLinkedView.swift */; };
+		29ED111627189A3200E67D8B /* SearchJournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED111527189A3200E67D8B /* SearchJournalView.swift */; };
+		29ED111727189A3200E67D8B /* SearchJournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED111527189A3200E67D8B /* SearchJournalView.swift */; };
+		29ED111927189B0600E67D8B /* JournalFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED111827189B0600E67D8B /* JournalFilterView.swift */; };
+		29ED111A27189B0600E67D8B /* JournalFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED111827189B0600E67D8B /* JournalFilterView.swift */; };
+		29ED111C271996E700E67D8B /* NewImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED111B271996E700E67D8B /* NewImagePicker.swift */; };
+		29ED111D271996E700E67D8B /* NewImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED111B271996E700E67D8B /* NewImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +128,10 @@
 		29ED110727133D6E00E67D8B /* sound-tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-tap.mp3"; sourceTree = "<group>"; };
 		29ED110B2713436B00E67D8B /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		29ED110D2713462700E67D8B /* CustomedViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomedViewModifier.swift; sourceTree = "<group>"; };
+		29ED110F2718979100E67D8B /* JournalLinkedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalLinkedView.swift; sourceTree = "<group>"; };
+		29ED111527189A3200E67D8B /* SearchJournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchJournalView.swift; sourceTree = "<group>"; };
+		29ED111827189B0600E67D8B /* JournalFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalFilterView.swift; sourceTree = "<group>"; };
+		29ED111B271996E700E67D8B /* NewImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +168,7 @@
 				29552A50270F0EC40056E675 /* Constants.swift */,
 				29552A53270F0F2E0056E675 /* ImagePicker.swift */,
 				29552A61271009900056E675 /* ImagePickers.swift */,
+				29ED111B271996E700E67D8B /* NewImagePicker.swift */,
 				29ED110B2713436B00E67D8B /* SoundPlayer.swift */,
 			);
 			path = Utils;
@@ -322,9 +335,12 @@
 		29ED10F72710421100E67D8B /* Journal */ = {
 			isa = PBXGroup;
 			children = (
+				29ED1113271899DE00E67D8B /* SearchView */,
+				29ED1112271899CF00E67D8B /* FilterView */,
 				29C46C1A270D600900754817 /* JournalListView.swift */,
 				29ED10F82710422600E67D8B /* JournalItemView.swift */,
 				29ED10FB2710423800E67D8B /* JournalEditorView.swift */,
+				29ED110F2718979100E67D8B /* JournalLinkedView.swift */,
 			);
 			path = Journal;
 			sourceTree = "<group>";
@@ -337,6 +353,22 @@
 				29ED110727133D6E00E67D8B /* sound-tap.mp3 */,
 			);
 			path = Alerts;
+			sourceTree = "<group>";
+		};
+		29ED1112271899CF00E67D8B /* FilterView */ = {
+			isa = PBXGroup;
+			children = (
+				29ED111827189B0600E67D8B /* JournalFilterView.swift */,
+			);
+			path = FilterView;
+			sourceTree = "<group>";
+		};
+		29ED1113271899DE00E67D8B /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				29ED111527189A3200E67D8B /* SearchJournalView.swift */,
+			);
+			path = SearchView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,13 +506,17 @@
 				29552A54270F0F2E0056E675 /* ImagePicker.swift in Sources */,
 				29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */,
+				29ED11102718979100E67D8B /* JournalLinkedView.swift in Sources */,
+				29ED111C271996E700E67D8B /* NewImagePicker.swift in Sources */,
 				29C46C26270D600900754817 /* Struct & Enum.swift in Sources */,
 				29C46C2F270D600900754817 /* CreateView.swift in Sources */,
 				29552A6827100E850056E675 /* Journal.swift in Sources */,
 				29C46C36270D658500754817 /* SignUpView.swift in Sources */,
 				29552A6B271010070056E675 /* Task.swift in Sources */,
 				29C46C2B270D600900754817 /* JournalListView.swift in Sources */,
+				29ED111627189A3200E67D8B /* SearchJournalView.swift in Sources */,
 				29ED10FC2710423800E67D8B /* JournalEditorView.swift in Sources */,
+				29ED111927189B0600E67D8B /* JournalFilterView.swift in Sources */,
 				29552A7127101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				29C46C27270D600900754817 /* ProfileViewModel.swift in Sources */,
 				29552A7627101B620056E675 /* PanelView.swift in Sources */,
@@ -501,6 +537,7 @@
 				29552A63271009900056E675 /* ImagePickers.swift in Sources */,
 				29552A7727101B620056E675 /* PanelView.swift in Sources */,
 				29552A3C270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
+				29ED111727189A3200E67D8B /* SearchJournalView.swift in Sources */,
 				29552A39270D89150056E675 /* CustomTextField.swift in Sources */,
 				29ED10FD2710423800E67D8B /* JournalEditorView.swift in Sources */,
 				29552A6927100E850056E675 /* Journal.swift in Sources */,
@@ -508,14 +545,17 @@
 				29552A6C271010070056E675 /* Task.swift in Sources */,
 				29552A3F270D95900056E675 /* AuthViewModel.swift in Sources */,
 				29C46C3A270D659D00754817 /* ResetPasswordView.swift in Sources */,
+				29ED111D271996E700E67D8B /* NewImagePicker.swift in Sources */,
 				29ED10F627103D7900E67D8B /* TaskViewModel.swift in Sources */,
 				29552A7227101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				29C46C00270D5E8A00754817 /* ContentView.swift in Sources */,
 				29552A4F270F0BDE0056E675 /* LogInView.swift in Sources */,
 				29552A55270F0F2E0056E675 /* ImagePicker.swift in Sources */,
+				29ED11112718979100E67D8B /* JournalLinkedView.swift in Sources */,
 				29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */,
 				29552A6F271010160056E675 /* Person.swift in Sources */,
+				29ED111A27189B0600E67D8B /* JournalFilterView.swift in Sources */,
 				29552A52270F0EC40056E675 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
