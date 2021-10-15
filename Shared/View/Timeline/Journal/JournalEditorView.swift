@@ -58,6 +58,8 @@ struct JournalEditorView: View {
             
             TimestampView(time:journalvm.journal.convertFIRTimestamptoString(timestamp: journalvm.journal.localTimestamp))
             
+            TagAddView()
+            
             HStack {
                 
                 // SAVE BUTTON
