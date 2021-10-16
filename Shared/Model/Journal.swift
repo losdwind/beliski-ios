@@ -18,13 +18,13 @@ struct Journal:Identifiable, Codable, Hashable{
     @ServerTimestamp var serverTimestamp: Timestamp?
     
     var localTimestamp: Timestamp?
-    var ownerID:String = ""
-    var content: String = ""
+    var ownerID:String = "unkown"
+    var content: String = "pending to add"
     var wordCount: Int = 0
     var imageURLs: [String] = []
     var audioURLs: [String] = []
     var videoURLs: [String] = []
-    var linkedJournals: [String] = []
+    var linkedItems: [String] = []
     
     //    https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
     //    var location: CLLocation? it is not support by codable protocal, pending solved

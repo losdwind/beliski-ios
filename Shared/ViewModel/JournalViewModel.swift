@@ -12,18 +12,6 @@ import UIKit
 class JournalViewModel:ObservableObject {
     
     
-    init(){
-        
-        self.fetchJournals() { success in
-            
-            if success {
-                print("-------->successfully fetched the journals")
-            } else {
-                print("-------->failed to fetch the journals")
-            }
-        }
-    }
-
     @Published var journal = Journal()
     @Published var fetchedJournals = [Journal]()
     
@@ -50,26 +38,7 @@ class JournalViewModel:ObservableObject {
         
         // MARK: - here I disabled the uploadImage because i want to upload right after the imagePicker
         
-//        if self.images.isEmpty == false {
-//
-//            var imageURLs:[String] = []
-//            for img in self.images {
-//                MediaUploader.uploadImage(image: img, type: .journal) { imageUrl in
-//                    imageURLs.append(imageUrl)
-//                }
-//                journal.imageURLs = imageURLs
-//            }}
-//
-//        if self.videos.isEmpty == false {
-//
-//            var videoURLs:[String] = []
-//            for video in self.videos {
-//                MediaUploader.uploadVideo(video: video, type: .journal) { videoUrl in
-//                    videoURLs.append(videoUrl)
-//                }
-//                journal.videoURLs = videoURLs
-//            }
-//        }
+
         
         do {
             try document.setData(from: journal)
@@ -83,37 +52,6 @@ class JournalViewModel:ObservableObject {
 
     }
     
-    
-    
-//    func updateJournal(handler: @escaping (_ success: Bool) -> ()){
-//        guard let userID = AuthViewModel.shared.currentUser?.id else {
-//            print("userID is not valid")
-//            return }
-//
-//        if journal.id != nil {
-//            let document = COLLECTION_USERS.document(userID).collection("journals").document(journal.id!)
-//
-//            do {
-//                try document.setData(from: journal)
-//                handler(true)
-//                return
-//            } catch let error {
-//                print("Error updating journal to Firestore: \(error)")
-//                handler(false)
-//                return
-//            }
-//
-//        } else {
-//            self.journal = self.journal
-//            self.updateJournal { success in
-//                print("suppose to update journal but the journal is not exist in database, so we help you uploaded it")
-//                handler(true)
-//                return
-//            }
-//
-//
-//        }
-//    }
     
     func deleteJournal(journal: Journal, handler: @escaping (_ success: Bool) -> ()){
         
@@ -157,5 +95,22 @@ class JournalViewModel:ObservableObject {
             handler(true)
         }
     }
+    
+    
+    func fetchTodayJournals(handler: @escaping (_ success: Bool) -> ()) {
+        guard let userID = AuthViewModel.shared.currentUser?.id else {
+            print("userID is not valid here in fetchJournal function")
+            return
+        }
+        
+        let dayStart = Calendar.current.startOfDay(for: Date())
+        
+        COLLECTION_USERS.document(userID).collection("journals").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            self.fetchedJournals = documents.compactMap({try? $0.data(as: Journal.self)})
+            handler(true)
+        }
+    }
+
     
 }

@@ -9,6 +9,16 @@ import Foundation
 
 
 
+enum Filter {
+    case today
+    case all
+}
+
+enum TimelineTab {
+    case TODAY
+    case EVENTS
+    case TOPICS
+}
 
 enum MainTab {
     case timeline

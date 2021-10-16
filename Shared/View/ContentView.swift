@@ -13,10 +13,11 @@ struct ContentView: View {
     @State var email:String = ""
     @State var password: String = ""
     
-    
+    @StateObject var profilevm = ProfileViewModel()
     @StateObject var journalvm = JournalViewModel()
     @StateObject var taskvm = TaskViewModel()
-    @StateObject var profilevm = ProfileViewModel()
+    @StateObject var personvm = PersonViewModel()
+    @StateObject var timelineManager = TimelineManager()
 
     
     var body: some View {
@@ -40,7 +41,7 @@ struct ContentView: View {
                     }.tag(MainTab.score)
                 
                 // Show the create launcher with multiple categories of journal type
-                CreateView(journalvm: journalvm, taskvm: taskvm)
+                CreateView(journalvm: journalvm, taskvm: taskvm, personvm: personvm)
                     .tabItem {
                         Image(systemName: "plus.circle")
                     }.tag(MainTab.create)

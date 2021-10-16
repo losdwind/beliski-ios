@@ -6,20 +6,29 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
 import UIKit
 import CoreLocation
+import Firebase
+import FirebaseFirestoreSwift
 
-struct Person: Identifiable {
+struct Person: Identifiable, Codable, Hashable {
+    
     @DocumentID var id: String?
-    var timestamp:Date
-    var address:CLLocation?
-    var birthday:Date?
-    var contact:String?
-    var describe:String?
-    var firstName:String?
-    var lastName:String?
-    var avatar:UIImage?
-    var photos:[UIImage]?
-    var priority = 1
+    @ServerTimestamp var serverTimestamp: Timestamp?
+    var localTimestamp:Timestamp?
+    var address: [String: String] = [
+        "longitude": "",
+        "latitude": ""]
+    var birthday:Timestamp = Timestamp(date:Date())
+    var contact:String = ""
+    var description:String = ""
+    var wordCount: Int = 0
+    var firstName:String = ""
+    var lastName:String = ""
+    var avatarURL:String = ""
+    var photoURLs:[String] = []
+    var audioURLs:[String] = []
+    var videoURLs:[String] = []
+    var priority:Int = 0
+    var ownerID:String?
 }

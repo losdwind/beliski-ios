@@ -6,16 +6,20 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseFirestoreSwift
-struct Task:Identifiable {
+
+struct Task:Identifiable, Codable, Hashable {
     @DocumentID var id:String?
+    @ServerTimestamp var serverTimestamp: Timestamp?
     
-    var task:String?
+    var content:String = "untitled"
     var description:String?
-    var timestamp: Date?
-    var completion: Bool?
-    var reminder: Date?
-    
+    var localTimestamp: Timestamp?
+    var completion: Bool = false
+    var reminder: Timestamp?
+    var linkedItems:[String]?
+    var ownerID:String?
     
     
 }

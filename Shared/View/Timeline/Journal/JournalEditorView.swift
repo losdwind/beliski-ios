@@ -15,13 +15,7 @@ struct JournalEditorView: View {
     
     // new in iOS 15
     //    @Environment(\.dismiss) var dismiss
-    
-    @State var isUpdatingJournal = false
-    
-    
-    
-    
-    
+ 
     var body: some View {
         
         VStack(alignment:.leading) {
@@ -36,24 +30,27 @@ struct JournalEditorView: View {
                 .padding(0)
                 .cornerRadius(10)
             
-            if journalvm.images.isEmpty == true {
-                
-                
-                Button(action: { imagePickerPresented.toggle() }, label: {
-                    Image(systemName:"plus")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
-                }).sheet(isPresented: $imagePickerPresented
-                         , content: {
-                    ImagePickers(images: $journalvm.images)
-                })
-                
-            } else {
-                
-                ImageGridDataView(images: journalvm.images)
-                
+            // MARK: - here we should add a grid image that shows the imageURLS
+            
+            if journalvm.journal.imageURLs.isEmpty == false {
+                ImageGridView(imageURLs: journalvm.journal.imageURLs)
             }
+            
+            if journalvm.images.isEmpty == false {
+                ImageGridDataView(images: journalvm.images)
+            }
+
+            
+            
+            Button(action: { imagePickerPresented.toggle() }, label: {
+                Image(systemName:"plus")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+            }).sheet(isPresented: $imagePickerPresented
+                     , content: {
+                ImagePickers(images: $journalvm.images)
+            })
             
             
             TimestampView(time:journalvm.journal.convertFIRTimestamptoString(timestamp: journalvm.journal.localTimestamp))

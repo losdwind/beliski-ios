@@ -63,8 +63,6 @@
 		29C46C39270D659D00754817 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C38270D659D00754817 /* ResetPasswordView.swift */; };
 		29C46C3A270D659D00754817 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C38270D659D00754817 /* ResetPasswordView.swift */; };
 		29ED10F32710311A00E67D8B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 29ED10F22710311A00E67D8B /* Kingfisher */; };
-		29ED10F527103D7900E67D8B /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED10F427103D7900E67D8B /* TaskViewModel.swift */; };
-		29ED10F627103D7900E67D8B /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED10F427103D7900E67D8B /* TaskViewModel.swift */; };
 		29ED10F92710422600E67D8B /* JournalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED10F82710422600E67D8B /* JournalItemView.swift */; };
 		29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED10F82710422600E67D8B /* JournalItemView.swift */; };
 		29ED10FC2710423800E67D8B /* JournalEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED10FB2710423800E67D8B /* JournalEditorView.swift */; };
@@ -91,6 +89,32 @@
 		29ED11272719C3ED00E67D8B /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11252719C3ED00E67D8B /* Tag.swift */; };
 		29ED11292719C45A00E67D8B /* TagAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11282719C45900E67D8B /* TagAddView.swift */; };
 		29ED112A2719C45A00E67D8B /* TagAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11282719C45900E67D8B /* TagAddView.swift */; };
+		29ED112F2719E49600E67D8B /* PersonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED112C2719E49600E67D8B /* PersonItemView.swift */; };
+		29ED11302719E49600E67D8B /* PersonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED112C2719E49600E67D8B /* PersonItemView.swift */; };
+		29ED11312719E49600E67D8B /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED112D2719E49600E67D8B /* PersonListView.swift */; };
+		29ED11322719E49600E67D8B /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED112D2719E49600E67D8B /* PersonListView.swift */; };
+		29ED11332719E49600E67D8B /* PersonEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED112E2719E49600E67D8B /* PersonEditorView.swift */; };
+		29ED11342719E49600E67D8B /* PersonEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED112E2719E49600E67D8B /* PersonEditorView.swift */; };
+		29ED113A2719E4B400E67D8B /* TaskEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11362719E4B400E67D8B /* TaskEditorView.swift */; };
+		29ED113B2719E4B400E67D8B /* TaskEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11362719E4B400E67D8B /* TaskEditorView.swift */; };
+		29ED113C2719E4B400E67D8B /* TaskRowItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11372719E4B400E67D8B /* TaskRowItemView.swift */; };
+		29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11372719E4B400E67D8B /* TaskRowItemView.swift */; };
+		29ED113E2719E4B400E67D8B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11382719E4B400E67D8B /* TaskListView.swift */; };
+		29ED113F2719E4B400E67D8B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11382719E4B400E67D8B /* TaskListView.swift */; };
+		29ED11402719E4B400E67D8B /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11392719E4B400E67D8B /* CheckboxStyle.swift */; };
+		29ED11412719E4B400E67D8B /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11392719E4B400E67D8B /* CheckboxStyle.swift */; };
+		29ED11462719E4CD00E67D8B /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11432719E4CD00E67D8B /* PersonViewModel.swift */; };
+		29ED11472719E4CD00E67D8B /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11432719E4CD00E67D8B /* PersonViewModel.swift */; };
+		29ED1149271A97C700E67D8B /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED1148271A97C700E67D8B /* TaskViewModel.swift */; };
+		29ED114A271A97C700E67D8B /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED1148271A97C700E67D8B /* TaskViewModel.swift */; };
+		29ED1150271AE49000E67D8B /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED114F271AE49000E67D8B /* TimelineView.swift */; };
+		29ED1151271AE49000E67D8B /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED114F271AE49000E67D8B /* TimelineView.swift */; };
+		29ED1153271AE71E00E67D8B /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED1152271AE71E00E67D8B /* TimelineManager.swift */; };
+		29ED1154271AE71E00E67D8B /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED1152271AE71E00E67D8B /* TimelineManager.swift */; };
+		29ED1156271B42B600E67D8B /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED1155271B42B500E67D8B /* PersonDetailView.swift */; };
+		29ED1157271B42B600E67D8B /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED1155271B42B500E67D8B /* PersonDetailView.swift */; };
+		29ED1159271B470A00E67D8B /* Helplers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED1158271B470A00E67D8B /* Helplers.swift */; };
+		29ED115A271B470A00E67D8B /* Helplers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED1158271B470A00E67D8B /* Helplers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,7 +152,6 @@
 		29C46C23270D600900754817 /* CommunityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		29C46C35270D658500754817 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		29C46C38270D659D00754817 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
-		29ED10F427103D7900E67D8B /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		29ED10F82710422600E67D8B /* JournalItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalItemView.swift; sourceTree = "<group>"; };
 		29ED10FB2710423800E67D8B /* JournalEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditorView.swift; sourceTree = "<group>"; };
 		29ED110527133D6E00E67D8B /* sound-rise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-rise.mp3"; sourceTree = "<group>"; };
@@ -144,6 +167,19 @@
 		29ED11222719C3BA00E67D8B /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		29ED11252719C3ED00E67D8B /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		29ED11282719C45900E67D8B /* TagAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagAddView.swift; sourceTree = "<group>"; };
+		29ED112C2719E49600E67D8B /* PersonItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonItemView.swift; sourceTree = "<group>"; };
+		29ED112D2719E49600E67D8B /* PersonListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
+		29ED112E2719E49600E67D8B /* PersonEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonEditorView.swift; sourceTree = "<group>"; };
+		29ED11362719E4B400E67D8B /* TaskEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEditorView.swift; sourceTree = "<group>"; };
+		29ED11372719E4B400E67D8B /* TaskRowItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRowItemView.swift; sourceTree = "<group>"; };
+		29ED11382719E4B400E67D8B /* TaskListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		29ED11392719E4B400E67D8B /* CheckboxStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
+		29ED11432719E4CD00E67D8B /* PersonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
+		29ED1148271A97C700E67D8B /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+		29ED114F271AE49000E67D8B /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		29ED1152271AE71E00E67D8B /* TimelineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineManager.swift; sourceTree = "<group>"; };
+		29ED1155271B42B500E67D8B /* PersonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailView.swift; sourceTree = "<group>"; };
+		29ED1158271B470A00E67D8B /* Helplers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helplers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,10 +214,12 @@
 				29552A37270D89150056E675 /* CustomTextField.swift */,
 				29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */,
 				29552A50270F0EC40056E675 /* Constants.swift */,
+				29C46C10270D600900754817 /* Struct & Enum.swift */,
 				29552A53270F0F2E0056E675 /* ImagePicker.swift */,
 				29552A61271009900056E675 /* ImagePickers.swift */,
 				29ED111B271996E700E67D8B /* NewImagePicker.swift */,
 				29ED110B2713436B00E67D8B /* SoundPlayer.swift */,
+				29ED1158271B470A00E67D8B /* Helplers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -249,7 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				29C46C0F270D600900754817 /* User.swift */,
-				29C46C10270D600900754817 /* Struct & Enum.swift */,
 				29552A6727100E850056E675 /* Journal.swift */,
 				29552A6A271010070056E675 /* Task.swift */,
 				29552A6D271010160056E675 /* Person.swift */,
@@ -261,11 +298,13 @@
 		29C46C11270D600900754817 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				29ED11432719E4CD00E67D8B /* PersonViewModel.swift */,
 				29C46C12270D600900754817 /* ProfileViewModel.swift */,
 				29552A3D270D95900056E675 /* AuthViewModel.swift */,
 				29552A6427100CD70056E675 /* JournalViewModel.swift */,
-				29ED10F427103D7900E67D8B /* TaskViewModel.swift */,
 				29ED111E2719B30E00E67D8B /* SearchViewModel.swift */,
+				29ED1148271A97C700E67D8B /* TaskViewModel.swift */,
+				29ED1152271AE71E00E67D8B /* TimelineManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -305,6 +344,12 @@
 		29C46C19270D600900754817 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				29ED114F271AE49000E67D8B /* TimelineView.swift */,
+				29ED11352719E4B400E67D8B /* Task */,
+				29ED112B2719E49600E67D8B /* People */,
+				29ED1112271899CF00E67D8B /* FilterView */,
+				29ED1113271899DE00E67D8B /* SearchView */,
+				29ED11212719C3AA00E67D8B /* TagView */,
 				29ED10F72710421100E67D8B /* Journal */,
 			);
 			path = Timeline;
@@ -349,9 +394,6 @@
 		29ED10F72710421100E67D8B /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				29ED11212719C3AA00E67D8B /* TagView */,
-				29ED1113271899DE00E67D8B /* SearchView */,
-				29ED1112271899CF00E67D8B /* FilterView */,
 				29C46C1A270D600900754817 /* JournalListView.swift */,
 				29ED10F82710422600E67D8B /* JournalItemView.swift */,
 				29ED10FB2710423800E67D8B /* JournalEditorView.swift */,
@@ -393,6 +435,28 @@
 				29ED11282719C45900E67D8B /* TagAddView.swift */,
 			);
 			path = TagView;
+			sourceTree = "<group>";
+		};
+		29ED112B2719E49600E67D8B /* People */ = {
+			isa = PBXGroup;
+			children = (
+				29ED112C2719E49600E67D8B /* PersonItemView.swift */,
+				29ED112D2719E49600E67D8B /* PersonListView.swift */,
+				29ED112E2719E49600E67D8B /* PersonEditorView.swift */,
+				29ED1155271B42B500E67D8B /* PersonDetailView.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		29ED11352719E4B400E67D8B /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				29ED11362719E4B400E67D8B /* TaskEditorView.swift */,
+				29ED11372719E4B400E67D8B /* TaskRowItemView.swift */,
+				29ED11382719E4B400E67D8B /* TaskListView.swift */,
+				29ED11392719E4B400E67D8B /* CheckboxStyle.swift */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -513,36 +577,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29ED113A2719E4B400E67D8B /* TaskEditorView.swift in Sources */,
 				29ED110C2713436B00E67D8B /* SoundPlayer.swift in Sources */,
 				29552A6E271010160056E675 /* Person.swift in Sources */,
-				29ED10F527103D7900E67D8B /* TaskViewModel.swift in Sources */,
 				29ED11292719C45A00E67D8B /* TagAddView.swift in Sources */,
+				29ED1153271AE71E00E67D8B /* TimelineManager.swift in Sources */,
 				29ED110E2713462700E67D8B /* CustomedViewModifier.swift in Sources */,
 				29ED111F2719B30E00E67D8B /* SearchViewModel.swift in Sources */,
 				29552A6527100CD70056E675 /* JournalViewModel.swift in Sources */,
 				29C46C30270D600900754817 /* CommunityView.swift in Sources */,
+				29ED1150271AE49000E67D8B /* TimelineView.swift in Sources */,
 				29552A62271009900056E675 /* ImagePickers.swift in Sources */,
 				29552A4E270F0BDE0056E675 /* LogInView.swift in Sources */,
 				29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
+				29ED11332719E49600E67D8B /* PersonEditorView.swift in Sources */,
+				29ED113E2719E4B400E67D8B /* TaskListView.swift in Sources */,
 				29C46C2A270D600900754817 /* ProfileCompactView.swift in Sources */,
 				29C46BFF270D5E8A00754817 /* ContentView.swift in Sources */,
 				29ED11262719C3ED00E67D8B /* Tag.swift in Sources */,
+				29ED11402719E4B400E67D8B /* CheckboxStyle.swift in Sources */,
 				29C46C39270D659D00754817 /* ResetPasswordView.swift in Sources */,
+				29ED1159271B470A00E67D8B /* Helplers.swift in Sources */,
 				29ED10F92710422600E67D8B /* JournalItemView.swift in Sources */,
 				29C46C28270D600900754817 /* SquadView.swift in Sources */,
 				29552A54270F0F2E0056E675 /* ImagePicker.swift in Sources */,
 				29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */,
 				29ED11102718979100E67D8B /* JournalLinkedView.swift in Sources */,
+				29ED112F2719E49600E67D8B /* PersonItemView.swift in Sources */,
 				29ED11232719C3BA00E67D8B /* TagView.swift in Sources */,
+				29ED11312719E49600E67D8B /* PersonListView.swift in Sources */,
 				29ED111C271996E700E67D8B /* NewImagePicker.swift in Sources */,
+				29ED113C2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
 				29C46C26270D600900754817 /* Struct & Enum.swift in Sources */,
 				29C46C2F270D600900754817 /* CreateView.swift in Sources */,
 				29552A6827100E850056E675 /* Journal.swift in Sources */,
+				29ED11462719E4CD00E67D8B /* PersonViewModel.swift in Sources */,
 				29C46C36270D658500754817 /* SignUpView.swift in Sources */,
 				29552A6B271010070056E675 /* Task.swift in Sources */,
+				29ED1149271A97C700E67D8B /* TaskViewModel.swift in Sources */,
 				29C46C2B270D600900754817 /* JournalListView.swift in Sources */,
 				29ED111627189A3200E67D8B /* SearchJournalView.swift in Sources */,
+				29ED1156271B42B600E67D8B /* PersonDetailView.swift in Sources */,
 				29ED10FC2710423800E67D8B /* JournalEditorView.swift in Sources */,
 				29ED111927189B0600E67D8B /* JournalFilterView.swift in Sources */,
 				29552A7127101A7C0056E675 /* ProfileDetailView.swift in Sources */,
@@ -567,27 +643,39 @@
 				29552A3C270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
 				29ED111727189A3200E67D8B /* SearchJournalView.swift in Sources */,
 				29552A39270D89150056E675 /* CustomTextField.swift in Sources */,
+				29ED11472719E4CD00E67D8B /* PersonViewModel.swift in Sources */,
+				29ED113F2719E4B400E67D8B /* TaskListView.swift in Sources */,
 				29ED10FD2710423800E67D8B /* JournalEditorView.swift in Sources */,
 				29552A6927100E850056E675 /* Journal.swift in Sources */,
+				29ED114A271A97C700E67D8B /* TaskViewModel.swift in Sources */,
 				29552A59270F0FEA0056E675 /* MediaUploader.swift in Sources */,
+				29ED1151271AE49000E67D8B /* TimelineView.swift in Sources */,
+				29ED11342719E49600E67D8B /* PersonEditorView.swift in Sources */,
 				29552A6C271010070056E675 /* Task.swift in Sources */,
+				29ED115A271B470A00E67D8B /* Helplers.swift in Sources */,
 				29552A3F270D95900056E675 /* AuthViewModel.swift in Sources */,
 				29C46C3A270D659D00754817 /* ResetPasswordView.swift in Sources */,
 				29ED111D271996E700E67D8B /* NewImagePicker.swift in Sources */,
-				29ED10F627103D7900E67D8B /* TaskViewModel.swift in Sources */,
 				29552A7227101A7C0056E675 /* ProfileDetailView.swift in Sources */,
+				29ED1154271AE71E00E67D8B /* TimelineManager.swift in Sources */,
 				29C46C00270D5E8A00754817 /* ContentView.swift in Sources */,
+				29ED1157271B42B600E67D8B /* PersonDetailView.swift in Sources */,
 				29ED11242719C3BA00E67D8B /* TagView.swift in Sources */,
 				29552A4F270F0BDE0056E675 /* LogInView.swift in Sources */,
 				29ED11202719B30E00E67D8B /* SearchViewModel.swift in Sources */,
+				29ED11412719E4B400E67D8B /* CheckboxStyle.swift in Sources */,
 				29552A55270F0F2E0056E675 /* ImagePicker.swift in Sources */,
+				29ED113B2719E4B400E67D8B /* TaskEditorView.swift in Sources */,
 				29ED11112718979100E67D8B /* JournalLinkedView.swift in Sources */,
 				29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */,
 				29ED112A2719C45A00E67D8B /* TagAddView.swift in Sources */,
 				29ED11272719C3ED00E67D8B /* Tag.swift in Sources */,
 				29552A6F271010160056E675 /* Person.swift in Sources */,
+				29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
+				29ED11322719E49600E67D8B /* PersonListView.swift in Sources */,
 				29ED111A27189B0600E67D8B /* JournalFilterView.swift in Sources */,
+				29ED11302719E49600E67D8B /* PersonItemView.swift in Sources */,
 				29552A52270F0EC40056E675 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

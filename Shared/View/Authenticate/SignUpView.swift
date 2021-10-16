@@ -14,35 +14,40 @@ struct SignUpView: View {
     @State private var fullname = ""
     @State private var username = ""
     @State private var password = ""
-    @State private var selectedImage: UIImage?
-    @State private var image: Image?
+    @State private var selectedImage: UIImage = UIImage()
     @State private var isShowingimagePicker = false
     @Environment(\.presentationMode) var mode
     
     var body: some View {
         VStack{
             ZStack {
-                if let image = image {
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 140, height: 140)
-                        .clipShape(Circle())
-                } else {
+                
+                    
+                
                     Button(action: {
-                        isShowingimagePicker.toggle() }, label: {
-                        Image(systemName:"plus")
-                            .renderingMode(.template)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 140, height: 140)
-                            .background(.primary)
-                    }).sheet(isPresented: $isShowingimagePicker, onDismiss: loadImage, content: {
+                        isShowingimagePicker.toggle() }) {
+                            
+                            if selectedImage == UIImage() {
+                                Image(uiImage: selectedImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 140, height: 140)
+                                    .clipShape(Circle())
+                            } else {
+                                Image(systemName:"plus")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 140, height: 140)
+                                    .background(.primary)
+                            }
+                        
+                    }.sheet(isPresented: $isShowingimagePicker, content: {
                         ImagePicker(image: $selectedImage)
                             .preferredColorScheme(colorScheme)
                             .accentColor(colorScheme == .light ? .primary: .secondary)
                     })
-                }
+                
             }
             
             VStack(spacing: 20) {
@@ -106,13 +111,6 @@ struct SignUpView: View {
     }
 }
 
-
-extension SignUpView {
-    func loadImage() {
-        guard let selectedImage = selectedImage else { return }
-        self.image = Image(uiImage: selectedImage)
-    }
-}
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {

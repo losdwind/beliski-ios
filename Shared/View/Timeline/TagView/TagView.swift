@@ -76,7 +76,7 @@ struct TagView: View {
     @ViewBuilder
     func RowView(tag: Tag)->some View{
         
-        Text(tag.text)
+        Text(tag.name)
         // applying same font size..
         // else size will vary..
             .font(.system(size: fontSize))
@@ -176,7 +176,7 @@ func addTag(tags: [Tag],text: String,fontSize: CGFloat,maxLimit: Int,completion:
     
     let size = (text as NSString).size(withAttributes: attributes)
     
-    let tag = Tag(text: text, size: size.width)
+    let tag = Tag(name: text, size: size.width)
     
     if (getSize(tags: tags) + text.count) < maxLimit{
         completion(false,tag)
@@ -189,7 +189,7 @@ func getSize(tags: [Tag])->Int{
     var count: Int = 0
     
     tags.forEach { tag in
-        count += tag.text.count
+        count += tag.name.count
     }
     
     return count
