@@ -25,6 +25,7 @@ struct Journal:Identifiable, Codable, Hashable{
     var audioURLs: [String] = []
     var videoURLs: [String] = []
     var linkedItems: [String] = []
+    var labels:[String] = []
     
     //    https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
     //    var location: CLLocation? it is not support by codable protocal, pending solved

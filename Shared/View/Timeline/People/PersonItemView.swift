@@ -31,57 +31,62 @@ struct PersonItemView: View {
         
         
         VStack(alignment: .leading, spacing: 0){
-        
-        HStack(alignment: .center, spacing: 20){
             
-            if person.avatarURL.isEmpty == true {
-                Image(systemName:"person.circle")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
-            } else{
+            HStack(alignment: .center, spacing: 20){
                 
-                AsyncImage(url: URL(string:person.avatarURL)) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
-                } placeholder: {
+                if person.avatarURL.isEmpty == true {
                     Image(systemName:"person.circle")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+                } else{
+                    
+                    AsyncImage(url: URL(string:person.avatarURL)) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+                    } placeholder: {
+                        Image(systemName:"person.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+                    }
+                }
+                
+                VStack(alignment: .leading, spacing: 10){
+                    Text("\(person.firstName) \(person.lastName)")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
+                    Text("\(timeConverter(timestamp: person.birthday))")
+                        .font(.footnote)
+                    
+                    Text(person.contact)
+                        .font(.footnote)
+                    
                 }
             }
             
-            VStack(alignment: .leading, spacing: 10){
-                Text("\(person.firstName) \(person.lastName)")
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                Text("\(timeConverter(timestamp: person.birthday))")
-                    .font(.footnote)
-                
-                Text(person.contact)
-                    .font(.footnote)
-                
-            }
-        }
-        
             Text(person.description)
                 .font(.footnote)
                 .foregroundColor(.secondary)
-        
-        
-        // photos
+            
+            
+            // photos
             
             
             
             if person.photoURLs.isEmpty == false{
                 ImageGridView(imageURLs: person.photoURLs)
             }
-     
-    
+            
+            
+            if person.labels.isEmpty == false {
+            maxLimit: 150, tags: $labels,fontSize: 16
+            }
+            
+            
         }
     }
 }

@@ -20,15 +20,7 @@ struct TagView: View {
     
     var body: some View {
        
-        VStack(alignment: .leading, spacing: 15) {
-            
-            Text(title)
-                .font(.callout)
-                .foregroundColor(Color.pink)
-            
-            // ScrollView...
-            ScrollView(.vertical, showsIndicators: false) {
-                
+
                 VStack(alignment: .leading, spacing: 10) {
                     
                     // Displaying Tags.....
@@ -48,26 +40,13 @@ struct TagView: View {
                 .frame(width: UIScreen.main.bounds.width - 80,alignment: .leading)
                 .padding(.vertical)
                 .padding(.bottom,20)
-            }
-            .frame(maxWidth: .infinity)
-            .background(
-            
-                RoundedRectangle(cornerRadius: 8)
-                    .strokeBorder(Color.pink.opacity(0.15),lineWidth: 1)
-            )
-            // Animation...
-            .animation(.easeInOut, value: tags)
-            .overlay(
-            
-                // Limit....
-                Text("\(getSize(tags: tags))/\(maxLimit)")
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundColor(Color.pink)
-                    .padding(12),
+                .frame(maxWidth: .infinity)
+                .background(
                 
-                alignment: .bottomTrailing
-            )
-        }
+                    RoundedRectangle(cornerRadius: 8)
+                        .strokeBorder(Color.red.opacity(0.15),lineWidth: 1)
+                )
+    
         // Since onChange will perfrom little late...
 //        .onChange(of: tags) { newValue in
 //        }

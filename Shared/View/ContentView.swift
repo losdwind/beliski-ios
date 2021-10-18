@@ -30,7 +30,7 @@ struct ContentView: View {
             TabView(selection: $selectedTab){
                 
                 // Show the timeline of user journals
-                JournalListView(journalvm: journalvm)
+                TimelineView(timelineManger: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm)
                     .tabItem{
                         Image(systemName: "text.redaction")
                     }.tag(MainTab.timeline)

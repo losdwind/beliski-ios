@@ -18,78 +18,75 @@ struct JournalListView: View {
     
     var body: some View {
         
-        NavigationView() {
-            List(journalvm.fetchedJournals){
-                journal in
-                
-                
-                NavigationLink(destination: JournalLinkedView()){
-                    JournalItemView(journal: journal)
-                        .contextMenu(menuItems:{
-                            Button(action:{
-                                journalvm.deleteJournal(journal: journal){_ in}
-                                
-                            }
-                                   ,label:{Label(
-                                    title: { Text("Delete") },
-                                    icon: { Image(systemName: "trash.circle") })})
+            ScrollView(.vertical, showsIndicators: false){
+                LazyVStack{
+                    ForEach(journalvm.fetchedJournals, id:\.id){ journal in
+                        
+                        NavigationLink(destination: JournalLinkedView()){
+                            JournalItemView(journal: journal)
+                                .contextMenu(menuItems:{
+                                    Button(action:{
+                                        journalvm.deleteJournal(journal: journal){_ in}
+                                        
+                                    }
+                                           ,label:{Label(
+                                            title: { Text("Delete") },
+                                            icon: { Image(systemName: "trash.circle") })})
+                                    
+                                    Button(action:{
+                                        journalvm.journal = journal
+                                        isUpdatingJournal = true
+                                        
+                                    }
+                                           ,label:{Label(
+                                            title: { Text("Edit") },
+                                            icon: { Image(systemName: "pencil.circle") })})
+                                    
+                                })
+                                .sheet(isPresented: $isUpdatingJournal, onDismiss: {
+                                    journalvm.journal = Journal()
+                                }, content: {
+                                    JournalEditorView(journalvm: journalvm)
+                                })
+                                .padding()
+                                .frame(maxWidth: 640)
+                                .background(Color.gray)
+                                .cornerRadius(10)
                             
-                            Button(action:{
-                                journalvm.journal = journal
-                                isUpdatingJournal = true
-                                
-                            }
-                                   ,label:{Label(
-                                    title: { Text("Edit") },
-                                    icon: { Image(systemName: "pencil.circle") })})
                             
-                        })
-                        .sheet(isPresented: $isUpdatingJournal, onDismiss: {
-                            journalvm.journal = Journal()
-                        }, content: {
-                            JournalEditorView(journalvm: journalvm)
-                        })
-                        .padding(.vertical, 0)
-                        .frame(maxWidth: 640)
-                        .background(Color.gray)
-                        .cornerRadius(10)
-                    
-                    
+                        }
+                        
+                        
+                    }
                 }
-                .listRowSeparator(.hidden)
                 
-                
+                .navigationTitle(LocalizedStringKey("Timeline"))
+                .toolbar {
+                    ToolbarItem(placement:.navigationBarLeading){
+                        Button(
+                            action: {
+                                isShowingJournalSearchView.toggle()
+                            },
+                            label: {
+                                Image(systemName: "line.3.horizontal.decrease.circle")})
+                        
+                    }
+                    
+                    ToolbarItem(placement:.navigationBarTrailing){
+                        Button(
+                            action: {
+                                isShowingJournalFilterView.toggle()
+                            },
+                            label: {
+                                Image(systemName: "magnifyingglass.circle")})
+                        
+                    }
+                }
             }
-            .listStyle(.inset)
-            .refreshable {
+            .onAppear {
                 journalvm.fetchJournals { _ in }
             }
-            .navigationTitle(LocalizedStringKey("Timeline"))
-            .toolbar {
-                ToolbarItem(placement:.navigationBarLeading){
-                    Button(
-                        action: {
-                            isShowingJournalSearchView.toggle()
-                        },
-                        label: {
-                            Image(systemName: "line.3.horizontal.decrease.circle")})
-                    
-                }
-                
-                ToolbarItem(placement:.navigationBarTrailing){
-                    Button(
-                        action: {
-                            isShowingJournalFilterView.toggle()
-                        },
-                        label: {
-                            Image(systemName: "magnifyingglass.circle")})
-                    
-                }
-            }
-            
         }
-        
-    }
     
 }
 

@@ -19,6 +19,7 @@ class PersonViewModel: ObservableObject {
     @Published var audios:[NSData] = [NSData]()
     @Published var videos:[NSData] = [NSData]()
     @Published var birthday:Date = Date()
+    @Published var tags:[Tag] = [Tag]()
     
     @Published var fetchedPersons:[Person] = [Person]()
     

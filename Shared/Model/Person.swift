@@ -31,4 +31,5 @@ struct Person: Identifiable, Codable, Hashable {
     var videoURLs:[String] = []
     var priority:Int = 0
     var ownerID:String?
+    var labels:[String] = []
 }

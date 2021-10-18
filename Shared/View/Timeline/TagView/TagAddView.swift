@@ -21,9 +21,6 @@ struct TagAddView: View {
             
             // Custom Tag View...
             TagView(maxLimit: 150, tags: $tags,fontSize: 16)
-            // Default Height...
-                .frame(height: 280)
-                .padding(.top,20)
             
             // TextField...
             TextField("apple", text: $text)
@@ -35,6 +32,8 @@ struct TagAddView: View {
                     RoundedRectangle(cornerRadius: 8)
                         .strokeBorder(Color.pink.opacity(0.2),lineWidth: 1)
                 )
+                .foregroundColor(.primary)
+
             // Setting only Textfield as Dark..
                 .environment(\.colorScheme, .dark)
                 .padding(.vertical,18)
@@ -72,11 +71,7 @@ struct TagAddView: View {
         }
         .padding(15)
         .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .top)
-        .background(
-        
-            Color.primary
-                .ignoresSafeArea()
-        )
+
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Error"), message: Text("Tag Limit Exceeded  try to delete some tags !!!"), dismissButton: .destructive(Text("Ok")))
         }

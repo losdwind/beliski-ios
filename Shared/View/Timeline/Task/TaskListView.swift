@@ -11,6 +11,7 @@ struct TaskListView: View {
     
     // FETCHING DATA
     @ObservedObject var taskvm: TaskViewModel
+    
     @State var isUpdatingTask = false
     
     // MARK: - FUNCTION
@@ -19,16 +20,16 @@ struct TaskListView: View {
     
     var body: some View {
         LazyVStack(alignment:.leading){
-            ForEach(taskvm.tasks, id:\.id) { task in
-                TaskRowItemView(task: $task)
+            ForEach($taskvm.fetchedTasks, id:\.id) { task in
+                TaskRowItemView(task: task, taskvm: taskvm)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(8)
                     .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.3), radius: 6)
                     .contextMenu(ContextMenu(menuItems: {
                         Button(action:{
-                            taskvm.deleteTask(task: task) { _ in }
-                            
+                            taskvm.deleteTask(task: task.wrappedValue) { _ in }
+                            taskvm.fetchTasks { _ in }
                         }
                                ,label:{Label(
                                 title: { Text("Delete") },
@@ -36,8 +37,8 @@ struct TaskListView: View {
                         
                         Button(action:{
                                 isUpdatingTask = true
-                            taskvm.task = task
-                            
+                            taskvm.task = task.wrappedValue
+        
                         }
                                ,label:{Label(
                                 title: { Text("Edit") },
