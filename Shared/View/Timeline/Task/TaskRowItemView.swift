@@ -9,11 +9,16 @@ import SwiftUI
 
 struct TaskRowItemView: View {
     
-    @Binding var task:Task
-    @ObservedObject var taskvm:TaskViewModel
+    var task:Task
+    @State var completion:Bool
+    
+    init(task:Task){
+        self.task = task
+        self.completion = task.completion
+    }
     var body: some View {
         withAnimation {
-            Toggle(isOn: $taskvm.task.completion){
+            Toggle(isOn: $completion){
                 Text(task.content)
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                     .foregroundColor(task.completion ? Color.pink : Color.primary)
@@ -21,9 +26,11 @@ struct TaskRowItemView: View {
                 Spacer()
         } //: Toggle
         .toggleStyle(CheckboxStyle())
-        .onChange(of: task.completion, perform: { value in
-            taskvm.task = task
-            taskvm.uploadTask{_ in }
+        .onDisappear(perform: {
+            let tempTaskvm = TaskViewModel()
+            tempTaskvm.task = task
+            tempTaskvm.task.completion = completion
+            tempTaskvm.uploadTask{_ in }
         })
         
     }

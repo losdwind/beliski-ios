@@ -14,6 +14,7 @@ import Firebase
 struct JournalItemView: View {
     
     var journal:Journal
+    
     @Environment(\.colorScheme) var colorScheme
     
     
@@ -50,13 +51,14 @@ struct JournalItemView: View {
                 //TimestampView(time:journal.convertFIRTimestamptoString(timestamp: journal.localTimestamp))
                 
                 Text(journal.localTimestamp?.dateValue()!, style: .date)
+            
+            TagCollectionView(tags: journal.tagIDs)
         }
         .foregroundColor(.primary)
         .padding()
         .frame(maxWidth: .infinity,alignment: .leading)
         .background(colorScheme == .dark ? Color.gray.opacity(0.6) : Color.white)
         .cornerRadius(10)
-//        .frame(maxWidth: .infinity,alignment: .leading)
     }
     
 }

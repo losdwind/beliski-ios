@@ -113,4 +113,6 @@ class JournalViewModel:ObservableObject {
     }
 
     
+    
+    
 }

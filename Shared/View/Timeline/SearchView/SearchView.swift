@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct SearchJournalView: View {
+struct SearchView: View {
     var body: some View {
         Text("Search Journal View")
     }
 }
 
-struct SearchJournalView_Previews: PreviewProvider {
+struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchJournalView()
+        SearchView()
     }
 }

@@ -12,20 +12,22 @@ import UIKit
 import CoreLocation
 import MapKit
 
-struct Journal:Identifiable, Codable, Hashable{
+struct Journal:Identifiable, Codable, Hashable, Item{
     
+    // Item Protocol
     @DocumentID var id: String?
     @ServerTimestamp var serverTimestamp: Timestamp?
-    
     var localTimestamp: Timestamp?
     var ownerID:String = "unkown"
+    var linkedItems: [String] = []
+
+    
     var content: String = "pending to add"
     var wordCount: Int = 0
     var imageURLs: [String] = []
     var audioURLs: [String] = []
     var videoURLs: [String] = []
-    var linkedItems: [String] = []
-    var labels:[String] = []
+    var tagIDs:[String] = []
     
     //    https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
     //    var location: CLLocation? it is not support by codable protocal, pending solved
@@ -44,15 +46,3 @@ struct Journal:Identifiable, Codable, Hashable{
 
     }
 }
-
-
-//let data = ["journalID": journal.id,
-//            "ownerID": journal.ownerID,
-//            "timestamp": journal.timestamp,
-//            "serverTimestamp": FieldValue.serverTimestamp(),
-//            "content": journal.content,
-//            "imageURL": imageURLs,
-//            "audioURL":[],
-//            "videoURL": [],
-//            "location": "",
-//            "linkedJournal": []

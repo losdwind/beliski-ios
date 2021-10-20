@@ -19,7 +19,7 @@ class TimelineManager: ObservableObject {
     @Published var showFilterView: Bool = false
     
     @Published var showSearchView: Bool = false
-    
+    @Published var theme:Theme = .full
 //
 //
 //    @Published var todayItems:[Any] = []

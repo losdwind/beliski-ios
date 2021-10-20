@@ -35,6 +35,10 @@ class AuthViewModel: ObservableObject {
             guard let user = result?.user else { return }
             self.userSession = user
             self.fetchUser()
+            
+//            I thing this method is better than others
+//             UserDefaults.standard.set(userID, forKey: CurrentUserDefaults.userID)
+
         }
     }
     

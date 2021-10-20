@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     
     @State var selectedTab = MainTab.timeline
     @State var email:String = ""
@@ -18,6 +18,8 @@ struct ContentView: View {
     @StateObject var taskvm = TaskViewModel()
     @StateObject var personvm = PersonViewModel()
     @StateObject var timelineManager = TimelineManager()
+    @StateObject var dataLinkedManager = DataLinkedManager()
+    @StateObject var tagvm = TagViewModel()
 
     
     var body: some View {
@@ -34,6 +36,9 @@ struct ContentView: View {
                     .tabItem{
                         Image(systemName: "text.redaction")
                     }.tag(MainTab.timeline)
+                    .environmentObject(dataLinkedManager)
+                    .environmentObject(tagvm)
+                    
                 // Show the Panel of statistics based on the journals of the user
                 PanelView()
                     .tabItem {
@@ -70,8 +75,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
     }
 }

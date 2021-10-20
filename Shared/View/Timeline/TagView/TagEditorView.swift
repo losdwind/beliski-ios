@@ -1,29 +1,29 @@
 //
-//  TagAddView.swift
+//  TagEditorView.swift
 //  Beliski
 //
-//  Created by Losd wind on 2021/10/15.
+//  Created by Losd wind on 2021/10/20.
 //
 
 import SwiftUI
 
-struct TagAddView: View {
+struct TagEditorView: View {
     
-    @State var text: String = ""
-    
-    // Tags..
-    @State var tags: [Tag] = []
     @State var showAlert: Bool = false
+    
+    @ObservedObject var tagvm:TagViewModel
+    
+    var tagIDs: [String]
     
     var body: some View {
         
         VStack{
             
             // Custom Tag View...
-            TagView(maxLimit: 150, tags: $tags,fontSize: 16)
+            TagCollectionView(tagIDs: tagIDs)
             
             // TextField...
-            TextField("apple", text: $text)
+            TextField("apple", text: $tagvm.tag.name)
                 .font(.title3)
                 .padding(.vertical,10)
                 .padding(.horizontal)
@@ -42,7 +42,8 @@ struct TagAddView: View {
             Button {
                 
                 // Use same Font size and limit here used in TagView....
-                addTag(tags: tags, text: text, fontSize: 16, maxLimit: 150) { alert, tag in
+                
+                tagvm.addTag(text: tagvm.tag.name) { alert, tag in
                     
                     if alert{
                         // Showing alert...
@@ -50,8 +51,9 @@ struct TagAddView: View {
                     }
                     else{
                         // adding Tag...
-                        tags.append(tag)
-                        text = ""
+                        // MARK: - here we need authenticate duplicate tag in cloud firestore
+                        $tagvm.tags.append(tag)
+                        tagvm.tag.name = ""
                     }
                 }
                 
@@ -65,8 +67,8 @@ struct TagAddView: View {
                     .cornerRadius(10)
             }
             // Disabling Button...
-            .disabled(text == "")
-            .opacity(text == "" ? 0.6 : 1)
+            .disabled(tagvm.tag.name == "")
+            .opacity(tagvm.tag.name == "" ? 0.6 : 1)
 
         }
         .padding(15)
@@ -78,8 +80,8 @@ struct TagAddView: View {
     }
 }
 
-struct TagAddView_Previews: PreviewProvider {
+struct TagEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        TagAddView()
+        TagEditorView(tagvm: TagViewModel())
     }
 }

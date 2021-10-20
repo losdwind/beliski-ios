@@ -28,15 +28,20 @@ enum MainTab {
     case community
 }
 
+enum Theme {
+    case compact
+    case full
+}
+
 struct CurrentUserDefaults { // Fields for UserDefaults saved within app
     
     static let userID = "user_id"
-    static let userName = "user_name"
-    static let displayName = "display_name"
-    static let bio = "bio"
+    static let theme: Theme = Theme.full
 
-    
 }
+
+
+
 
 struct DatabaseUserField { // Fields within the User Document in Database
     

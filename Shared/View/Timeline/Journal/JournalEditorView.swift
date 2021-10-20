@@ -9,6 +9,7 @@ import SwiftUI
 
 struct JournalEditorView: View {
     @ObservedObject var journalvm:JournalViewModel
+    @ObservedObject var tagvm: TagViewModel
     @State var imagePickerPresented = false
     
     @Environment(\.presentationMode) var presentationMode
@@ -55,7 +56,7 @@ struct JournalEditorView: View {
             
             TimestampView(time:journalvm.journal.convertFIRTimestamptoString(timestamp: journalvm.journal.localTimestamp))
             
-            TagAddView()
+            TagEditorView(tagvm:tagvm)
             
             HStack {
                 

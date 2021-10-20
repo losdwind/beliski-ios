@@ -11,11 +11,16 @@ import CoreLocation
 import Firebase
 import FirebaseFirestoreSwift
 
-struct Person: Identifiable, Codable, Hashable {
+struct Person: Identifiable, Codable, Hashable, Item {
     
+    
+    // Item Protocol
     @DocumentID var id: String?
     @ServerTimestamp var serverTimestamp: Timestamp?
     var localTimestamp:Timestamp?
+    var ownerID: String = "unkown"
+    var linkedItems: [String] = []
+
     var address: [String: String] = [
         "longitude": "",
         "latitude": ""]
@@ -30,6 +35,5 @@ struct Person: Identifiable, Codable, Hashable {
     var audioURLs:[String] = []
     var videoURLs:[String] = []
     var priority:Int = 0
-    var ownerID:String?
-    var labels:[String] = []
+    var tagIDs:[String] = []
 }

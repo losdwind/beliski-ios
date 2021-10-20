@@ -16,6 +16,7 @@ struct PersonEditorView: View {
     @State var avatarPickerPresented = false
     @State var photosPickerPresented = false
     
+    @ObservedObject var tagvm:TagViewModel
     
     @ObservedObject var personvm:PersonViewModel
     
@@ -123,7 +124,7 @@ struct PersonEditorView: View {
             }
             
             
-            TagAddView()
+            TagEditorView(tagvm: tagvm)
             
             
             HStack{

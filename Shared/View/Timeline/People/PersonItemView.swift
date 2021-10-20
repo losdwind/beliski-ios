@@ -74,16 +74,13 @@ struct PersonItemView: View {
             
             
             // photos
-            
-            
-            
             if person.photoURLs.isEmpty == false{
                 ImageGridView(imageURLs: person.photoURLs)
             }
             
             
-            if person.labels.isEmpty == false {
-            maxLimit: 150, tags: $labels,fontSize: 16
+            if person.tagIDs.isEmpty == false {
+                TagCollectionView(tags: person.tagIDs)
             }
             
             

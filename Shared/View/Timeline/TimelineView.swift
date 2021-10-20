@@ -13,6 +13,9 @@ struct TimelineView: View {
     @ObservedObject var journalvm: JournalViewModel
     @ObservedObject var taskvm: TaskViewModel
     @ObservedObject var personvm: PersonViewModel
+    
+    @State var isShowingSearchView = false
+    
 
 
     init(timelineManger:TimelineManager, journalvm:JournalViewModel, taskvm:TaskViewModel, personvm:PersonViewModel){
@@ -23,9 +26,11 @@ struct TimelineView: View {
         
         UIPageControl.appearance().currentPageIndicatorTintColor = .clear
         UIPageControl.appearance().pageIndicatorTintColor = .clear
+        
     }
     
     var body: some View {
+        NavigationView {
         VStack{
             HStack{
                 Button(action: {timelineManager.showFilterView.toggle()}, label: {Image(systemName: "line.horizontal.3.decrease.circle") })
@@ -67,7 +72,32 @@ struct TimelineView: View {
             
         } //: VStack
         .frame(maxWidth:640)
+        .navigationTitle(LocalizedStringKey("Timeline"))
+        .toolbar {
+            ToolbarItem(placement:.navigationBarLeading){
+                Button(
+                    action: {
+                        isShowingSearchView.toggle()
+                    },
+                    label: {
+                        Image(systemName: "magnifyingglass.circle")})
+                
+            }
+            
+            ToolbarItem(placement:.navigationBarTrailing){
+                Menu {
+                    Button("Compact", action: {timelineManager.theme = Theme.compact} )
+                    Button("Full", action: {timelineManager.theme = Theme.full} )
+                } label: {
+                    Label("Theme", systemImage: "sparkles")
+                }
+            }
+        }
+        .sheet(isPresented: $isShowingSearchView){
+            SearchView()
+        }
         
+    }
     }
 }
 
