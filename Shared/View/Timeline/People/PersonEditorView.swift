@@ -120,7 +120,7 @@ struct PersonEditorView: View {
                 
             
             
-            TagEditorView(tagIDsofItem:$personvm.person.tagIDs, tagvm: personTagvm)
+            TagEditorView(tagNamesOfItem: $personvm.person.tagNames, tagvm: personTagvm)
                 .padding()
             
             

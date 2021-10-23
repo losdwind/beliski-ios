@@ -8,17 +8,24 @@
 import SwiftUI
 
 struct TagPanelView: View {
-    @StateObject var tagpanvm:TagPanelViewModel = TagPanelViewModel()
+    @ObservedObject var tagPanelvm:TagPanelViewModel
     var body: some View {
-        List(tagpanvm.fetchedTags){
-            tag in
-            TagItemView(tag: tag)
+        List{
+            ForEach(tagPanelvm.fetchedAllTags, id: \.id){tag in
+                HStack(alignment: .center, spacing: 40){
+                    Text(tag.name)
+                    
+                    Text(tag.linkedIDCount)
+                    
+                }
+            }
         }
+
     }
 }
 
 struct TagPanelView_Previews: PreviewProvider {
     static var previews: some View {
-        TagPanelView()
+        TagPanelView(tagPanelvm: TagPanelViewModel())
     }
 }

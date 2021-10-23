@@ -15,18 +15,20 @@ struct TimelineView: View {
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var dataLinkedManger:DataLinkedManager
     @ObservedObject var searchvm: SearchViewModel
+    @ObservedObject var tagPanelvm:TagPanelViewModel
     
     @State var isShowingSearchView = false
     
     
     
-    init(timelineManger:TimelineManager, journalvm:JournalViewModel, taskvm:TaskViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel){
+    init(timelineManger:TimelineManager, journalvm:JournalViewModel, taskvm:TaskViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel){
         self.timelineManager = timelineManger
         self.journalvm = journalvm
         self.taskvm = taskvm
         self.personvm = personvm
         self.dataLinkedManger = dataLinkedManager
         self.searchvm = searchvm
+        self.tagPanelvm = tagPanelvm
         
         UIPageControl.appearance().currentPageIndicatorTintColor = .clear
         UIPageControl.appearance().pageIndicatorTintColor = .clear
@@ -63,11 +65,11 @@ struct TimelineView: View {
                 //: Tabview
                 TabView(selection: $timelineManager.selectedTab) {
                     
-                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm).tag(TimelineTab.TODAY)
+                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)
                     
                     TaskListView(taskvm: taskvm).tag(TimelineTab.EVENTS)
                     
-                    PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm).tag(TimelineTab.TOPICS)
+                    PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TOPICS)
                     
                 }
                 .tabViewStyle(PageTabViewStyle())
@@ -98,7 +100,7 @@ struct TimelineView: View {
                 }
             }
             .sheet(isPresented: $isShowingSearchView){
-                SearchView(searchvm: searchvm)
+                SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
             }
             
         }
@@ -107,6 +109,6 @@ struct TimelineView: View {
 
 struct TimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        TimelineView(timelineManger: TimelineManager(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel())
+        TimelineView(timelineManger: TimelineManager(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
     }
 }

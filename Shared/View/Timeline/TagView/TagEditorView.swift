@@ -11,7 +11,7 @@ struct TagEditorView: View {
     
     @State var showAlert: Bool = false
     
-    @Binding var tagIDsofItem:[String]
+    @Binding var tagNamesOfItem:[String]
     @ObservedObject var tagvm:TagViewModel
     
     var body: some View {
@@ -23,20 +23,19 @@ struct TagEditorView: View {
                 
                 // Displaying Tags.....
                 
-                ForEach(tagvm.getTagsByRows(TagsofItemSet: tagvm.TagsofItem),id: \.self){TagsInRow in
+                ForEach(tagvm.getTagNamesByRows(tagNames: tagvm.tagNames),id: \.self){tagNamesInRow in
                     
                     HStack(spacing: 6){
                         
-                        ForEach(TagsInRow){ tag in
+                        ForEach(tagNamesInRow){ tagName in
                             
                             // Row View....
-                            TagItemView(tag: tag)
+                            TagItemView(tagName:tagName)
                                 .contextMenu{
                                     Button("Delete"){
                                         // deleting...
-                                        tagvm.TagsofItem.remove(tag)
-                                        tagvm.tagIDs.remove(tag.id ?? "")
-                                        tagIDsofItem = Array(tagvm.tagIDs)
+                                        tagvm.tagNames.remove(tagName)
+                                        tagNamesOfItem = Array(tagvm.tagNames)
                                         
                                     }
                                     
@@ -44,7 +43,7 @@ struct TagEditorView: View {
                                         print("functions to rename")
                                     }
                                 }
-
+                            
                         }
                     }
                 }
@@ -53,19 +52,19 @@ struct TagEditorView: View {
             HStack(alignment: .center, spacing: 20) {
                 // Custom Tag View...
                 // TextField...
-                TextField("apple", text: $tagvm.tag.name)
+                TextField("apple", text: $tagvm.tempTag.name)
                     .foregroundColor(.primary)
                     .lineLimit(1)
                     .font(.title3)
                     .padding(.vertical,10)
                     .padding(.horizontal)
                     .background(
-                    
+                        
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.pink.opacity(0.2),lineWidth: 1)
                     )
                     .foregroundColor(.primary)
-
+                
                 // Setting only Textfield as Dark..
                     .environment(\.colorScheme, .dark)
                     .padding(.vertical,18)
@@ -73,24 +72,13 @@ struct TagEditorView: View {
                 // Add Button..
                 Button {
                     
-                    // Use same Font size and limit here used in TagView....
+                    // adding Tag...
+                    // MARK: - here we need authenticate duplicate tag in cloud firestore
                     
-                    tagvm.checkTagLimit(text: tagvm.tag.name) { alert, tag in
-                        
-                        if alert{
-                            // Showing alert...
-                            showAlert.toggle()
-                        }
-                        else{
-                            // adding Tag...
-                            // MARK: - here we need authenticate duplicate tag in cloud firestore
-                            
-                            tagvm.TagsofItem.insert(tag)
-                            
-                            tagvm.tag.name = ""
-                        }
-                    }
-                    
+                    tagvm.tagNames.insert(tagvm.tag.name)
+                    tagNamesOfItem = tagvm.tagNames
+                    tagvm.uploadTag(handler: { _ in })
+                    tagvm.tag.name = ""
                 } label: {
                     Text("Add Tag")
                         .fontWeight(.semibold)
@@ -101,11 +89,11 @@ struct TagEditorView: View {
                         .cornerRadius(10)
                 }
                 // Disabling Button...
-                .disabled(tagvm.tag.name == "")
-                .opacity(tagvm.tag.name == "" ? 0.6 : 1)
+                .disabled(tagvm.tempTag.name == "")
+                .opacity(tagvm.tempTag.name == "" ? 0.6 : 1)
             }
-          
-
+            
+            
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Error"), message: Text("Tag Limit Exceeded  try to delete some tags !!!"), dismissButton: .destructive(Text("Ok")))
@@ -113,10 +101,9 @@ struct TagEditorView: View {
     }
 }
 
-struct TagEditorView_Previews: PreviewProvider {
-    @State var tagIDsofItem:[String] = [String]()
-    
-    static var previews: some View {
-        TagEditorView(tagIDsofItem: $tagIDsofItem, tagvm: TagViewModel())
-    }
-}
+//struct TagEditorView_Previews: PreviewProvider {
+//    @Binding var a = [String]()
+//    static var previews: some View {
+//        TagEditorView(tagNamesOfItem: a, tagvm: TagViewModel())
+//    }
+//}

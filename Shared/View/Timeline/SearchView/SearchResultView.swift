@@ -18,7 +18,7 @@ struct SearchResultView: View {
             Section {
                 ForEach(searchvm.filteredJournals, id: \.self){
                     journal in
-                    JournalItemView(journal: journal, tagIDs: journal.tagIDs, OwnerItemID: journal.id!)
+                    JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id!)
                 }
             } header: {
                 Text("Journals")
@@ -37,7 +37,7 @@ struct SearchResultView: View {
             Section {
                 ForEach(searchvm.fileteredPersons, id: \.self){
                     person in
-                    PersonItemView(person: person, tagIDs: person.tagIDs, OwnerItemID: person.id!)
+                    PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id!)
                 }
             } header: {
                 Text("Person")

@@ -10,21 +10,29 @@ import SwiftUI
 struct TagCollectionView: View {
     
     @ObservedObject var tagvm: TagViewModel
-     
+    
+    @State var tagNamesInRows:[[String]]
+    
+    
+    
+    init(tagvm:TagViewModel){
+        self.tagvm = tagvm
+        self._tagNamesInRows = State(initialValue: tagvm.getTagNamesByRows(tagNames: tagvm.tagNames))
+    }
     var body: some View {
 
                 VStack(alignment: .leading, spacing: 10) {
                     
                     // Displaying Tags.....
                     
-                    ForEach(tagvm.getTagsByRows(TagsofItemSet: tagvm.TagsofItem),id: \.self){TagsInRow in
+                    ForEach($tagNamesInRows,id: \.self){tagNamesInRow in
                         
                         HStack(spacing: 6){
                             
-                            ForEach(TagsInRow){ tag in
+                            ForEach(tagNamesInRow){ tagName in
                                 
                                 // Row View....
-                                TagItemView(tag: tag)
+                                TagItemView(tagName: tagName.wrappedValue)
 
                             }
                         }

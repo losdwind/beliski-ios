@@ -12,6 +12,7 @@ struct JournalListView: View {
     @ObservedObject var journalvm:JournalViewModel
     @ObservedObject var dataLinkedManager:DataLinkedManager
     @ObservedObject var searchvm: SearchViewModel
+    @ObservedObject var tagPanelvm:TagPanelViewModel
 
     @State var isUpdatingJournal = false
     @State var isLinkingItem = false
@@ -30,7 +31,7 @@ struct JournalListView: View {
                                     LinkedItemsView(dataLinkedManager: dataLinkedManager)
                     )
                     {
-                        JournalItemView(journal: journal, tagIDs: journal.tagIDs, OwnerItemID: journal.id!)
+                        JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id!)
                             .contextMenu{
                                 // Delete
                                 Button(action:{
@@ -79,10 +80,10 @@ struct JournalListView: View {
                                 journalvm.journal = Journal()
                             }, content: {
                                 // MARK: - think about the invalide id, because maybe the journal haven't yet been uploaded
-                                JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel(tagIDs: journalvm.journal.tagIDs, ownerItemID: journalvm.journal.id!, completion: {_ in}))
+                                JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel(tagNamesOfItem: journalvm.journal.tagNames, ownerItemID: journalvm.journal.id!, completion: {_ in}))
                             })
                             .sheet(isPresented: $isShowingLinkView){
-                                SearchView(searchvm: searchvm)
+                                SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
                             }
                             .foregroundColor(.primary)
                             .padding()
@@ -113,6 +114,6 @@ struct JournalListView: View {
 
 struct JournalView_Previews: PreviewProvider {
     static var previews: some View {
-        JournalListView(journalvm: JournalViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel())
+        JournalListView(journalvm: JournalViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
     }
 }

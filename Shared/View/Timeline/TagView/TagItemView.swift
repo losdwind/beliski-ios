@@ -11,12 +11,12 @@ import FirebaseFirestoreSwift
 
 struct TagItemView: View {
     
-    var tag: Tag
+    var tagName: String
     
     @Namespace var animation
     
     var body: some View {
-        Text(tag.name)
+        Text(tagName)
         // applying same font size..
         // else size will vary..
             .font(.system(size: 16))
@@ -32,13 +32,13 @@ struct TagItemView: View {
             .lineLimit(1)
         // Delete...
             .contentShape(Capsule())
-            .matchedGeometryEffect(id: tag.id, in: animation)
+            .matchedGeometryEffect(id: UUID(uuidString: tagName), in: animation)
     }
 }
 
 struct TagItemRowView_Previews: PreviewProvider {
-    static var tag = "great"
+    static var tagName = "great"
     static var previews: some View {
-        TagItemView(tag: tag)
+        TagItemView(tagName: tagName)
     }
 }

@@ -22,7 +22,7 @@ struct Task:Identifiable, Codable, Hashable, Item {
     var description:String = ""
     var completion: Bool = false
     var reminder: Timestamp?
-    var tags:[String] = []
+    var tagNames:[String] = []
     
     
 }

@@ -57,7 +57,7 @@ struct JournalEditorView: View {
             
             TimestampView(time:journalvm.journal.convertFIRTimestamptoString(timestamp: journalvm.journal.localTimestamp))
             
-            TagEditorView(tagIDsofItem: $journalvm.journal.tagIDs, tagvm:journalTagvm)
+            TagEditorView(tagNamesOfItem: $journalvm.journal.tagNames, tagvm:journalTagvm)
             
             HStack {
                 

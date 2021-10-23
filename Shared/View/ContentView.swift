@@ -21,6 +21,7 @@ struct MainView: View {
     @StateObject var dataLinkedManager = DataLinkedManager()
     @StateObject var tagvm = TagViewModel()
     @StateObject var searchvm = SearchViewModel()
+    @StateObject var tagPanelvm = TagPanelViewModel()
 
     
     var body: some View {
@@ -33,7 +34,7 @@ struct MainView: View {
             TabView(selection: $selectedTab){
                 
                 // Show the timeline of user journals
-                TimelineView(timelineManger: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm)
+                TimelineView(timelineManger: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm)
                     .tabItem{
                         Image(systemName: "text.redaction")
                     }.tag(MainTab.timeline)

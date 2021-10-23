@@ -9,11 +9,11 @@ import Foundation
 
 class TagPanelViewModel:ObservableObject {
     
-    @Published var fetchedTags:[Tag] = [Tag]()
+    @Published var fetchedAllTags:[Tag] = [Tag]()
     
     
     
-    func fetchTags(handler: @escaping (_ success: Bool) -> ()) {
+    func fetchAllTags(handler: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid here in fetchTags function")
             return
@@ -21,7 +21,7 @@ class TagPanelViewModel:ObservableObject {
         
         COLLECTION_USERS.document(userID).collection("tags").order(by: "linkedIDCount", descending: true).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
-            self.fetchedTags = documents.compactMap({try? $0.data(as: Tag.self)})
+            self.fetchedAllTags = documents.compactMap({try? $0.data(as: Tag.self)})
             handler(true)
         }
     }

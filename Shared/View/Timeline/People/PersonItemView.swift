@@ -15,10 +15,10 @@ struct PersonItemView: View {
     @StateObject var personTagvm:TagViewModel
     
     
-    init(person: Person, tagIDs: [String], OwnerItemID: String){
+    init(person: Person, tagNames: [String], OwnerItemID: String){
         self.person = person
         
-        _personTagvm = StateObject(wrappedValue: TagViewModel(tagIDs: tagIDs, ownerItemID: OwnerItemID, completion: { success in
+        _personTagvm = StateObject(wrappedValue: TagViewModel(tagNamesOfItem: tagNames, ownerItemID: OwnerItemID, completion: { success in
             if success {
                 print("successfully initilized the TagCollectionView with given tagIDs and OwnerItemId")
             } else {
@@ -95,7 +95,7 @@ struct PersonItemView: View {
             }
             
             
-            if person.tagIDs.isEmpty == false {
+            if person.tagNames.isEmpty == false {
                 TagCollectionView(tagvm: personTagvm)
             }
             
@@ -106,7 +106,7 @@ struct PersonItemView: View {
 
 struct PersonItemView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonItemView(person: Person(), tagIDs: [], OwnerItemID: "")
+        PersonItemView(person: Person(), tagNames: [], OwnerItemID: "")
     }
 }
 

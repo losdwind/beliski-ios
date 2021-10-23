@@ -11,6 +11,7 @@ struct PersonListView: View {
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var dataLinkedManager: DataLinkedManager
     @ObservedObject var searchvm:SearchViewModel
+    @ObservedObject var tagPanelvm: TagPanelViewModel
     
     @State var isUpdatingPerson: Bool = false
     @State var isLinkingItem: Bool = false
@@ -26,7 +27,7 @@ struct PersonListView: View {
                         NavigationLink {
                             LinkedItemsView(dataLinkedManager: dataLinkedManager)
                         } label: {
-                            PersonItemView(person: person, tagIDs: person.tagIDs, OwnerItemID: person.id!)
+                            PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id!)
                                 .contextMenu{
                                     
                                     
@@ -76,7 +77,7 @@ struct PersonListView: View {
                                     PersonDetailView(person: person)
                                 }
                                 .sheet(isPresented: $isShowingLinkView){
-                                    SearchView(searchvm: searchvm)
+                                    SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
                                 }
                                 .onTapGesture(perform: {
                                     dataLinkedManager.linkedIds = person.linkedItems
@@ -112,6 +113,6 @@ struct PersonListView: View {
 
 struct PersonListView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonListView(personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel())
+        PersonListView(personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchView: View {
     
     @ObservedObject var searchvm:SearchViewModel
+    @ObservedObject var tagPanelvm:TagPanelViewModel
     
     var body: some View {
         
@@ -26,7 +27,7 @@ struct SearchView: View {
                 }
             }
             
-            TagPanelView()
+            TagPanelView(tagPanelvm: tagPanelvm)
             
             SearchResultView(searchvm: searchvm)
 
@@ -40,6 +41,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchvm: SearchViewModel())
+        SearchView(searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
     }
 }
