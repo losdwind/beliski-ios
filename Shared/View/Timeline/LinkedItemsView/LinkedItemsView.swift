@@ -9,16 +9,16 @@ import SwiftUI
 
 struct LinkedItemsView: View {
     
-    @EnvironmentObject var dataLinkedManager: DataLinkedManager
+    @ObservedObject var dataLinkedManager: DataLinkedManager
     
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false){
                 GroupBox {
                     LazyVStack{
-                        ForEach(dataManager.linkedJournals){
+                        ForEach(dataLinkedManager.linkedJournals){
                             journal in
-                            JournalItemView(journal: journal)
+                            JournalItemView(journal: journal, tagIDs: journal.tagIDs, OwnerItemID: journal.id!)
                         }
                     }
                 } label: {
@@ -30,7 +30,7 @@ struct LinkedItemsView: View {
             
             GroupBox {
                 LazyVStack{
-                    ForEach(dataManager.linkedTasks){
+                    ForEach(dataLinkedManager.linkedTasks){
                         task in
                         TaskRowItemView(task: task)
                     }
@@ -43,9 +43,9 @@ struct LinkedItemsView: View {
             
             GroupBox {
                 LazyVStack{
-                    ForEach(dataManager.linkedPersons){
+                    ForEach(dataLinkedManager.linkedPersons){
                         person in
-                        PersonItemView(person: person)
+                        PersonItemView(person: person, tagIDs: person.tagIDs, OwnerItemID: person.id!)
                     }
                 }
             } label: {
@@ -57,14 +57,22 @@ struct LinkedItemsView: View {
 
         }
         .onAppear {
-            dataLinkedManager.fetchItems(completion: {_ in })
+            dataLinkedManager.fetchItems(completion: {success in
+                if success {
+                    print("successfully loaded the linked items on appear")
+                } else {
+                    print("failed to load the linked items on appear")
+                }
+            })
         }
+        
+
    
     }
 }
 
 struct LinkedItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        LinkedItemsView()
+        LinkedItemsView(dataLinkedManager: DataLinkedManager())
     }
 }

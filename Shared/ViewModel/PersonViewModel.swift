@@ -56,7 +56,7 @@ class PersonViewModel: ObservableObject {
     }
     
     
-    func deletePerson(task: Task, handler: @escaping (_ success: Bool) -> ()){
+    func deletePerson(person: Person, handler: @escaping (_ success: Bool) -> ()){
         
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid")

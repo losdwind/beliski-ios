@@ -16,7 +16,7 @@ struct PersonEditorView: View {
     @State var avatarPickerPresented = false
     @State var photosPickerPresented = false
     
-    @ObservedObject var tagvm:TagViewModel
+    @ObservedObject var personTagvm:TagViewModel
     
     @ObservedObject var personvm:PersonViewModel
     
@@ -24,13 +24,14 @@ struct PersonEditorView: View {
     
     
     var body: some View {
+        
+        ScrollView {
         VStack(alignment:.center, spacing: 20) {
             
             
-                
                 // Profile Image
                     Button(action: { avatarPickerPresented.toggle() }){
-                        if personvm.person.avatarURL.isEmpty == true {
+                        if personvm.avatarImage == UIImage() {
                         Image(systemName:"person.circle")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -51,10 +52,6 @@ struct PersonEditorView: View {
                 })
             
             
-            
-            
-            Form {
-                
                 
                 
                 // First Name
@@ -121,29 +118,57 @@ struct PersonEditorView: View {
                 
                 
                 
-            }
             
             
-            TagEditorView(tagvm: tagvm)
+            TagEditorView(tagIDsofItem:$personvm.person.tagIDs, tagvm: personTagvm)
+                .padding()
+            
+            
             
             
             HStack{
                 
                 // SAVE BUTTON
                 Button(action: {
+                    
+                    
+                    let group = DispatchGroup()
+                    
+                    group.enter()
+                    
+                    MediaUploader.uploadImage(image: personvm.avatarImage, type: .person) { imageURL in
+                        personvm.person.avatarURL = imageURL
+            
+                    }
+                    group.leave()
+                    
+                    group.enter()
                     MediaUploader.uploadImages(images: personvm.images, type: .person)
                     { urls in
                         personvm.person.photoURLs = urls
-                        personvm.uploadPerson { success in
-                            if success {
-                                personvm.person = Person()
-                                personvm.images = [UIImage]()
-                                personvm.audios = [NSData]()
-                                personvm.videos = [NSData]()
-                                personvm.fetchPersons{ _ in }
-                            }
+                    }
+                    group.leave()
+                    group.enter()
+                    
+                    personTagvm.uploadTag(handler: {_ in})
+                    group.leave()
+                    
+                    group.enter()
+                    personvm.uploadPerson { success in
+                        if success {
+                            personvm.person = Person()
+                            personvm.images = [UIImage]()
+                            personvm.audios = [NSData]()
+                            personvm.videos = [NSData]()
+                            personvm.fetchPersons{ _ in }
                         }
                     }
+                    group.leave()
+                    
+                    group.notify(queue: .main){
+                        print("Finished upload the person to firebase")
+                    }
+                    
                     
                     playSound(sound: "sound-ding", type: "mp3")
                     
@@ -171,12 +196,14 @@ struct PersonEditorView: View {
                     .cornerRadius(10)
                 //                    .layoutPriority(1)
             }
-        }
+        } //: VStack
+        .padding()
+        }//: ScrollView
     }
 }
 
 struct PersonEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonEditorView(personvm: PersonViewModel())
+        PersonEditorView(personTagvm: TagViewModel(), personvm: PersonViewModel())
     }
 }

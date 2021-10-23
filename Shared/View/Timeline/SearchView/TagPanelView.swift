@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct TagPanelView: View {
-    @StateObject var tagpanvm:TagViewModel = TagViewModel()
+    @StateObject var tagpanvm:TagPanelViewModel = TagPanelViewModel()
     var body: some View {
         List(tagpanvm.fetchedTags){
             tag in
-            TagItemView(tagvm: tagpanvm, tag: tag)
+            TagItemView(tag: tag)
         }
     }
 }

@@ -19,17 +19,37 @@ class TagViewModel: ObservableObject {
 //    }
 //    var size: CGFloat = 0
     
+    init(tagIDs: [String], ownerItemID: String, completion: @escaping (_ success: Bool) -> ()){
+        self.tagIDs = Set(tagIDs)
+        self.ownerItemID = ownerItemID
+        self.fetchTags(from: Set(tagIDs)) { success in
+            if success {
+                completion(true)
+            } else{
+                completion(false)
+            }
+        }
+    }
+    
+    init(){
+        self.ownerItemID = ""
+    }
+    
+    @Published var ownerItemID: String
     
     @Published var tag: Tag = Tag() //used for update the tag in database
     
-    @Published var fetchedTags:[Tag] = [Tag]()
+    @Published var TagsofItem:Set<Tag> = Set<Tag>()
     
+    @Published var tagIDs:Set<String> = Set<String>()
+    
+    var size: CGFloat = 0
     @Published var fontSize:CGFloat = 16
     @Published var maxLimit:Int = 150
     
     
-    // add tag into the linkedTags of a Object
-    func addTag(text: String, completion: @escaping (Bool,Tag)->()){
+    // check tag if its size meet the requirement
+    func checkTagLimit(text: String, completion: @escaping (Bool,Tag)->()){
         
         // getting Text Size according to different fontSize
         let font = UIFont.systemFont(ofSize: fontSize)
@@ -38,16 +58,24 @@ class TagViewModel: ObservableObject {
         
         let size = (text as NSString).size(withAttributes: attributes)
         
+//        @DocumentID var id:String?
+//        @ServerTimestamp var serverTimestamp: Timestamp?
+//        var localTimestamp: Timestamp?
+//        var ownerID: String = "unknown"
+//        var name: String = ""
+//        var linkedID:[String] = []
+//        var linkedIDCount:Int {
+//            linkedID.count
+//        }
+//        var size: CGFloat = 0
+        
         let tag = Tag(name: text, size: size.width)
         
-        if (getSize(tags: fetchedTags) + text.count) < maxLimit{
+        if (getSize(tags: TagsofItem) + text.count) < maxLimit{
             completion(false,tag)
         }else{
             completion(true,tag)
         }
-        
-        
-
     }
     
     
@@ -61,7 +89,7 @@ class TagViewModel: ObservableObject {
     }
     
     // get the existing tags' size to infer it exceeds maxLimit or not
-    func getSize(tags: [Tag])->Int{
+    func getSize(tags: Set<Tag>)->Int{
         var count: Int = 0
         
         tags.forEach { tag in
@@ -73,7 +101,7 @@ class TagViewModel: ObservableObject {
     
     // Basic Logic..
     // Splitting the array when it exceeds the screen size....
-    func getTagsByRows()->[[Tag]]{
+    func getTagsByRows(TagsofItemSet:Set<Tag>)->[[Tag]]{
         
         var rows: [[Tag]] = []
         var currentRow: [Tag] = []
@@ -84,7 +112,7 @@ class TagViewModel: ObservableObject {
         // For safety extra 10....
         let screenWidth: CGFloat = UIScreen.main.bounds.width - 90
         
-        fetchedTags.forEach { tag in
+        TagsofItemSet.forEach { tag in
             
             // updating total width...
             
@@ -123,43 +151,58 @@ class TagViewModel: ObservableObject {
     
     
 
-
-    
-    
-    
-    
-    func uploadTag(handler: @escaping (_ success: Bool) -> ()) {
-        
+    func uploadTag(handler:@escaping (_ success:Bool) -> ()) {
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid in uploadTag func")
             return }
-        
-        var document = COLLECTION_USERS.document(userID).collection("tags").document()
-        
-        if tag.id != nil {
-            document = COLLECTION_USERS.document(userID).collection("tags").document(tag.id!)
-        } else {
-            tag.ownerID = userID
-        }
+
+        COLLECTION_USERS.document(userID).collection("tags").whereField("name", isEqualTo: tag.name).getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else {
+                let newDocument = COLLECTION_USERS.document(userID).collection("tags").document()
+                self.tag.linkedID.append(self.ownerItemID)
+                self.tag.ownerID  = userID
                 
-        
-        
-        // MARK: - here I disabled the uploadImage because i want to upload right after the imagePicker
-        
-
-        
-        do {
-            try document.setData(from: tag)
-            handler(true)
+                do {
+                    try newDocument.setData(from: self.tag)
+                    handler(true)
+                    return
+                    
+                } catch let error {
+                    print("Error upload journal to Firestore: \(error)")
+                    handler(false)
+                    return
+                }
+            }
             
-        } catch let error {
-            print("Error upload journal to Firestore: \(error)")
-            handler(false)
+            let tags = documents.compactMap({try? $0.data(as: Tag.self)})
+            
+            if tags.count == 1 && tags[0].id != nil{
+                print("there exist duplicate tags in the database")
+                handler(false)
+                return
+            } else {
+                self.tag = tags[0]
+                self.tag.linkedID.append(self.ownerItemID)
+                let OldDocument = COLLECTION_USERS.document(userID).collection("tags").document(self.tag.id!)
+                do {
+                    try OldDocument.setData(from: self.tag)
+                    print("there exist one tag in the database, now merging.")
+                    handler(true)
+                    return
+                    
+                } catch let error {
+                    print("Error update tag info to Firestore: \(error)")
+                    handler(false)
+                    return
+                }
+            }
+            
+            
         }
-
-
+        
+        
     }
-    
+
     
     func deleteTag(tag: Tag, handler: @escaping (_ success: Bool) -> ()){
         
@@ -189,36 +232,25 @@ class TagViewModel: ObservableObject {
     }
     
     
+
     
-    
-    func fetchTags(handler: @escaping (_ success: Bool) -> ()) {
+    func fetchTags(from tagIDs:Set<String>, handler: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid here in fetchTags function")
             return
         }
         
-        COLLECTION_USERS.document(userID).collection("tags").order(by: "linkedIDCount", descending: true).getDocuments { snapshot, _ in
-            guard let documents = snapshot?.documents else { return }
-            self.fetchedTags = documents.compactMap({try? $0.data(as: Tag.self)})
-            handler(true)
-        }
-    }
-    
-    
-    func fetchTags(from tagIDs:[String], handler: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
-            print("userID is not valid here in fetchTags function")
-            return
-        }
         if tagIDs.isEmpty == true {
-            self.fetchedTags = [Tag]()
+            self.TagsofItem = Set<Tag>()
             handler(true)
+            return
         }
         
-        COLLECTION_USERS.document(userID).collection("tags").whereField("id", in: tagIDs).order(by: "linkedIDCount", descending: true).getDocuments { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("tags").whereField("id", in: Array(tagIDs)).order(by: "linkedIDCount", descending: true).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
-            self.fetchedTags = documents.compactMap({try? $0.data(as: Tag.self)})
+            self.TagsofItem = Set(documents.compactMap({try? $0.data(as: Tag.self)}))
             handler(true)
+            return
         }
     }
 

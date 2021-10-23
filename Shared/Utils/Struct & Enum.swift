@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 
 
@@ -63,4 +64,32 @@ struct DatabaseJournalField { // Fields within Post Document in Database
     static let caption = "caption"
     static let dateCreated = "date_created"
     
+}
+
+enum SearchType {
+    case journal
+    case task
+    case person
+    case all
+}
+
+enum UploadType {
+    case profile
+    case journal
+    case task
+    case person
+    
+    var filePath: StorageReference {
+        let filename = NSUUID().uuidString
+        switch self {
+        case .profile:
+            return Storage.storage().reference(withPath: "/profile_medias/\(filename)")
+        case .journal:
+            return Storage.storage().reference(withPath: "/journal_medias/\(filename)")
+        case .task:
+            return Storage.storage().reference(withPath: "/task_medias/\(filename)")
+        case .person:
+            return Storage.storage().reference(withPath: "/person_medias/\(filename)")
+        }
+    }
 }

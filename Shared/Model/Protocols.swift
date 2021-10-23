@@ -16,4 +16,5 @@ protocol Item: Hashable, Identifiable, Codable {
     var localTimestamp: Timestamp? {get set}
     var ownerID:String { get set }
     var linkedItems: [String] {get set}
+    
 }

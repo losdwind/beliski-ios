@@ -21,5 +21,14 @@ struct Tag: Identifiable,Hashable, Codable {
     var linkedIDCount:Int {
         linkedID.count
     }
-    var size: CGFloat = 0
+    
+    static func == (lhs: Tag, rhs: Tag) -> Bool {
+            return lhs.name == rhs.name
+        }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+    
+    
 }

@@ -21,19 +21,20 @@ struct TaskRowItemView: View {
             Toggle(isOn: $completion){
                 Text(task.content)
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
-                    .foregroundColor(task.completion ? Color.pink : Color.primary)
+                    .foregroundColor(completion ? Color.pink : Color.primary)
                     .padding(.vertical)
                 Spacer()
         } //: Toggle
         .toggleStyle(CheckboxStyle())
-        .onDisappear(perform: {
+        .onChange(of: completion) { newValue in
             let tempTaskvm = TaskViewModel()
             tempTaskvm.task = task
-            tempTaskvm.task.completion = completion
+            tempTaskvm.task.completion = newValue
             tempTaskvm.uploadTask{_ in }
-        })
+        }
         
     }
+        
     }
 }
 

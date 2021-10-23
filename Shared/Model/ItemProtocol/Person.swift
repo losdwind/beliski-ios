@@ -35,5 +35,5 @@ struct Person: Identifiable, Codable, Hashable, Item {
     var audioURLs:[String] = []
     var videoURLs:[String] = []
     var priority:Int = 0
-    var tagIDs:[String] = []
+    var tags:[String] = []
 }

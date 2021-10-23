@@ -19,6 +19,8 @@ class JournalViewModel:ObservableObject {
     @Published var images:[UIImage] = [UIImage]()
     @Published var audios:[NSData] = [NSData]()
     @Published var videos:[NSData] = [NSData]()
+    @Published var OwnerItemID: String = ""
+
     
     
     func uploadJournal(handler: @escaping (_ success: Bool) -> ()) {

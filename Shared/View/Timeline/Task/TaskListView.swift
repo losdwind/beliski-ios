@@ -13,6 +13,7 @@ struct TaskListView: View {
     @ObservedObject var taskvm: TaskViewModel
     
     @State var isUpdatingTask = false
+    @State var isLinkingItem = false
     
     // MARK: - FUNCTION
     
@@ -20,15 +21,15 @@ struct TaskListView: View {
     
     var body: some View {
         LazyVStack(alignment:.leading){
-            ForEach($taskvm.fetchedTasks, id:\.id) { task in
-                TaskRowItemView(task: task, taskvm: taskvm)
+            ForEach(taskvm.fetchedTasks, id:\.id) { task in
+                TaskRowItemView(task: task)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(8)
                     .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.3), radius: 6)
-                    .contextMenu(ContextMenu(menuItems: {
+                    .contextMenu{
                         Button(action:{
-                            taskvm.deleteTask(task: task.wrappedValue) { _ in }
+                            taskvm.deleteTask(task: task) { _ in }
                             taskvm.fetchTasks { _ in }
                         }
                                ,label:{Label(
@@ -37,13 +38,23 @@ struct TaskListView: View {
                         
                         Button(action:{
                                 isUpdatingTask = true
-                            taskvm.task = task.wrappedValue
+                            taskvm.task = task
         
                         }
                                ,label:{Label(
                                 title: { Text("Edit") },
                                 icon: { Image(systemName: "pencil.circle") })})
-                    }))
+                        
+                        // Link
+                        Button(action:{
+                            taskvm.task = task
+                            isLinkingItem = true
+                            
+                        }
+                               ,label:{Label(
+                                title: { Text("Link") },
+                                icon: { Image(systemName: "link.circle") })})
+                    }
             }
             .frame(alignment:.leading)
             .sheet(isPresented: $isUpdatingTask, onDismiss: {
@@ -53,9 +64,22 @@ struct TaskListView: View {
                 TaskEditorView(taskvm: taskvm)
             })
         }
+        .padding()
         .frame(maxWidth: 640)
+        .onAppear(perform:{
+            taskvm.fetchTasks(handler: {
+                success in
+                if success {
+                    print("successfully fetched the tasks from firebase ")
+                } else {
+                    print("failed to fetched the tasks from firebase")
+                }
+            })
+        }
+        )
 
     }
+        
 }
 
 struct TaskListView_Previews: PreviewProvider {

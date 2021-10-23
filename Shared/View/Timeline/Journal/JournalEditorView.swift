@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JournalEditorView: View {
     @ObservedObject var journalvm:JournalViewModel
-    @ObservedObject var tagvm: TagViewModel
+    @ObservedObject var journalTagvm: TagViewModel
     @State var imagePickerPresented = false
     
     @Environment(\.presentationMode) var presentationMode
@@ -19,6 +19,7 @@ struct JournalEditorView: View {
  
     var body: some View {
         
+        ScrollView(.vertical, showsIndicators: false) {
         VStack(alignment:.leading) {
             TextEditor(text: $journalvm.journal.content)
                 .onChange(of: journalvm.journal.content) { value in
@@ -56,7 +57,7 @@ struct JournalEditorView: View {
             
             TimestampView(time:journalvm.journal.convertFIRTimestamptoString(timestamp: journalvm.journal.localTimestamp))
             
-            TagEditorView(tagvm:tagvm)
+            TagEditorView(tagIDsofItem: $journalvm.journal.tagIDs, tagvm:journalTagvm)
             
             HStack {
                 
@@ -112,12 +113,13 @@ struct JournalEditorView: View {
         .padding(.vertical, 20)
         .cornerRadius(16)
         .frame(maxWidth: 640)
-    }
+        } //: ScrollView
+        }
     
 }
 
 struct JournalEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        JournalEditorView(journalvm: JournalViewModel())
+        JournalEditorView(journalvm: JournalViewModel(), journalTagvm: TagViewModel())
     }
 }

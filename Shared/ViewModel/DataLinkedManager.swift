@@ -16,6 +16,23 @@ class DataLinkedManager: ObservableObject {
     @Published var linkedJournals:[Journal] = [Journal]()
     @Published var linkedTasks:[Task] = [Task]()
     @Published var linkedPersons:[Person] = [Person]()
+    
+    
+    init(linkedIDs: [String]){
+        self.linkedIds = linkedIDs
+        self.fetchItems { success in
+            if success {
+                print("successfully initalize and fetched the linked Items")
+            } else {
+                print("successfully to initalize and fetched the linked Items, please check if the linkedIDs you provided is compatiable")
+            }
+        }
+    }
+    
+    
+    init(){
+    }
+
 
     
     // we can simplify by using print("\(String(describing: Self.self))")

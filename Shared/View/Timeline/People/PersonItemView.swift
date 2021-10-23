@@ -12,6 +12,22 @@ import FirebaseFirestoreSwift
 struct PersonItemView: View {
     
     var person: Person
+    @StateObject var personTagvm:TagViewModel
+    
+    
+    init(person: Person, tagIDs: [String], OwnerItemID: String){
+        self.person = person
+        
+        _personTagvm = StateObject(wrappedValue: TagViewModel(tagIDs: tagIDs, ownerItemID: OwnerItemID, completion: { success in
+            if success {
+                print("successfully initilized the TagCollectionView with given tagIDs and OwnerItemId")
+            } else {
+                print("failed to initilized the TagCollectionView with given tagIDs and OwnerItemId")
+            }
+        })
+        )
+        
+    }
     
     func timeConverter(timestamp: Timestamp?) -> String {
         if timestamp != nil {
@@ -80,7 +96,7 @@ struct PersonItemView: View {
             
             
             if person.tagIDs.isEmpty == false {
-                TagCollectionView(tags: person.tagIDs)
+                TagCollectionView(tagvm: personTagvm)
             }
             
             
@@ -90,7 +106,7 @@ struct PersonItemView: View {
 
 struct PersonItemView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonItemView(person: Person())
+        PersonItemView(person: Person(), tagIDs: [], OwnerItemID: "")
     }
 }
 

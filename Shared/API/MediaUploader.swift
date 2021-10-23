@@ -11,26 +11,7 @@ import UIKit
 import Firebase
 import AVFoundation
 
-enum UploadType {
-    case profile
-    case journal
-    case task
-    case person
-    
-    var filePath: StorageReference {
-        let filename = NSUUID().uuidString
-        switch self {
-        case .profile:
-            return Storage.storage().reference(withPath: "/profile_medias/\(filename)")
-        case .journal:
-            return Storage.storage().reference(withPath: "/journal_medias/\(filename)")
-        case .task:
-            return Storage.storage().reference(withPath: "/task_medias/\(filename)")
-        case .person:
-            return Storage.storage().reference(withPath: "/person_medias/\(filename)")
-        }
-    }
-}
+
 
 struct MediaUploader {
     
@@ -45,7 +26,7 @@ struct MediaUploader {
             }
         }
         group.notify(queue: .main) {
-            print("Finished all requests.")
+            print("Finished upload all images")
             completion(imageURLs)
         }
     }
