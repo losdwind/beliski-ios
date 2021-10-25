@@ -84,6 +84,7 @@ struct TimelineView: View {
                     Button(
                         action: {
                             isShowingSearchView.toggle()
+                            
                         },
                         label: {
                             Image(systemName: "magnifyingglass.circle")})

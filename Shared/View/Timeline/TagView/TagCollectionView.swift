@@ -29,7 +29,7 @@ struct TagCollectionView: View {
                         
                         HStack(spacing: 6){
                             
-                            ForEach(tagNamesInRow){ tagName in
+                            ForEach(tagNamesInRow, id:\.self){ tagName in
                                 
                                 // Row View....
                                 TagItemView(tagName: tagName.wrappedValue)
@@ -44,6 +44,6 @@ struct TagCollectionView: View {
 
 struct TagItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TagCollectionView(tagvm: TagViewModel())
+        TagCollectionView(tagvm: TagViewModel(tagNamesOfItem: ["a", "b"], ownerItemID: "1", completion: {_ in }))
     }
 }

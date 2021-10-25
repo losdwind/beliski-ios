@@ -22,30 +22,31 @@ class TagViewModel: ObservableObject {
 //    var size: CGFloat = 0
     
     init(tagNamesOfItem: [String], ownerItemID: String, completion: @escaping (_ success: Bool) -> ()){
+        self.tagName = ""
         self.tagNames = Set(tagNamesOfItem)
-//        self.ownerItemID = ownerItemID
-        self.fetchAllTags { success in
-            if success {
-                completion(true)
-            } else{
-                completion(false)
-            }
-        }
+        self.ownerItemID = ownerItemID
+//        self.fetchAllTags { success in
+//            if success {
+//                completion(true)
+//            } else{
+//                completion(false)
+//            }
+//        }
     }
     
     init(){
+        self.tagName = ""
+        self.tagNames = Set([])
+        self.ownerItemID = "unknown"
     }
     
-    
-   
-    
 
-    @Published var tempTag: Tag = Tag() //used for update the tag in database
     
-    @Published var tagNames:Set<String> = Set<String>()
+    @Published var tagName:String
+    @Published var tagNames:Set<String>
     
     
-    @Published var ownerItemID: String = ""
+    @Published var ownerItemID: String
     @Published var fontSize:CGFloat = 16
     @Published var maxLimit:Int = 150
     
@@ -110,83 +111,86 @@ class TagViewModel: ObservableObject {
     
     
 
-    func uploadTag(handler:@escaping (_ success:Bool) -> ()) {
+    func uploadTag(tagName:String, ownerItemID:String, handler:@escaping (_ success:Bool) -> ()) {
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid in uploadTag func")
             return }
 
-        COLLECTION_USERS.document(userID).collection("tags").whereField("name", isEqualTo: tempTag.name).getDocuments { snapshot, _ in
-            
-            guard let documents = snapshot?.documents else {
-                
-                let newDocument = COLLECTION_USERS.document(userID).collection("tags").document()
-                
-                self.tempTag.linkedID.append(self.ownerItemID)
-
-                self.tempTag.ownerID  = userID
-                
-                try newDocument.setData(from: self.tempTag){ err in
+        COLLECTION_USERS.document(userID).collection("tags").document(tagName).getDocument { (document, error) in
+            if let document = document, document.exists {
+                COLLECTION_USERS.document(userID).collection("tags").document(tagName).updateData(
+                    ["linkedID": FieldValue.arrayUnion([ownerItemID])]
+                ){ err in
                     if let err = err {
-                        print("unable to set new tag data to firebase \(err)")
+                        print("already have a tag in firebase but error to update the tag to firebase: \(err)")
                         handler(false)
                         return
                     } else {
-                        print("successfully to set new tag data to firebase")
+                        print("already have a tag in firebase and successfully update the tag to firebase!")
                         handler(true)
                         return
                     }
-                }
                     
+                }
                 
-            }
-            
-            let tags = documents.compactMap({try? $0.data(as: Tag.self)})
-            
-            if tags.count == 1 && tags[0].id != nil{
-                print("there exist duplicate tags in the database")
-                
-                let OldDocument = COLLECTION_USERS.document(userID).collection("tags").document(tags[0].id!)
-                
-                OldDocument.updateData(
-                        ["linkedID": FieldValue.arrayUnion([self.ownerItemID]),
-                         "serverTimestamp": FieldValue.serverTimestamp()
-                        ]
-                    ){ err in
-                        if let err = err {
-                            print("Error upload the tag to firebase: \(err)")
-                            handler(false)
-                            return
-                        } else {
-                            print("successfully uploaded the tag to firebase!")
-                            handler(true)
-                            return
-                        }
-                        
+                } else {
+                    
+                    var tempTag = Tag()
+                    tempTag.name = tagName
+                    tempTag.linkedID.append(ownerItemID)
+                    tempTag.ownerItemID  = userID
+                    
+                    do {
+                        try COLLECTION_USERS.document(userID).collection("tags").document(tempTag.name).setData(from: tempTag)
+                        print("Tag not exist in the firebase and have created tempTag in Firestore")
+                        handler(true)
+                        return
+                    } catch let error {
+                        print("Tag not exist in the firebase but have error writing tempTag to Firestore: \(error)")
+                        handler(false)
+                        return
                     }
-                
-                
-                
-                
+                    
+                }
+        }
+        
+    }
+
+    
+    /// delete one of the tagname of an item
+    func deleteTag(tagName: String,ownerItemID:String, handler: @escaping (_ success: Bool) -> () ){
+        guard let userID = AuthViewModel.shared.currentUser?.id else {
+            print("userID is not valid")
+            return }
+        
+        COLLECTION_USERS.document(userID).collection("tags").document(tagName).updateData(
+            ["linkedID": FieldValue.arrayRemove([ownerItemID])]
+        ){ err in
+            if let err = err {
+                print("already have a tag in firebase but error to update the tag to firebase: \(err)")
+                handler(false)
+                return
+            } else {
+                print("already have a tag in firebase and successfully update the tag to firebase!")
+                handler(true)
+                return
             }
-                
-            
-            
             
         }
         
         
     }
-
     
+    
+    
+    /// delete the whole tag in firebase: dangerous!
     func deleteTag(tag: Tag, handler: @escaping (_ success: Bool) -> ()){
         
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid")
             return }
         
-        if tag.id != nil {
-            let document = COLLECTION_USERS.document(userID).collection("tags").document(tag.id!)
-            document.delete() { err in
+        COLLECTION_USERS.document(userID).collection("tags").document(tag.name).delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
                     handler(false)
@@ -197,11 +201,7 @@ class TagViewModel: ObservableObject {
                     return
                 }
             }
-        } else {
-            print("tag id is not available, means it's not yet uploaded into the firestore")
-            handler(false)
-            return
-        }
+   
         
     }
     

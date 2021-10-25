@@ -95,9 +95,7 @@ struct PersonItemView: View {
             }
             
             
-            if person.tagNames.isEmpty == false {
-                TagCollectionView(tagvm: personTagvm)
-            }
+            TagCollectionView(tagvm: personTagvm)
             
             
         }

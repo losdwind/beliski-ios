@@ -15,7 +15,6 @@ struct JournalListView: View {
     @ObservedObject var tagPanelvm:TagPanelViewModel
 
     @State var isUpdatingJournal = false
-    @State var isLinkingItem = false
     @State var isShowingLinkView:Bool = false
 
     
@@ -31,7 +30,7 @@ struct JournalListView: View {
                                     LinkedItemsView(dataLinkedManager: dataLinkedManager)
                     )
                     {
-                        JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id!)
+                        JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
                             .contextMenu{
                                 // Delete
                                 Button(action:{
@@ -57,7 +56,7 @@ struct JournalListView: View {
                                 // Link
                                 Button(action:{
                                     journalvm.journal = journal
-                                    isLinkingItem = true
+                                    isShowingLinkView = true
                                     
                                 }
                                        ,label:{Label(
@@ -76,15 +75,14 @@ struct JournalListView: View {
                                     }
                                 }
                             })
-                            .sheet(isPresented: $isUpdatingJournal, onDismiss: {
-                                journalvm.journal = Journal()
-                            }, content: {
+                            .sheet(isPresented: $isUpdatingJournal){
                                 // MARK: - think about the invalide id, because maybe the journal haven't yet been uploaded
-                                JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel(tagNamesOfItem: journalvm.journal.tagNames, ownerItemID: journalvm.journal.id!, completion: {_ in}))
-                            })
+                                JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel(tagNamesOfItem: journalvm.journal.tagNames, ownerItemID: journalvm.journal.id, completion: {_ in}))
+                            }
                             .sheet(isPresented: $isShowingLinkView){
                                 SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
                             }
+                            
                             .foregroundColor(.primary)
                             .padding()
                             .frame(maxWidth: .infinity,alignment: .leading)

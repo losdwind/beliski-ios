@@ -18,7 +18,7 @@ struct LinkedItemsView: View {
                     LazyVStack{
                         ForEach(dataLinkedManager.linkedJournals){
                             journal in
-                            JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id!)
+                            JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
                         }
                     }
                 } label: {
@@ -45,7 +45,7 @@ struct LinkedItemsView: View {
                 LazyVStack{
                     ForEach(dataLinkedManager.linkedPersons){
                         person in
-                        PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id!)
+                        PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id)
                     }
                 }
             } label: {
@@ -56,16 +56,6 @@ struct LinkedItemsView: View {
             
 
         }
-        .onAppear {
-            dataLinkedManager.fetchItems(completion: {success in
-                if success {
-                    print("successfully loaded the linked items on appear")
-                } else {
-                    print("failed to load the linked items on appear")
-                }
-            })
-        }
-        
 
    
     }

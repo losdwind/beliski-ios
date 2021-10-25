@@ -16,7 +16,7 @@ struct TagEditorView: View {
     
     var body: some View {
         
-        VStack{
+        VStack(alignment: .leading, spacing: 10){
             
             
             VStack(alignment: .leading, spacing: 10) {
@@ -27,7 +27,7 @@ struct TagEditorView: View {
                     
                     HStack(spacing: 6){
                         
-                        ForEach(tagNamesInRow){ tagName in
+                        ForEach(tagNamesInRow, id: \.self){ tagName in
                             
                             // Row View....
                             TagItemView(tagName:tagName)
@@ -35,13 +35,8 @@ struct TagEditorView: View {
                                     Button("Delete"){
                                         // deleting...
                                         tagvm.tagNames.remove(tagName)
-                                        tagNamesOfItem = Array(tagvm.tagNames)
-                                        
                                     }
-                                    
-                                    Button("Rename"){
-                                        print("functions to rename")
-                                    }
+
                                 }
                             
                         }
@@ -52,18 +47,18 @@ struct TagEditorView: View {
             HStack(alignment: .center, spacing: 20) {
                 // Custom Tag View...
                 // TextField...
-                TextField("apple", text: $tagvm.tempTag.name)
+                
+                Text(tagvm.tagName)
+                TextField("Tags", text: $tagvm.tagName, prompt: Text("Put Some Tags Here"))
                     .foregroundColor(.primary)
                     .lineLimit(1)
                     .font(.title3)
                     .padding(.vertical,10)
                     .padding(.horizontal)
                     .background(
-                        
                         RoundedRectangle(cornerRadius: 8)
                             .strokeBorder(Color.pink.opacity(0.2),lineWidth: 1)
                     )
-                    .foregroundColor(.primary)
                 
                 // Setting only Textfield as Dark..
                     .environment(\.colorScheme, .dark)
@@ -75,10 +70,12 @@ struct TagEditorView: View {
                     // adding Tag...
                     // MARK: - here we need authenticate duplicate tag in cloud firestore
                     
-                    tagvm.tagNames.insert(tagvm.tag.name)
-                    tagNamesOfItem = tagvm.tagNames
-                    tagvm.uploadTag(handler: { _ in })
-                    tagvm.tag.name = ""
+                    let success = tagvm.tagNames.insert(tagvm.tagName)
+                    if success.inserted {
+                        print("no duplicate tag, can insert")
+                    } else {
+                        print("duplicate tag")
+                    }
                 } label: {
                     Text("Add Tag")
                         .fontWeight(.semibold)
@@ -89,8 +86,8 @@ struct TagEditorView: View {
                         .cornerRadius(10)
                 }
                 // Disabling Button...
-                .disabled(tagvm.tempTag.name == "")
-                .opacity(tagvm.tempTag.name == "" ? 0.6 : 1)
+                .disabled(tagvm.tagName == "")
+                .opacity(tagvm.tagName == "" ? 0.6 : 1)
             }
             
             

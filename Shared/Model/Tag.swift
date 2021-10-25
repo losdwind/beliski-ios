@@ -12,15 +12,13 @@ import FirebaseFirestoreSwift
 
 // Tag Model...
 struct Tag: Identifiable,Hashable, Codable {
-    @DocumentID var id:String?
+    var id: String = UUID().uuidString
     @ServerTimestamp var serverTimestamp: Timestamp?
     var localTimestamp: Timestamp?
-    var ownerID: String = "unknown"
+    var ownerItemID: String = "unknown"
     var name: String = ""
     var linkedID:[String] = []
-    var linkedIDCount:Int {
-        linkedID.count
-    }
+    var linkedIDCount:Int = 0
     
     static func == (lhs: Tag, rhs: Tag) -> Bool {
             return lhs.name == rhs.name

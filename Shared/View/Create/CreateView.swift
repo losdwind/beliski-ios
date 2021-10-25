@@ -37,6 +37,7 @@ struct CreateView: View {
             .sheet(isPresented: $isShowingJournalEditor, onDismiss: {journalvm.fetchJournals(handler: { _ in
             })}) {
                 JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel())}
+            // MARK: - here we have a bug
             
             
             

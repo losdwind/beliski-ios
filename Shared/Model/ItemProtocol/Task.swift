@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 struct Task:Identifiable, Codable, Hashable, Item {
     
     // Item Protocol
-    @DocumentID var id:String?
+    var id:String = UUID().uuidString
     @ServerTimestamp var serverTimestamp: Timestamp?
     var localTimestamp: Timestamp?
     var ownerID:String = "unkown"

@@ -19,7 +19,6 @@ struct MainView: View {
     @StateObject var personvm = PersonViewModel()
     @StateObject var timelineManager = TimelineManager()
     @StateObject var dataLinkedManager = DataLinkedManager()
-    @StateObject var tagvm = TagViewModel()
     @StateObject var searchvm = SearchViewModel()
     @StateObject var tagPanelvm = TagPanelViewModel()
 
@@ -38,8 +37,6 @@ struct MainView: View {
                     .tabItem{
                         Image(systemName: "text.redaction")
                     }.tag(MainTab.timeline)
-                    .environmentObject(dataLinkedManager)
-                    .environmentObject(tagvm)
                     
                 // Show the Panel of statistics based on the journals of the user
                 PanelView()

@@ -23,13 +23,9 @@ class TaskViewModel: ObservableObject {
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid in uploadTask func")
             return }
-        var document = COLLECTION_USERS.document(userID).collection("tasks").document()
-        if task.id != nil {
-            document = COLLECTION_USERS.document(userID).collection("tasks").document(task.id!)
-        } else {
-            task.ownerID = userID
-        }
-        
+           let document = COLLECTION_USERS.document(userID).collection("tasks").document(task.id)
+       
+        task.ownerID = userID
         task.reminder = Timestamp(date: self.reminder)
         
         
@@ -57,9 +53,8 @@ class TaskViewModel: ObservableObject {
             print("userID is not valid")
             return }
         
-        if task.id != nil {
-            let document = COLLECTION_USERS.document(userID).collection("tasks").document(task.id!)
-            document.delete() { err in
+        
+        COLLECTION_USERS.document(userID).collection("tasks").document(task.id).delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
                     handler(false)
@@ -70,11 +65,7 @@ class TaskViewModel: ObservableObject {
                     return
                 }
             }
-        } else {
-            print("task id is not available, means it's not yet uploaded into the firestore")
-            handler(false)
-            return
-        }
+      
         
     }
     

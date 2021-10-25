@@ -60,8 +60,8 @@
 		29552A7727101B620056E675 /* PanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A7527101B620056E675 /* PanelView.swift */; };
 		29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
-		29C46BFF270D5E8A00754817 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* ContentView.swift */; };
-		29C46C00270D5E8A00754817 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* ContentView.swift */; };
+		29C46BFF270D5E8A00754817 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* MainView.swift */; };
+		29C46C00270D5E8A00754817 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* MainView.swift */; };
 		29C46C01270D5E8A00754817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C46BEF270D5E8A00754817 /* Assets.xcassets */; };
 		29C46C02270D5E8A00754817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C46BEF270D5E8A00754817 /* Assets.xcassets */; };
 		29C46C0C270D5FB200754817 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C46C0B270D5FB200754817 /* Launch Screen.storyboard */; };
@@ -157,7 +157,7 @@
 		29552A7027101A7C0056E675 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		29552A7527101B620056E675 /* PanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelView.swift; sourceTree = "<group>"; };
 		29C46BED270D5E8800754817 /* BeliskiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeliskiApp.swift; sourceTree = "<group>"; };
-		29C46BEE270D5E8800754817 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		29C46BEE270D5E8800754817 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		29C46BEF270D5E8A00754817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C46BF4270D5E8A00754817 /* Beliski.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beliski.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C46BFA270D5E8A00754817 /* Beliski.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beliski.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -344,7 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				29C46BED270D5E8800754817 /* BeliskiApp.swift */,
-				29C46BEE270D5E8800754817 /* ContentView.swift */,
+				29C46BEE270D5E8800754817 /* MainView.swift */,
 				29C46C19270D600900754817 /* Timeline */,
 				29C46C14270D600900754817 /* Squad */,
 				29C46C1B270D600900754817 /* Panel */,
@@ -630,7 +630,7 @@
 				29ED11332719E49600E67D8B /* PersonEditorView.swift in Sources */,
 				29ED113E2719E4B400E67D8B /* TaskListView.swift in Sources */,
 				29C46C2A270D600900754817 /* ProfileCompactView.swift in Sources */,
-				29C46BFF270D5E8A00754817 /* ContentView.swift in Sources */,
+				29C46BFF270D5E8A00754817 /* MainView.swift in Sources */,
 				2942C851271FED2300ECD167 /* TagItemView.swift in Sources */,
 				29ED11262719C3ED00E67D8B /* Tag.swift in Sources */,
 				29ED11402719E4B400E67D8B /* CheckboxStyle.swift in Sources */,
@@ -704,7 +704,7 @@
 				29ED111D271996E700E67D8B /* NewImagePicker.swift in Sources */,
 				29552A7227101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				29ED1154271AE71E00E67D8B /* TimelineManager.swift in Sources */,
-				29C46C00270D5E8A00754817 /* ContentView.swift in Sources */,
+				29C46C00270D5E8A00754817 /* MainView.swift in Sources */,
 				29ED115D271D735000E67D8B /* TagViewModel.swift in Sources */,
 				29ED1157271B42B600E67D8B /* PersonDetailView.swift in Sources */,
 				2942C858272010FF00ECD167 /* TagPanelView.swift in Sources */,

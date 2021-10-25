@@ -71,7 +71,7 @@ class DataLinkedManager: ObservableObject {
                         }
                     case .failure(let error):
                         // A `City` value could not be initialized from the DocumentSnapshot.
-                        print("Error decoding city: \(error)")
+                        print("Error decoding journal: \(error)")
                         return
                     }
                 group.leave()

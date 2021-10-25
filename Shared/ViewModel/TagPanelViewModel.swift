@@ -19,7 +19,7 @@ class TagPanelViewModel:ObservableObject {
             return
         }
         
-        COLLECTION_USERS.document(userID).collection("tags").order(by: "linkedIDCount", descending: true).getDocuments { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("tags").getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             self.fetchedAllTags = documents.compactMap({try? $0.data(as: Tag.self)})
             handler(true)

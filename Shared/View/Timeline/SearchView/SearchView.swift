@@ -13,13 +13,14 @@ struct SearchView: View {
     @ObservedObject var tagPanelvm:TagPanelViewModel
     
     var body: some View {
-        
+        ScrollView{
         VStack(alignment: .center, spacing: 20){
             
             
             HStack(alignment: .center, spacing: 20){
-                TextEditor(text: $searchvm.keywords)
+                TextField("Search", text: $searchvm.keywords, prompt: Text("Put a keyword here"))
                     .foregroundColor(.primary)
+                    
                 Button {
                     searchvm.fetchIDsFromFilter { _ in }
                 } label: {
@@ -27,15 +28,24 @@ struct SearchView: View {
                 }
             }
             
-            TagPanelView(tagPanelvm: tagPanelvm)
-            
-            SearchResultView(searchvm: searchvm)
+            DatePicker("Start Date", selection: $searchvm.dateStart)
+            DatePicker("End Date", selection: $searchvm.dateEnd)
 
             
             
+            TagPanelView(tagPanelvm: tagPanelvm)
+                .background(Color.pink)
+            
+            SearchResultView(searchvm: searchvm)
+                .background(Color.blue)
+
+            
         }
+        .padding()
+        .foregroundColor(.primary)
         
         
+    }
     }
 }
 

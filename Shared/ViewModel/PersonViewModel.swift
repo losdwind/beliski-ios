@@ -30,18 +30,11 @@ class PersonViewModel: ObservableObject {
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid in uploadTask func")
             return }
-        var document = COLLECTION_USERS.document(userID).collection("persons").document()
-        if person.id != nil {
-            document = COLLECTION_USERS.document(userID).collection("persons").document(person.id!)
-        } else {
-            person.ownerID = userID
-        }
-        
-        
+        person.ownerID = userID
+        let document = COLLECTION_USERS.document(userID).collection("persons").document(person.id)
         
         // MARK: - here I disabled the uploadImage because i want to upload right after the imagePicker
         
-
         
         do {
             try document.setData(from: person)
@@ -61,10 +54,8 @@ class PersonViewModel: ObservableObject {
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid")
             return }
-        
-        if person.id != nil {
-            let document = COLLECTION_USERS.document(userID).collection("persons").document(person.id!)
-            document.delete() { err in
+
+            COLLECTION_USERS.document(userID).collection("persons").document(person.id).delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
                     handler(false)
@@ -75,11 +66,7 @@ class PersonViewModel: ObservableObject {
                     return
                 }
             }
-        } else {
-            print("person id is not available, means it's not yet uploaded into the firestore")
-            handler(false)
-            return
-        }
+        
         
     }
     

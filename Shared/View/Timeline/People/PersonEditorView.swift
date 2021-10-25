@@ -148,31 +148,54 @@ struct PersonEditorView: View {
                         personvm.person.photoURLs = urls
                     }
                     group.leave()
-                    group.enter()
                     
-                    personTagvm.uploadTag(handler: {_ in})
+                    
+
+                    group.enter()
+                    let oldNames = personvm.person.tagNames
+                        
+                    let newNames = Array(personTagvm.tagNames)
+
+                    let difference = newNames.difference(from: oldNames)
                     group.leave()
-                    
-                    group.enter()
-                    personvm.uploadPerson { success in
-                        if success {
-                            personvm.person = Person()
-                            personvm.images = [UIImage]()
-                            personvm.audios = [NSData]()
-                            personvm.videos = [NSData]()
-                            personvm.fetchPersons{ _ in }
-                        }
+                    for change in difference {
+                        group.enter()
+                      switch change {
+                      case let .remove(_, oldElement, _):
+                          personTagvm.deleteTag(tagName: oldElement, ownerItemID: personvm.person.id, handler: {_ in
+                              group.leave()
+                          })
+                      case let .insert(_, newElement, _):
+                          personTagvm.uploadTag(tagName: newElement, ownerItemID: personvm.person.id, handler: {_ in
+                              group.leave()
+                          })
+                      }
+                        
                     }
-                    group.leave()
+                    personvm.person.tagNames = Array(personTagvm.tagNames)
+                    
+                    
+                    
                     
                     group.notify(queue: .main){
-                        print("Finished upload the person to firebase")
+                        personvm.uploadPerson{ success in
+                            if success {
+                                print("Finished upload the person to firebase")
+                                personvm.person = Person()
+                                personvm.images = [UIImage]()
+                                personvm.audios = [NSData]()
+                                personvm.videos = [NSData]()
+                                personvm.fetchPersons{ _ in }
+                            }
+                        }
+                        
                     }
-                    
-                    
                     playSound(sound: "sound-ding", type: "mp3")
                     
                     presentationMode.wrappedValue.dismiss()
+                    
+                    
+                    
                     
                 }, label: {
                     

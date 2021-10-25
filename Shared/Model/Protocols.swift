@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 
 
 protocol Item: Hashable, Identifiable, Codable {
-    var id:String? { get set }
+    var id:String { get set }
     var serverTimestamp: Timestamp? {get set}
     var localTimestamp: Timestamp? {get set}
     var ownerID:String { get set }

@@ -28,12 +28,11 @@ class JournalViewModel:ObservableObject {
         guard let userID = AuthViewModel.shared.currentUser?.id else {
             print("userID is not valid in uploadJournal func")
             return }
-        var document = COLLECTION_USERS.document(userID).collection("journals").document()
-        if journal.id != nil {
-            document = COLLECTION_USERS.document(userID).collection("journals").document(journal.id!)
-        } else {
-            journal.ownerID = userID
-        }
+        
+        journal.ownerID = userID
+
+        let document = COLLECTION_USERS.document(userID).collection("journals").document(journal.id)
+       
         
         print("check if there are image urls in the journal.imageURLs before upload------->\(journal.imageURLs)")
         
@@ -61,8 +60,7 @@ class JournalViewModel:ObservableObject {
             print("userID is not valid")
             return }
         
-        if journal.id != nil {
-            let document = COLLECTION_USERS.document(userID).collection("journals").document(journal.id!)
+            let document = COLLECTION_USERS.document(userID).collection("journals").document(journal.id)
             document.delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
@@ -74,11 +72,7 @@ class JournalViewModel:ObservableObject {
                     return
                 }
             }
-        } else {
-            print("journal id is not available, means it's not yet uploaded into the firestore")
-            handler(false)
-            return
-        }
+       
         
     }
     

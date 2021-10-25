@@ -14,7 +14,6 @@ struct PersonListView: View {
     @ObservedObject var tagPanelvm: TagPanelViewModel
     
     @State var isUpdatingPerson: Bool = false
-    @State var isLinkingItem: Bool = false
     @State var isShowingPersonDetail: Bool = false
     @State var isShowingLinkView:Bool = false
 
@@ -27,10 +26,11 @@ struct PersonListView: View {
                         NavigationLink {
                             LinkedItemsView(dataLinkedManager: dataLinkedManager)
                         } label: {
-                            PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id!)
+                            PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id)
+                                .padding()
                                 .contextMenu{
                                     
-                                    
+                                    // Detail
                                     Button {
                                         isShowingPersonDetail.toggle()
                                     } label: {
@@ -62,8 +62,7 @@ struct PersonListView: View {
                                     
                                     // Link
                                     Button(action:{
-                                        personvm.person = person
-                                        isLinkingItem = true
+                                        personvm.person  = person
                                         isShowingLinkView = true
                                         
                                         
@@ -78,6 +77,9 @@ struct PersonListView: View {
                                 }
                                 .sheet(isPresented: $isShowingLinkView){
                                     SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
+                                }
+                                .sheet(isPresented: $isUpdatingPerson, onDismiss: {personvm.person = Person()}){
+                                    PersonEditorView(personTagvm:TagViewModel(tagNamesOfItem: person.tagNames, ownerItemID: personvm.person.id, completion: {_ in}) , personvm: personvm)
                                 }
                                 .onTapGesture(perform: {
                                     dataLinkedManager.linkedIds = person.linkedItems
