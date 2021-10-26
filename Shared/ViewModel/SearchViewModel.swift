@@ -49,7 +49,9 @@ class SearchViewModel: ObservableObject {
             .whereField("localTimestamp", isLessThanOrEqualTo: Timestamp(date: dateEnd))
             .order(by: "localTimestamp", descending: true)
             .getDocuments { snapshot, _ in
-            guard let documents = snapshot?.documents else { return }
+            guard let documents = snapshot?.documents else {
+                group.leave()
+                return }
             self.filteredJournals = documents.compactMap({try? $0.data(as: Journal.self)})
                 group.leave()
         }
@@ -61,7 +63,9 @@ class SearchViewModel: ObservableObject {
             .whereField("localTimestamp", isLessThanOrEqualTo: Timestamp(date: dateEnd))
             .order(by: "localTimestamp", descending: true)
             .getDocuments { snapshot, _ in
-            guard let documents = snapshot?.documents else { return }
+            guard let documents = snapshot?.documents else {
+                group.leave()
+                return }
             self.filteredTasks = documents.compactMap({try? $0.data(as: Task.self)})
                 group.leave()
         }
@@ -74,7 +78,9 @@ class SearchViewModel: ObservableObject {
             .whereField("localTimestamp", isLessThanOrEqualTo: Timestamp(date: dateEnd))
             .order(by: "localTimestamp", descending: true)
             .getDocuments { snapshot, _ in
-            guard let documents = snapshot?.documents else { return }
+            guard let documents = snapshot?.documents else {
+                group.leave()
+                return }
             self.fileteredPersons = documents.compactMap({try? $0.data(as: Person.self)})
                 group.leave()
         }

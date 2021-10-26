@@ -27,18 +27,20 @@ struct SearchView: View {
                     Image(systemName: "magnifyingglass")
                 }
             }
+            VStack{
+                DatePicker("Start Date", selection: $searchvm.dateStart)
+                
+                DatePicker("End Date", selection: $searchvm.dateEnd)
+            }
             
-            DatePicker("Start Date", selection: $searchvm.dateStart)
-            DatePicker("End Date", selection: $searchvm.dateEnd)
 
             
-            
+
             TagPanelView(tagPanelvm: tagPanelvm)
                 .background(Color.pink)
             
             SearchResultView(searchvm: searchvm)
                 .background(Color.blue)
-
             
         }
         .padding()

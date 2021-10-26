@@ -83,10 +83,8 @@ struct TimelineView: View {
                 ToolbarItem(placement:.navigationBarLeading){
                     Button(
                         action: {
-                            isShowingSearchView.toggle()
-                            
-                        },
-                        label: {
+                            isShowingSearchView.toggle()}
+                        ,label: {
                             Image(systemName: "magnifyingglass.circle")})
                     
                 }

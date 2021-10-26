@@ -24,9 +24,9 @@ struct TaskListView: View {
             ForEach(taskvm.fetchedTasks, id:\.id) { task in
                 TaskRowItemView(task: task)
                     .padding()
-                    .background(Color.white)
-                    .cornerRadius(8)
-                    .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.3), radius: 6)
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(18)
+                
                     .contextMenu{
                         Button(action:{
                             taskvm.deleteTask(task: task) { _ in }
@@ -56,7 +56,7 @@ struct TaskListView: View {
                                 icon: { Image(systemName: "link.circle") })})
                     }
             }
-            .frame(alignment:.leading)
+            .frame(alignment:.topLeading)
             .sheet(isPresented: $isUpdatingTask, onDismiss: {
                 taskvm.task = Task()
                 taskvm.reminder = Date()

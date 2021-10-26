@@ -9,7 +9,7 @@ import Foundation
 
 class TagPanelViewModel:ObservableObject {
     
-    @Published var fetchedAllTags:[Tag] = [Tag]()
+    @Published var fetchedAllTags:[Tag]?
     
     
     

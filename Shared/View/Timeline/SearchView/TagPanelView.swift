@@ -11,22 +11,30 @@ struct TagPanelView: View {
     @ObservedObject var tagPanelvm:TagPanelViewModel
     
     var body: some View {
-        List{
-            ForEach(tagPanelvm.fetchedAllTags, id: \.self){tag in
-                HStack(alignment: .center, spacing: 40){
-                    Text(tag.name)
+        VStack(alignment: .leading, spacing: 10){
+            if tagPanelvm.fetchedAllTags == nil {
+                ProgressView(value: 0)
+            } else {
+                List{
+                    ForEach(tagPanelvm.fetchedAllTags!, id: \.self){tag in
+                        HStack(alignment: .center, spacing: 40){
+                            Text(tag.name)
+                            Spacer()
+                            Text(String(tag.linkedID.count))
+                            
+                        }
                         .foregroundColor(.primary)
-
-                    Text(String(tag.linkedID.count))
-                        .foregroundColor(.primary)
-
+                        .frame(maxWidth:200)
+                        
+                    }
                 }
             }
+            
         }
         .onAppear {
             tagPanelvm.fetchAllTags(handler: {_ in})
         }
-
+        
     }
 }
 

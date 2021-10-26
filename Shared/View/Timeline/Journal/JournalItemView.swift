@@ -19,6 +19,7 @@ struct JournalItemView: View {
     
     
     
+    
     init(journal: Journal, tagNames: [String], OwnerItemID: String){
         self.journal = journal
         
@@ -40,7 +41,6 @@ struct JournalItemView: View {
             
             
             TextContentView(text: journal.content.isEmpty ? "You didn't put any words here" : journal.content )
-                .font(.title3)
             
             if journal.imageURLs.isEmpty == false {
                 if journal.imageURLs.count == 1 {
@@ -64,6 +64,9 @@ struct JournalItemView: View {
             
             TagCollectionView(tagvm:journalTagvm)
         }
+        .padding()
+        .background(Color.gray.opacity(0.2))
+        .cornerRadius(18)
 
         
     }

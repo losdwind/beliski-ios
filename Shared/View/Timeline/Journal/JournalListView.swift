@@ -21,10 +21,10 @@ struct JournalListView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        
         ScrollView(.vertical, showsIndicators: false){
-            LazyVStack{
+        LazyVStack(alignment: .center, spacing: 20) {
                 ForEach(journalvm.fetchedJournals, id:\.id){ journal in
+                
                     
                     NavigationLink(destination:
                                     LinkedItemsView(dataLinkedManager: dataLinkedManager)
@@ -45,6 +45,7 @@ struct JournalListView: View {
                                 // Edit
                                 Button(action:{
                                     journalvm.journal = journal
+                                    journalvm.localTimestamp = journal.localTimestamp?.dateValue() ?? Date(timeIntervalSince1970: 0)
                                     isUpdatingJournal = true
                                     
                                 }
@@ -82,21 +83,14 @@ struct JournalListView: View {
                             .sheet(isPresented: $isShowingLinkView){
                                 SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
                             }
-                            
-                            .foregroundColor(.primary)
-                            .padding()
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                            .background(colorScheme == .dark ? Color.gray.opacity(0.6) : Color.white)
-                            .cornerRadius(10)
                         
                     }
                             
                     
                 }
+
             }
-            
-            
-        }
+        .padding()
         .onAppear {
             journalvm.fetchJournals { success in
                 if success {
@@ -105,6 +99,7 @@ struct JournalListView: View {
                     print("failed to load the journals from firebase")
                 }
             }
+        }
         }
     }
     

@@ -26,7 +26,7 @@ struct CreateView: View {
             Button(action: {
                 isShowingJournalEditor = true
                 playSound(sound: "sound-ding", type: "mp3")
-                journalvm.journal.localTimestamp = Timestamp(date:Date())
+                journalvm.localTimestamp = Date()
             }, label: {
                 Image(systemName: "plus.circle")
                     .font(.system(size: 30, weight: .semibold, design: .rounded))

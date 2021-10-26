@@ -13,7 +13,6 @@ struct ProfileCompactView: View {
     
     
     var body: some View {
-        NavigationView {
             
             HStack(alignment: .center, spacing: 20){
                 
@@ -21,7 +20,7 @@ struct ProfileCompactView: View {
                     .resizable()
                     .scaledToFit()
                     .cornerRadius(10)
-                    .frame(width: 80, height: 80, alignment: .center)
+                    .frame(width: 100, height: 100, alignment: .center)
                 
                 VStack(alignment: .leading, spacing: 10){
                     Text(AuthViewModel.shared.currentUser?.fullname ?? "fullname")
@@ -36,13 +35,11 @@ struct ProfileCompactView: View {
                     
                     
                     
-                    
                 }
             }
+            .padding()
 
             
-        }
-
     }
 }
 

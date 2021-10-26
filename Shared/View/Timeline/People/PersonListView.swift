@@ -52,6 +52,7 @@ struct PersonListView: View {
                                     // Edit
                                     Button(action:{
                                         personvm.person = person
+                                        personvm.birthday = person.birthday.dateValue()
                                         isUpdatingPerson = true
                                         
                                     }
@@ -78,7 +79,7 @@ struct PersonListView: View {
                                 .sheet(isPresented: $isShowingLinkView){
                                     SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
                                 }
-                                .sheet(isPresented: $isUpdatingPerson, onDismiss: {personvm.person = Person()}){
+                                .sheet(isPresented: $isUpdatingPerson){
                                     PersonEditorView(personTagvm:TagViewModel(tagNamesOfItem: person.tagNames, ownerItemID: personvm.person.id, completion: {_ in}) , personvm: personvm)
                                 }
                                 .onTapGesture(perform: {
@@ -98,6 +99,7 @@ struct PersonListView: View {
                         
                     }
                 }
+                .padding()
             }
             .onAppear {
                 personvm.fetchPersons{ success in

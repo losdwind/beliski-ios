@@ -15,7 +15,8 @@ struct TextContentView: View {
     
     var body: some View {
         Text(text)
-            .font(.system(size: 15))
+            .font(.body)
+            .multilineTextAlignment(.leading)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
@@ -26,7 +27,8 @@ struct SingleImageView: View {
         // 按照最大区域 180x180 等比缩放
         AsyncImage(url: URL(string: imageURL)){
             image in
-            image.resizable()
+            image
+                .resizable()
         } placeholder: {
             ProgressView()
         }

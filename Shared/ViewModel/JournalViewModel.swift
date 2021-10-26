@@ -7,6 +7,8 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
+
 import UIKit
 
 class JournalViewModel:ObservableObject {
@@ -20,6 +22,7 @@ class JournalViewModel:ObservableObject {
     @Published var audios:[NSData] = [NSData]()
     @Published var videos:[NSData] = [NSData]()
     @Published var OwnerItemID: String = ""
+    @Published var localTimestamp:Date = Date()
 
     
     

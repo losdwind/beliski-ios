@@ -8,24 +8,40 @@
 import SwiftUI
 
 struct PanelView: View {
-        
+    @State var isShowingSettingsView:Bool = false
     var body: some View {
         NavigationView{
-            
-            VStack(alignment:.center){
-                
-                NavigationLink {
-                    ProfileDetailView()
-                } label: {
-                    ProfileCompactView()
+            ScrollView(.vertical, showsIndicators: false){
+                VStack(alignment:.center){
+                    
+                    NavigationLink {
+                        ProfileDetailView()
+                    } label: {
+                        ProfileCompactView()
+                    }
+                    NavigationLink{
+                        Text("here is the detail view of wellbeing index")
+                    } label: {
+                        ScoreView()
+                    }
                 }
-                NavigationLink{
-                    Text("here is the detail view of wellbeing index")
-                } label: {
-                    ScoreView()
+                .frame(alignment: .topLeading)
+                .navigationTitle("Panel")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isShowingSettingsView.toggle()
+                        } label: {
+                            Image(systemName: "gearshape")
+                        }
+
+                    }
+                }
+                .sheet(isPresented: $isShowingSettingsView) {
+                    SettingsView()
                 }
             }
-            
 
         }
         

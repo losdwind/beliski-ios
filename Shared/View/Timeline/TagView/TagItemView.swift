@@ -16,7 +16,7 @@ struct TagItemView: View {
     @Namespace var animation
     
     var body: some View {
-        Text(tagName)
+        Text("#" + tagName)
         // applying same font size..
         // else size will vary..
             .font(.system(size: 16))
@@ -24,7 +24,7 @@ struct TagItemView: View {
             .padding(.horizontal,14)
             .padding(.vertical,8)
             .background(
-            
+
                 Capsule()
                     .fill(Color.pink)
             )

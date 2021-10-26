@@ -22,7 +22,7 @@ struct Journal:Identifiable, Codable, Hashable, Item{
     var linkedItems: [String] = []
 
     
-    var content: String = "pending to add"
+    var content: String = ""
     var wordCount: Int = 0
     var imageURLs: [String] = []
     var audioURLs: [String] = []

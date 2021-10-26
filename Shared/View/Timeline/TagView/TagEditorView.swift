@@ -48,21 +48,14 @@ struct TagEditorView: View {
                 // Custom Tag View...
                 // TextField...
                 
-                Text(tagvm.tagName)
-                TextField("Tags", text: $tagvm.tagName, prompt: Text("Put Some Tags Here"))
+                TextField("Tags", text: $tagvm.tagName, prompt: Text("Put Some Tags Here").foregroundColor(.secondary))
                     .foregroundColor(.primary)
                     .lineLimit(1)
-                    .font(.title3)
-                    .padding(.vertical,10)
-                    .padding(.horizontal)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .strokeBorder(Color.pink.opacity(0.2),lineWidth: 1)
-                    )
+                    .font(.headline)
+                    .padding(.all, 5.0)
                 
                 // Setting only Textfield as Dark..
-                    .environment(\.colorScheme, .dark)
-                    .padding(.vertical,18)
+                    .environment(\.colorScheme, .light)
                 
                 // Add Button..
                 Button {
@@ -73,21 +66,22 @@ struct TagEditorView: View {
                     let success = tagvm.tagNames.insert(tagvm.tagName)
                     if success.inserted {
                         print("no duplicate tag, can insert")
+                        tagvm.tagName = ""
                     } else {
                         print("duplicate tag")
                     }
                 } label: {
-                    Text("Add Tag")
+                    Text("Add")
                         .fontWeight(.semibold)
                         .foregroundColor(Color.primary)
-                        .padding(.vertical,12)
-                        .padding(.horizontal,45)
+                        .padding(5)
                         .background(Color.pink)
                         .cornerRadius(10)
                 }
                 // Disabling Button...
                 .disabled(tagvm.tagName == "")
                 .opacity(tagvm.tagName == "" ? 0.6 : 1)
+                .layoutPriority(1)
             }
             
             
@@ -98,9 +92,12 @@ struct TagEditorView: View {
     }
 }
 
-//struct TagEditorView_Previews: PreviewProvider {
-//    @Binding var a = [String]()
-//    static var previews: some View {
-//        TagEditorView(tagNamesOfItem: a, tagvm: TagViewModel())
-//    }
-//}
+struct TagEditorView_Previews: PreviewProvider {
+    
+    @State static var tags = ["a", "b"]
+    
+    static var previews: some View {
+        TagEditorView(tagNamesOfItem: $tags, tagvm: TagViewModel())
+            .previewLayout(.sizeThatFits)
+    }
+}

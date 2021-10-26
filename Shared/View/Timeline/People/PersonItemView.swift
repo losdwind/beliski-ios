@@ -34,7 +34,7 @@ struct PersonItemView: View {
             let formatter = DateComponentsFormatter()
             formatter.allowedUnits = [.day, .month, .year]
             formatter.maximumUnitCount = 3
-            formatter.unitsStyle = .abbreviated
+            formatter.unitsStyle = .brief
             return formatter.string(from: timestamp!.dateValue(), to: Date()) ?? "Timestamp cannot be converted"
         } else {
             return "Timestamp is nil"
@@ -46,11 +46,11 @@ struct PersonItemView: View {
         
         
         
-        VStack(alignment: .leading, spacing: 0){
+        VStack(alignment: .leading, spacing: 20){
             
             HStack(alignment: .center, spacing: 20){
                 
-                if person.avatarURL.isEmpty == true {
+                if person.avatarURL == "" {
                     Image(systemName:"person.circle")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -70,6 +70,7 @@ struct PersonItemView: View {
                     }
                 }
                 
+                
                 VStack(alignment: .leading, spacing: 10){
                     Text("\(person.firstName) \(person.lastName)")
                         .font(.headline)
@@ -85,8 +86,9 @@ struct PersonItemView: View {
             }
             
             Text(person.description)
-                .font(.footnote)
-                .foregroundColor(.secondary)
+                .font(.body)
+                .multilineTextAlignment(.leading)
+                .foregroundColor(.primary)
             
             
             // photos
@@ -99,6 +101,9 @@ struct PersonItemView: View {
             
             
         }
+        .padding()
+        .background(Color.gray.opacity(0.2))
+        .cornerRadius(18)
     }
 }
 
