@@ -27,81 +27,88 @@ struct JournalListView: View {
                 ForEach(journalvm.fetchedJournals, id:\.id){ journal in
                 
                         JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
-                            .background{
-                                NavigationLink(destination: LinkedItemsView(dataLinkedManager: dataLinkedManager) , isActive: $isShowingLinkedItemView) {
-                                    EmptyView()
-                                }
-                            }
-                            .contextMenu{
-                                // Delete
-                                Button(action:{
-                                    journalvm.deleteJournal(journal: journal){_ in}
-                                    
-                                }
-                                       ,label:{Label(
-                                        title: { Text("Delete") },
-                                        icon: { Image(systemName: "trash.circle") })})
-                                
-                                
-                                // Edit
-                                Button(action:{
-                                    journalvm.journal = journal
-                                    journalvm.localTimestamp = journal.localTimestamp?.dateValue() ?? Date(timeIntervalSince1970: 0)
-                                    isUpdatingJournal = true
-                                    
-                                }
-                                       ,label:{Label(
-                                        title: { Text("Edit") },
-                                        icon: { Image(systemName: "pencil.circle") })})
-                                
-                                
-                                // Link
-                                Button(action:{
-                                    journalvm.journal = journal
-                                    isShowingLinkView = true
-                                    
-                                }
-                                       ,label:{Label(
-                                        title: { Text("Link") },
-                                        icon: { Image(systemName: "link.circle") })})
-                                
-                            }
-                            .onTapGesture(perform: {
-                                isShowingLinkedItemView.toggle()
-                                dataLinkedManager.linkedIds = journal.linkedItems
-                                dataLinkedManager.fetchItems { success in
-                                    if success {
-                                        print("successfully loaded the linked Items from DataLinkedManager")
-
-                                    } else {
-                                        print("failed to loaded the linked Items from DataLinkedManager")
-                                    }
-                                }
-                            })
-                            .sheet(isPresented: $isUpdatingJournal){
-                                // MARK: - think about the invalide id, because maybe the journal haven't yet been uploaded
-                                JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel(tagNamesOfItem: journalvm.journal.tagNames, ownerItemID: journalvm.journal.id, completion: {_ in}))
-                            }
-                            .sheet(isPresented: $isShowingLinkView){
-                                SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
-                            }
                         
                     
+                        .background{
+                            NavigationLink(destination: LinkedItemsView(dataLinkedManager: dataLinkedManager) , isActive: $isShowingLinkedItemView) {
+                                EmptyView()
+                            }
+                        }
+                        .contextMenu{
+                            // Delete
+                            Button(action:{
+                                journalvm.deleteJournal(journal: journal){success in
+                                    if success {
+                                        journalvm.fetchJournals(handler: {_ in })
+                                    }
+                                    
+                                }
+                                
+                            }
+                                   ,label:{Label(
+                                    title: { Text("Delete") },
+                                    icon: { Image(systemName: "trash.circle") })})
                             
-                    
+                            
+                            // Edit
+                            Button(action:{
+                                journalvm.journal = journal
+                                journalvm.localTimestamp = journal.localTimestamp?.dateValue() ?? Date(timeIntervalSince1970: 0)
+                                isUpdatingJournal = true
+                                
+                            }
+                                   ,label:{Label(
+                                    title: { Text("Edit") },
+                                    icon: { Image(systemName: "pencil.circle") })})
+                            
+                            
+                            // Link
+                            Button(action:{
+                                journalvm.journal = journal
+                                isShowingLinkView = true
+                                
+                            }
+                                   ,label:{Label(
+                                    title: { Text("Link") },
+                                    icon: { Image(systemName: "link.circle") })})
+                            
+                        }
+                        .onTapGesture(perform: {
+                            isShowingLinkedItemView.toggle()
+                            dataLinkedManager.linkedIds = journal.linkedItems
+                            dataLinkedManager.fetchItems { success in
+                                if success {
+                                    print("successfully loaded the linked Items from DataLinkedManager")
+
+                                } else {
+                                    print("failed to loaded the linked Items from DataLinkedManager")
+                                }
+                            }
+                        })
+                        .sheet(isPresented: $isUpdatingJournal){
+                            // MARK: - think about the invalide id, because maybe the journal haven't yet been uploaded
+                            JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel(tagNamesOfItem: journalvm.journal.tagNames, ownerItemID: journalvm.journal.id, completion: {_ in}))
+                        }
+                        .sheet(isPresented: $isShowingLinkView, onDismiss: {
+                            journalvm.uploadJournal { success in
+                                if success {
+                                    print("successfully linked items and uploaded to firebase")
+                                    journalvm.fetchJournals { _ in
+                                    }
+                                } else {
+                                    print("Booom! failed to linke items and upload to firebase")
+                                }
+                                
+                            }
+                        }){
+                            SearchAndLinkingView(linkedIDs: $journalvm.journal.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                        }
+
                 }
 
             }
         .padding()
-        .onAppear {
-            journalvm.fetchJournals { success in
-                if success {
-                    print("successfully loaded the journals from firebase")
-                } else {
-                    print("failed to load the journals from firebase")
-                }
-            }
-        }
+
         }
     }
     

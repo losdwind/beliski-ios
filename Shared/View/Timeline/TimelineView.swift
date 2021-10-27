@@ -67,9 +67,11 @@ struct TimelineView: View {
                     
                     JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)
                     
-                    TaskListView(taskvm: taskvm).tag(TimelineTab.EVENTS)
+                    
+                    TaskListView(taskvm: taskvm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger).tag(TimelineTab.EVENTS)
                     
                     PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TOPICS)
+                        
                     
                 }
                 .tabViewStyle(PageTabViewStyle())
@@ -99,8 +101,37 @@ struct TimelineView: View {
                 }
             }
             .sheet(isPresented: $isShowingSearchView){
-                SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
+                SearchView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm)
             }
+            .onAppear {
+                personvm.fetchPersons{ success in
+                    if success {
+                        print("successfully loaded the persons from firebase")
+                    } else {
+                        print("failed to load the persons from firebase")
+                    }
+                }
+            }
+            .onAppear {
+                journalvm.fetchJournals { success in
+                    if success {
+                        print("successfully loaded the journals from firebase")
+                    } else {
+                        print("failed to load the journals from firebase")
+                    }
+                }
+            }
+            .onAppear(perform:{
+                taskvm.fetchTasks(handler: {
+                    success in
+                    if success {
+                        print("successfully fetched the tasks from firebase ")
+                    } else {
+                        print("failed to fetched the tasks from firebase")
+                    }
+                })
+            }
+            )
             
         }
     }

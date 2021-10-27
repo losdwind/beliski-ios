@@ -70,7 +70,6 @@ enum SearchType {
     case journal
     case task
     case person
-    case all
 }
 
 enum UploadType {

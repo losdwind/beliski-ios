@@ -16,8 +16,7 @@ struct JournalItemView: View {
     var journal:Journal
     
     @StateObject var journalTagvm:TagViewModel
-    
-    
+  
     
     
     init(journal: Journal, tagNames: [String], OwnerItemID: String){
@@ -25,7 +24,6 @@ struct JournalItemView: View {
         
         self._journalTagvm = StateObject(wrappedValue: TagViewModel(tagNamesOfItem: tagNames, ownerItemID: OwnerItemID, completion: { success in
             if success {
-
                 print("successfully initilized the TagCollectionView with given tagIDs and OwnerItemId")
             } else {
                 print("failed to initilized the TagCollectionView with given tagIDs and OwnerItemId")

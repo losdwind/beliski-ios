@@ -24,14 +24,18 @@ class SearchViewModel: ObservableObject {
     @Published var tags:[String] = []
     @Published var dateStart:Date = Date(timeIntervalSince1970: 0)
     @Published var dateEnd:Date = Date()
-    @Published var searchType:SearchType = .all
+    @Published var searchType:SearchType = .journal
     
     
     @Published var filteredJournals: [Journal] = [Journal]()
     @Published var filteredTasks: [Task] = [Task]()
     @Published var fileteredPersons:[Person] = [Person]()
     
-    @Published var selectedItems:Set<String> = Set<String>()
+    
+    @Published var selectedJournals: Set<Journal> = Set<Journal>()
+    @Published var selectedTasks: Set<Task> = Set<Task>()
+    @Published var selectedPersons:Set<Person> = Set<Person>()
+    
     
     func fetchIDsFromFilter(handler: @escaping(_ success: Bool) -> ()){
         

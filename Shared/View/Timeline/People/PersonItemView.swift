@@ -110,6 +110,7 @@ struct PersonItemView: View {
 struct PersonItemView_Previews: PreviewProvider {
     static var previews: some View {
         PersonItemView(person: Person(), tagNames: [], OwnerItemID: "")
+            .previewLayout(.sizeThatFits)
     }
 }
 

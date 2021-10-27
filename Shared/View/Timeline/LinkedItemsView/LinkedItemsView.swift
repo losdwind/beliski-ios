@@ -56,6 +56,7 @@ struct LinkedItemsView: View {
             
 
         }
+        .navigationTitle("Linked Items")
 
    
     }

@@ -11,9 +11,15 @@ struct TaskListView: View {
     
     // FETCHING DATA
     @ObservedObject var taskvm: TaskViewModel
+    @ObservedObject var searchvm:SearchViewModel
+    @ObservedObject var tagPanelvm: TagPanelViewModel
+    @ObservedObject var dataLinkedManager: DataLinkedManager
+
     
     @State var isUpdatingTask = false
     @State var isLinkingItem = false
+    @State var isShowingLinkedItemView: Bool = false
+
     
     // MARK: - FUNCTION
     
@@ -27,15 +33,29 @@ struct TaskListView: View {
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(18)
                 
+                    .background{
+                        NavigationLink(destination:LinkedItemsView(dataLinkedManager: dataLinkedManager), isActive: $isShowingLinkedItemView){
+                            EmptyView()
+                        }
+                    }
+                
+                
                     .contextMenu{
+                        
+                        // Delete
                         Button(action:{
-                            taskvm.deleteTask(task: task) { _ in }
-                            taskvm.fetchTasks { _ in }
+                            taskvm.deleteTask(task: task) { success in
+                                if success {
+                                    taskvm.fetchTasks { _ in }
+                                }
+                            }
+                            
                         }
                                ,label:{Label(
                                 title: { Text("Delete") },
                                 icon: { Image(systemName: "trash.circle") })})
                         
+                        // Edit
                         Button(action:{
                                 isUpdatingTask = true
                             taskvm.task = task
@@ -63,20 +83,32 @@ struct TaskListView: View {
             }, content: {
                 TaskEditorView(taskvm: taskvm)
             })
+            .sheet(isPresented: $isLinkingItem) {
+                taskvm.uploadTask { success in
+                    if success {
+                        taskvm.fetchTasks(handler: {_ in})
+                    }
+                }
+            } content: {
+                SearchAndLinkingView(linkedIDs: $taskvm.task.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
+            }
+            .onTapGesture(perform: {
+                isShowingLinkedItemView.toggle()
+                dataLinkedManager.linkedIds = task.linkedItems
+                dataLinkedManager.fetchItems { success in
+                    if success {
+                        print("successfully loaded the linked Items from DataLinkedManager")
+
+                    } else {
+                        print("failed to loaded the linked Items from DataLinkedManager")
+                    }
+                }
+            })
+
         }
         .padding()
         .frame(maxWidth: 640)
-        .onAppear(perform:{
-            taskvm.fetchTasks(handler: {
-                success in
-                if success {
-                    print("successfully fetched the tasks from firebase ")
-                } else {
-                    print("failed to fetched the tasks from firebase")
-                }
-            })
-        }
-        )
+
 
     }
         
@@ -91,7 +123,7 @@ struct TaskListView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        TaskListView(taskvm:taskvm)
+        TaskListView(taskvm: TaskViewModel(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), dataLinkedManager: DataLinkedManager())
             .previewLayout(.sizeThatFits)
         
     }

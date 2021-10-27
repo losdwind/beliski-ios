@@ -67,12 +67,10 @@ class DataLinkedManager: ObservableObject {
                             // A nil value was successfully initialized from the DocumentSnapshot,
                             // or the DocumentSnapshot was nil.
                             print("Document does not exist")
-                            return
                         }
                     case .failure(let error):
                         // A `City` value could not be initialized from the DocumentSnapshot.
                         print("Error decoding journal: \(error)")
-                        return
                     }
                 group.leave()
             }
@@ -91,12 +89,10 @@ class DataLinkedManager: ObservableObject {
                             // A nil value was successfully initialized from the DocumentSnapshot,
                             // or the DocumentSnapshot was nil.
                             print("Document does not exist")
-                            return
                         }
                     case .failure(let error):
                         // A `City` value could not be initialized from the DocumentSnapshot.
                         print("Error decoding city: \(error)")
-                        return
                     }
                 group.leave()
             }
@@ -115,12 +111,10 @@ class DataLinkedManager: ObservableObject {
                             // A nil value was successfully initialized from the DocumentSnapshot,
                             // or the DocumentSnapshot was nil.
                             print("Document does not exist")
-                            return
                         }
                     case .failure(let error):
                         // A `City` value could not be initialized from the DocumentSnapshot.
                         print("Error decoding city: \(error)")
-                        return
                     }
                 group.leave()
             }

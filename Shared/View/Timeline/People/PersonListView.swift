@@ -42,7 +42,11 @@ struct PersonListView: View {
 
                                     // Delete
                                     Button(action:{
-                                        personvm.deletePerson(person: person){_ in}
+                                        personvm.deletePerson(person: person){success in
+                                            if success {
+                                                personvm.fetchPersons(handler: {_ in})
+                                            }
+                                        }
                                         
                                     }
                                            ,label:{Label(
@@ -77,8 +81,12 @@ struct PersonListView: View {
                                 .sheet(isPresented: $isShowingPersonDetail){
                                     PersonDetailView(person: person)
                                 }
-                                .sheet(isPresented: $isShowingLinkView){
-                                    SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
+                                .sheet(isPresented: $isShowingLinkView, onDismiss: {
+                                    personvm.uploadPerson { success in
+                                        personvm.fetchPersons(handler: {_ in})
+                                    }
+                                }){
+                                    SearchAndLinkingView(linkedIDs: $personvm.person.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
                                 }
                                 .sheet(isPresented: $isUpdatingPerson){
                                     PersonEditorView(personTagvm:TagViewModel(tagNamesOfItem: person.tagNames, ownerItemID: personvm.person.id, completion: {_ in}) , personvm: personvm)
@@ -102,15 +110,7 @@ struct PersonListView: View {
                     }
                 }
                 .padding()
-                .onAppear {
-                    personvm.fetchPersons{ success in
-                        if success {
-                            print("successfully loaded the persons from firebase")
-                        } else {
-                            print("failed to load the persons from firebase")
-                        }
-                    }
-                }
+
             }
             
         

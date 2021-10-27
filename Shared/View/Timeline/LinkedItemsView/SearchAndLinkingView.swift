@@ -1,23 +1,54 @@
 //
-//  SearchView.swift
+//  SearchJournalView.swift
 //  Beliski
 //
-//  Created by Losd wind on 2021/10/27.
+//  Created by Losd wind on 2021/10/15.
 //
 
 import SwiftUI
 
-struct SearchView: View {
+struct SearchAndLinkingView: View {
     
-    @ObservedObject var searchvm: SearchViewModel
-    @ObservedObject var journalvm: JournalViewModel
-    @ObservedObject var taskvm: TaskViewModel
-    @ObservedObject var personvm: PersonViewModel
-    @ObservedObject var dataLinkedManger:DataLinkedManager
+    @Binding var linkedIDs: [String]
+    @ObservedObject var searchvm:SearchViewModel
     @ObservedObject var tagPanelvm:TagPanelViewModel
     
+    @State private var editMode: EditMode = .inactive
+    var isLinkingItem: Bool = true
     @Environment(\.presentationMode) var presentationMode
-
+        
+    private var editButton: some View {
+        return Button {
+            if editMode == .inactive {
+                editMode = .active
+            } else {
+                
+                var linkedIDsSet = Set(linkedIDs)
+                
+                for journal in searchvm.selectedJournals{
+                    linkedIDsSet.insert(journal.id)
+                }
+                
+                for task in searchvm.selectedTasks{
+                    linkedIDsSet.insert(task.id)
+                }
+                
+                for person in searchvm.selectedPersons{
+                    linkedIDsSet.insert(person.id)
+                }
+                self.linkedIDs = Array(linkedIDsSet)
+                presentationMode.wrappedValue.dismiss()
+                
+                
+            }
+        } label: {
+            Text(editMode == .inactive ? "Select" : "Link")
+                .foregroundColor(editMode == .inactive ? Color.primary : Color.pink)
+        }
+    }
+    
+    
+    
     
     var body: some View {
         NavigationView{
@@ -30,19 +61,7 @@ struct SearchView: View {
                                 .foregroundColor(.primary)
                             
                             Button {
-                                searchvm.fetchIDsFromFilter { success in
-                                    if success {
-                                        print("successfully get the filtered items and assign to item list view")
-                                        journalvm.fetchedJournals = searchvm.filteredJournals
-                                        taskvm.fetchedTasks = searchvm.filteredTasks
-                                        personvm.fetchedPersons = searchvm.fileteredPersons
-                                    } else {
-                                        print("failed to get the filtered items or assign to item list view ")
-                                    }
-                                    
-                                    
-                                }
-                                
+                                searchvm.fetchIDsFromFilter { _ in }
                             } label: {
                                 Image(systemName: "magnifyingglass")
                                     .foregroundColor(Color.pink)
@@ -94,22 +113,25 @@ struct SearchView: View {
                 Text("Result")
                     .font(.title3)
                 
-            SearchResultComplexView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm)
-                
+            SearchResultView(searchvm: searchvm)
+                .environment(\.editMode, $editMode)
         }
             
                 
                 
             
-            .navigationTitle("Search")
+            .navigationTitle("Link to")
             .toolbar {
-                
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    editButton
+                }
+                
+                
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
-                        Text("Done")
+                        Text("Close")
                             .foregroundColor(Color.primary)
                     }
 
@@ -120,8 +142,9 @@ struct SearchView: View {
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
+struct LinkingView_Previews: PreviewProvider {
+    @State static var linkedIDs:[String] = []
     static var previews: some View {
-        SearchView(searchvm: SearchViewModel(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel())
+        SearchAndLinkingView(linkedIDs: $linkedIDs, searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
     }
 }

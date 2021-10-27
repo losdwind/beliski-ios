@@ -9,13 +9,25 @@ import SwiftUI
 
 struct TagPanelView: View {
     @ObservedObject var tagPanelvm:TagPanelViewModel
-    
+    @State var selectedTagName:String = ""
     var body: some View {
         VStack(alignment: .leading, spacing: 10){
             if tagPanelvm.fetchedAllTags == nil {
                 ProgressView(value: 0)
             } else {
-                List{
+                Picker("Tag:", selection: $selectedTagName) {
+                    
+                    // All tags
+                    HStack(alignment: .center, spacing: 40){
+                        Text("All")
+                        Spacer()
+                        Text(String("99+"))
+                        
+                    }
+                    .tag("All")
+                    .foregroundColor(.primary)
+                    
+                    // Single tag
                     ForEach(tagPanelvm.fetchedAllTags!, id: \.self){tag in
                         HStack(alignment: .center, spacing: 40){
                             Text(tag.name)
@@ -23,10 +35,12 @@ struct TagPanelView: View {
                             Text(String(tag.linkedID.count))
                             
                         }
+                        .tag(tag.name)
                         .foregroundColor(.primary)
-                        .frame(maxWidth:200)
                         
-                    }
+                }
+                    
+
                 }
             }
             
