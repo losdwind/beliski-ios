@@ -15,6 +15,7 @@ struct JournalListView: View {
     @ObservedObject var tagPanelvm:TagPanelViewModel
 
     @State var isUpdatingJournal = false
+    @State var isShowingLinkedItemView = false
     @State var isShowingLinkView:Bool = false
 
     
@@ -25,12 +26,12 @@ struct JournalListView: View {
         LazyVStack(alignment: .center, spacing: 20) {
                 ForEach(journalvm.fetchedJournals, id:\.id){ journal in
                 
-                    
-                    NavigationLink(destination:
-                                    LinkedItemsView(dataLinkedManager: dataLinkedManager)
-                    )
-                    {
                         JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
+                            .background{
+                                NavigationLink(destination: LinkedItemsView(dataLinkedManager: dataLinkedManager) , isActive: $isShowingLinkedItemView) {
+                                    EmptyView()
+                                }
+                            }
                             .contextMenu{
                                 // Delete
                                 Button(action:{
@@ -66,6 +67,7 @@ struct JournalListView: View {
                                 
                             }
                             .onTapGesture(perform: {
+                                isShowingLinkedItemView.toggle()
                                 dataLinkedManager.linkedIds = journal.linkedItems
                                 dataLinkedManager.fetchItems { success in
                                     if success {
@@ -84,7 +86,7 @@ struct JournalListView: View {
                                 SearchView(searchvm: searchvm, tagPanelvm: tagPanelvm)
                             }
                         
-                    }
+                    
                             
                     
                 }

@@ -16,18 +16,19 @@ struct PersonListView: View {
     @State var isUpdatingPerson: Bool = false
     @State var isShowingPersonDetail: Bool = false
     @State var isShowingLinkView:Bool = false
-
+    @State var isShowingLinkedItemView: Bool = false
     
     var body: some View {
             ScrollView(.vertical, showsIndicators: true){
                 LazyVStack{
                     ForEach(personvm.fetchedPersons){ person in
                        
-                        NavigationLink {
-                            LinkedItemsView(dataLinkedManager: dataLinkedManager)
-                        } label: {
                             PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id)
-                                .padding()
+                                .background{
+                                    NavigationLink(destination:LinkedItemsView(dataLinkedManager: dataLinkedManager), isActive: $isShowingLinkedItemView){
+                                        EmptyView()
+                                    }
+                                }
                                 .contextMenu{
                                     
                                     // Detail
@@ -83,6 +84,7 @@ struct PersonListView: View {
                                     PersonEditorView(personTagvm:TagViewModel(tagNamesOfItem: person.tagNames, ownerItemID: personvm.person.id, completion: {_ in}) , personvm: personvm)
                                 }
                                 .onTapGesture(perform: {
+                                    isShowingLinkedItemView.toggle()
                                     dataLinkedManager.linkedIds = person.linkedItems
                                     dataLinkedManager.fetchItems { success in
                                         if success {
@@ -93,23 +95,24 @@ struct PersonListView: View {
                                         }
                                     }
                                 })
-                        }
+                    
                         
 
                         
                     }
                 }
                 .padding()
-            }
-            .onAppear {
-                personvm.fetchPersons{ success in
-                    if success {
-                        print("successfully loaded the persons from firebase")
-                    } else {
-                        print("failed to load the persons from firebase")
+                .onAppear {
+                    personvm.fetchPersons{ success in
+                        if success {
+                            print("successfully loaded the persons from firebase")
+                        } else {
+                            print("failed to load the persons from firebase")
+                        }
                     }
                 }
             }
+            
         
             
     }
