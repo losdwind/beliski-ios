@@ -37,7 +37,9 @@ enum Theme {
 struct CurrentUserDefaults { // Fields for UserDefaults saved within app
     
     static let userID = "user_id"
-    static let theme: Theme = Theme.full
+    static let userName = "asiefhXLhf#221"
+    static let nickName = "Iron Man"
+    static let profileImgURL = ""
 
 }
 

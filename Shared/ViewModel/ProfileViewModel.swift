@@ -13,7 +13,7 @@ import SwiftUI
 class ProfileViewModel: ObservableObject{
     
     @Published var user:User = User()
-    
+        
     // MARK: - here is the issue that the use could be nil becuase the AuthViewModel may not initlize the currentUser correctly (on time)
     
     
@@ -21,7 +21,7 @@ class ProfileViewModel: ObservableObject{
     
     func uploadUser(completion: @escaping (_ success: Bool) -> ()){
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchPerson function")
             completion(false)
             return
@@ -45,7 +45,7 @@ class ProfileViewModel: ObservableObject{
     
     func fetchUser(completion: @escaping (_ success: Bool) -> ()){
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchPerson function")
             completion(false)
             return

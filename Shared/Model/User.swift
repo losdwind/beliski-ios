@@ -14,13 +14,15 @@ struct User: Identifiable, Codable, Hashable {
     // can be retreive from the Auth.auth().currentUser : uid, email. photoURL
     var id: String?
     var email: String?
+    var providerID:String?
+    var providerName: String?
     var profileImageUrl: String?
-
-    
+    var userName: String?
+    var nickName: String? //first name, family name
     var dateCreated:Timestamp?
-    var username: String?
-    var userID:String?
-    var fullname: String? //first name, family name
+    
+    
+    
     var bio: String?
     var gender:String?
     var birthday:Timestamp?

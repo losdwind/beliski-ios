@@ -19,6 +19,16 @@
 		2907B4B7272AE377001A3DA1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B5272AE377001A3DA1 /* ChatView.swift */; };
 		2907B4B9272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */; };
 		2907B4BA272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */; };
+		2907B4C3272C0E7F001A3DA1 /* ProfileSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4C2272C0E7F001A3DA1 /* ProfileSimpleView.swift */; };
+		2907B4C4272C0E7F001A3DA1 /* ProfileSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4C2272C0E7F001A3DA1 /* ProfileSimpleView.swift */; };
+		2907B4C6272C1037001A3DA1 /* StatsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4C5272C1037001A3DA1 /* StatsBarView.swift */; };
+		2907B4C7272C1037001A3DA1 /* StatsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4C5272C1037001A3DA1 /* StatsBarView.swift */; };
+		2907B4C9272C106F001A3DA1 /* ProfileStandardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4C8272C106F001A3DA1 /* ProfileStandardView.swift */; };
+		2907B4CA272C106F001A3DA1 /* ProfileStandardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4C8272C106F001A3DA1 /* ProfileStandardView.swift */; };
+		2907B4CE272C1582001A3DA1 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4CD272C1582001A3DA1 /* SettingsRowView.swift */; };
+		2907B4CF272C1582001A3DA1 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4CD272C1582001A3DA1 /* SettingsRowView.swift */; };
+		2907B4D1272C1594001A3DA1 /* SettingsLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4D0272C1593001A3DA1 /* SettingsLabelView.swift */; };
+		2907B4D2272C1594001A3DA1 /* SettingsLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4D0272C1593001A3DA1 /* SettingsLabelView.swift */; };
 		2924F1572729A789006CB556 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F1562729A789006CB556 /* SearchView.swift */; };
 		2924F1582729A789006CB556 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F1562729A789006CB556 /* SearchView.swift */; };
 		2924F15A2729A8CE006CB556 /* SearchResultComplexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F1592729A8CE006CB556 /* SearchResultComplexView.swift */; };
@@ -163,6 +173,11 @@
 		2907B4AE272A832C001A3DA1 /* BranchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchViewModel.swift; sourceTree = "<group>"; };
 		2907B4B5272AE377001A3DA1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
+		2907B4C2272C0E7F001A3DA1 /* ProfileSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSimpleView.swift; sourceTree = "<group>"; };
+		2907B4C5272C1037001A3DA1 /* StatsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsBarView.swift; sourceTree = "<group>"; };
+		2907B4C8272C106F001A3DA1 /* ProfileStandardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStandardView.swift; sourceTree = "<group>"; };
+		2907B4CD272C1582001A3DA1 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
+		2907B4D0272C1593001A3DA1 /* SettingsLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLabelView.swift; sourceTree = "<group>"; };
 		2924F1562729A789006CB556 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		2924F1592729A8CE006CB556 /* SearchResultComplexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultComplexView.swift; sourceTree = "<group>"; };
 		2942C80D271EB88800ECD167 /* DataLinkedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLinkedManager.swift; sourceTree = "<group>"; };
@@ -274,6 +289,8 @@
 			isa = PBXGroup;
 			children = (
 				29D2BA8E2727D4DA007F76B8 /* SettingsView.swift */,
+				2907B4CD272C1582001A3DA1 /* SettingsRowView.swift */,
+				2907B4D0272C1593001A3DA1 /* SettingsLabelView.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -441,6 +458,9 @@
 				29C46C18270D600900754817 /* ProfileCompactView.swift */,
 				29552A7027101A7C0056E675 /* ProfileDetailView.swift */,
 				2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */,
+				2907B4C2272C0E7F001A3DA1 /* ProfileSimpleView.swift */,
+				2907B4C5272C1037001A3DA1 /* StatsBarView.swift */,
+				2907B4C8272C106F001A3DA1 /* ProfileStandardView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -712,6 +732,7 @@
 				29ED1153271AE71E00E67D8B /* TimelineManager.swift in Sources */,
 				29ED110E2713462700E67D8B /* CustomedViewModifier.swift in Sources */,
 				29ED111F2719B30E00E67D8B /* SearchViewModel.swift in Sources */,
+				2907B4C3272C0E7F001A3DA1 /* ProfileSimpleView.swift in Sources */,
 				29552A6527100CD70056E675 /* JournalViewModel.swift in Sources */,
 				29C46C30270D600900754817 /* CommunityView.swift in Sources */,
 				2907B4B6272AE377001A3DA1 /* ChatView.swift in Sources */,
@@ -749,10 +770,12 @@
 				2942C8542720099400ECD167 /* SubViews.swift in Sources */,
 				29552A6827100E850056E675 /* Journal.swift in Sources */,
 				29ED11462719E4CD00E67D8B /* PersonViewModel.swift in Sources */,
+				2907B4CE272C1582001A3DA1 /* SettingsRowView.swift in Sources */,
 				2907B4AF272A832C001A3DA1 /* BranchViewModel.swift in Sources */,
 				29C46C36270D658500754817 /* SignUpView.swift in Sources */,
 				29552A6B271010070056E675 /* Task.swift in Sources */,
 				29ED1149271A97C700E67D8B /* TaskViewModel.swift in Sources */,
+				2907B4C9272C106F001A3DA1 /* ProfileStandardView.swift in Sources */,
 				29ED115F271D8EF500E67D8B /* Protocols.swift in Sources */,
 				29C46C2B270D600900754817 /* JournalListView.swift in Sources */,
 				2942C80E271EB88800ECD167 /* DataLinkedManager.swift in Sources */,
@@ -763,6 +786,7 @@
 				29552A7127101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				2942C84B271FEA2B00ECD167 /* TagCollectionView.swift in Sources */,
 				2942C85D2724000200ECD167 /* SearchResultView.swift in Sources */,
+				2907B4C6272C1037001A3DA1 /* StatsBarView.swift in Sources */,
 				2907B4A8272A7C6B001A3DA1 /* Branch.swift in Sources */,
 				29C46C27270D600900754817 /* ProfileViewModel.swift in Sources */,
 				29552A7627101B620056E675 /* PanelView.swift in Sources */,
@@ -773,6 +797,7 @@
 				29552A58270F0FEA0056E675 /* MediaUploader.swift in Sources */,
 				29552A38270D89150056E675 /* CustomTextField.swift in Sources */,
 				29552A51270F0EC40056E675 /* Constants.swift in Sources */,
+				2907B4D1272C1594001A3DA1 /* SettingsLabelView.swift in Sources */,
 				2942C85A2721391E00ECD167 /* TagPanelViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,8 +813,10 @@
 				29552A7727101B620056E675 /* PanelView.swift in Sources */,
 				29552A3C270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
 				29ED111727189A3200E67D8B /* SearchAndLinkingView.swift in Sources */,
+				2907B4D2272C1594001A3DA1 /* SettingsLabelView.swift in Sources */,
 				29552A39270D89150056E675 /* CustomTextField.swift in Sources */,
 				29ED11472719E4CD00E67D8B /* PersonViewModel.swift in Sources */,
+				2907B4C4272C0E7F001A3DA1 /* ProfileSimpleView.swift in Sources */,
 				2942C84C271FEA2B00ECD167 /* TagCollectionView.swift in Sources */,
 				29ED113F2719E4B400E67D8B /* TaskListView.swift in Sources */,
 				29ED10FD2710423800E67D8B /* JournalEditorView.swift in Sources */,
@@ -812,6 +839,7 @@
 				29ED1157271B42B600E67D8B /* PersonDetailView.swift in Sources */,
 				2942C858272010FF00ECD167 /* TagPanelView.swift in Sources */,
 				29552A4F270F0BDE0056E675 /* LogInView.swift in Sources */,
+				2907B4CF272C1582001A3DA1 /* SettingsRowView.swift in Sources */,
 				2942C852271FED2300ECD167 /* TagItemView.swift in Sources */,
 				29ED11202719B30E00E67D8B /* SearchViewModel.swift in Sources */,
 				29ED11412719E4B400E67D8B /* CheckboxStyle.swift in Sources */,
@@ -819,7 +847,9 @@
 				29ED113B2719E4B400E67D8B /* TaskEditorView.swift in Sources */,
 				29ED1160271D8EF500E67D8B /* Protocols.swift in Sources */,
 				2907B4B7272AE377001A3DA1 /* ChatView.swift in Sources */,
+				2907B4CA272C106F001A3DA1 /* ProfileStandardView.swift in Sources */,
 				29ED11112718979100E67D8B /* LinkedItemsView.swift in Sources */,
+				2907B4C7272C1037001A3DA1 /* StatsBarView.swift in Sources */,
 				29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */,
 				2924F1582729A789006CB556 /* SearchView.swift in Sources */,

@@ -15,7 +15,7 @@ import AVFoundation
 
 struct MediaUploader {
     
-    static func uploadImages(images: [UIImage], type: UploadType, completion: @escaping (_ imageURLs: [String]) -> ()) {
+    static func uploadImages(images: [UIImage], type: UploadType, handler: @escaping (_ imageURLs: [String]) -> ()) {
         var imageURLs = [String]()
         let group = DispatchGroup()
         for image in images {
@@ -27,11 +27,11 @@ struct MediaUploader {
         }
         group.notify(queue: .main) {
             print("Finished upload all images")
-            completion(imageURLs)
+            handler(imageURLs)
         }
     }
     
-    static func uploadImage(image: UIImage, type: UploadType, completion: @escaping (_ imageURL: String) -> ()) {
+    static func uploadImage(image: UIImage, type: UploadType, handler: @escaping (_ imageURL: String) -> ()) {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else {
             
             print("cannot compress the image")
@@ -53,13 +53,13 @@ struct MediaUploader {
                     return
                     
                 }
-                completion(imageUrl)
+                handler(imageUrl)
             }
         }
     }
     
     
-    static func uploadVideo(video: NSData, type: UploadType, completion: @escaping (_ videoURL: String) -> ()) {
+    static func uploadVideo(video: NSData, type: UploadType, handler: @escaping (_ videoURL: String) -> ()) {
         guard let videoData = try? video.compressed(using: .zlib) else { return }
         
         let ref = type.filePath
@@ -74,7 +74,7 @@ struct MediaUploader {
             
             ref.downloadURL { url, _ in
                 guard let videoUrl = url?.absoluteString else { return }
-                completion(videoUrl)
+                handler(videoUrl)
             }
         }
     }

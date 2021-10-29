@@ -8,10 +8,6 @@
 import SwiftUI
 import MapKit
 
-
-
-
-
 struct ProfileEditorView: View {
     
     @ObservedObject var profilevm:ProfileViewModel

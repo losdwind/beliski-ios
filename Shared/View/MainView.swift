@@ -36,13 +36,20 @@ struct MainView: View {
                 // Show the timeline of user journals
                 TimelineView(timelineManger: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm)
                     .tabItem{
-                        Image(systemName: "text.redaction")
+                        VStack{
+                            Image(systemName: "text.redaction")
+                            Text("Timeline")
+                        }
                     }.tag(MainTab.timeline)
                     
                 // Show the Panel of statistics based on the journals of the user
-                PanelView()
+                PanelView(profilevm: ProfileViewModel())
                     .tabItem {
-                        Image(systemName: "chart.bar.xaxis")
+                        VStack{
+                            Image(systemName: "chart.bar.xaxis")
+                            Text("Score")
+                        }
+                        
                     }.tag(MainTab.score)
                 
                 // Show the create launcher with multiple categories of journal type
@@ -52,16 +59,24 @@ struct MainView: View {
                     }.tag(MainTab.create)
                 
                 // Show community information and open journals shared by internet users
-                SquadView(branchvm: branchvm, profilevm: profilevm)
+                SquadView(branchvm: branchvm)
                     .tabItem{
-                        Image(systemName: "circles.hexagongrid")
+                        VStack{
+                            Image(systemName: "circles.hexagongrid")
+                            Text("Squad")
+                        }
+                        
                     }.tag(MainTab.squad)
                 
                 
                 // Show team formed by connected users, message and personal profile
                 CommunityView()
                     .tabItem {
-                        Image(systemName: "building.2")
+                        VStack{
+                            Image(systemName: "building.2")
+                            Text("Community")
+                        }
+                        
                     }.tag(MainTab.community)
                 
             }

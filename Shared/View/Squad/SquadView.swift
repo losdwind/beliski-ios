@@ -45,6 +45,6 @@ struct SquadView: View {
 
 struct SquadView_Previews: PreviewProvider {
     static var previews: some View {
-        SquadView(branchvm: BranchViewModel(), profilevm: ProfileViewModel())
+        SquadView(branchvm: BranchViewModel())
     }
 }

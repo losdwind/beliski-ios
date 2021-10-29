@@ -9,83 +9,116 @@ import Foundation
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestoreSwift
+import SwiftUI
 
 class AuthViewModel: ObservableObject {
     
-    @Published var userSession: FirebaseAuth.User?
-    @Published var currentUser: User?
     @Published var didSendResetPasswordLink = false
-    
-    @Published var isShowingAuthView:Bool = false
+    @Published var isShowingLogInView:Bool = false
+    @Published var isShowingSignUpView:Bool = false
     
     static let shared = AuthViewModel()
     
-    init() {
-        userSession = Auth.auth().currentUser
-        isShowingAuthView = (userSession?.uid == nil)
-        fetchUser(completion: {_ in})
-    }
     
-    func login(withEmail email: String, password: String, completion: @escaping (_ success: Bool) -> ()){
+    @AppStorage(CurrentUserDefaults.userID) var userID: String?
+
+    
+    func logInUserToFirebase(email: String, password: String, handler: @escaping (_ providerID: String?, _ isError: Bool, _ isNewUser: Bool?, _ userID: String?) -> ()){
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("DEBUG: Login failed \(error.localizedDescription)")
-                completion(false)
+                handler(nil, true, nil, nil)
                 return
             }
             
             guard let user = result?.user else {
-                completion(false)
-                return }
-            self.userSession = user
-            self.fetchUser { success in
-                if success {
-                    completion(true)
-                    return
-                }
+                handler(nil, true, nil, nil)
+                return
             }
             
-
+            self.checkIfUserExistsInDatabase(providerID: user.uid) { (returnedUserID) in
+                
+                if let userID = returnedUserID {
+                    // User exists, log in to app immediately
+                    handler(user.uid, false, false, userID)
+                    return
+                    
+                } else {
+                    // User does NOT exist, continue to onboarding a new user
+                    handler(user.uid, false, true, nil)
+                    return
+                }
+                
+            }
         }
     }
     
-    func register(withEmail email: String, password: String,
-                  image: UIImage?, fullname: String, username: String, completion: @escaping (_ success: Bool) -> ()) {
+    
+    func logInUserToApp(userID: String, handler: @escaping (_ success: Bool) -> ()) {
         
-        guard let image = image else { return }
+        // Get the users info
+        fetchUser(userID: userID) { user in
+            if let userName = user?.userName, let nickName = user?.nickName, let profileImgURL = user?.profileImageUrl  {
+                // Success
+                print("Success getting user info while logging in")
+                // Set the users info into our app
+                UserDefaults.standard.set(userID, forKey: CurrentUserDefaults.userID)
+                UserDefaults.standard.set(userName, forKey: CurrentUserDefaults.userName)
+                UserDefaults.standard.set(nickName, forKey: CurrentUserDefaults.nickName)
+                UserDefaults.standard.set(profileImgURL, forKey: CurrentUserDefaults.profileImgURL)
+                handler(true)
+                
+                
+            } else {
+                // Error
+                print("Error getting user info while logging in")
+                handler(false)
+            }
+        }
+        
+        
+    }
+    
+
+  
+    
+    func register(email: String, password: String,
+                  profileImage: UIImage?, nickName: String, userName: String, handler: @escaping (_ success: Bool) -> ()) {
+        
+        guard let image = profileImage else {
+            print("No valid profile Image")
+            handler(false)
+            return }
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 print(error.localizedDescription)
-                completion(false)
+                handler(false)
                 return
             }
             
+            
             guard let user = result?.user else {
-                completion(false)
+                handler(false)
                 return }
             print("Successfully registered user...")
             
+            // Set up a user Document with the user Collection
+            let document = COLLECTION_USERS.document()
+            let userID = document.documentID
             
             MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
                 
-                let data = User(email: email, profileImageUrl: imageUrl, username: username, fullname: fullname, bio: "")
+                let data = User(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageUrl: imageUrl, userName: userName, nickName: nickName, dateCreated:FieldValue.serverTimestamp())
                 
                 do {
-                    try COLLECTION_USERS.document(user.uid).setData(from:data)
+                    try document.setData(from:data)
                     print("Successfully uploaded user data to firestore...")
-                    self.userSession = user
-                    self.fetchUser { success in
-                        if success {
-                            completion(true)
-                            return
-                        }
-                    }
-                    
                     
                 } catch let error {
                     print("Error upload User to Firestore: \(error)")
-                    completion(false)
+                    handler(false)
                     return
                 }
             }
@@ -95,10 +128,26 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func signout() {
-        self.userSession = nil
-        self.currentUser = nil
-        try? Auth.auth().signOut()
+    func signout(handler: @escaping (_ success: Bool) -> ()) {
+        do {
+            try Auth.auth().signOut()
+            // Updated UserDefaults
+            
+            let defaultsDictionary = UserDefaults.standard.dictionaryRepresentation()
+            defaultsDictionary.keys.forEach { (key) in
+                UserDefaults.standard.removeObject(forKey: key)
+            }
+            handler(true)
+            return
+        } catch {
+            print("Error \(error)")
+            handler(false)
+            return
+        }
+        
+        
+        
+        
     }
     
     func resetPassword(withEmail email: String) {
@@ -112,18 +161,36 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func fetchUser(completion: @escaping (_ success: Bool) -> ()) {
-        guard let uid = userSession?.uid else {
-            completion(false)
-            return }
-        COLLECTION_USERS.document(uid).getDocument { snapshot, _ in
-            guard let user = try? snapshot?.data(as: User.self) else {
-                completion(false)
-                return }
+    
+    private func checkIfUserExistsInDatabase(providerID: String, handler: @escaping (_ existingUserID: String?) -> ()) {
+        // If a userID is returned, then the user does exist in our database
+        
+        COLLECTION_USERS.whereField("providerID", isEqualTo: providerID).getDocuments { (querySnapshot, error) in
             
-            print(user.email)
-            self.currentUser = user
-            completion(true)
+            if let snapshot = querySnapshot, snapshot.count > 0, let document = snapshot.documents.first {
+                //SUCCESS
+                let existingUserID = document.documentID
+                handler(existingUserID)
+                return
+            } else {
+                // ERROR, NEW USER
+                handler(nil)
+                return
+            }
+            
+        }
+        
+    }
+    
+    func fetchUser(userID:String, handler: @escaping (_ user: User?) -> ()) {
+        
+        
+        COLLECTION_USERS.document(userID).getDocument { snapshot, _ in
+            guard let user = try? snapshot?.data(as: User.self) else {
+                handler(nil)
+                return }
+            print("fetched user")
+            handler(user)
             return
             
         }

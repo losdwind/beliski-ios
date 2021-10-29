@@ -16,17 +16,13 @@ struct PanelView: View {
             ScrollView(.vertical, showsIndicators: false){
                 VStack(alignment:.center){
                     
-                    NavigationLink {
-                        ProfileDetailView()
-                    } label: {
-                        ProfileCompactView(profilevm: profilevm)
-                    }
+                    ProfileSimpleView(profilevm: profilevm)
                     
-                    NavigationLink{
-                        Text("here is the detail view of wellbeing index")
-                    } label: {
+                    GroupBox{
                         WBScoreView()
+                            .padding()
                     }
+
                 }
                 .frame(alignment: .topLeading)
                 .navigationTitle("Panel")
@@ -44,7 +40,7 @@ struct PanelView: View {
                 }
             }
             .sheet(isPresented: $isShowingSettingsView) {
-                SettingsView()
+                SettingsView(profilevm: profilevm)
             }
 
         }

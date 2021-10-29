@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ProfileDetailView: View {
+    @ObservedObject var profilevm:ProfileViewModel
     
     var body: some View {
         Text("here is the form of detail user info, e.g., birthday, gender, interest")
+        
     }
 }
 
 struct ProfileDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileDetailView()
+        ProfileDetailView(profilevm: ProfileViewModel())
     }
 }
