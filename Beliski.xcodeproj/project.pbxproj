@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2907B4A5272A7BEF001A3DA1 /* BranchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4A4272A7BEE001A3DA1 /* BranchCardView.swift */; };
+		2907B4A6272A7BEF001A3DA1 /* BranchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4A4272A7BEE001A3DA1 /* BranchCardView.swift */; };
+		2907B4A8272A7C6B001A3DA1 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4A7272A7C6B001A3DA1 /* Branch.swift */; };
+		2907B4A9272A7C6B001A3DA1 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4A7272A7C6B001A3DA1 /* Branch.swift */; };
+		2907B4AC272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4AB272A82D5001A3DA1 /* BranchCardEditorView.swift */; };
+		2907B4AD272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4AB272A82D5001A3DA1 /* BranchCardEditorView.swift */; };
+		2907B4AF272A832C001A3DA1 /* BranchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4AE272A832C001A3DA1 /* BranchViewModel.swift */; };
+		2907B4B0272A832C001A3DA1 /* BranchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4AE272A832C001A3DA1 /* BranchViewModel.swift */; };
+		2907B4B6272AE377001A3DA1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B5272AE377001A3DA1 /* ChatView.swift */; };
+		2907B4B7272AE377001A3DA1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B5272AE377001A3DA1 /* ChatView.swift */; };
+		2907B4B9272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */; };
+		2907B4BA272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */; };
 		2924F1572729A789006CB556 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F1562729A789006CB556 /* SearchView.swift */; };
 		2924F1582729A789006CB556 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F1562729A789006CB556 /* SearchView.swift */; };
 		2924F15A2729A8CE006CB556 /* SearchResultComplexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F1592729A8CE006CB556 /* SearchResultComplexView.swift */; };
@@ -75,7 +87,7 @@
 		29C46C28270D600900754817 /* SquadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C15270D600900754817 /* SquadView.swift */; };
 		29C46C2A270D600900754817 /* ProfileCompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C18270D600900754817 /* ProfileCompactView.swift */; };
 		29C46C2B270D600900754817 /* JournalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C1A270D600900754817 /* JournalListView.swift */; };
-		29C46C2C270D600900754817 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C1C270D600900754817 /* ScoreView.swift */; };
+		29C46C2C270D600900754817 /* WBIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C1C270D600900754817 /* WBIndexView.swift */; };
 		29C46C2F270D600900754817 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C21270D600900754817 /* CreateView.swift */; };
 		29C46C30270D600900754817 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C23270D600900754817 /* CommunityView.swift */; };
 		29C46C36270D658500754817 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C35270D658500754817 /* SignUpView.swift */; };
@@ -83,7 +95,6 @@
 		29C46C39270D659D00754817 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C38270D659D00754817 /* ResetPasswordView.swift */; };
 		29C46C3A270D659D00754817 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C38270D659D00754817 /* ResetPasswordView.swift */; };
 		29D2BA8F2727D4DA007F76B8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D2BA8E2727D4DA007F76B8 /* SettingsView.swift */; };
-		29D2BA902727D4DA007F76B8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D2BA8E2727D4DA007F76B8 /* SettingsView.swift */; };
 		29D2BA932727D9E8007F76B8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 29D2BA922727D9E8007F76B8 /* FirebaseAuth */; };
 		29D2BA952727D9E8007F76B8 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 29D2BA942727D9E8007F76B8 /* FirebaseDynamicLinks */; };
 		29D2BA972727D9E8007F76B8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 29D2BA962727D9E8007F76B8 /* FirebaseFirestore */; };
@@ -146,6 +157,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2907B4A4272A7BEE001A3DA1 /* BranchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardView.swift; sourceTree = "<group>"; };
+		2907B4A7272A7C6B001A3DA1 /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
+		2907B4AB272A82D5001A3DA1 /* BranchCardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardEditorView.swift; sourceTree = "<group>"; };
+		2907B4AE272A832C001A3DA1 /* BranchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchViewModel.swift; sourceTree = "<group>"; };
+		2907B4B5272AE377001A3DA1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
 		2924F1562729A789006CB556 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		2924F1592729A8CE006CB556 /* SearchResultComplexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultComplexView.swift; sourceTree = "<group>"; };
 		2942C80D271EB88800ECD167 /* DataLinkedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLinkedManager.swift; sourceTree = "<group>"; };
@@ -185,7 +202,7 @@
 		29C46C15270D600900754817 /* SquadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquadView.swift; sourceTree = "<group>"; };
 		29C46C18270D600900754817 /* ProfileCompactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCompactView.swift; sourceTree = "<group>"; };
 		29C46C1A270D600900754817 /* JournalListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalListView.swift; sourceTree = "<group>"; };
-		29C46C1C270D600900754817 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		29C46C1C270D600900754817 /* WBIndexView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBIndexView.swift; sourceTree = "<group>"; };
 		29C46C21270D600900754817 /* CreateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		29C46C23270D600900754817 /* CommunityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		29C46C35270D658500754817 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -253,6 +270,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2907B4A3272A739B001A3DA1 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				29D2BA8E2727D4DA007F76B8 /* SettingsView.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		2907B4AA272A82BE001A3DA1 /* Branch */ = {
+			isa = PBXGroup;
+			children = (
+				2907B4A4272A7BEE001A3DA1 /* BranchCardView.swift */,
+				2907B4AB272A82D5001A3DA1 /* BranchCardEditorView.swift */,
+			);
+			path = Branch;
+			sourceTree = "<group>";
+		};
+		2907B4B4272AE362001A3DA1 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				2907B4B5272AE377001A3DA1 /* ChatView.swift */,
+			);
+			path = ChatView;
+			sourceTree = "<group>";
+		};
 		2942C810271EC3A300ECD167 /* LinkedItemsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,11 +312,11 @@
 				29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */,
 				29552A50270F0EC40056E675 /* Constants.swift */,
 				29C46C10270D600900754817 /* Struct & Enum.swift */,
+				29ED1158271B470A00E67D8B /* Helplers.swift */,
 				29552A53270F0F2E0056E675 /* ImagePicker.swift */,
 				29552A61271009900056E675 /* ImagePickers.swift */,
 				29ED111B271996E700E67D8B /* NewImagePicker.swift */,
 				29ED110B2713436B00E67D8B /* SoundPlayer.swift */,
-				29ED1158271B470A00E67D8B /* Helplers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -287,12 +329,12 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		29552A7427101B430056E675 /* Score */ = {
+		29552A7427101B430056E675 /* WillbeingScore */ = {
 			isa = PBXGroup;
 			children = (
-				29C46C1C270D600900754817 /* ScoreView.swift */,
+				29C46C1C270D600900754817 /* WBIndexView.swift */,
 			);
-			path = Score;
+			path = WillbeingScore;
 			sourceTree = "<group>";
 		};
 		29C46BE7270D5E8800754817 = {
@@ -353,9 +395,9 @@
 		29C46C11270D600900754817 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				29552A3D270D95900056E675 /* AuthViewModel.swift */,
 				29ED11432719E4CD00E67D8B /* PersonViewModel.swift */,
 				29C46C12270D600900754817 /* ProfileViewModel.swift */,
-				29552A3D270D95900056E675 /* AuthViewModel.swift */,
 				29552A6427100CD70056E675 /* JournalViewModel.swift */,
 				29ED111E2719B30E00E67D8B /* SearchViewModel.swift */,
 				29ED1148271A97C700E67D8B /* TaskViewModel.swift */,
@@ -363,6 +405,7 @@
 				29ED115B271D734F00E67D8B /* TagViewModel.swift */,
 				2942C80D271EB88800ECD167 /* DataLinkedManager.swift */,
 				2942C8592721391E00ECD167 /* TagPanelViewModel.swift */,
+				2907B4AE272A832C001A3DA1 /* BranchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -386,6 +429,8 @@
 			isa = PBXGroup;
 			children = (
 				29C46C15270D600900754817 /* SquadView.swift */,
+				2907B4B4272AE362001A3DA1 /* ChatView */,
+				2907B4AA272A82BE001A3DA1 /* Branch */,
 			);
 			path = Squad;
 			sourceTree = "<group>";
@@ -395,6 +440,7 @@
 			children = (
 				29C46C18270D600900754817 /* ProfileCompactView.swift */,
 				29552A7027101A7C0056E675 /* ProfileDetailView.swift */,
+				2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -417,9 +463,9 @@
 			isa = PBXGroup;
 			children = (
 				29552A7527101B620056E675 /* PanelView.swift */,
-				29D2BA8E2727D4DA007F76B8 /* SettingsView.swift */,
-				29552A7427101B430056E675 /* Score */,
+				2907B4A3272A739B001A3DA1 /* SettingsView */,
 				29C46C17270D600900754817 /* Profile */,
+				29552A7427101B430056E675 /* WillbeingScore */,
 			);
 			path = Panel;
 			sourceTree = "<group>";
@@ -527,6 +573,7 @@
 				29552A6727100E850056E675 /* Journal.swift */,
 				29552A6A271010070056E675 /* Task.swift */,
 				29552A6D271010160056E675 /* Person.swift */,
+				2907B4A7272A7C6B001A3DA1 /* Branch.swift */,
 			);
 			path = ItemProtocol;
 			sourceTree = "<group>";
@@ -667,6 +714,7 @@
 				29ED111F2719B30E00E67D8B /* SearchViewModel.swift in Sources */,
 				29552A6527100CD70056E675 /* JournalViewModel.swift in Sources */,
 				29C46C30270D600900754817 /* CommunityView.swift in Sources */,
+				2907B4B6272AE377001A3DA1 /* ChatView.swift in Sources */,
 				29ED1150271AE49000E67D8B /* TimelineView.swift in Sources */,
 				29552A62271009900056E675 /* ImagePickers.swift in Sources */,
 				2942C857272010FF00ECD167 /* TagPanelView.swift in Sources */,
@@ -674,7 +722,9 @@
 				2942C848271FEA0900ECD167 /* TagEditorView.swift in Sources */,
 				29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
 				29ED11332719E49600E67D8B /* PersonEditorView.swift in Sources */,
+				2907B4A5272A7BEF001A3DA1 /* BranchCardView.swift in Sources */,
 				29ED113E2719E4B400E67D8B /* TaskListView.swift in Sources */,
+				2907B4AC272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */,
 				29C46C2A270D600900754817 /* ProfileCompactView.swift in Sources */,
 				2924F1572729A789006CB556 /* SearchView.swift in Sources */,
 				29C46BFF270D5E8A00754817 /* MainView.swift in Sources */,
@@ -689,6 +739,7 @@
 				29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */,
 				29ED11102718979100E67D8B /* LinkedItemsView.swift in Sources */,
+				2907B4B9272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */,
 				29ED112F2719E49600E67D8B /* PersonItemView.swift in Sources */,
 				29ED11312719E49600E67D8B /* PersonListView.swift in Sources */,
 				29ED111C271996E700E67D8B /* NewImagePicker.swift in Sources */,
@@ -698,6 +749,7 @@
 				2942C8542720099400ECD167 /* SubViews.swift in Sources */,
 				29552A6827100E850056E675 /* Journal.swift in Sources */,
 				29ED11462719E4CD00E67D8B /* PersonViewModel.swift in Sources */,
+				2907B4AF272A832C001A3DA1 /* BranchViewModel.swift in Sources */,
 				29C46C36270D658500754817 /* SignUpView.swift in Sources */,
 				29552A6B271010070056E675 /* Task.swift in Sources */,
 				29ED1149271A97C700E67D8B /* TaskViewModel.swift in Sources */,
@@ -711,12 +763,13 @@
 				29552A7127101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				2942C84B271FEA2B00ECD167 /* TagCollectionView.swift in Sources */,
 				2942C85D2724000200ECD167 /* SearchResultView.swift in Sources */,
+				2907B4A8272A7C6B001A3DA1 /* Branch.swift in Sources */,
 				29C46C27270D600900754817 /* ProfileViewModel.swift in Sources */,
 				29552A7627101B620056E675 /* PanelView.swift in Sources */,
 				29ED115C271D734F00E67D8B /* TagViewModel.swift in Sources */,
 				29C46C25270D600900754817 /* User.swift in Sources */,
 				2924F15A2729A8CE006CB556 /* SearchResultComplexView.swift in Sources */,
-				29C46C2C270D600900754817 /* ScoreView.swift in Sources */,
+				29C46C2C270D600900754817 /* WBIndexView.swift in Sources */,
 				29552A58270F0FEA0056E675 /* MediaUploader.swift in Sources */,
 				29552A38270D89150056E675 /* CustomTextField.swift in Sources */,
 				29552A51270F0EC40056E675 /* Constants.swift in Sources */,
@@ -743,7 +796,6 @@
 				2924F15B2729A8CE006CB556 /* SearchResultComplexView.swift in Sources */,
 				29552A6927100E850056E675 /* Journal.swift in Sources */,
 				2942C849271FEA0900ECD167 /* TagEditorView.swift in Sources */,
-				29D2BA902727D4DA007F76B8 /* SettingsView.swift in Sources */,
 				29ED114A271A97C700E67D8B /* TaskViewModel.swift in Sources */,
 				29552A59270F0FEA0056E675 /* MediaUploader.swift in Sources */,
 				29ED1151271AE49000E67D8B /* TimelineView.swift in Sources */,
@@ -766,17 +818,23 @@
 				29552A55270F0F2E0056E675 /* ImagePicker.swift in Sources */,
 				29ED113B2719E4B400E67D8B /* TaskEditorView.swift in Sources */,
 				29ED1160271D8EF500E67D8B /* Protocols.swift in Sources */,
+				2907B4B7272AE377001A3DA1 /* ChatView.swift in Sources */,
 				29ED11112718979100E67D8B /* LinkedItemsView.swift in Sources */,
 				29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */,
 				2924F1582729A789006CB556 /* SearchView.swift in Sources */,
+				2907B4B0272A832C001A3DA1 /* BranchViewModel.swift in Sources */,
 				29ED11272719C3ED00E67D8B /* Tag.swift in Sources */,
 				29552A6F271010160056E675 /* Person.swift in Sources */,
+				2907B4BA272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */,
+				2907B4AD272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */,
 				29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
 				29ED11322719E49600E67D8B /* PersonListView.swift in Sources */,
+				2907B4A9272A7C6B001A3DA1 /* Branch.swift in Sources */,
 				2942C85B2721391E00ECD167 /* TagPanelViewModel.swift in Sources */,
 				2942C8552720099400ECD167 /* SubViews.swift in Sources */,
 				2942C80F271EB88800ECD167 /* DataLinkedManager.swift in Sources */,
+				2907B4A6272A7BEF001A3DA1 /* BranchCardView.swift in Sources */,
 				29ED11302719E49600E67D8B /* PersonItemView.swift in Sources */,
 				29552A52270F0EC40056E675 /* Constants.swift in Sources */,
 			);

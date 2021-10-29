@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestoreSwift
 
 //https://developer.apple.com/documentation/swiftui/list
 // display hierachical data

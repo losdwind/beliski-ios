@@ -46,7 +46,7 @@ struct LogInView: View {
             
                 
                 Button {
-                    AuthViewModel.shared.login(withEmail: email, password: password)
+                    AuthViewModel.shared.login(withEmail: email, password: password, completion: {_ in})
                 } label: {
                     Text("Sign In")
                         .font(.headline)

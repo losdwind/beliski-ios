@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct PanelView: View {
+    @ObservedObject var profilevm:ProfileViewModel
     @State var isShowingSettingsView:Bool = false
+    
     var body: some View {
         NavigationView{
             ScrollView(.vertical, showsIndicators: false){
@@ -17,30 +19,32 @@ struct PanelView: View {
                     NavigationLink {
                         ProfileDetailView()
                     } label: {
-                        ProfileCompactView()
+                        ProfileCompactView(profilevm: profilevm)
                     }
+                    
                     NavigationLink{
                         Text("here is the detail view of wellbeing index")
                     } label: {
-                        ScoreView()
+                        WBScoreView()
                     }
                 }
                 .frame(alignment: .topLeading)
                 .navigationTitle("Panel")
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            isShowingSettingsView.toggle()
-                        } label: {
-                            Image(systemName: "gearshape")
-                        }
-
+               
+                
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isShowingSettingsView.toggle()
+                    } label: {
+                        Image(systemName: "gearshape")
                     }
                 }
-                .sheet(isPresented: $isShowingSettingsView) {
-                    SettingsView()
-                }
+            }
+            .sheet(isPresented: $isShowingSettingsView) {
+                SettingsView()
             }
 
         }
@@ -50,6 +54,6 @@ struct PanelView: View {
 
 struct PanelView_Previews: PreviewProvider {
     static var previews: some View {
-        PanelView()
+        PanelView(profilevm: ProfileViewModel())
     }
 }

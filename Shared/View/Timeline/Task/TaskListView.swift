@@ -75,35 +75,39 @@ struct TaskListView: View {
                                 title: { Text("Link") },
                                 icon: { Image(systemName: "link.circle") })})
                     }
-            }
-            .frame(alignment:.topLeading)
-            .sheet(isPresented: $isUpdatingTask, onDismiss: {
-                taskvm.task = Task()
-                taskvm.reminder = Date()
-            }, content: {
-                TaskEditorView(taskvm: taskvm)
-            })
-            .sheet(isPresented: $isLinkingItem) {
-                taskvm.uploadTask { success in
-                    if success {
-                        taskvm.fetchTasks(handler: {_ in})
+                    .frame(alignment:.topLeading)
+                    .sheet(isPresented: $isUpdatingTask) {
+                        taskvm.task = Task()
+                        taskvm.reminder = Date()
+                    } content: {
+                        TaskEditorView(taskvm: taskvm)
                     }
-                }
-            } content: {
-                SearchAndLinkingView(linkedIDs: $taskvm.task.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
-            }
-            .onTapGesture(perform: {
-                isShowingLinkedItemView.toggle()
-                dataLinkedManager.linkedIds = task.linkedItems
-                dataLinkedManager.fetchItems { success in
-                    if success {
-                        print("successfully loaded the linked Items from DataLinkedManager")
+                
+                    
+                
+                    .sheet(isPresented: $isLinkingItem) {
+                        taskvm.uploadTask { success in
+                            if success {
+                                taskvm.fetchTasks(handler: {_ in})
+                            }
+                        }
+                    } content: {
+                        SearchAndLinkingView(linkedIDs: $taskvm.task.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                    }
+                    .onTapGesture(perform: {
+                        isShowingLinkedItemView.toggle()
+                        dataLinkedManager.linkedIds = task.linkedItems
+                        dataLinkedManager.fetchItems { success in
+                            if success {
+                                print("successfully loaded the linked Items from DataLinkedManager")
 
-                    } else {
-                        print("failed to loaded the linked Items from DataLinkedManager")
-                    }
-                }
-            })
+                            } else {
+                                print("failed to loaded the linked Items from DataLinkedManager")
+                            }
+                        }
+                    })
+            }
+            
 
         }
         .padding()

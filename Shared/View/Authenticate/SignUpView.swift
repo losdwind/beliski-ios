@@ -82,10 +82,15 @@ struct SignUpView: View {
             Button(action: {
                 AuthViewModel.shared.register(withEmail: email, password: password,
                                    image: selectedImage, fullname: fullname,
-                                   username: username)
+                                              username: username)
+                                                {success in
+                                                    if success {
+                                                        // MARK: - need to async?
+                                                        mode.wrappedValue.dismiss()
+                                                    }
+                }
                 
-                // MARK: - need to async?
-                mode.wrappedValue.dismiss()
+                
                 
             }, label: {
                 Text("Sign Up")

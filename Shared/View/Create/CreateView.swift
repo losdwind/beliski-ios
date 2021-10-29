@@ -13,10 +13,12 @@ struct CreateView: View {
     @ObservedObject var journalvm: JournalViewModel
     @ObservedObject var taskvm: TaskViewModel
     @ObservedObject var personvm: PersonViewModel
+    @ObservedObject var branchvm:BranchViewModel
     
     @State var isShowingJournalEditor = false
     @State var isShowingTaskEditor = false
     @State var isShowingPersonEditor = false
+    @State var isShowingBranchEditor = false
 
     
     var body: some View {
@@ -74,7 +76,23 @@ struct CreateView: View {
             })}) {
                 PersonEditorView(personTagvm: TagViewModel(), personvm: personvm)}
             
-        
+            // New Branch
+            Button(action: {
+                isShowingBranchEditor = true
+                playSound(sound: "sound-ding", type: "mp3")
+                branchvm.branch.localTimestamp = Timestamp(date:Date())
+            }, label: {
+                Image(systemName: "plus.circle")
+                    .font(.system(size: 30, weight: .semibold, design: .rounded))
+                Text("Branch")
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
+            })
+            .modifier(NewButtonGradientBackground())
+            .sheet(isPresented: $isShowingBranchEditor, onDismiss: {branchvm.fetchBranchs(completion: { _ in
+            })}) {
+                BranchCardEditorView(branchvm: branchvm)
+                
+            }
             
         }
         .padding()
@@ -83,6 +101,6 @@ struct CreateView: View {
 
 struct CreateView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateView(journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel())
+        CreateView(journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), branchvm: BranchViewModel())
     }
 }

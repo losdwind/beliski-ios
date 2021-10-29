@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class AuthViewModel: ObservableObject {
     
@@ -22,54 +23,70 @@ class AuthViewModel: ObservableObject {
     init() {
         userSession = Auth.auth().currentUser
         isShowingAuthView = (userSession?.uid == nil)
-        fetchUser()
+        fetchUser(completion: {_ in})
     }
     
-    func login(withEmail email: String, password: String){
+    func login(withEmail email: String, password: String, completion: @escaping (_ success: Bool) -> ()){
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("DEBUG: Login failed \(error.localizedDescription)")
+                completion(false)
                 return
             }
             
-            guard let user = result?.user else { return }
+            guard let user = result?.user else {
+                completion(false)
+                return }
             self.userSession = user
-            self.fetchUser()
+            self.fetchUser { success in
+                if success {
+                    completion(true)
+                    return
+                }
+            }
             
-//            I thing this method is better than others
-//             UserDefaults.standard.set(userID, forKey: CurrentUserDefaults.userID)
 
         }
     }
     
     func register(withEmail email: String, password: String,
-                  image: UIImage?, fullname: String, username: String) {
+                  image: UIImage?, fullname: String, username: String, completion: @escaping (_ success: Bool) -> ()) {
         
         guard let image = image else { return }
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 print(error.localizedDescription)
+                completion(false)
                 return
             }
             
-            guard let user = result?.user else { return }
+            guard let user = result?.user else {
+                completion(false)
+                return }
             print("Successfully registered user...")
             
             
             MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
                 
-                let data = User(username: username, email: email, profileImageUrl: imageUrl, fullname: fullname, bio: "")
+                let data = User(email: email, profileImageUrl: imageUrl, username: username, fullname: fullname, bio: "")
                 
                 do {
                     try COLLECTION_USERS.document(user.uid).setData(from:data)
                     print("Successfully uploaded user data to firestore...")
                     self.userSession = user
-                    self.fetchUser()
+                    self.fetchUser { success in
+                        if success {
+                            completion(true)
+                            return
+                        }
+                    }
                     
                     
                 } catch let error {
                     print("Error upload User to Firestore: \(error)")
+                    completion(false)
+                    return
                 }
             }
             
@@ -80,6 +97,7 @@ class AuthViewModel: ObservableObject {
     
     func signout() {
         self.userSession = nil
+        self.currentUser = nil
         try? Auth.auth().signOut()
     }
     
@@ -94,13 +112,22 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func fetchUser() {
-        guard let uid = userSession?.uid else { return }
+    func fetchUser(completion: @escaping (_ success: Bool) -> ()) {
+        guard let uid = userSession?.uid else {
+            completion(false)
+            return }
         COLLECTION_USERS.document(uid).getDocument { snapshot, _ in
-            guard let user = try? snapshot?.data(as: User.self) else { return }
+            guard let user = try? snapshot?.data(as: User.self) else {
+                completion(false)
+                return }
             
             print(user.email)
-            self.currentUser = user }
+            self.currentUser = user
+            completion(true)
+            return
+            
+        }
+        
     }
     
 }

@@ -21,11 +21,12 @@ struct MainView: View {
     @StateObject var dataLinkedManager = DataLinkedManager()
     @StateObject var searchvm = SearchViewModel()
     @StateObject var tagPanelvm = TagPanelViewModel()
+    @StateObject var branchvm = BranchViewModel()
 
-    
+
     var body: some View {
         
-        if AuthViewModel.shared.userSession == nil {
+        if AuthViewModel.shared.isShowingAuthView {
             
             LogInView()
             
@@ -45,13 +46,13 @@ struct MainView: View {
                     }.tag(MainTab.score)
                 
                 // Show the create launcher with multiple categories of journal type
-                CreateView(journalvm: journalvm, taskvm: taskvm, personvm: personvm)
+                CreateView(journalvm: journalvm, taskvm: taskvm, personvm: personvm, branchvm: branchvm)
                     .tabItem {
                         Image(systemName: "plus.circle")
                     }.tag(MainTab.create)
                 
                 // Show community information and open journals shared by internet users
-                SquadView()
+                SquadView(branchvm: branchvm, profilevm: profilevm)
                     .tabItem{
                         Image(systemName: "circles.hexagongrid")
                     }.tag(MainTab.squad)
@@ -66,6 +67,7 @@ struct MainView: View {
             }
             .accentColor(.primary)
             
+
         }
         
     
