@@ -29,6 +29,14 @@ enum MainTab {
     case community
 }
 
+enum WellbeingTab {
+    case Career
+    case Social
+    case Physical
+    case Financial
+    case Community
+}
+
 enum Theme {
     case compact
     case full

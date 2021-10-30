@@ -42,14 +42,14 @@ struct ProfileStandardView: View {
             
             
             VStack(alignment: .leading, spacing: 10){
-                Text(profilevm.user.fullname ?? "Aijie Shu")
+                Text(profilevm.user.nickName ?? "Aijie Shu")
                     .font(.title2)
                     .foregroundColor(.primary)
                 
                 //                    Text(AuthViewModel.shared.currentUser?.email ?? "aijieshu@figurich.com" )
                 //                        .font(.footnote)
                 
-                Text("@\(profilevm.user.username ?? "ajshu#24156")")
+                Text("@\(profilevm.user.userName ?? "ajshu#24156")")
                     .font(.caption)
                 
                 

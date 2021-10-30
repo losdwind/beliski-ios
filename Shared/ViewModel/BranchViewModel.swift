@@ -15,7 +15,7 @@ class BranchViewModel: ObservableObject {
     
     func uploadBranch(completion: @escaping (_ success: Bool) -> ()) {
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchJournal function")
             completion(false)
             return
@@ -39,7 +39,7 @@ class BranchViewModel: ObservableObject {
     }
     
     func fetchBranchs(completion: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchJournal function")
             completion(false)
             return

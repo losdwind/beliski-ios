@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestoreSwift
 import SwiftUI
@@ -37,7 +38,7 @@ class AuthViewModel: ObservableObject {
                 return
             }
             
-            self.checkIfUserExistsInDatabase(providerID: user.uid) { (returnedUserID) in
+            self.checkIfUserExistsInFirestore(providerID: user.uid) { (returnedUserID) in
                 
                 if let userID = returnedUserID {
                     // User exists, log in to app immediately
@@ -45,7 +46,7 @@ class AuthViewModel: ObservableObject {
                     return
                     
                 } else {
-                    // User does NOT exist, continue to onboarding a new user
+                    // User exist in Authenticate but no in the firestore, try register with the same method again
                     handler(user.uid, false, true, nil)
                     return
                 }
@@ -110,11 +111,13 @@ class AuthViewModel: ObservableObject {
             
             MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
                 
-                let data = User(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageUrl: imageUrl, userName: userName, nickName: nickName, dateCreated:FieldValue.serverTimestamp())
+                let data = User(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageUrl: imageUrl, userName: userName, nickName: nickName, dateCreated:Timestamp(date: Date()))
                 
                 do {
-                    try document.setData(from:data)
+                    try document.setData(from: data)
                     print("Successfully uploaded user data to firestore...")
+                    handler(true)
+                    return
                     
                 } catch let error {
                     print("Error upload User to Firestore: \(error)")
@@ -162,7 +165,7 @@ class AuthViewModel: ObservableObject {
     }
     
     
-    private func checkIfUserExistsInDatabase(providerID: String, handler: @escaping (_ existingUserID: String?) -> ()) {
+    private func checkIfUserExistsInFirestore(providerID: String, handler: @escaping (_ existingUserID: String?) -> ()) {
         // If a userID is returned, then the user does exist in our database
         
         COLLECTION_USERS.whereField("providerID", isEqualTo: providerID).getDocuments { (querySnapshot, error) in

@@ -19,7 +19,7 @@ struct ProfileCompactView: View {
             Divider().frame(width: 150, alignment: .center)
                 .padding()
         
-            StatsBarView(profilevm: profilevm)
+            OpenStatsBarView(profilevm: profilevm)
             
         }
         .padding()

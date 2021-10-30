@@ -27,7 +27,7 @@ class PersonViewModel: ObservableObject {
     
     func uploadPerson(handler: @escaping (_ success: Bool) -> ()) {
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid in uploadTask func")
             return }
         person.ownerID = userID
@@ -51,7 +51,7 @@ class PersonViewModel: ObservableObject {
     
     func deletePerson(person: Person, handler: @escaping (_ success: Bool) -> ()){
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid")
             return }
 
@@ -74,7 +74,7 @@ class PersonViewModel: ObservableObject {
     
     
     func fetchPersons(handler: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchPerson function")
             return
         }
@@ -88,7 +88,7 @@ class PersonViewModel: ObservableObject {
     
     
     func fetchTodayPersons(handler: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchPerson function")
             return
         }

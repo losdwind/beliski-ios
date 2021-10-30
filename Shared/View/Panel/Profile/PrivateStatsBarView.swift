@@ -1,22 +1,23 @@
 //
-//  StatsBarView.swift
+//  PrivateStatsBarView.swift
 //  Beliski
 //
-//  Created by Losd wind on 2021/10/29.
+//  Created by Losd wind on 2021/10/30.
 //
 
 import SwiftUI
 
-
-struct StatsBarView: View {
+struct PrivateStatsBarView: View {
+    
     @ObservedObject var profilevm:ProfileViewModel
-
+    
     var body: some View {
-        HStack(alignment: .center, spacing: 60){
+        // MARK: POSTS
+        HStack(alignment: .center) {
             
-            // MARK: POSTS
+            // MARK: - No.journals
             VStack(alignment: .center, spacing: 5, content: {
-                Text("13")
+                Text("131")
                     .font(.title2)
                     .fontWeight(.bold)
                 
@@ -24,14 +25,15 @@ struct StatsBarView: View {
                     .fill(Color.gray)
                     .frame(width: 20, height: 2, alignment: .center)
                 
-                Text("Posts")
+                Text("Journals")
                     .font(.callout)
                     .fontWeight(.medium)
             })
             
-            // MARK: LIKES
+            
+            // MARK: - No. Completion/ Tasks
             VStack(alignment: .center, spacing: 5, content: {
-                Text("213")
+                Text("15/20")
                     .font(.title2)
                     .fontWeight(.bold)
                 
@@ -39,14 +41,14 @@ struct StatsBarView: View {
                     .fill(Color.gray)
                     .frame(width: 20, height: 2, alignment: .center)
                 
-                Text("Likes")
+                Text("Tasks")
                     .font(.callout)
                     .fontWeight(.medium)
             })
             
-            // MARK: Subs
+            // MARK: - No. Persons
             VStack(alignment: .center, spacing: 5, content: {
-                Text("7")
+                Text("14")
                     .font(.title2)
                     .fontWeight(.bold)
                 
@@ -54,17 +56,16 @@ struct StatsBarView: View {
                     .fill(Color.gray)
                     .frame(width: 20, height: 2, alignment: .center)
                 
-                Text("Subs")
+                Text("Persons")
                     .font(.callout)
                     .fontWeight(.medium)
             })
-            
         }
     }
 }
 
-struct StatsBarView_Previews: PreviewProvider {
+struct PrivateStatsBarView_Previews: PreviewProvider {
     static var previews: some View {
-        StatsBarView(profilevm: ProfileViewModel())
+        PrivateStatsBarView(profilevm: ProfileViewModel())
     }
 }

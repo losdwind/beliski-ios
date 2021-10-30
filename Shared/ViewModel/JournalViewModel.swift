@@ -28,7 +28,7 @@ class JournalViewModel:ObservableObject {
     
     func uploadJournal(handler: @escaping (_ success: Bool) -> ()) {
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid in uploadJournal func")
             return }
         
@@ -59,7 +59,7 @@ class JournalViewModel:ObservableObject {
     
     func deleteJournal(journal: Journal, handler: @escaping (_ success: Bool) -> ()){
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid")
             return }
         
@@ -83,7 +83,7 @@ class JournalViewModel:ObservableObject {
     
     
     func fetchJournals(handler: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchJournal function")
             return
         }
@@ -97,7 +97,7 @@ class JournalViewModel:ObservableObject {
     
     
     func fetchTodayJournals(handler: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchJournal function")
             return
         }

@@ -65,9 +65,6 @@ struct LogInView: View {
                     destination:
                         SignUpView()
                         .navigationBarHidden(true)
-                        .onDisappear(perform: {
-                            presentationMode.wrappedValue.dismiss()
-                        })
                     ,
                     label: {
                         HStack {
@@ -94,7 +91,7 @@ struct LogInView: View {
                 if newUser {
                     // NEW USER
                     if let providerID = returnedProviderID, !isError {
-                        self.errorMessage = "User exists in the database, retry sign in or sign up as a new user"
+                        self.errorMessage = "User exists in the database,but failed to get info, retry sign in or sign up as a new user"
                         self.isShowingAlert.toggle()
                     } else {
                         // ERROR

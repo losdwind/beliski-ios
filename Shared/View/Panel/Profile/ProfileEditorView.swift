@@ -23,7 +23,7 @@ struct ProfileEditorView: View {
             Section{
                 HStack{
                     Text("Full Name")
-                    TextField("Full Name", text: $profilevm.user.fullname ?? "", prompt: Text("e.g. Adam Smith"))
+                    TextField("Full Name", text: $profilevm.user.nickName ?? "", prompt: Text("e.g. Adam Smith"))
                 }
                 
                 HStack{

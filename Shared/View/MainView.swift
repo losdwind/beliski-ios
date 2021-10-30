@@ -22,11 +22,13 @@ struct MainView: View {
     @StateObject var searchvm = SearchViewModel()
     @StateObject var tagPanelvm = TagPanelViewModel()
     @StateObject var branchvm = BranchViewModel()
+    @StateObject var communityvm = CommunityViewModel()
+    
 
 
     var body: some View {
         
-        if AuthViewModel.shared.isShowingAuthView {
+        if AuthViewModel.shared.userID == nil {
             
             LogInView()
             
@@ -70,7 +72,7 @@ struct MainView: View {
                 
                 
                 // Show team formed by connected users, message and personal profile
-                CommunityView()
+                CommunityView(communityvm: communityvm)
                     .tabItem {
                         VStack{
                             Image(systemName: "building.2")

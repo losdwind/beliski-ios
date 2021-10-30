@@ -11,11 +11,12 @@ struct SignUpView: View {
     
     @Environment(\.colorScheme) var colorScheme
     @State private var email = ""
-    @State private var fullname = ""
+    @State private var nickname = ""
     @State private var username = ""
     @State private var password = ""
     @State private var selectedImage: UIImage = UIImage()
     @State private var isShowingimagePicker = false
+    @State private var isShowingAlert = false
     @Environment(\.presentationMode) var mode
     
     var body: some View {
@@ -27,19 +28,22 @@ struct SignUpView: View {
                     Button(action: {
                         isShowingimagePicker.toggle() }) {
                             
-                            if selectedImage == UIImage() {
+                            if selectedImage != UIImage() {
                                 Image(uiImage: selectedImage)
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: 140, height: 140)
                                     .clipShape(Circle())
+                                    .background(.white,in: Circle())
+                                    .padding()
                             } else {
-                                Image(systemName:"plus")
-                                    .renderingMode(.template)
+                                Image(systemName:"person")
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width: 140, height: 140)
-                                    .background(.primary)
+                                    .frame(width: 100, height: 100)
+                                    .cornerRadius(50)
+                                    .background(.white,in: Circle())
+                                    .padding()
                             }
                         
                     }.sheet(isPresented: $isShowingimagePicker, content: {
@@ -66,7 +70,7 @@ struct SignUpView: View {
                     .padding(.horizontal, 32)
                 
 
-                CustomTextField(text: $fullname, placeholder: "Full Name", labelImage: "person")
+                CustomTextField(text: $nickname, placeholder: "Nick Name", labelImage: "person")
                     .padding()
                     .cornerRadius(10)
                     .foregroundColor(.primary)
@@ -80,13 +84,13 @@ struct SignUpView: View {
             }
             
             Button(action: {
-                AuthViewModel.shared.register(withEmail: email, password: password,
-                                   image: selectedImage, fullname: fullname,
-                                              username: username)
+                AuthViewModel.shared.register(email: email, password: password,
+                                              profileImage: selectedImage, nickName: nickname,
+                                              userName: username)
                                                 {success in
                                                     if success {
                                                         // MARK: - need to async?
-                                                        mode.wrappedValue.dismiss()
+                                                        isShowingAlert.toggle()
                                                     }
                 }
                 
@@ -113,6 +117,13 @@ struct SignUpView: View {
                 }.foregroundColor(.primary)
             })
         }
+        .alert("Successfully Registered", isPresented: $isShowingAlert, actions: {
+            Button(action: {
+                mode.wrappedValue.dismiss()
+            }) {
+                Text("OK")
+            }
+        })
     }
 }
 

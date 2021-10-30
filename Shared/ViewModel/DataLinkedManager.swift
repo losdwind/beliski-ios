@@ -40,7 +40,7 @@ class DataLinkedManager: ObservableObject {
     // we can simplify by using print("\(String(describing: Self.self))")
     func fetchItems(completion: @escaping (_ sucess: Bool) -> ()){
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchJournal function")
             return
         }

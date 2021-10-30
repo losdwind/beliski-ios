@@ -20,7 +20,7 @@ class TaskViewModel: ObservableObject {
     
     func uploadTask(handler: @escaping (_ success: Bool) -> ()) {
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid in uploadTask func")
             return }
            let document = COLLECTION_USERS.document(userID).collection("tasks").document(task.id)
@@ -49,7 +49,7 @@ class TaskViewModel: ObservableObject {
     
     func deleteTask(task: Task, handler: @escaping (_ success: Bool) -> ()){
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid")
             return }
         
@@ -73,7 +73,7 @@ class TaskViewModel: ObservableObject {
     
     
     func fetchTasks(handler: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchTasks function")
             return
         }
@@ -87,7 +87,7 @@ class TaskViewModel: ObservableObject {
     
     
     func fetchTodayTasks(handler: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchTasks function")
             return
         }

@@ -112,7 +112,7 @@ class TagViewModel: ObservableObject {
     
 
     func uploadTag(tagName:String, ownerItemID:String, handler:@escaping (_ success:Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid in uploadTag func")
             return }
 
@@ -159,7 +159,7 @@ class TagViewModel: ObservableObject {
     
     /// delete one of the tagname of an item
     func deleteTag(tagName: String,ownerItemID:String, handler: @escaping (_ success: Bool) -> () ){
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid")
             return }
         
@@ -186,7 +186,7 @@ class TagViewModel: ObservableObject {
     /// delete the whole tag in firebase: dangerous!
     func deleteTag(tag: Tag, handler: @escaping (_ success: Bool) -> ()){
         
-        guard let userID = AuthViewModel.shared.currentUser?.id else {
+        guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid")
             return }
         
@@ -207,7 +207,7 @@ class TagViewModel: ObservableObject {
     
     
         func fetchAllTags(handler: @escaping (_ success: Bool) -> ()) {
-            guard let userID = AuthViewModel.shared.currentUser?.id else {
+            guard let userID = AuthViewModel.shared.userID else {
                 print("userID is not valid here in fetchTags function")
                 return
             }
@@ -223,7 +223,7 @@ class TagViewModel: ObservableObject {
 
     /// fetchTags from tagNames
 //    func fetchTags(from tagNames:Set<String>, handler: @escaping (_ success: Bool) -> ()) {
-//        guard let userID = AuthViewModel.shared.currentUser?.id else {
+//        guard let userID = AuthViewModel.shared.userID else {
 //            print("userID is not valid here in fetchTags function")
 //            return
 //        }
