@@ -72,7 +72,7 @@ struct WBScoreView: View {
             
 
         }
-        .padding()
+
     }
 }
 

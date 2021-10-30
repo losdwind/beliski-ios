@@ -12,54 +12,29 @@ struct OpenStatsBarView: View {
     @ObservedObject var profilevm:ProfileViewModel
 
     var body: some View {
+        ScrollView(.horizontal, showsIndicators: false){
         HStack(alignment: .center){
             
             // MARK: POSTS
-            VStack(alignment: .center, spacing: 5, content: {
-                Text("13")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Capsule()
-                    .fill(Color.gray)
-                    .frame(width: 20, height: 2, alignment: .center)
-                
-                Text("Posts")
-                    .font(.callout)
-                    .fontWeight(.medium)
-            })
+        
+            SingleEntryView(number: 13, text: "Posts")
             
             // MARK: LIKES
-            VStack(alignment: .center, spacing: 5, content: {
-                Text("213")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Capsule()
-                    .fill(Color.gray)
-                    .frame(width: 20, height: 2, alignment: .center)
-                
-                Text("Likes")
-                    .font(.callout)
-                    .fontWeight(.medium)
-            })
+        
+            SingleEntryView(number: 213, text: "Likes")
             
             // MARK: Subs
-            VStack(alignment: .center, spacing: 5, content: {
-                Text("7")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Capsule()
-                    .fill(Color.gray)
-                    .frame(width: 20, height: 2, alignment: .center)
-                
-                Text("Subs")
-                    .font(.callout)
-                    .fontWeight(.medium)
-            })
+
+            SingleEntryView(number: 7, text: "Subs")
+            
+            
+            // MARK: Messages
+            SingleEntryView(number: 1293, text: "Msgs.")
             
         }
+            
+        }
+
     }
 }
 
@@ -68,3 +43,5 @@ struct StatsBarView_Previews: PreviewProvider {
         OpenStatsBarView(profilevm: ProfileViewModel())
     }
 }
+
+

@@ -29,24 +29,27 @@ struct SearchView: View {
                             TextField("Search", text: $searchvm.keywords, prompt: Text("Put a keyword here"))
                                 .foregroundColor(.primary)
                             
-                            Button {
-                                searchvm.fetchIDsFromFilter { success in
-                                    if success {
-                                        print("successfully get the filtered items and assign to item list view")
-                                        journalvm.fetchedJournals = searchvm.filteredJournals
-                                        taskvm.fetchedTasks = searchvm.filteredTasks
-                                        personvm.fetchedPersons = searchvm.fileteredPersons
-                                    } else {
-                                        print("failed to get the filtered items or assign to item list view ")
+                            NavigationLink(destination: SearchResultComplexView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm) ) {
+                                Button {
+                                    searchvm.fetchIDsFromFilter { success in
+                                        if success {
+                                            print("successfully get the filtered items and assign to item list view")
+                                            journalvm.fetchedJournals = searchvm.filteredJournals
+                                            taskvm.fetchedTasks = searchvm.filteredTasks
+                                            personvm.fetchedPersons = searchvm.fileteredPersons
+                                        } else {
+                                            print("failed to get the filtered items or assign to item list view ")
+                                        }
+                                        
+                                        
                                     }
                                     
-                                    
+                                } label: {
+                                    Image(systemName: "magnifyingglass")
+                                        .foregroundColor(Color.pink)
                                 }
-                                
-                            } label: {
-                                Image(systemName: "magnifyingglass")
-                                    .foregroundColor(Color.pink)
                             }
+                            
                         }
                     } header: {
                         Text("Keywords")
@@ -89,13 +92,6 @@ struct SearchView: View {
                     
                     
                 }
-                
-                // results list
-                Text("Result")
-                    .font(.title3)
-                
-            SearchResultComplexView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm)
-                
         }
             
                 

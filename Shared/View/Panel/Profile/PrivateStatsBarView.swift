@@ -12,55 +12,24 @@ struct PrivateStatsBarView: View {
     @ObservedObject var profilevm:ProfileViewModel
     
     var body: some View {
+        
+        ScrollView(.horizontal, showsIndicators: false){
         // MARK: POSTS
         HStack(alignment: .center) {
             
             // MARK: - No.journals
-            VStack(alignment: .center, spacing: 5, content: {
-                Text("131")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Capsule()
-                    .fill(Color.gray)
-                    .frame(width: 20, height: 2, alignment: .center)
-                
-                Text("Journals")
-                    .font(.callout)
-                    .fontWeight(.medium)
-            })
-            
+            SingleEntryView(number: 131, text: "Journals")
             
             // MARK: - No. Completion/ Tasks
-            VStack(alignment: .center, spacing: 5, content: {
-                Text("15/20")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Capsule()
-                    .fill(Color.gray)
-                    .frame(width: 20, height: 2, alignment: .center)
-                
-                Text("Tasks")
-                    .font(.callout)
-                    .fontWeight(.medium)
-            })
+            SingleEntryView(number: 15/20, text: "Tasks")
             
             // MARK: - No. Persons
-            VStack(alignment: .center, spacing: 5, content: {
-                Text("14")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Capsule()
-                    .fill(Color.gray)
-                    .frame(width: 20, height: 2, alignment: .center)
-                
-                Text("Persons")
-                    .font(.callout)
-                    .fontWeight(.medium)
-            })
+            SingleEntryView(number: 14, text: "Persons")
+            
+            // MARK: - No. Persons
+            SingleEntryView(number: 14, text: "Persons")
         }
+    }
     }
 }
 

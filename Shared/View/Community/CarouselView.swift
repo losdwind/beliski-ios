@@ -9,33 +9,36 @@ import SwiftUI
 
 struct CarouselView: View {
     
-    @Binding var branchs:[Branch]
-    @State var selection: Int = 1
-    let maxCount: Int = 8
+    @Binding var branches:[Branch]
+    @State var selection: Int = 0
     @State var timerAdded: Bool = false
     
     var body: some View {
-        withAnimation(.default) {
-            TabView(selection: $selection,
-                    content:  {
-                        ForEach(branchs) { branch in
-                            BranchCardView(branch: branch)
+            if branches.count > 0 {
+                withAnimation(.default) {
+                TabView(selection: $selection,
+                        content:  {
+                    
+                    ForEach(0..<branches.count, id:\.self) { i in
+                        BranchCardView(branch: branches[i]).tag(i)
+                            }
+                        })
+                    .tabViewStyle(PageTabViewStyle())
+                    .frame(height: 300)
+                    .onAppear(perform: {
+                        if !timerAdded {
+                            addTimer(maxCount: branches.count)
                         }
                     })
-                .tabViewStyle(PageTabViewStyle())
-                .frame(height: 300)
-                .onAppear(perform: {
-                    if !timerAdded {
-                        addTimer()
-                    }
-                })
+            }
+            
         }
      
     }
     
     // MARK: FUNCTIONS
     
-    func addTimer() {
+    func addTimer(maxCount:Int) {
         
         timerAdded = true
         let timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (timer) in
@@ -55,7 +58,7 @@ struct CarouselView: View {
 struct CarouselView_Previews: PreviewProvider {
     @State static var branchs = [Branch]()
     static var previews: some View {
-        CarouselView(branchs: $branchs)
+        CarouselView(branches: $branchs)
             .previewLayout(.sizeThatFits)
     }
 }

@@ -26,6 +26,7 @@ struct TaskListView: View {
     
     
     var body: some View {
+        ScrollView(.vertical, showsIndicators: false){
         LazyVStack(alignment:.leading){
             ForEach(taskvm.fetchedTasks, id:\.id) { task in
                 TaskRowItemView(task: task)
@@ -112,6 +113,8 @@ struct TaskListView: View {
         }
         .padding()
         .frame(maxWidth: 640)
+        }
+        
 
 
     }

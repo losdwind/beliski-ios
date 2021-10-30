@@ -18,52 +18,111 @@ struct PanelView: View {
     @State var selectedTab:WellbeingTab = .Career
     var body: some View {
         NavigationView{
-            Form {
-                Section{
+            ScrollView {
+                
+                VStack{
                     
-                    
+                    VStack{
                         
-                    HStack{
-                        Text("Open")
+                        Text("Abstract")
                             .font(.title3.bold())
-                            .foregroundColor(Color.pink)
+                            .frame(maxWidth: .infinity,alignment: .leading)
                         
-                        Spacer()
-                        OpenStatsBarView(profilevm: profilevm)
+                        
+                        
+                        HStack{
+                            Text("Open")
+                                .font(.title3.bold())
+                                .foregroundColor(Color.pink)
+                                .frame(minWidth:80)
+                            
+                            Spacer()
+                            OpenStatsBarView(profilevm: profilevm)
 
+                        }
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                            .cornerRadius(18)
+                            
+                        HStack{
+                            Text("Private")
+                                .font(.title3.bold())
+                                .foregroundColor(Color.pink)
+                                .frame(minWidth:80)
+                            
+                            Spacer()
+                            PrivateStatsBarView(profilevm: profilevm)
+
+                        }
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                            .cornerRadius(18)
+                        
+                        VStack{
+                            
+                            NavigationLink {
+                                WordCloudView()
+                            } label: {
+                                SettingsRowView(leftIcon: "lightbulb.circle", text: "Word Cloud", color: Color.pink)
+                            }
+                            
+                            NavigationLink {
+                                LinkNetworkView()
+                            } label: {
+                                SettingsRowView(leftIcon: "network", text: "Link Network", color: Color.pink)
+                            }
+
+
+                       
+                            NavigationLink {
+                                AllTagsView()
+                            } label: {
+                                SettingsRowView(leftIcon: "number.circle", text: "All Tags", color: Color.pink)
+                            }
+
+                            
+                            
+                            NavigationLink {
+                                MediaFileView()
+                            } label: {
+                                SettingsRowView(leftIcon: "paperclip.circle", text: "Media File", color: Color.pink)
+                            }
+
+                            
+                            Divider()
+                            NavigationLink {
+                                MainThreadView()
+                            } label: {
+                                SettingsRowView(leftIcon: "wind", text: "Main Threads", color: Color.pink)
+                            }
+
+                            
+                            NavigationLink {
+                                HiddenClueView()
+                            } label: {
+                                SettingsRowView(leftIcon: "waveform.and.magnifyingglass", text: "Hidden Clues", color: Color.pink)
+                            }
+
+                        }
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(10)
                     }
                         
-                    HStack{
-                        Text("Private")
-                            .font(.title3.bold())
-                            .foregroundColor(Color.pink)
-                        
-                        Spacer()
-                        PrivateStatsBarView(profilevm: profilevm)
+           
 
-                    }
-                    
-                        
-                    
-                }header: {
-                    Text("Abstract")
-                        .font(.title3.bold())
-                        .frame(maxWidth: .infinity,alignment: .leading)
-
-                }
-
-                
-                
-                Section {
-                    
-                    WBScoreView()
-                    
-                } header: {
+                VStack{
                     Text("Wellbeing Index")
                         .font(.title3.bold())
                         .frame(maxWidth: .infinity,alignment: .leading)
-
+                        
+                        WBScoreView()
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(18)
                 }
+
+                
                 
                 Picker("Filter", selection:$selectedTab){
                     // Todo: - check the WellbeingTab Enum
@@ -81,26 +140,45 @@ struct PanelView: View {
                 .pickerStyle(.segmented)
                 
                 //: Tabview
-                TabView(selection: $selectedTab) {
                     
-                    CareerAbstractView().tag(WellbeingTab.Career)
-                    SocialAbstractView().tag(WellbeingTab.Social)
-                    PhysicalAbstractView().tag(WellbeingTab.Physical)
-                    FinancialAbstractView().tag(WellbeingTab.Financial)
-                    CommunityAbstractView().tag(WellbeingTab.Community)
-                        
+                    switch selectedTab {
+                    case .Career:
+                        CareerAbstractView().tag(WellbeingTab.Career)
+                    case .Social:
+                        SocialAbstractView().tag(WellbeingTab.Social)
+                    case .Physical:
+                        PhysicalAbstractView().tag(WellbeingTab.Physical)
+                    case .Financial:
+                        FinancialAbstractView().tag(WellbeingTab.Financial)
+                    case .Community:
+                        CommunityAbstractView().tag(WellbeingTab.Community)
+                    }
                     
-                }
-                .tabViewStyle(PageTabViewStyle())
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+        Spacer()
                
-                
+                }
+                .padding()
+                .frame(alignment:.top)
             }
+            .navigationTitle("Dashboard")
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         isShowingSettingsView.toggle()
                     } label: {
-                        Image(systemName: "gearshape")
+                        Image(systemName: "gear.circle")
                     }
                 }
                 
@@ -120,6 +198,7 @@ struct PanelView: View {
             }
 
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         
     }
 }
@@ -127,5 +206,49 @@ struct PanelView: View {
 struct PanelView_Previews: PreviewProvider {
     static var previews: some View {
         PanelView(profilevm: ProfileViewModel())
+            .preferredColorScheme(.light)
     }
 }
+
+
+struct TabButton: View{
+    @Binding var currentTab: String
+    var title: String
+    // For bottom indicator slide Animation...
+    var animationID: Namespace.ID
+    
+    var body: some View{
+        
+        Button {
+            
+            withAnimation(.spring()){
+                currentTab = title
+            }
+            
+        } label: {
+            
+            VStack{
+                
+                Text(title)
+                    .fontWeight(.semibold)
+                    .foregroundColor(currentTab == title ? .black : .gray)
+                
+                if currentTab == title{
+                    Rectangle()
+                        .fill(.black)
+                        .matchedGeometryEffect(id: "TAB", in: animationID)
+                        .frame(width: 50, height: 1)
+                }
+                else{
+                    Rectangle()
+                        .fill(.clear)
+                        .frame(width: 50, height: 1)
+                }
+            }
+            // Taking Available Width...
+            .frame(maxWidth: .infinity)
+        }
+
+    }
+}
+

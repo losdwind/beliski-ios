@@ -110,6 +110,7 @@ struct PersonListView: View {
                     }
                 }
                 .padding()
+                .frame(maxWidth: 640)
 
             }
             

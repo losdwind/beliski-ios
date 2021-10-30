@@ -63,18 +63,26 @@ struct TimelineView: View {
                 
                 
                 //: Tabview
-                TabView(selection: $timelineManager.selectedTab) {
-                    
-                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)
-                    
-                    
-                    TaskListView(taskvm: taskvm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger).tag(TimelineTab.EVENTS)
-                    
-                    PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TOPICS)
-                        
-                    
+                switch timelineManager.selectedTab {
+                case .TODAY:
+                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                case .EVENTS:
+                    TaskListView(taskvm: taskvm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
+                case .TOPICS:
+                    PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
                 }
-                .tabViewStyle(PageTabViewStyle())
+//                TabView(selection: $timelineManager.selectedTab) {
+//
+//                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)
+//
+//
+//                    TaskListView(taskvm: taskvm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger).tag(TimelineTab.EVENTS)
+//
+//                    PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TOPICS)
+//
+//
+//                }
+//                .tabViewStyle(PageTabViewStyle())
                 //                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
                 
             } //: VStack
@@ -134,6 +142,7 @@ struct TimelineView: View {
             )
             
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

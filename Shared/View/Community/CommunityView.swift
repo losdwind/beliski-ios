@@ -22,7 +22,7 @@ struct CommunityView: View {
     var body: some View {
         NavigationView{
             VStack{
-                CarouselView(branchs: $communityvm.openBranchs)
+                CarouselView(branches: $communityvm.openBranchs)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -59,6 +59,7 @@ struct CommunityView: View {
                 NotificationView()
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         
         
     }

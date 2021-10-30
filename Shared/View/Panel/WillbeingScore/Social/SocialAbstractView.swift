@@ -10,6 +10,7 @@ import SwiftUI
 struct SocialAbstractView: View {
     private var analytics:[Analytics] = analyticsData
     var body: some View {
+        ScrollView(.vertical, showsIndicators: false){
         VStack(alignment:.leading){
             Text("Activeness")
                 .font(.title.bold())
@@ -20,6 +21,8 @@ struct SocialAbstractView: View {
                 .foregroundColor(.gray)
             BarGraph(analytics: analytics)
         }
+        }
+
     }
 }
 

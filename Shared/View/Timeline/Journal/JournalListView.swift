@@ -108,6 +108,7 @@ struct JournalListView: View {
 
             }
         .padding()
+        .frame(maxWidth: 640)
 
         }
     }

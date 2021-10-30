@@ -13,6 +13,7 @@ struct LinkedItemsView: View {
     
     var body: some View {
         
+        // TODO: - add a list without segemeting
         ScrollView(.vertical, showsIndicators: false){
                 GroupBox {
                     LazyVStack{

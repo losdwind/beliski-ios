@@ -9,7 +9,11 @@ import SwiftUI
 
 struct FinancialAbstractView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            LineGraph(data: [
+                989,1200,750,790,650,950,1200,600,500,600,890,1203,1400,900,1250,1600,1200])
+                .frame(height: 220)
+                .padding(.top,25)
+        
     }
 }
 

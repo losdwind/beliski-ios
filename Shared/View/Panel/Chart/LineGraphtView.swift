@@ -197,14 +197,15 @@ struct LineGraph: View {
 }
 
 struct LineGraph_Previews: PreviewProvider {
-    // Sample Plot For Graph.....
-    static let samplePlot: [CGFloat] = [
-
-        989,1200,750,790,650,950,1200,600,500,600,890,1203,1400,900,1250,
-    1600,1200
-    ]
-
     static var previews: some View {
-       LineGraph(data: samplePlot)
+        LineGraph(data: samplePlot)
+            
+            
     }
 }
+
+let samplePlot: [CGFloat] = [
+
+    989,1200,750,790,650,950,1200,600,500,600,890,1203,1400,900,1250,
+1600,1200
+]
