@@ -14,7 +14,10 @@ class TimelineManager: ObservableObject {
     static let shared = TimelineManager()
     
     @Published var selectedMainTab:MainTab = .timeline
+    
     @Published var selectedTab:TimelineTab = .TODAY
+    @Published var selectedMenu:SearchType = .person
+
     
     @Published var showFilterView: Bool = false
     

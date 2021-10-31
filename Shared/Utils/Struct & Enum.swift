@@ -76,13 +76,14 @@ struct DatabaseJournalField { // Fields within Post Document in Database
     
 }
 
-enum SearchType {
+enum SearchType: String, CaseIterable {
     case journal
     case task
     case person
+    case branch
 }
 
-enum UploadType {
+enum UploadType:String, CaseIterable {
     case profile
     case journal
     case task

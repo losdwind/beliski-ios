@@ -13,6 +13,9 @@ struct PersonItemView: View {
     
     var person: Person
     @StateObject var personTagvm:TagViewModel
+    var isShowingPhtos:Bool = true
+    var isShowingDescription:Bool = true
+    var isShowingTags:Bool = true
     
     
     init(person: Person, tagNames: [String], OwnerItemID: String){
@@ -60,8 +63,9 @@ struct PersonItemView: View {
                     AsyncImage(url: URL(string:person.avatarURL)) { image in
                         image
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
+                            .aspectRatio(contentMode: .fill)
                             .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+                            .clipShape(Circle())
                     } placeholder: {
                         Image(systemName:"person.circle")
                             .resizable()
@@ -83,21 +87,29 @@ struct PersonItemView: View {
                         .font(.footnote)
                     
                 }
+                Spacer()
             }
             
-            Text(person.description)
-                .font(.body)
-                .multilineTextAlignment(.leading)
-                .foregroundColor(.primary)
+            if isShowingDescription {
+                Text(person.description)
+                    .font(.body)
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(.primary)
+            }
+            
             
             
             // photos
-            if person.photoURLs.isEmpty == false{
-                ImageGridView(imageURLs: person.photoURLs)
+            if isShowingPhtos {
+                if person.photoURLs.isEmpty == false{
+                    ImageGridView(imageURLs: person.photoURLs)
+                }
             }
             
             
-            TagCollectionView(tagvm: personTagvm)
+            if isShowingTags{
+                TagCollectionView(tagvm: personTagvm)
+            }
             
             
         }
@@ -109,7 +121,7 @@ struct PersonItemView: View {
 
 struct PersonItemView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonItemView(person: Person(), tagNames: [], OwnerItemID: "")
+        PersonItemView(person: Person(id: "", serverTimestamp: Timestamp(date: Date()), localTimestamp: Timestamp(date: Date()), ownerID: "", linkedItems: [], address: [:], birthday: Timestamp(date: Date()) , contact: "1898723918", description: "A great man with warm heart and respect to others, good at making fun art and do not like playing cards", wordCount: 21, firstName: "Adam", lastName: "Smith", avatarURL: "gs://beliski.appspot.com/person_medias/17CE632F-5946-4866-A391-6FE0420BA67C", photoURLs: [], audioURLs: [], videoURLs: [], priority: 1, tagNames: ["fun"]), tagNames: ["freat","Great"], OwnerItemID: "")
             .previewLayout(.sizeThatFits)
     }
 }

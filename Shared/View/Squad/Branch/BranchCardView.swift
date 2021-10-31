@@ -64,7 +64,7 @@ struct BranchCardView: View {
                             Image("animoji\(index)")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 35, height: 35)
+                                .frame(width: 20, height: 20)
                                 .padding(4)
                                 .background(.white,in: Circle())
                             // border...
@@ -85,7 +85,7 @@ struct BranchCardView: View {
                         .font(.caption)
                     HStack{
                         StarsView(rating: 4.3)
-                            .frame(width:80)
+                            .frame(width:60)
                         Text("4.3")
                     }
                     
@@ -93,7 +93,6 @@ struct BranchCardView: View {
                 }
                 
             }
-            .padding(.top,20)
         }
         .padding()
         .background(getColor(opentype: OpenType(rawValue:branch.Openess)!),in: RoundedRectangle(cornerRadius: 10))

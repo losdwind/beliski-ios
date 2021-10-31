@@ -27,6 +27,8 @@ struct SearchResultComplexView: View {
         case.person:
             PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
             
+        case .branch:
+            BranchCardListView()
         }
     }
 }

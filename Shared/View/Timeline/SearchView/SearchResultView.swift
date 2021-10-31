@@ -43,6 +43,8 @@ struct SearchResultView: View {
                 }
             }
             
+        case .branch:
+            BranchCardListView()
         }
         
         

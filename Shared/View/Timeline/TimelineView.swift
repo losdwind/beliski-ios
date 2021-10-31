@@ -20,7 +20,6 @@ struct TimelineView: View {
     @State var isShowingSearchView = false
     
     
-    
     init(timelineManger:TimelineManager, journalvm:JournalViewModel, taskvm:TaskViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel){
         self.timelineManager = timelineManger
         self.journalvm = journalvm
@@ -48,9 +47,14 @@ struct TimelineView: View {
                         
                         Text("Events").tag(TimelineTab.EVENTS)
                             .foregroundColor(timelineManager.selectedTab == .EVENTS ? .blue : .red)
+                                                
                         
-                        Text("Topics").tag(TimelineTab.TOPICS)
+                        Text("Topics")
+                        .tag(TimelineTab.TOPICS)
                             .foregroundColor(timelineManager.selectedTab == .TOPICS ? .blue : .red)
+                        
+                        
+                        
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal, 50)
@@ -69,7 +73,9 @@ struct TimelineView: View {
                 case .EVENTS:
                     TaskListView(taskvm: taskvm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
                 case .TOPICS:
-                    PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                    TopicView(timelineManager: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                    
+                    
                 }
 //                TabView(selection: $timelineManager.selectedTab) {
 //
@@ -149,5 +155,7 @@ struct TimelineView: View {
 struct TimelineView_Previews: PreviewProvider {
     static var previews: some View {
         TimelineView(timelineManger: TimelineManager(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
+            .preferredColorScheme(.light)
+            .environment(\.sizeCategory, .extraSmall)
     }
 }

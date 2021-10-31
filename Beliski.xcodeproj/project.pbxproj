@@ -193,6 +193,16 @@
 		29E1DDE4272DBEB000EC5E1D /* DoubleBarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDE2272DBEB000EC5E1D /* DoubleBarGraphView.swift */; };
 		29E1DDE6272DBF9600EC5E1D /* UserProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDE5272DBF9600EC5E1D /* UserProgressView.swift */; };
 		29E1DDE7272DBF9600EC5E1D /* UserProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDE5272DBF9600EC5E1D /* UserProgressView.swift */; };
+		29E1DDE9272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDE8272E41FF00EC5E1D /* PersonCompactItemView.swift */; };
+		29E1DDEA272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDE8272E41FF00EC5E1D /* PersonCompactItemView.swift */; };
+		29E1DDED272E4C3200EC5E1D /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDEC272E4C3200EC5E1D /* TopicView.swift */; };
+		29E1DDEE272E4C3200EC5E1D /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDEC272E4C3200EC5E1D /* TopicView.swift */; };
+		29E1DDF0272E4FE300EC5E1D /* BranchCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDEF272E4FE300EC5E1D /* BranchCardListView.swift */; };
+		29E1DDF1272E4FE300EC5E1D /* BranchCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDEF272E4FE300EC5E1D /* BranchCardListView.swift */; };
+		29E1DDF3272E54DD00EC5E1D /* BranchCardOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF2272E54DD00EC5E1D /* BranchCardOpenView.swift */; };
+		29E1DDF4272E54DD00EC5E1D /* BranchCardOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF2272E54DD00EC5E1D /* BranchCardOpenView.swift */; };
+		29E1DDF6272E591800EC5E1D /* SquadCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF5272E591800EC5E1D /* SquadCardView.swift */; };
+		29E1DDF7272E591800EC5E1D /* SquadCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF5272E591800EC5E1D /* SquadCardView.swift */; };
 		29ED10F32710311A00E67D8B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 29ED10F22710311A00E67D8B /* Kingfisher */; };
 		29ED10F92710422600E67D8B /* JournalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED10F82710422600E67D8B /* JournalItemView.swift */; };
 		29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED10F82710422600E67D8B /* JournalItemView.swift */; };
@@ -343,6 +353,11 @@
 		29E1DDDF272DB09700EC5E1D /* HiddenClueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenClueView.swift; sourceTree = "<group>"; };
 		29E1DDE2272DBEB000EC5E1D /* DoubleBarGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleBarGraphView.swift; sourceTree = "<group>"; };
 		29E1DDE5272DBF9600EC5E1D /* UserProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgressView.swift; sourceTree = "<group>"; };
+		29E1DDE8272E41FF00EC5E1D /* PersonCompactItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCompactItemView.swift; sourceTree = "<group>"; };
+		29E1DDEC272E4C3200EC5E1D /* TopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
+		29E1DDEF272E4FE300EC5E1D /* BranchCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardListView.swift; sourceTree = "<group>"; };
+		29E1DDF2272E54DD00EC5E1D /* BranchCardOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardOpenView.swift; sourceTree = "<group>"; };
+		29E1DDF5272E591800EC5E1D /* SquadCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadCardView.swift; sourceTree = "<group>"; };
 		29ED10F82710422600E67D8B /* JournalItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalItemView.swift; sourceTree = "<group>"; };
 		29ED10FB2710423800E67D8B /* JournalEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditorView.swift; sourceTree = "<group>"; };
 		29ED110527133D6E00E67D8B /* sound-rise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sound-rise.mp3"; sourceTree = "<group>"; };
@@ -420,6 +435,9 @@
 			children = (
 				2907B4A4272A7BEE001A3DA1 /* BranchCardView.swift */,
 				2907B4AB272A82D5001A3DA1 /* BranchCardEditorView.swift */,
+				29E1DDEF272E4FE300EC5E1D /* BranchCardListView.swift */,
+				29E1DDF2272E54DD00EC5E1D /* BranchCardOpenView.swift */,
+				29E1DDF5272E591800EC5E1D /* SquadCardView.swift */,
 			);
 			path = Branch;
 			sourceTree = "<group>";
@@ -599,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				29ED114F271AE49000E67D8B /* TimelineView.swift */,
+				29E1DDEB272E4C1C00EC5E1D /* Collection */,
 				29ED1113271899DE00E67D8B /* SearchView */,
 				2942C810271EC3A300ECD167 /* LinkedItemsView */,
 				29ED11352719E4B400E67D8B /* Task */,
@@ -779,6 +798,14 @@
 			path = Abstract;
 			sourceTree = "<group>";
 		};
+		29E1DDEB272E4C1C00EC5E1D /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				29E1DDEC272E4C3200EC5E1D /* TopicView.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
 		29ED10F72710421100E67D8B /* Journal */ = {
 			isa = PBXGroup;
 			children = (
@@ -828,6 +855,7 @@
 				29ED112D2719E49600E67D8B /* PersonListView.swift */,
 				29ED112E2719E49600E67D8B /* PersonEditorView.swift */,
 				29ED1155271B42B500E67D8B /* PersonDetailView.swift */,
+				29E1DDE8272E41FF00EC5E1D /* PersonCompactItemView.swift */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -994,6 +1022,7 @@
 				29552A6527100CD70056E675 /* JournalViewModel.swift in Sources */,
 				29C46C30270D600900754817 /* CommunityView.swift in Sources */,
 				2907B4B6272AE377001A3DA1 /* ChatView.swift in Sources */,
+				29E1DDF3272E54DD00EC5E1D /* BranchCardOpenView.swift in Sources */,
 				29E1DDE6272DBF9600EC5E1D /* UserProgressView.swift in Sources */,
 				29E1DD68272D27DD00EC5E1D /* CarouselView.swift in Sources */,
 				29ED1150271AE49000E67D8B /* TimelineView.swift in Sources */,
@@ -1020,12 +1049,14 @@
 				29E1DDAE272D746C00EC5E1D /* LabelView.swift in Sources */,
 				29E1DD73272D307C00EC5E1D /* LineGraphtView.swift in Sources */,
 				29ED10F92710422600E67D8B /* JournalItemView.swift in Sources */,
+				29E1DDF0272E4FE300EC5E1D /* BranchCardListView.swift in Sources */,
 				29C46C28270D600900754817 /* SquadView.swift in Sources */,
 				29552A54270F0F2E0056E675 /* ImagePicker.swift in Sources */,
 				29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29E1DDD7272DB06100EC5E1D /* AllTagsView.swift in Sources */,
 				29E1DD77272D318600EC5E1D /* CardView.swift in Sources */,
 				29E1DDDD272DB08600EC5E1D /* MainThreadView.swift in Sources */,
+				29E1DDED272E4C3200EC5E1D /* TopicView.swift in Sources */,
 				29E1DD65272D12F300EC5E1D /* PrivateStatsBarView.swift in Sources */,
 				29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */,
 				29E1DDC0272D746C00EC5E1D /* Line.swift in Sources */,
@@ -1064,6 +1095,8 @@
 				2942C80E271EB88800ECD167 /* DataLinkedManager.swift in Sources */,
 				29ED111627189A3200E67D8B /* SearchAndLinkingView.swift in Sources */,
 				29E1DDD4272DB04600EC5E1D /* LinkNetworkView.swift in Sources */,
+				29E1DDF6272E591800EC5E1D /* SquadCardView.swift in Sources */,
+				29E1DDE9272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */,
 				29E1DD6F272D2A0B00EC5E1D /* MessageView.swift in Sources */,
 				29E1DDB8272D746C00EC5E1D /* LineChartView.swift in Sources */,
 				29D2BA8F2727D4DA007F76B8 /* SettingsView.swift in Sources */,
@@ -1118,6 +1151,7 @@
 				29552A39270D89150056E675 /* CustomTextField.swift in Sources */,
 				29ED11472719E4CD00E67D8B /* PersonViewModel.swift in Sources */,
 				29E1DDD8272DB06100EC5E1D /* AllTagsView.swift in Sources */,
+				29E1DDEA272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */,
 				29E1DDAD272D746C00EC5E1D /* BarChartRow.swift in Sources */,
 				29E1DDCE272D9EAD00EC5E1D /* SingleEntryView.swift in Sources */,
 				2907B4C4272C0E7F001A3DA1 /* ProfileAvatarView.swift in Sources */,
@@ -1146,11 +1180,14 @@
 				29ED1154271AE71E00E67D8B /* TimelineManager.swift in Sources */,
 				29C46C00270D5E8A00754817 /* MainView.swift in Sources */,
 				29ED115D271D735000E67D8B /* TagViewModel.swift in Sources */,
+				29E1DDF4272E54DD00EC5E1D /* BranchCardOpenView.swift in Sources */,
 				29E1DDC5272D746C00EC5E1D /* PieChartRow.swift in Sources */,
 				29ED1157271B42B600E67D8B /* PersonDetailView.swift in Sources */,
 				29E1DDAF272D746C00EC5E1D /* LabelView.swift in Sources */,
+				29E1DDF7272E591800EC5E1D /* SquadCardView.swift in Sources */,
 				2942C858272010FF00ECD167 /* TagPanelView.swift in Sources */,
 				29E1DDE4272DBEB000EC5E1D /* DoubleBarGraphView.swift in Sources */,
+				29E1DDF1272E4FE300EC5E1D /* BranchCardListView.swift in Sources */,
 				29552A4F270F0BDE0056E675 /* LogInView.swift in Sources */,
 				29E1DDDE272DB08600EC5E1D /* MainThreadView.swift in Sources */,
 				2907B4CF272C1582001A3DA1 /* SettingsRowView.swift in Sources */,
@@ -1177,6 +1214,7 @@
 				29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */,
 				29E1DDBF272D746C00EC5E1D /* MultiLineChartView.swift in Sources */,
 				2924F1582729A789006CB556 /* SearchView.swift in Sources */,
+				29E1DDEE272E4C3200EC5E1D /* TopicView.swift in Sources */,
 				29E1DD89272D3B8200EC5E1D /* PhysicalAbstractView.swift in Sources */,
 				29E1DDC1272D746C00EC5E1D /* Line.swift in Sources */,
 				29E1DD8F272D3BA700EC5E1D /* CommunityAbstractView.swift in Sources */,
