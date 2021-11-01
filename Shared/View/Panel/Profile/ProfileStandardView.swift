@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-
+import Kingfisher
 
 struct ProfileStandardView: View {
     @ObservedObject var profilevm:ProfileViewModel
@@ -15,31 +15,47 @@ struct ProfileStandardView: View {
     var body: some View {
         HStack(alignment: .center, spacing: 30){
             
-            AsyncImage(url: URL(string: profilevm.user.profileImageUrl ?? "")) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 80)
-                    .padding(4)
-                    .background(.white,in: Circle())
-                    .background(
-                        Circle()
-                            .stroke(.black,lineWidth: 4)
-                    )
-                
-            } placeholder: {
-                Image("animoji1")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 80)
-                    .padding(4)
-                    .background(.white,in: Circle())
-                    .background(
-                        Circle()
-                            .stroke(.black,lineWidth: 4)
-                    )
-            }
+//            AsyncImage(url: URL(string: profilevm.user.profileImageUrl ?? "")) { image in
+//                image
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 80, height: 80)
+//                    .padding(4)
+//                    .background(.white,in: Circle())
+//                    .background(
+//                        Circle()
+//                            .stroke(.black,lineWidth: 4)
+//                    )
+//
+//            } placeholder: {
+//                Image("animoji1")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 80, height: 80)
+//                    .padding(4)
+//                    .background(.white,in: Circle())
+//                    .background(
+//                        Circle()
+//                            .stroke(.black,lineWidth: 4)
+//                    )
+//            }
             
+            
+            KFImage(URL(string: profilevm.user.profileImageUrl ?? ""))
+                .placeholder {
+                    // Placeholder while downloading.
+                    Image(systemName: "arrow.2.circlepath.circle")
+                        .font(.largeTitle)
+                        .opacity(0.3)
+                }
+                .resizable()
+                .frame(width: 80, height: 80)
+                .padding(4)
+                .background(.white,in: Circle())
+                .background(
+                    Circle()
+                        .stroke(.black,lineWidth: 4)
+                )
             
             VStack(alignment: .leading, spacing: 10){
                 Text(profilevm.user.nickName ?? "Aijie Shu")

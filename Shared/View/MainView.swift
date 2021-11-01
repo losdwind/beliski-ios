@@ -24,11 +24,11 @@ struct MainView: View {
     @StateObject var branchvm = BranchViewModel()
     @StateObject var communityvm = CommunityViewModel()
     
-
+    @AppStorage(CurrentUserDefaults.userID) var userID: String?
 
     var body: some View {
         
-        if AuthViewModel.shared.userID == nil {
+        if userID == nil {
             
             LogInView()
             

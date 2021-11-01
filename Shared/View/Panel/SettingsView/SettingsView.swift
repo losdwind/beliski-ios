@@ -24,7 +24,7 @@ struct SettingsView: View {
                 GroupBox(label: SettingsLabelView(labelText: "Beliski", labelImage: "dot.radiowaves.left.and.right"), content: {
                     HStack(alignment: .center, spacing: 10, content: {
                         
-                        Image("Black logo - no background")
+                        Image("Logo")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 80, height: 80, alignment: .center)
@@ -48,7 +48,20 @@ struct SettingsView: View {
                     
                     
                     Button(action: {
-                        signOut()
+                        
+
+                        AuthViewModel.shared.signout{ (success) in
+                            if success {
+                                print("Successfully logged out")
+                                presentationMode.wrappedValue.dismiss()
+                                // Dimiss settings view
+                                
+                            } else {
+                                print("Error logging out")
+                                self.showSignOutError.toggle()
+                            }
+                        }
+
                     }, label: {
                         SettingsRowView(leftIcon: "figure.walk", text: "Sign out", color: Color.pink)
                     })
@@ -84,7 +97,7 @@ struct SettingsView: View {
                 })
                 .padding()
                 
-                // MARK: SECTION 4: SIGN OFF
+                // MARK: SECTION 4: Footer
                 GroupBox {
                     Text("Beliski was made with love. \n All Rights Reserved \n Figurich Inc. \n Copyright 2020 ♥️")
                         .foregroundColor(.gray)
@@ -122,21 +135,6 @@ struct SettingsView: View {
         }
     }
     
-    
-    func signOut() {
-        AuthViewModel.shared.signout{ (success) in
-            if success {
-                print("Successfully logged out")
-                
-                // Dimiss settings view
-                self.presentationMode.wrappedValue.dismiss()
-                
-            } else {
-                print("Error logging out")
-                self.showSignOutError.toggle()
-            }
-        }
-    }
     
 }
 

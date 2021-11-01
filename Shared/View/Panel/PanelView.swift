@@ -109,8 +109,8 @@ struct PanelView: View {
                         .cornerRadius(10)
                     }
                         
-           
-
+                
+                    // MARK: Wellbeing Index
                 VStack{
                     Text("Wellbeing Index")
                         .font(.title3.bold())
@@ -120,52 +120,71 @@ struct PanelView: View {
                         .padding()
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(18)
+                    
+                    Picker("Filter", selection:$selectedTab){
+                        // Todo: - check the WellbeingTab Enum
+                        Text("Career").tag(WellbeingTab.Career)
+                            .foregroundColor(selectedTab == WellbeingTab.Career ? .blue : .pink)
+                        Text("Social").tag(WellbeingTab.Social)
+                            .foregroundColor(selectedTab == WellbeingTab.Social ? .blue : .pink)
+                        Text("Physical").tag(WellbeingTab.Physical)
+                            .foregroundColor(selectedTab == WellbeingTab.Physical ? .blue : .pink)
+                        Text("Financial").tag(WellbeingTab.Financial)
+                            .foregroundColor(selectedTab == WellbeingTab.Financial ? .blue : .pink)
+                        Text("Community").tag(WellbeingTab.Community)
+                            .foregroundColor(selectedTab == WellbeingTab.Community ? .blue : .pink)
+                    }
+                    .pickerStyle(.segmented)
+                    
+                    //: Tabview
+                        
+                        switch selectedTab {
+                        case .Career:
+                            CareerAbstractView().tag(WellbeingTab.Career)
+                        case .Social:
+                            SocialAbstractView().tag(WellbeingTab.Social)
+                        case .Physical:
+                            PhysicalAbstractView().tag(WellbeingTab.Physical)
+                        case .Financial:
+                            FinancialAbstractView().tag(WellbeingTab.Financial)
+                        case .Community:
+                            CommunityAbstractView().tag(WellbeingTab.Community)
+                        }
                 }
 
-                
-                
-                Picker("Filter", selection:$selectedTab){
-                    // Todo: - check the WellbeingTab Enum
-                    Text("Career").tag(WellbeingTab.Career)
-                        .foregroundColor(selectedTab == WellbeingTab.Career ? .blue : .pink)
-                    Text("Social").tag(WellbeingTab.Social)
-                        .foregroundColor(selectedTab == WellbeingTab.Social ? .blue : .pink)
-                    Text("Physical").tag(WellbeingTab.Physical)
-                        .foregroundColor(selectedTab == WellbeingTab.Physical ? .blue : .pink)
-                    Text("Financial").tag(WellbeingTab.Financial)
-                        .foregroundColor(selectedTab == WellbeingTab.Financial ? .blue : .pink)
-                    Text("Community").tag(WellbeingTab.Community)
-                        .foregroundColor(selectedTab == WellbeingTab.Community ? .blue : .pink)
-                }
-                .pickerStyle(.segmented)
-                
-                //: Tabview
-                    
-                    switch selectedTab {
-                    case .Career:
-                        CareerAbstractView().tag(WellbeingTab.Career)
-                    case .Social:
-                        SocialAbstractView().tag(WellbeingTab.Social)
-                    case .Physical:
-                        PhysicalAbstractView().tag(WellbeingTab.Physical)
-                    case .Financial:
-                        FinancialAbstractView().tag(WellbeingTab.Financial)
-                    case .Community:
-                        CommunityAbstractView().tag(WellbeingTab.Community)
+                    VStack{
+                        Text("Survey Results")
+                            .font(.title3.bold())
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                        ScrollView(.horizontal, showsIndicators: false){
+                            HStack{
+                                NavigationLink {
+                                    VIAView()
+                                } label: {
+                                    CardView(image: "VIA", title: "VIA Character \nStrength Survey", price: "Free", color: Color.white)
+                                }
+                                
+                                NavigationLink {
+                                    MBTIView()
+                                } label: {
+                                    CardView(image: "mbti", title: "Myers-Briggs \nType Indicator", price: "Free", color: Color.white)
+                                }
+
+                                NavigationLink {
+                                    BigFiveView()
+                                } label: {
+                                    CardView(image: "bigfive", title: "Big Five \npersonality traits", price: "Free", color: Color.white)
+                                }
+
+                                
+                            }
+                            .padding()
+                            
+                            
+                        }
+                            
+                        
                     }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-        Spacer()
                
                 }
                 .padding()

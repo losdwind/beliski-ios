@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
+import Kingfisher
 
 struct PersonItemView: View {
     
@@ -60,18 +61,31 @@ struct PersonItemView: View {
                         .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
                 } else{
                     
-                    AsyncImage(url: URL(string:person.avatarURL)) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
-                            .clipShape(Circle())
-                    } placeholder: {
-                        Image(systemName:"person.circle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
-                    }
+                    
+//                    AsyncImage(url: URL(string:person.avatarURL)) { image in
+//                        image
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fill)
+//                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+//                            .clipShape(Circle())
+//                    } placeholder: {
+//                        Image(systemName:"person.circle")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+//                    }
+//
+                    
+                    KFImage(URL(string:person.avatarURL))
+                        .placeholder {
+                            // Placeholder while downloading.
+                            Image(systemName: "arrow.2.circlepath.circle")
+                                .font(.largeTitle)
+                                .opacity(0.3)
+                        }
+                        .resizable()
+                        .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+                        .clipShape(Circle())
                 }
                 
                 

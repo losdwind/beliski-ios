@@ -25,15 +25,15 @@ struct SingleImageView: View {
     let imageURL: String
     var body: some View {
         // 按照最大区域 180x180 等比缩放
-        AsyncImage(url: URL(string: imageURL)){
-            image in
-            image
-                .resizable()
-        } placeholder: {
-            ProgressView()
-        }
-        .aspectRatio(contentMode: .fit)
-        .frame(maxWidth: 180, maxHeight: 180, alignment: .leading)
+        KFImage(URL(string: imageURL))
+            .placeholder {
+                // Placeholder while downloading.
+                Image(systemName: "arrow.2.circlepath.circle")
+                    .font(.largeTitle)
+                    .opacity(0.3)
+            }
+            .resizable()
+            .frame(maxWidth: 180, maxHeight: 180, alignment: .leading)
         
         
     }
@@ -74,16 +74,18 @@ struct ImageGridView: View {
     func rowBody(row: Int, isLast: Bool) -> some View {
         HStack(spacing: 6) {
             ForEach(0 ..< (isLast ? self.lastRowCols : self.cols), id: \.self) { col in
-                AsyncImage(url: URL(string: imageURLs[row * self.cols + col])) { image in
-                    image.resizable()
-                    
-                } placeholder: {
-                    ProgressView()
-                }
-                .aspectRatio(contentMode: .fill)
-                .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
-                .aspectRatio(1, contentMode: .fill)
-                .clipped()
+                KFImage(URL(string: imageURLs[row * self.cols + col]))
+                    .placeholder {
+                        // Placeholder while downloading.
+                        Image(systemName: "arrow.2.circlepath.circle")
+                            .font(.largeTitle)
+                            .opacity(0.3)
+                    }
+                    .resizable()
+                
+                    .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
+                    .aspectRatio(1, contentMode: .fill)
+                    .clipped()
                 
             }
         }
@@ -171,5 +173,52 @@ struct TimestampView: View {
         Text("\(time) ago")
             .foregroundColor(.secondary)
             .font(.system(size: 14))
+    }
+}
+
+
+
+// Card View..
+
+struct CardView: View{
+
+    var image:String
+    var title:String
+    var price:String
+    var color:Color
+    
+    var body: some View{
+        VStack(spacing: 15){
+            
+            Image(image)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .foregroundColor(.white)
+                .frame(width: 50, height: 50)
+                .padding()
+                .background(color, in: Circle())
+            
+            Text(title)
+                .font(.title3.bold())
+            
+            Text(price)
+                .fontWeight(.semibold)
+                .foregroundColor(.gray)
+        }
+        .padding(.vertical)
+        .padding(.horizontal,25)
+        .background(.white,in: RoundedRectangle(cornerRadius: 15))
+        // shadows...
+        .shadow(color: .black.opacity(0.05), radius: 5, x: 5, y: 5)
+        .shadow(color: .black.opacity(0.03), radius: 5, x: -5, y: -5)
+    }
+    
+
+}
+
+struct CardView_Previews:PreviewProvider {
+    
+    static var previews: some View {
+        CardView(image: "VIA", title: "Character Strength", price: "Free", color: Color.white)
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Kingfisher
 struct ProfileAvatarView: View {
     
     var profileImageURL:String?
@@ -16,24 +16,26 @@ struct ProfileAvatarView: View {
         
             
             if let profileImageURL = profileImageURL {
-                AsyncImage(url: URL(string: profileImageURL)) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20, height: 20)
-                        .padding(4)
-                        .background(.white,in: Circle())
-                    // border...
-                        .background(
-                            
-                            Circle()
-                                .stroke(.black,lineWidth: 1)
-                        )
-                }
-                        
-                 placeholder: {
-                    ProgressView()
-                }
+                KFImage(URL(string: profileImageURL))
+                    .placeholder {
+                        // Placeholder while downloading.
+                        Image(systemName: "arrow.2.circlepath.circle")
+                            .font(.largeTitle)
+                            .opacity(0.3)
+                    }
+                 .resizable()
+                 .aspectRatio(contentMode: .fit)
+                 .frame(width: 20, height: 20)
+                 .padding(4)
+                 .background(.white,in: Circle())
+             // border...
+                 .background(
+                     
+                     Circle()
+                         .stroke(.black,lineWidth: 1)
+                 )
+                 
+                 
             } else {
                 Image("animoji1")
                     .resizable()

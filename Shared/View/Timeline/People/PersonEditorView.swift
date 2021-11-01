@@ -12,6 +12,7 @@ import UIKit
 //import iTextField
 //import iPhoneNumberField
 
+import Kingfisher
 struct PersonEditorView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -50,15 +51,18 @@ struct PersonEditorView: View {
                                 .frame(width: 80, height: 80, alignment: .leading)
                                 .cornerRadius(40)
                         } else {
-                            AsyncImage(url: URL(string: personvm.person.avatarURL)) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 80, height: 80, alignment: .leading)
-                                    .cornerRadius(40)
-                            } placeholder: {
-                                ProgressView()
+                            KFImage(URL(string: personvm.person.avatarURL)) .placeholder {
+                                // Placeholder while downloading.
+                                Image(systemName: "arrow.2.circlepath.circle")
+                                    .font(.largeTitle)
+                                    .opacity(0.3)
                             }
+                            .resizable()
+                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+                            .clipShape(Circle())
+                            
+                            
+                            
                             
                         }
                         

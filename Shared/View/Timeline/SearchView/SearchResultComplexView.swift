@@ -16,6 +16,7 @@ struct SearchResultComplexView: View {
     @ObservedObject var tagPanelvm:TagPanelViewModel
 
     var body: some View {
+        
         switch searchvm.searchType {
         case .journal:
             

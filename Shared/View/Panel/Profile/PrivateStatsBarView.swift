@@ -17,6 +17,9 @@ struct PrivateStatsBarView: View {
         // MARK: POSTS
         HStack(alignment: .center) {
             
+            // MARK: - No. Persons
+            SingleEntryView(number: 14, text: "Branch")
+            
             // MARK: - No.journals
             SingleEntryView(number: 131, text: "Journals")
             
@@ -26,8 +29,7 @@ struct PrivateStatsBarView: View {
             // MARK: - No. Persons
             SingleEntryView(number: 14, text: "Persons")
             
-            // MARK: - No. Persons
-            SingleEntryView(number: 14, text: "Persons")
+            
         }
     }
     }
