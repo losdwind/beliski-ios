@@ -33,13 +33,6 @@ struct CommunityView: View {
                 
                 CategoryView(communityvm: communityvm)
                 
-                
-                
-                
-                
-                
-                
-                
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

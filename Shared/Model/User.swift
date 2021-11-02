@@ -16,7 +16,7 @@ struct User: Identifiable, Codable, Hashable {
     var email: String?
     var providerID:String?
     var providerName: String?
-    var profileImageUrl: String?
+    var profileImageURL: String?
     var userName: String?
     var nickName: String? //first name, family name
     var dateCreated:Timestamp?

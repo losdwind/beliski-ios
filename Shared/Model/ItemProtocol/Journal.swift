@@ -33,16 +33,4 @@ struct Journal:Identifiable, Codable, Hashable, Item{
     //    var location: CLLocation? it is not support by codable protocal, pending solved
     
     
-    func convertFIRTimestamptoString(timestamp: Timestamp?) -> String {
-        if timestamp != nil {
-            let formatter = DateComponentsFormatter()
-            formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
-            formatter.maximumUnitCount = 1
-            formatter.unitsStyle = .abbreviated
-            return formatter.string(from: timestamp!.dateValue(), to: Date()) ?? "Timestamp cannot be converted"
-        } else {
-            return "Timestamp is nil"
-        }
-
-    }
 }

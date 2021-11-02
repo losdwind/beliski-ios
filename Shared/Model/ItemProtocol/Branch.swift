@@ -40,13 +40,21 @@ struct Branch:Identifiable, Codable, Hashable, Item {
     
     var description: String = ""
     
-    var memberIDs: Dictionary<String, String> = [String: String]()
+    var memberIDs: [String:String] = [:]
     
+    
+    // FIXME: here we shall not store the strings, maybe in a subcollection, because the id is usually 20 character, while the 1MB limitation only allows maximum 400,000 users
     var subIDs:[String] = []
     
     var openess: String = "Private"
     
     var address: String = ""
+    
+    var likes:Int = 0
+    
+    var comments:Int = 0
+    
+    var shares:Int = 0
     
     
     

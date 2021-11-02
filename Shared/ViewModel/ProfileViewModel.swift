@@ -27,7 +27,7 @@ class ProfileViewModel: ObservableObject{
             return
         }
         
-        let document = COLLECTION_USERS.document(userID).collection("persons").document(user.id!)
+        let document = COLLECTION_USERS.document(userID)
         
         // MARK: - here I disabled the uploadImage because i want to upload right after the imagePicker
         
@@ -51,7 +51,7 @@ class ProfileViewModel: ObservableObject{
             return
         }
         
-        COLLECTION_USERS.document(userID).collection("users").document(userID).getDocument { (document, error) in
+        COLLECTION_USERS.document(userID).getDocument { (document, error) in
             let result = Result {
                   try document?.data(as: User.self)
                 }

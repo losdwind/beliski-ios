@@ -10,6 +10,7 @@ import SwiftUI
 struct SquadView: View {
     
     @ObservedObject var branchvm:BranchViewModel
+    ObservedObject var squadvm: SquadViewModel
     @ObservedObject var dataLinkedManager: DataLinkedManager
     
     
@@ -25,9 +26,9 @@ struct SquadView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false){
                         HStack{
-                            ForEach(branchvm.fetchedBranches, id: \.self) { branch in
+                            ForEach(squadvm.fetchedOnInviteBranches, id: \.self) { branch in
                                 NavigationLink{
-                                    ChatView()
+                                    ChatView(squadvm: squadvm)
                                 } label: {
                                     SquadCardView(branch: branch)
                                 }

@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct ChatView: View {
+    @ObservedObject var squadvm: SquadViewModel
+    
+    init(squadvm:SquadViewModel, branch:Branch){
+        squadvm.branch = branch
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+                    ForEach(squadvm.fetchedMessages) { message in
+                        MessageView(message: message, squadvm: squadvm)
+                    }
+                }
+            }.padding(.top)
+            
+            InputMessageView(squadvm: squadvm)
+                .padding()
+            
+        }.navigationTitle(user.username)
+
     }
 }
 
