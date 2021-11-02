@@ -33,7 +33,9 @@ struct SingleImageView: View {
                     .opacity(0.3)
             }
             .resizable()
+            .aspectRatio(contentMode: .fit)
             .frame(maxWidth: 180, maxHeight: 180, alignment: .leading)
+            .cornerRadius(18)
         
         
     }
@@ -48,6 +50,8 @@ struct SingleImageDataView: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(maxWidth: 180, maxHeight: 180, alignment: .leading)
+            .cornerRadius(18)
+
         
         
     }
@@ -82,10 +86,9 @@ struct ImageGridView: View {
                             .opacity(0.3)
                     }
                     .resizable()
-                
+                    .aspectRatio(contentMode:.fill)
                     .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
-                    .aspectRatio(1, contentMode: .fill)
-                    .clipped()
+                    .cornerRadius(10)
                 
             }
         }
@@ -119,7 +122,8 @@ struct ImageGridDataView: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(minWidth: 60, maxWidth: 80, minHeight: 60, maxHeight: 80)
                     .aspectRatio(1, contentMode: .fill)
-                    .clipped()
+                    .cornerRadius(10)
+
                 
             }
         }
@@ -172,7 +176,7 @@ struct TimestampView: View {
     var body: some View {
         Text("\(time) ago")
             .foregroundColor(.secondary)
-            .font(.system(size: 14))
+            .font(.footnote.bold())
     }
 }
 

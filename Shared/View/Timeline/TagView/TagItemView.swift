@@ -19,19 +19,17 @@ struct TagItemView: View {
         Text("#" + tagName)
         // applying same font size..
         // else size will vary..
-            .font(.system(size: 16))
+            .font(.footnote.bold())
         // adding capsule..
-            .padding(.horizontal,14)
-            .padding(.vertical,8)
-            .background(
-
-                Capsule()
-                    .fill(Color.pink)
-            )
-            .foregroundColor(Color.primary)
+//            .background(
+//
+//                Capsule()
+//                    .fill(Color.pink)
+//            )
+            .foregroundColor(Color.pink)
             .lineLimit(1)
         // Delete...
-            .contentShape(Capsule())
+//            .contentShape(Capsule())
             .matchedGeometryEffect(id: UUID(uuidString: tagName), in: animation)
     }
 }

@@ -14,6 +14,13 @@ enum Area: String, CaseIterable {
     case Chongqing
 }
 
+
+
+
+
+
+
+
 struct CommunityView: View {
     @ObservedObject var communityvm:CommunityViewModel
     @State var area:Area = .Beijing
@@ -22,7 +29,17 @@ struct CommunityView: View {
     var body: some View {
         NavigationView{
             VStack{
-                CarouselView(branches: $communityvm.openBranchs)
+//                CarouselView(branches: $communityvm.openBranchs)
+                
+                CategoryView(communityvm: communityvm)
+                
+                
+                
+                
+                
+                
+                
+                
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

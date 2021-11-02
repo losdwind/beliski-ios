@@ -15,7 +15,7 @@ struct SearchView: View {
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var dataLinkedManger:DataLinkedManager
     @ObservedObject var tagPanelvm:TagPanelViewModel
-    
+    @ObservedObject var timelineManager:TimelineManager
     @Environment(\.presentationMode) var presentationMode
     @State var isShowingSearchResultView:Bool = false
     
@@ -117,7 +117,7 @@ struct SearchView: View {
                     }
                 
                 if isShowingSearchResultView{
-                    SearchResultComplexView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm)
+                    SearchResultComplexView(timelineManager: timelineManager, searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm)
                         
                 }
                 
@@ -160,6 +160,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchvm: SearchViewModel(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel())
+        SearchView(searchvm: SearchViewModel(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel(), timelineManager: TimelineManager())
     }
 }

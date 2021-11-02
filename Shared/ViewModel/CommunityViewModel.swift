@@ -9,4 +9,9 @@ import Foundation
 
 class CommunityViewModel: ObservableObject {
     @Published var openBranchs:[Branch] = [Branch]()
+    
+    
+    @Published var selectedCategory:String = ""
+    
+    @Published var isShowingLinkedBranchView = false
 }

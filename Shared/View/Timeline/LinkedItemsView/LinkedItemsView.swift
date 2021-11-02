@@ -46,7 +46,7 @@ struct LinkedItemsView: View {
                 LazyVStack{
                     ForEach(dataLinkedManager.linkedPersons){
                         person in
-                        PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id)
+                        PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id, isShowingPhtos: false, isShowingDescription: false, isShowingTags: true)
                     }
                 }
             } label: {

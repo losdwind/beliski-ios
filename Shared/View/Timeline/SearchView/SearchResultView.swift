@@ -37,7 +37,7 @@ struct SearchResultView: View {
             List(selection: $searchvm.selectedPersons){
                 ForEach(searchvm.fileteredPersons, id: \.self){
                     person in
-                    PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id)
+                    PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id, isShowingPhtos: false, isShowingDescription: false, isShowingTags: false)
                         .listRowSeparator(.hidden)
 
                 }

@@ -19,8 +19,11 @@ struct PersonItemView: View {
     var isShowingTags:Bool = true
     
     
-    init(person: Person, tagNames: [String], OwnerItemID: String){
+    init(person: Person, tagNames: [String], OwnerItemID: String, isShowingPhtos: Bool, isShowingDescription:Bool, isShowingTags:Bool){
         self.person = person
+        self.isShowingPhtos = isShowingPhtos
+        self.isShowingDescription = isShowingDescription
+        self.isShowingTags = isShowingTags
         
         _personTagvm = StateObject(wrappedValue: TagViewModel(tagNamesOfItem: tagNames, ownerItemID: OwnerItemID, completion: { success in
             if success {
@@ -50,9 +53,9 @@ struct PersonItemView: View {
         
         
         
-        VStack(alignment: .leading, spacing: 20){
+        VStack(alignment: .leading, spacing: 10){
             
-            HStack(alignment: .center, spacing: 20){
+            HStack(alignment: .center, spacing: 25){
                 
                 if person.avatarURL == "" {
                     Image(systemName:"person.circle")
@@ -60,22 +63,6 @@ struct PersonItemView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
                 } else{
-                    
-                    
-//                    AsyncImage(url: URL(string:person.avatarURL)) { image in
-//                        image
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fill)
-//                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
-//                            .clipShape(Circle())
-//                    } placeholder: {
-//                        Image(systemName:"person.circle")
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fit)
-//                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
-//                    }
-//
-                    
                     KFImage(URL(string:person.avatarURL))
                         .placeholder {
                             // Placeholder while downloading.
@@ -135,7 +122,7 @@ struct PersonItemView: View {
 
 struct PersonItemView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonItemView(person: Person(id: "", serverTimestamp: Timestamp(date: Date()), localTimestamp: Timestamp(date: Date()), ownerID: "", linkedItems: [], address: [:], birthday: Timestamp(date: Date()) , contact: "1898723918", description: "A great man with warm heart and respect to others, good at making fun art and do not like playing cards", wordCount: 21, firstName: "Adam", lastName: "Smith", avatarURL: "gs://beliski.appspot.com/person_medias/17CE632F-5946-4866-A391-6FE0420BA67C", photoURLs: [], audioURLs: [], videoURLs: [], priority: 1, tagNames: ["fun"]), tagNames: ["freat","Great"], OwnerItemID: "")
+        PersonItemView(person: Person(id: "", serverTimestamp: Timestamp(date: Date()), localTimestamp: Timestamp(date: Date()), ownerID: "", linkedItems: [], address: [:], birthday: Timestamp(date: Date()) , contact: "1898723918", description: "A great man with warm heart and respect to others, good at making fun art and do not like playing cards", wordCount: 21, firstName: "Adam", lastName: "Smith", avatarURL: "gs://beliski.appspot.com/person_medias/17CE632F-5946-4866-A391-6FE0420BA67C", photoURLs: [], audioURLs: [], videoURLs: [], priority: 1, tagNames: ["fun"]), tagNames: ["freat","Great"], OwnerItemID: "", isShowingPhtos: false, isShowingDescription: false, isShowingTags: false)
             .previewLayout(.sizeThatFits)
     }
 }

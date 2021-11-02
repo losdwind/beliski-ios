@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchResultComplexView: View {
+    @ObservedObject var timelineManager:TimelineManager
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var journalvm: JournalViewModel
     @ObservedObject var taskvm: TaskViewModel
@@ -26,7 +27,7 @@ struct SearchResultComplexView: View {
             TaskListView(taskvm: taskvm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
             
         case.person:
-            PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
+            PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, timelineManager: timelineManager)
             
         case .branch:
             BranchCardListView()
@@ -36,6 +37,6 @@ struct SearchResultComplexView: View {
 
 struct SearchResultComplexView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultComplexView(searchvm: SearchViewModel(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel())
+        SearchResultComplexView(timelineManager: TimelineManager(), searchvm: SearchViewModel(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel())
     }
 }

@@ -115,7 +115,7 @@ struct TimelineView: View {
                 }
             }
             .sheet(isPresented: $isShowingSearchView){
-                SearchView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm)
+                SearchView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager)
             }
             .onAppear {
                 personvm.fetchPersons{ success in

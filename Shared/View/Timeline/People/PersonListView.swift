@@ -12,6 +12,7 @@ struct PersonListView: View {
     @ObservedObject var dataLinkedManager: DataLinkedManager
     @ObservedObject var searchvm:SearchViewModel
     @ObservedObject var tagPanelvm: TagPanelViewModel
+    @ObservedObject var timelineManager:TimelineManager
     
     @State var isUpdatingPerson: Bool = false
     @State var isShowingPersonDetail: Bool = false
@@ -22,8 +23,15 @@ struct PersonListView: View {
             ScrollView(.vertical, showsIndicators: true){
                 LazyVStack{
                     ForEach(personvm.fetchedPersons){ person in
-                       
-                            PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id)
+                        
+                        VStack{
+                        if timelineManager.theme == .full {
+                            PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id, isShowingPhtos: true, isShowingDescription: true, isShowingTags: true)
+                        } else {
+                            PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id, isShowingPhtos: false, isShowingDescription: false, isShowingTags: true)
+                            
+                        }
+                        }
                                 .background{
                                     NavigationLink(destination:LinkedItemsView(dataLinkedManager: dataLinkedManager), isActive: $isShowingLinkedItemView){
                                         EmptyView()
@@ -121,6 +129,6 @@ struct PersonListView: View {
 
 struct PersonListView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonListView(personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
+        PersonListView(personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), timelineManager: TimelineManager())
     }
 }

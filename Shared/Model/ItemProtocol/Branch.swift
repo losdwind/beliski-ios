@@ -8,8 +8,6 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
-import CloudKit
-
 
 enum Permission {
     case full
@@ -46,7 +44,9 @@ struct Branch:Identifiable, Codable, Hashable, Item {
     
     var subIDs:[String] = []
     
-    var Openess: String = "Private"
+    var openess: String = "Private"
+    
+    var address: String = ""
     
     
     
