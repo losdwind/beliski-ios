@@ -10,33 +10,32 @@ import SwiftUI
 struct CommentsView: View {
     
     @ObservedObject var communityvm:CommunityViewModel
-    @State var commentText = ""
-    init(post: Post) {
-        self.viewModel = CommentViewModel(post: post)
+    
+    
+    init(branch:Branch) {
+        communityvm.openBranch = branch
+        communityvm.getComments(branch: branch) { _ in
+        }
     }
     
     var body: some View {
         VStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 24) {
-                    ForEach(communityvm.fetchedComments) { comment in
-                        CommentCellView(comment: comment)
+                    ForEach(communityvm.fetchedComments, id:\.self) { comment in
+                        CommentCellView(communityvm: communityvm, comment: comment)
                     }
                 }
             }.padding(.top)
             
-            CustomInputView(inputText: $commentText, placeholder: "Comment...", action: uploadComment)
+            InputCommentView(communityvm: communityvm)
+            
         }
-    }
-    
-    func uploadComment() {
-        viewModel.uploadComment(commentText: commentText)
-        commentText = ""
     }
 }
 
 struct CommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentsView()
+        CommentsView(branch: Branch())
     }
 }

@@ -15,6 +15,7 @@ struct SearchResultComplexView: View {
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var dataLinkedManger:DataLinkedManager
     @ObservedObject var tagPanelvm:TagPanelViewModel
+    @ObservedObject var branchvm:BranchViewModel
 
     var body: some View {
         
@@ -30,13 +31,13 @@ struct SearchResultComplexView: View {
             PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, timelineManager: timelineManager)
             
         case .branch:
-            BranchCardListView()
+            BranchCardListView(branchvm: branchvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
         }
     }
 }
 
 struct SearchResultComplexView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultComplexView(timelineManager: TimelineManager(), searchvm: SearchViewModel(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel())
+        SearchResultComplexView(timelineManager: TimelineManager(), searchvm: SearchViewModel(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
     }
 }

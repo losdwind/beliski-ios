@@ -15,6 +15,7 @@ struct TopicView: View {
     @ObservedObject var dataLinkedManger:DataLinkedManager
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var tagPanelvm:TagPanelViewModel
+    @ObservedObject var branchvm: BranchViewModel
     
     var body: some View {
         VStack{
@@ -38,7 +39,7 @@ struct TopicView: View {
             case .task:
                 TaskListView(taskvm: taskvm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
             case .branch:
-                BranchCardListView()
+                BranchCardListView(branchvm: branchvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
                 
             }
         }

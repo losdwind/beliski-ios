@@ -8,13 +8,13 @@
 import Foundation
 class SquadViewModel: ObservableObject {
     
-    @Published fetchedOnInviteBranches:[Branch]  = []
-    
-    @Published branch:Branch = Branch()
-    
+    @Published var fetchedOnInviteBranches:[Branch]  = []
+        
     
     @Published var fetchedMessages:[String] = []
+    
     @Published var message:Message = Message()
+    
     @Published var branch:Branch = Branch()
     
     
@@ -47,7 +47,7 @@ class SquadViewModel: ObservableObject {
 
     
     
-    func sendMessage(branch:Branch,completion: @escaping (_ success: Bool) -> ()){
+    func sendMessage(completion: @escaping (_ success: Bool) -> ()){
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in like function")
             completion(false)
@@ -56,7 +56,7 @@ class SquadViewModel: ObservableObject {
         
         message.ownerID = userID
         let document =  COLLECTION_USERS.document(branch.ownerID).collection("branches")
-            .document(branch.id).collection("messages")
+            .document(branch.id).collection("messages").document(message.id)
         do {
             try document.setData(from: message)
             completion(true)
@@ -71,7 +71,7 @@ class SquadViewModel: ObservableObject {
     }
     
     
-    func getMessages(branch:Branch, completion: @escaping (_ success: Bool) -> ()) {
+    func getMessages(completion: @escaping (_ success: Bool) -> ()) {
         
         let first  = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("messages")
             .order(by:"serverTimestamp")
@@ -81,12 +81,13 @@ class SquadViewModel: ObservableObject {
                 guard let lastSnapshot = snapshot?.documents.last else {completion(false)
                 return}
             
-            let next = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("messages")
+            let next = COLLECTION_USERS.document(self.branch.ownerID).collection("branches").document(self.branch.id).collection("messages")
                 .order(by:"serverTimestamp")
-                .start(start(afterDocument: lastSnapshot))
+                .start(afterDocument: lastSnapshot)
+                .getDocuments { snapshot, _ in
+                    guard let documents = snapshot?.documents else { return }
+                    self.fetchedMessages = documents.compactMap({try? $0.data(as: Message.self)})
             
-            self.fetchedMessages = documents.compactMap({try? $0.data(as: Message.self)})
-
             completion(true)
         }
     }

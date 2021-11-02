@@ -44,9 +44,8 @@ struct SearchResultView: View {
             }
             
         case .branch:
-            BranchCardListView()
-                .listRowSeparator(.hidden)
-                .padding()
+            progressView()
+            
         }
         
         

@@ -88,6 +88,8 @@
 		296FA4842731854700FEBF8A /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4832731854700FEBF8A /* CommentCellView.swift */; };
 		296FA486273187A100FEBF8A /* InPutCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA485273187A100FEBF8A /* InPutCommentsView.swift */; };
 		296FA487273187A100FEBF8A /* InPutCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA485273187A100FEBF8A /* InPutCommentsView.swift */; };
+		296FA4892731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */; };
+		296FA48A2731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */; };
 		29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFF270D5E8A00754817 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* MainView.swift */; };
@@ -121,8 +123,6 @@
 		29E1DD66272D12F300EC5E1D /* PrivateStatsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DD64272D12F300EC5E1D /* PrivateStatsBarView.swift */; };
 		29E1DD68272D27DD00EC5E1D /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DD67272D27DD00EC5E1D /* CarouselView.swift */; };
 		29E1DD69272D27DD00EC5E1D /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DD67272D27DD00EC5E1D /* CarouselView.swift */; };
-		29E1DD6F272D2A0B00EC5E1D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DD6E272D2A0B00EC5E1D /* MessageView.swift */; };
-		29E1DD70272D2A0B00EC5E1D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DD6E272D2A0B00EC5E1D /* MessageView.swift */; };
 		29E1DD73272D307C00EC5E1D /* LineGraphtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DD72272D307900EC5E1D /* LineGraphtView.swift */; };
 		29E1DD74272D307D00EC5E1D /* LineGraphtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DD72272D307900EC5E1D /* LineGraphtView.swift */; };
 		29E1DD7A272D326300EC5E1D /* BarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DD79272D326300EC5E1D /* BarGraphView.swift */; };
@@ -321,6 +321,7 @@
 		296FA4812731853F00FEBF8A /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		296FA4832731854700FEBF8A /* CommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
 		296FA485273187A100FEBF8A /* InPutCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPutCommentsView.swift; sourceTree = "<group>"; };
+		296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardPublicListView.swift; sourceTree = "<group>"; };
 		29C46BED270D5E8800754817 /* BeliskiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeliskiApp.swift; sourceTree = "<group>"; };
 		29C46BEE270D5E8800754817 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		29C46BEF270D5E8A00754817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -342,7 +343,6 @@
 		29D2BA8E2727D4DA007F76B8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		29E1DD64272D12F300EC5E1D /* PrivateStatsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateStatsBarView.swift; sourceTree = "<group>"; };
 		29E1DD67272D27DD00EC5E1D /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
-		29E1DD6E272D2A0B00EC5E1D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		29E1DD72272D307900EC5E1D /* LineGraphtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraphtView.swift; sourceTree = "<group>"; };
 		29E1DD79272D326300EC5E1D /* BarGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraphView.swift; sourceTree = "<group>"; };
 		29E1DD81272D3B3D00EC5E1D /* SocialAbstractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAbstractView.swift; sourceTree = "<group>"; };
@@ -687,7 +687,6 @@
 				29552A7527101B620056E675 /* PanelView.swift */,
 				29E1DDD2272DB02300EC5E1D /* Abstract */,
 				29E1DD71272D2FEE00EC5E1D /* Chart */,
-				29E1DD6D272D29FC00EC5E1D /* Message */,
 				2907B4A3272A739B001A3DA1 /* SettingsView */,
 				29C46C17270D600900754817 /* Profile */,
 				29552A7427101B430056E675 /* WillbeingScore */,
@@ -722,6 +721,7 @@
 				29E1DD93272D59BA00EC5E1D /* NotificationView.swift */,
 				29E1DE01273046E500EC5E1D /* CategoryView.swift */,
 				29E1DE0D2731444C00EC5E1D /* LikesView.swift */,
+				296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -731,14 +731,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		29E1DD6D272D29FC00EC5E1D /* Message */ = {
-			isa = PBXGroup;
-			children = (
-				29E1DD6E272D2A0B00EC5E1D /* MessageView.swift */,
-			);
-			path = Message;
 			sourceTree = "<group>";
 		};
 		29E1DD71272D2FEE00EC5E1D /* Chart */ = {
@@ -1107,6 +1099,7 @@
 				29ED11262719C3ED00E67D8B /* Tag.swift in Sources */,
 				29E1DDE0272DB09700EC5E1D /* HiddenClueView.swift in Sources */,
 				29ED11402719E4B400E67D8B /* CheckboxStyle.swift in Sources */,
+				296FA4892731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */,
 				29C46C39270D659D00754817 /* ResetPasswordView.swift in Sources */,
 				29ED1159271B470A00E67D8B /* Helplers.swift in Sources */,
 				29E1DDAE272D746C00EC5E1D /* LabelView.swift in Sources */,
@@ -1163,7 +1156,6 @@
 				29E1DDF6272E591800EC5E1D /* SquadCardView.swift in Sources */,
 				29E1DE08273120CF00EC5E1D /* Comment.swift in Sources */,
 				29E1DDE9272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */,
-				29E1DD6F272D2A0B00EC5E1D /* MessageView.swift in Sources */,
 				29E1DDB8272D746C00EC5E1D /* LineChartView.swift in Sources */,
 				29D2BA8F2727D4DA007F76B8 /* SettingsView.swift in Sources */,
 				29ED1156271B42B600E67D8B /* PersonDetailView.swift in Sources */,
@@ -1277,7 +1269,6 @@
 				29ED11202719B30E00E67D8B /* SearchViewModel.swift in Sources */,
 				29ED11412719E4B400E67D8B /* CheckboxStyle.swift in Sources */,
 				29552A55270F0F2E0056E675 /* ImagePicker.swift in Sources */,
-				29E1DD70272D2A0B00EC5E1D /* MessageView.swift in Sources */,
 				29ED113B2719E4B400E67D8B /* TaskEditorView.swift in Sources */,
 				29ED1160271D8EF500E67D8B /* Protocols.swift in Sources */,
 				29E1DDBD272D746C00EC5E1D /* Path+QuadCurve.swift in Sources */,
@@ -1292,6 +1283,7 @@
 				29E1DE09273120CF00EC5E1D /* Comment.swift in Sources */,
 				29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */,
 				29E1DDBF272D746C00EC5E1D /* MultiLineChartView.swift in Sources */,
+				296FA48A2731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */,
 				2924F1582729A789006CB556 /* SearchView.swift in Sources */,
 				29E1DDEE272E4C3200EC5E1D /* TopicView.swift in Sources */,
 				29E1DDFA272ED0FA00EC5E1D /* VIAView.swift in Sources */,

@@ -8,11 +8,11 @@
 import Foundation
 
 class CommunityViewModel: ObservableObject {
-    @Published var fetchedOpenBranchs:[Branch] = [Branch]()
+    @Published var fetchedOpenBranches:[Branch] = [Branch]()
     
-    @Published var fetchedLikes: [String] = []
+    @Published var fetchedLikes: [Like] = []
     
-    @Published var fetchedComments:[String] = []
+    @Published var fetchedComments:[Comment] = []
     
     
     @Published var comment:Comment = Comment()
@@ -29,7 +29,7 @@ class CommunityViewModel: ObservableObject {
     func getProfile(comment: Comment,completion: @escaping (_ user: User?) -> () ){
         COLLECTION_USERS.document(comment.ownerID).getDocument { (document, error) in
             let result = Result {
-                  try document?.data(as: Comment.self)
+                  try document?.data(as: User.self)
                 }
                 switch result {
                 case .success(let user):
@@ -95,7 +95,7 @@ class CommunityViewModel: ObservableObject {
         
         comment.ownerID = userID
         let document =  COLLECTION_USERS.document(branch.ownerID).collection("branches")
-            .document(branch.id).collection("comments")
+            .document(branch.id).collection("comments").document(comment.id)
         do {
             try document.setData(from: comment)
             completion(true)
@@ -134,12 +134,13 @@ class CommunityViewModel: ObservableObject {
             let next = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
                 .order(by:"serverTimestamp")
                 .limit(to:20)
-                .start(start(afterDocument: lastSnapshot))
+                .start(afterDocument: lastSnapshot)
+                .getDocuments { snapshot, _ in
+                    guard let documents = snapshot?.documents else { return }
+                    self.fetchedLikes= documents.compactMap({try? $0.data(as: Like.self)})
             
-            self.fetchedLikes = documents.compactMap({try? $0.data(as: Like.self)})
-            handler(true)
-
             completion(true)
+            return
         }
         
     }
@@ -157,10 +158,11 @@ class CommunityViewModel: ObservableObject {
             
             let next = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("comments")
                 .order(by:"serverTimestamp")
-                .start(start(afterDocument: lastSnapshot))
+                .start(afterDocument: lastSnapshot)
+                .getDocuments { snapshot, _ in
+                    guard let documents = snapshot?.documents else { return }
+                    self.fetchedComments= documents.compactMap({try? $0.data(as: Comment.self)})
             
-            self.fetchedComments = documents.compactMap({try? $0.data(as: Comment.self)})
-
             completion(true)
         }
     }

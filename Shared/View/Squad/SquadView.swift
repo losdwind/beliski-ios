@@ -10,7 +10,7 @@ import SwiftUI
 struct SquadView: View {
     
     @ObservedObject var branchvm:BranchViewModel
-    ObservedObject var squadvm: SquadViewModel
+    @ObservedObject var squadvm: SquadViewModel
     @ObservedObject var dataLinkedManager: DataLinkedManager
     
     
@@ -28,7 +28,7 @@ struct SquadView: View {
                         HStack{
                             ForEach(squadvm.fetchedOnInviteBranches, id: \.self) { branch in
                                 NavigationLink{
-                                    ChatView(squadvm: squadvm)
+                                    ChatView(squadvm: squadvm, branch: branch)
                                 } label: {
                                     SquadCardView(branch: branch)
                                 }
@@ -43,11 +43,11 @@ struct SquadView: View {
                         .frame(maxWidth: .infinity,alignment: .leading)
                     
                     VStack{
-                        ForEach(branchvm.fetchedBranches, id: \.self) { branch in
+                        ForEach($branchvm.fetchedAllBranches, id: \.self) { branch in
                             NavigationLink{
                                 LinkedItemsView(dataLinkedManager: dataLinkedManager)
                             } label: {
-                                BranchCardView(branch: branch)
+                                BranchCardView(branch: branch.wrappedValue)
                             }
                         }
                         
@@ -61,7 +61,7 @@ struct SquadView: View {
             .padding()
             
             .onAppear {
-                branchvm.fetchBranchs { success in
+                branchvm.fetchAllBranchs { success in
                     if success {
                         print("successfully fetched the branches")
                     }
@@ -75,6 +75,6 @@ struct SquadView: View {
 
 struct SquadView_Previews: PreviewProvider {
     static var previews: some View {
-        SquadView(branchvm: BranchViewModel(), dataLinkedManager: DataLinkedManager())
+        SquadView(branchvm: BranchViewModel(), squadvm: SquadViewModel(), dataLinkedManager: DataLinkedManager())
     }
 }

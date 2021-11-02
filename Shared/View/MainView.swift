@@ -23,6 +23,7 @@ struct MainView: View {
     @StateObject var tagPanelvm = TagPanelViewModel()
     @StateObject var branchvm = BranchViewModel()
     @StateObject var communityvm = CommunityViewModel()
+    @StateObject var squadvm = SquadViewModel()
     
     @AppStorage(CurrentUserDefaults.userID) var userID: String?
 
@@ -61,7 +62,7 @@ struct MainView: View {
                     }.tag(MainTab.create)
                 
                 // Show community information and open journals shared by internet users
-                SquadView(branchvm: branchvm, dataLinkedManager: dataLinkedManager)
+                SquadView(branchvm: branchvm, squadvm: squadvm, dataLinkedManager: dataLinkedManager)
                     .tabItem{
                         VStack{
                             Image(systemName: "circles.hexagongrid")

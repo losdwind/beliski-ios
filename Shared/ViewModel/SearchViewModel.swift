@@ -30,11 +30,14 @@ class SearchViewModel: ObservableObject {
     @Published var filteredJournals: [Journal] = [Journal]()
     @Published var filteredTasks: [Task] = [Task]()
     @Published var fileteredPersons:[Person] = [Person]()
+    @Published var fileteredBranches:[Branch] = [Branch]()
+
     
     
     @Published var selectedJournals: Set<Journal> = Set<Journal>()
     @Published var selectedTasks: Set<Task> = Set<Task>()
     @Published var selectedPersons:Set<Person> = Set<Person>()
+    @Published var selectedBranches: Set<Branch> = Set<Branch>()
     
     
     func fetchIDsFromFilter(handler: @escaping(_ success: Bool) -> ()){
@@ -91,6 +94,28 @@ class SearchViewModel: ObservableObject {
         
         group.notify(queue: .main){
             print("successfully get the filtered items for each type (journals, tasks and persons)")
+            handler(true)
+            return
+        }
+        
+        
+        
+        group.enter()
+            
+        COLLECTION_USERS.document(userID).collection("branches")
+            .whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dateStart))
+            .whereField("localTimestamp", isLessThanOrEqualTo: Timestamp(date: dateEnd))
+            .order(by: "localTimestamp", descending: true)
+            .getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else {
+                group.leave()
+                return }
+            self.fileteredBranches = documents.compactMap({try? $0.data(as: Branch.self)})
+                group.leave()
+        }
+        
+        group.notify(queue: .main){
+            print("successfully get the filtered items for each type (journals, tasks and persons branches)")
             handler(true)
             return
         }

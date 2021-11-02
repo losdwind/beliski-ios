@@ -50,6 +50,6 @@ struct InputMessageView: View {
 
 struct InputMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        InputMessageView()
+        InputMessageView(squadvm: SquadViewModel())
     }
 }

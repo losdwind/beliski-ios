@@ -88,7 +88,7 @@ struct CreateView: View {
                     .font(.system(size: 24, weight: .bold, design: .rounded))
             })
             .modifier(NewButtonGradientBackground())
-            .sheet(isPresented: $isShowingBranchEditor, onDismiss: {branchvm.fetchBranchs(completion: { _ in
+            .sheet(isPresented: $isShowingBranchEditor, onDismiss: {branchvm.fetchAllBranchs(completion: { _ in
             })}) {
                 BranchCardEditorView(branchvm: branchvm)
                 

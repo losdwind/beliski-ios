@@ -60,7 +60,7 @@ class AuthViewModel: ObservableObject {
         
         // Get the users info
         fetchUser(userID: userID) { user in
-            if let userName = user?.userName, let nickName = user?.nickName, let profileImgURL = user?.profileImageUrl  {
+            if let userName = user?.userName, let nickName = user?.nickName, let profileImgURL = user?.profileImageURL  {
                 // Success
                 print("Success getting user info while logging in")
                 // Set the users info into our app
@@ -111,7 +111,7 @@ class AuthViewModel: ObservableObject {
             
             MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
                 
-                let data = User(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageUrl: imageUrl, userName: userName, nickName: nickName, dateCreated:Timestamp(date: Date()))
+                let data = User(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, userName: userName, nickName: nickName, dateCreated:Timestamp(date: Date()))
                 
                 do {
                     try document.setData(from: data)

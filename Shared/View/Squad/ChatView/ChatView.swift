@@ -12,6 +12,11 @@ struct ChatView: View {
     
     init(squadvm:SquadViewModel, branch:Branch){
         squadvm.branch = branch
+        squadvm.getMessages { _ in
+            
+        }
+        
+        
     }
     
     var body: some View {
@@ -27,13 +32,13 @@ struct ChatView: View {
             InputMessageView(squadvm: squadvm)
                 .padding()
             
-        }.navigationTitle(user.username)
+        }
 
     }
 }
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatView(squadvm: SquadViewModel(), branch: Branch())
     }
 }

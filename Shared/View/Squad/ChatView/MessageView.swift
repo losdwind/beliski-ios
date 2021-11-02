@@ -6,30 +6,34 @@
 //
 
 import SwiftUI
-import KingfisherSwiftUI
+import Kingfisher
 
 struct MessageView: View {
     
+    @AppStorage(CurrentUserDefaults.userID) var userID: String?
     
     let message: Message
     
-    let profileImageURL:String
-
+    var profileImageURL:String
+    
     @ObservedObject var squadvm:SquadViewModel
     
     init(message:Message, squadvm:SquadViewModel){
+        self.squadvm = squadvm
+        self.message = message
         squadvm.getProfile(message: message){ user in
             if let user = user {
-                self.profileImageURL = user.profileImageURL
+                self.profileImageURL = user.profileImageURL ?? ""
             }
+    }
     }
     
         
     var body: some View {
         HStack {
-            if viewModel.isFromCurrentUser {
+            if squadvm.message.ownerID == userID {
                 Spacer()
-                Text(message.message)
+                Text(message.content)
                     .padding()
                     .background(Color.blue)
                     .clipShape(ChatBubble(isFromCurrentUser: true))
@@ -49,7 +53,7 @@ struct MessageView: View {
                         .frame(width: 40, height: 40)
                         .clipShape(Circle())
                     
-                    Text(message.message)
+                    Text(message.content)
                         .padding()
                         .background(Color(.systemGray5))
                         .font(.body)

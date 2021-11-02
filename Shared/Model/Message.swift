@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestoreSwift
 
 struct Message:Identifiable, Codable {
-    var id:UUID = UUID().uuidString
+    var id:String = UUID().uuidString
     var ownerID:String
     @ServerTimestamp var serverTimestamp:Timestamp?
     var content: String

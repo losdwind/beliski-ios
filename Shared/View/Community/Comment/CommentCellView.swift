@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Kingfisher
+import Firebase
+import FirebaseFirestoreSwift
 
-struct CommentCell: View {
+struct CommentCellView: View {
     let comment: Comment
     
-    let user:User
+    var user:User
     
     @ObservedObject var communityvm:CommunityViewModel
     
@@ -45,6 +48,6 @@ struct CommentCell: View {
 
 struct CommentCellView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentCellView()
+        CommentCellView(communityvm: CommunityViewModel(), comment: Comment(id: "", ownerID: "", serverTimestamp: Timestamp(date:Date()), content: "this is awesome and I cant wait to see next episode"))
     }
 }

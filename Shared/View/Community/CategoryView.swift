@@ -18,6 +18,7 @@ let category = [
 struct CategoryView: View {
     
     @ObservedObject var communityvm:CommunityViewModel
+    @ObservedObject var dataLinkedManager: DataLinkedManager
     
     var body: some View {
         ScrollView{
@@ -28,7 +29,7 @@ struct CategoryView: View {
                     HStack(alignment: .bottom){
                         ForEach(cate, id:\.self){ c in
                             NavigationLink {
-                                BranchCardListView()
+                                BranchCardPublicListView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
                             } label: {
                                 Button {
                                     communityvm.selectedCategory = c
@@ -60,13 +61,7 @@ struct CategoryView: View {
                 }
             }
             
-            // MARK: Popular Branch
-            
-            BranchCardListView()
-            
-            
-            
-            
+  
             
             
         }
@@ -75,6 +70,6 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(communityvm: CommunityViewModel())
+        CategoryView(communityvm: CommunityViewModel(), dataLinkedManager: DataLinkedManager())
     }
 }

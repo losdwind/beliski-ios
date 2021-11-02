@@ -9,8 +9,21 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 class BranchViewModel: ObservableObject {
+    
+    
+    
     @Published var branch:Branch = Branch()
-    @Published var fetchedBranches: [Branch] = [Branch]()
+    @Published var localTimestamp:Date = Date()
+    
+    
+    
+    
+    
+    
+    
+    @Published var fetchedAllBranches: [Branch] = [Branch]()
+    @Published var fetchedSharedBranches:[Branch] = [Branch]()
+    
     
     
     
@@ -44,7 +57,7 @@ class BranchViewModel: ObservableObject {
     
     // MARK: Delete branch
     
-    func deleteBranch(journal: Journal, handler: @escaping (_ success: Bool) -> ()){
+    func deleteBranch(branch: Branch, handler: @escaping (_ success: Bool) -> ()){
         
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid")
@@ -70,7 +83,7 @@ class BranchViewModel: ObservableObject {
     
     // TODO: addSnapshotListener
     // MARK: get all branches
-    func fetchBranchs(completion: @escaping (_ success: Bool) -> ()) {
+    func fetchAllBranchs(completion: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchJournal function")
             completion(false)
@@ -83,7 +96,7 @@ class BranchViewModel: ObservableObject {
                 guard let documents = snapshot?.documents else {
                     completion(false)
                     return }
-                self.fetchedBranches = documents.compactMap({try? $0.data(as: Branch.self)})
+                self.fetchedAllBranches = documents.compactMap({try? $0.data(as: Branch.self)})
                 completion(true)
                 return
             }
@@ -105,7 +118,7 @@ class BranchViewModel: ObservableObject {
                 guard let documents = snapshot?.documents else {
                     completion(false)
                     return }
-                self.fetchedBranches = documents.compactMap({try? $0.data(as: Branch.self)})
+                self.fetchedSharedBranches = documents.compactMap({try? $0.data(as: Branch.self)})
                 completion(true)
                 return
             }

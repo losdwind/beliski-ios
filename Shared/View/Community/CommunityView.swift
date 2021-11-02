@@ -23,6 +23,9 @@ enum Area: String, CaseIterable {
 
 struct CommunityView: View {
     @ObservedObject var communityvm:CommunityViewModel
+    @ObservedObject var dataLinkedManager:DataLinkedManager
+
+    
     @State var area:Area = .Beijing
     @State var isShowingNotificationView:Bool = false
     
@@ -31,7 +34,12 @@ struct CommunityView: View {
             VStack{
 //                CarouselView(branches: $communityvm.openBranchs)
                 
-                CategoryView(communityvm: communityvm)
+                CategoryView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
+                
+                
+                
+                BranchCardPublicListView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
+        
                 
             }
             .toolbar {
@@ -78,6 +86,6 @@ struct CommunityView: View {
 
 struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityView(communityvm: CommunityViewModel())
+        CommunityView(communityvm: CommunityViewModel(), dataLinkedManager: DataLinkedManager())
     }
 }

@@ -41,7 +41,7 @@ struct ProfileStandardView: View {
 //            }
             
             
-            KFImage(URL(string: profilevm.user.profileImageUrl ?? ""))
+            KFImage(URL(string: profilevm.user.profileImageURL ?? ""))
                 .placeholder {
                     // Placeholder while downloading.
                     Image(systemName: "arrow.2.circlepath.circle")
