@@ -14,25 +14,12 @@ struct MessageView: View {
     
     let message: Message
     
-    var profileImageURL:String
-    
-    @ObservedObject var squadvm:SquadViewModel
-    
-    init(message:Message, squadvm:SquadViewModel){
-        self.message = message
-        self.squadvm = squadvm
-        
-        squadvm.getProfile(message: message){ user in
-            if let user = user {
-                self.profileImageURL = user.profileImageURL ?? ""
-            }
-    }
-    }
-    
+    let user:User
+
         
     var body: some View {
         HStack {
-            if squadvm.message.ownerID == userID {
+            if message.ownerID == userID {
                 Spacer()
                 Text(message.content)
                     .padding()
@@ -46,8 +33,7 @@ struct MessageView: View {
             } else {
                 HStack(alignment: .bottom) {
                     
-                    KFImage(URL(string:profileImageURL
-                    ) )
+                    KFImage(URL(string:user.profileImageURL ?? ""))
                         
                         .resizable()
                         .scaledToFill()

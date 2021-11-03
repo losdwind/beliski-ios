@@ -173,8 +173,9 @@ struct BranchCardEditorView: View {
                     
                     // Simply Creating Array....
                     HStack(spacing: 15){
+                   
                         
-                        ForEach(["Private","Public","On Invite"],id: \.self){tab in
+                        ForEach(["Private","Public","OnInvite"],id: \.self){tab in
 
                             OpenessTabButton(title: tab, currentType: $branchvm.branch.openess)
                         }
@@ -191,6 +192,7 @@ struct BranchCardEditorView: View {
                     branchvm.uploadBranch(completion: {success in
                         if success {
                             presentationMode.wrappedValue.dismiss()
+                            branchvm.branch = Branch()
                         }
                     })
                 } label: {
@@ -216,6 +218,7 @@ struct BranchCardEditorView: View {
 // Meeting tab Button...
 struct OpenessTabButton: View{
     var title: String
+    
     @Binding var currentType: String
     
     var body: some View{

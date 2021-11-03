@@ -37,52 +37,48 @@ struct BranchCardListView: View {
                         
                             .contextMenu{
                                 // Delete
-                                Button(action:{
+                                Button {
                                     branchvm.deleteBranch(branch: branch){success in
                                         if success {
-                                            branchvm.fetchBranchs { _ in}
+                                            branchvm.fetchAllBranchs { _ in}
                                         }
                                         
                                     }
+                                } label: {
                                     
+                                    
+                                    Label(title: {
+                                        Text("Delete")
+                                    }, icon: {
+                                        Image(systemName: "trash.circle")
+                                    })
                                 }
-                                       ,label:{Label(
-                                        title: { Text("Delete") },
-                                        icon: { Image(systemName: "trash.circle") })})
-                                    .disabled(branch.openess != OpenType.Private)
+                                .disabled(branch.openess != OpenType.Private.rawValue)
                                 
                                 
                                 
                                 // Edit
-                                Button(action:{
+                                Button{
                                     branchvm.branch = branch
                                     branchvm.localTimestamp = branch.serverTimestamp?.dateValue() ?? Date(timeIntervalSince1970: 0)
                                     
                                     isUpdatingBranch = true
                                     
-                                }
-                                       ,label:Label(
-                                        title: { Text("Edit") },
-                                        icon: { Image(systemName: "pencil.circle") }))
-                                    .disabled(branch.openess == OpenType.Public)
+                                } label:{Label(
+                                title: { Text("Edit") },
+                                icon: { Image(systemName: "pencil.circle") })}
+                            .disabled(branch.openess == OpenType.Public.rawValue)
                                 
                                 
                                 // Link
-                                Button(action:{
+                                Button{
                                     branchvm.branch = branch
                                     isShowingLinkView = true
                                     
-                                }
-                                       
-                                       ,label:{Label(
+                                } label:{Label(
                                         title: { Text("Link") },
-                                        icon: { Image(systemName: "link.circle") })})
-                                    .disabled(branch.openess == OpenType.Public)
-                                
-                                
-                                
-                                
-                                
+                                        icon: { Image(systemName: "link.circle") })}
+                                .disabled(branch.openess == OpenType.Public.rawValue)
                                 
                                 
                             }
@@ -111,8 +107,6 @@ struct BranchCardListView: View {
                                 branchvm.uploadBranch{ success in
                                     if success {
                                         print("successfully linked items and uploaded to firebase")
-                                        journalvm.fetchJournals { _ in
-                                        }
                                         branchvm.fetchAllBranchs(completion: {_ in})
                                     } else {
                                         print("Booom! failed to linke items and upload to firebase")

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BranchCardPublicListView: View {
     
+    @AppStorage(CurrentUserDefaults.userID) var userID:String?
     @ObservedObject var communityvm:CommunityViewModel
     @ObservedObject var dataLinkedManager:DataLinkedManager
 
@@ -16,11 +17,7 @@ struct BranchCardPublicListView: View {
     
     @State var isShowingLinkedItemView = false
     
-    @State var isShowingCommentView = false
-    
-    @State var isShowingChatView = false
-    
-    @State var isLiked = false
+  
     
     var body: some View {
         NavigationView{
@@ -30,7 +27,8 @@ struct BranchCardPublicListView: View {
                 LazyVStack{
                     ForEach(communityvm.fetchedOpenBranches, id: \.self) { branch in
   
-                        VStack{
+                        VStack(alignment:.leading){
+                            
                             BranchCardView(branch: branch)
                                 .background{
                                     NavigationLink(destination: LinkedItemsView(dataLinkedManager: dataLinkedManager), isActive: $isShowingLinkedItemView) {
@@ -40,6 +38,7 @@ struct BranchCardPublicListView: View {
                                 } //: background
                             
                                 .onTapGesture {
+                                    
                                     isShowingLinkedItemView.toggle()
                                     dataLinkedManager.linkedIds = branch.linkedItems
                                     dataLinkedManager.fetchItems { success in
@@ -54,48 +53,9 @@ struct BranchCardPublicListView: View {
                             
                             
                             
-                            HStack(alignment: .center, spacing: 40){
-                                Button {
-                                    communityvm.sendLike(like:Like(ownerID: "", likeorHate: 1), branch: branch) { success in
-                                        if success {
-                                            isLiked.toggle()
-                                    }
-                                    } }label: {
-                                    
-                                        Image(systemName: (isLiked ? "heart.fill" : "heart"))
-                                         
-                                    
-                                    
-                                }
-
-                        
-                                
-                                
-                                Button {
-                                    isShowingCommentView.toggle()
-                                } label: {
-                                    
-                                    
-                                    Image(systemName: (isShowingCommentView ? "buble.right.fill" : "bubble.right"))
-                                       
-                                    
-                                    
-                                }
-                                
-                                Spacer()
-                            }
-                            
-                                
-                                
-                                
+                            OpenBranchBottomView(branch: branch, communityvm: communityvm)
                                 
                         }
-                        .sheet(isPresented: $isShowingCommentView){
-                            CommentsView(branch: branch)
-                        }
-                            
-                        
-                        
                         
                         
                     }

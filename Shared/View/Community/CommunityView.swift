@@ -15,12 +15,6 @@ enum Area: String, CaseIterable {
 }
 
 
-
-
-
-
-
-
 struct CommunityView: View {
     @ObservedObject var communityvm:CommunityViewModel
     @ObservedObject var dataLinkedManager:DataLinkedManager

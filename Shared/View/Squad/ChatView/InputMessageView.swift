@@ -14,7 +14,6 @@ struct InputMessageView: View {
     
     @ObservedObject var squadvm:SquadViewModel
     
-    
     var body: some View {
         VStack {
             Rectangle()
@@ -23,7 +22,7 @@ struct InputMessageView: View {
                 .padding(.bottom, 8)
             
             HStack {
-                TextField("Input here", text: $squadvm.message.content)
+                TextField("Input here", text: $squadvm.inputMessage.content)
                     .textFieldStyle(PlainTextFieldStyle())
                     .font(.body)
                     .frame(minHeight: 30)
@@ -31,7 +30,7 @@ struct InputMessageView: View {
                 Button{
                     squadvm.sendMessage{ success in
                         if success {
-                            squadvm.message = Message()
+                            squadvm.inputMessage = Message()
                         }
                     }
                 } label: {

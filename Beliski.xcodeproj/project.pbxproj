@@ -90,6 +90,13 @@
 		296FA487273187A100FEBF8A /* InPutCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA485273187A100FEBF8A /* InPutCommentsView.swift */; };
 		296FA4892731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */; };
 		296FA48A2731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */; };
+		296FA48D2732AF8400FEBF8A /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 296FA48C2732AF8400FEBF8A /* Collections */; };
+		296FA48F2732AF8400FEBF8A /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 296FA48E2732AF8400FEBF8A /* DequeModule */; };
+		296FA4912732AF8400FEBF8A /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 296FA4902732AF8400FEBF8A /* OrderedCollections */; };
+		296FA4962732FC8E00FEBF8A /* UserPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4952732FC8E00FEBF8A /* UserPrivate.swift */; };
+		296FA4972732FC8E00FEBF8A /* UserPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4952732FC8E00FEBF8A /* UserPrivate.swift */; };
+		296FA49927330B8000FEBF8A /* OpenBranchBottomView.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49827330B8000FEBF8A /* OpenBranchBottomView.swift.swift */; };
+		296FA49A27330B8000FEBF8A /* OpenBranchBottomView.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49827330B8000FEBF8A /* OpenBranchBottomView.swift.swift */; };
 		29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFF270D5E8A00754817 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* MainView.swift */; };
@@ -217,8 +224,6 @@
 		29E1DE09273120CF00EC5E1D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE07273120CF00EC5E1D /* Comment.swift */; };
 		29E1DE0B273121DF00EC5E1D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE0A273121DF00EC5E1D /* Message.swift */; };
 		29E1DE0C273121DF00EC5E1D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE0A273121DF00EC5E1D /* Message.swift */; };
-		29E1DE0E2731444C00EC5E1D /* LikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE0D2731444C00EC5E1D /* LikesView.swift */; };
-		29E1DE0F2731444C00EC5E1D /* LikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE0D2731444C00EC5E1D /* LikesView.swift */; };
 		29E1DE172731463300EC5E1D /* SquadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE162731463300EC5E1D /* SquadViewModel.swift */; };
 		29E1DE182731463300EC5E1D /* SquadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE162731463300EC5E1D /* SquadViewModel.swift */; };
 		29E1DE1A2731634A00EC5E1D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE192731634900EC5E1D /* MessageView.swift */; };
@@ -322,6 +327,8 @@
 		296FA4832731854700FEBF8A /* CommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
 		296FA485273187A100FEBF8A /* InPutCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPutCommentsView.swift; sourceTree = "<group>"; };
 		296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardPublicListView.swift; sourceTree = "<group>"; };
+		296FA4952732FC8E00FEBF8A /* UserPrivate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivate.swift; sourceTree = "<group>"; };
+		296FA49827330B8000FEBF8A /* OpenBranchBottomView.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenBranchBottomView.swift.swift; sourceTree = "<group>"; };
 		29C46BED270D5E8800754817 /* BeliskiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeliskiApp.swift; sourceTree = "<group>"; };
 		29C46BEE270D5E8800754817 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		29C46BEF270D5E8A00754817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -390,7 +397,6 @@
 		29E1DE04273120BF00EC5E1D /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		29E1DE07273120CF00EC5E1D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = ItemProtocol/Comment.swift; sourceTree = "<group>"; };
 		29E1DE0A273121DF00EC5E1D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		29E1DE0D2731444C00EC5E1D /* LikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesView.swift; sourceTree = "<group>"; };
 		29E1DE162731463300EC5E1D /* SquadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadViewModel.swift; sourceTree = "<group>"; };
 		29E1DE192731634900EC5E1D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		29E1DE1C273163B900EC5E1D /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
@@ -429,10 +435,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296FA4912732AF8400FEBF8A /* OrderedCollections in Frameworks */,
 				29ED11032711D26400E67D8B /* VideoPlayer in Frameworks */,
 				29ED10F32710311A00E67D8B /* Kingfisher in Frameworks */,
+				296FA48D2732AF8400FEBF8A /* Collections in Frameworks */,
 				29552A4C270F029F0056E675 /* FirebaseStorageSwift-Beta in Frameworks */,
 				29552A48270F029F0056E675 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				296FA48F2732AF8400FEBF8A /* DequeModule in Frameworks */,
 				29552A4A270F029F0056E675 /* FirebaseStorage in Frameworks */,
 				29552A44270F029F0056E675 /* FirebaseAuth in Frameworks */,
 				29552A46270F029F0056E675 /* FirebaseFirestore in Frameworks */,
@@ -596,11 +605,12 @@
 			children = (
 				29ED1161271DB87000E67D8B /* ItemProtocol */,
 				29ED115E271D8EF500E67D8B /* Protocols.swift */,
-				29E1DE04273120BF00EC5E1D /* Like.swift */,
 				29E1DE07273120CF00EC5E1D /* Comment.swift */,
 				29C46C0F270D600900754817 /* User.swift */,
 				29ED11252719C3ED00E67D8B /* Tag.swift */,
 				29E1DE0A273121DF00EC5E1D /* Message.swift */,
+				29E1DE04273120BF00EC5E1D /* Like.swift */,
+				296FA4952732FC8E00FEBF8A /* UserPrivate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -720,8 +730,8 @@
 				29E1DD67272D27DD00EC5E1D /* CarouselView.swift */,
 				29E1DD93272D59BA00EC5E1D /* NotificationView.swift */,
 				29E1DE01273046E500EC5E1D /* CategoryView.swift */,
-				29E1DE0D2731444C00EC5E1D /* LikesView.swift */,
 				296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */,
+				296FA49827330B8000FEBF8A /* OpenBranchBottomView.swift.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -956,6 +966,9 @@
 				29552A4B270F029F0056E675 /* FirebaseStorageSwift-Beta */,
 				29ED10F22710311A00E67D8B /* Kingfisher */,
 				29ED11022711D26400E67D8B /* VideoPlayer */,
+				296FA48C2732AF8400FEBF8A /* Collections */,
+				296FA48E2732AF8400FEBF8A /* DequeModule */,
+				296FA4902732AF8400FEBF8A /* OrderedCollections */,
 			);
 			productName = "Beliski (iOS)";
 			productReference = 29C46BF4270D5E8A00754817 /* Beliski.app */;
@@ -1019,6 +1032,7 @@
 				29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				29ED10F12710311A00E67D8B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				29ED11012711D26400E67D8B /* XCRemoteSwiftPackageReference "VideoPlayer" */,
+				296FA48B2732AF8300FEBF8A /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 29C46BF5270D5E8A00754817 /* Products */;
 			projectDirPath = "";
@@ -1086,6 +1100,7 @@
 				2942C848271FEA0900ECD167 /* TagEditorView.swift in Sources */,
 				29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
 				29ED11332719E49600E67D8B /* PersonEditorView.swift in Sources */,
+				296FA4962732FC8E00FEBF8A /* UserPrivate.swift in Sources */,
 				2907B4A5272A7BEF001A3DA1 /* BranchCardView.swift in Sources */,
 				29ED113E2719E4B400E67D8B /* TaskListView.swift in Sources */,
 				2907B4AC272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */,
@@ -1116,6 +1131,7 @@
 				29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */,
 				29E1DDC0272D746C00EC5E1D /* Line.swift in Sources */,
 				29ED11102718979100E67D8B /* LinkedItemsView.swift in Sources */,
+				296FA49927330B8000FEBF8A /* OpenBranchBottomView.swift.swift in Sources */,
 				2907B4B9272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */,
 				29E1DD91272D54F900EC5E1D /* CommunityViewModel.swift in Sources */,
 				29ED112F2719E49600E67D8B /* PersonItemView.swift in Sources */,
@@ -1167,7 +1183,6 @@
 				2942C84B271FEA2B00ECD167 /* TagCollectionView.swift in Sources */,
 				2942C85D2724000200ECD167 /* SearchResultView.swift in Sources */,
 				29E1DDBA272D746C00EC5E1D /* MagnifierRect.swift in Sources */,
-				29E1DE0E2731444C00EC5E1D /* LikesView.swift in Sources */,
 				2907B4C6272C1037001A3DA1 /* OpenStatsBarView.swift in Sources */,
 				2907B4A8272A7C6B001A3DA1 /* Branch.swift in Sources */,
 				29C46C27270D600900754817 /* ProfileViewModel.swift in Sources */,
@@ -1248,6 +1263,7 @@
 				29ED1154271AE71E00E67D8B /* TimelineManager.swift in Sources */,
 				29C46C00270D5E8A00754817 /* MainView.swift in Sources */,
 				29ED115D271D735000E67D8B /* TagViewModel.swift in Sources */,
+				296FA49A27330B8000FEBF8A /* OpenBranchBottomView.swift.swift in Sources */,
 				29E1DDF4272E54DD00EC5E1D /* BranchCardOpenView.swift in Sources */,
 				29E1DDC5272D746C00EC5E1D /* PieChartRow.swift in Sources */,
 				29ED1157271B42B600E67D8B /* PersonDetailView.swift in Sources */,
@@ -1295,7 +1311,6 @@
 				29E1DE1E273163B900EC5E1D /* ChatBubbleView.swift in Sources */,
 				29ED11272719C3ED00E67D8B /* Tag.swift in Sources */,
 				29552A6F271010160056E675 /* Person.swift in Sources */,
-				29E1DE0F2731444C00EC5E1D /* LikesView.swift in Sources */,
 				29E1DD95272D59BA00EC5E1D /* NotificationView.swift in Sources */,
 				2907B4BA272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */,
 				29E1DDC7272D746C00EC5E1D /* PieChartHelpers.swift in Sources */,
@@ -1306,6 +1321,7 @@
 				29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
 				29ED11322719E49600E67D8B /* PersonListView.swift in Sources */,
 				29E1DDD1272DB01700EC5E1D /* WordCloudView.swift in Sources */,
+				296FA4972732FC8E00FEBF8A /* UserPrivate.swift in Sources */,
 				2907B4A9272A7C6B001A3DA1 /* Branch.swift in Sources */,
 				29E1DDE1272DB09700EC5E1D /* HiddenClueView.swift in Sources */,
 				2942C85B2721391E00ECD167 /* TagPanelViewModel.swift in Sources */,
@@ -1604,6 +1620,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		296FA48B2732AF8300FEBF8A /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		29ED10F12710311A00E67D8B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1647,6 +1671,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageSwift-Beta";
+		};
+		296FA48C2732AF8400FEBF8A /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 296FA48B2732AF8300FEBF8A /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		296FA48E2732AF8400FEBF8A /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 296FA48B2732AF8300FEBF8A /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		296FA4902732AF8400FEBF8A /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 296FA48B2732AF8300FEBF8A /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
 		};
 		29D2BA922727D9E8007F76B8 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

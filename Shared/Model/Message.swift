@@ -9,11 +9,21 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-struct Message:Identifiable, Codable {
+struct Message:Identifiable, Codable, Hashable {
     
     var id:String = UUID().uuidString
     var ownerID:String = ""
     @ServerTimestamp var serverTimestamp:Timestamp?
     var content: String = ""
     var sendToID:String = ""
+    
+    static func == (lhs: Message, rhs: Message) -> Bool {
+            return lhs.id == rhs.id
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+    
+    
 }

@@ -6,16 +6,24 @@
 //
 
 import Foundation
+import OrderedCollections
 class SquadViewModel: ObservableObject {
     
     @Published var fetchedOnInviteBranches:[Branch]  = [Branch]()
-        
-    
+    @Published var fetchedPublicBranches:[Branch] = [Branch]()
     @Published var fetchedMessages:[Message] = [Message]()
+    @Published var fetchedProfiles:[User] = [User]()
+    @Published var fetchedMessagesAndProfiles:OrderedDictionary<Message,User> = [:]
     
-    @Published var message:Message = Message()
     
-    @Published var branch:Branch = Branch()
+    
+    @Published var editBranch:Branch = Branch()
+    
+    
+    
+    @Published var currentBranch:Branch = Branch()
+    @Published var inputMessage:Message = Message()
+
     
     
     func getProfile(message: Message,completion: @escaping (_ user: User?) -> () ){
@@ -54,11 +62,11 @@ class SquadViewModel: ObservableObject {
             return
         }
         
-        message.ownerID = userID
-        let document =  COLLECTION_USERS.document(branch.ownerID).collection("branches")
-            .document(branch.id).collection("messages").document(message.id)
+        self.inputMessage.ownerID = userID
+        let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
+            .document(self.currentBranch.id).collection("messages").document(self.inputMessage.id)
         do {
-            try document.setData(from: message)
+            try document.setData(from: self.inputMessage)
             completion(true)
             return
             
@@ -71,7 +79,7 @@ class SquadViewModel: ObservableObject {
     }
     
     
-    func getMessages(completion: @escaping (_ success: Bool) -> ()) {
+    func getMessages(branch:Branch, completion: @escaping (_ success: Bool) -> ()) {
         
         let first  = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("messages")
             .order(by:"serverTimestamp")
@@ -81,7 +89,7 @@ class SquadViewModel: ObservableObject {
                 guard let lastSnapshot = snapshot?.documents.last else {completion(false)
                 return}
             
-            COLLECTION_USERS.document(self.branch.ownerID).collection("branches").document(self.branch.id).collection("messages")
+            COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("messages")
                 .order(by:"serverTimestamp")
                 .start(afterDocument: lastSnapshot)
                 .getDocuments { (snapshot, _) in
@@ -94,9 +102,37 @@ class SquadViewModel: ObservableObject {
     }
     
     
+    func fetchProfilesAndMessages(branch:Branch,completion: @escaping (_ success: Bool) -> ()){
+        var messageProfilePairs:OrderedDictionary<Message,User> = [:]
+        var profiles:Set<User> = Set<User>()
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        self.getMessages(branch: branch) { success in
+            if success {
+                for message in self.fetchedMessages{
+                    self.getProfile(message: message) { user in
+                        if let user = user {
+                            profiles.insert(user)
+                            messageProfilePairs[message] = user
+                            group.leave()
+                        }
+                    }
+                }
+            }
+        }
+        
+        group.notify(queue: .main){
+            self.fetchedMessagesAndProfiles = messageProfilePairs
+            self.fetchedProfiles = Array(profiles)
+        }
+    }
+    
+    
     
     // MARK: get OnInvite branches
-    func fetchOnInviteBranchs(completion: @escaping (_ success: Bool) -> ()) {
+    func fetchOnInviteBranches(completion: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchJournal function")
             completion(false)
@@ -111,6 +147,29 @@ class SquadViewModel: ObservableObject {
                     completion(false)
                     return }
                 self.fetchedOnInviteBranches = documents.compactMap({try? $0.data(as: Branch.self)})
+                completion(true)
+                return
+            }
+        
+    }
+    
+    
+    // MARK: get OnInvite branches
+    func fetchPublicBranches(completion: @escaping (_ success: Bool) -> ()) {
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in fetchJournal function")
+            completion(false)
+            return
+        }
+        
+        
+        COLLECTION_USERS.document(userID).collection("branches")
+            .whereField("openess", isEqualTo: OpenType.Public)
+            .addSnapshotListener { snapshot, _ in
+                guard let documents = snapshot?.documents else {
+                    completion(false)
+                    return }
+                self.fetchedPublicBranches = documents.compactMap({try? $0.data(as: Branch.self)})
                 completion(true)
                 return
             }

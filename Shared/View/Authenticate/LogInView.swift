@@ -119,7 +119,7 @@ struct LogInView: View {
                     }
                 }
             } else {
-                self.errorMessage = "Failed to connect with Google Service, check your network"
+                self.errorMessage = "Login failed There is no user record corresponding"
                 self.isShowingAlert.toggle()
             }
             

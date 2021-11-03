@@ -6,20 +6,25 @@
 //
 
 import Foundation
+import OrderedCollections
 
 class CommunityViewModel: ObservableObject {
+    
     @Published var fetchedOpenBranches:[Branch] = [Branch]()
-    
     @Published var fetchedLikes: [Like] = [Like]()
-    
+    @Published var fetchedDislikes:[Like] = [Like]()
+    @Published var fetchedProfiles:[User] = [User]()
     @Published var fetchedComments:[Comment] = [Comment]()
+    @Published var fetchedCommentsAndProfiles:OrderedDictionary<Comment,User> = [:]
+    
+
     
     
-    @Published var comment:Comment = Comment()
+    @Published var inputComment:Comment = Comment()
+    @Published var inputLike:Like = Like()
+    @Published var inputDislike:Like = Like()
     
-    @Published var openBranch:Branch = Branch()
-    
-    
+    @Published var currentBranch:Branch = Branch()
     
     
     @Published var selectedCategory:String = ""
@@ -58,7 +63,7 @@ class CommunityViewModel: ObservableObject {
     
     // MARK: Send
     // !!!: here exists a performance issue: https://firebase.google.com/docs/firestore/solutions/counters#swift_1
-    func sendLike(like: Like, branch:Branch, completion: @escaping (_ success: Bool) -> ()){
+    func sendLike(completion: @escaping (_ success: Bool) -> ()){
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in like function")
             completion(false)
@@ -66,13 +71,13 @@ class CommunityViewModel: ObservableObject {
         }
         
         
-        comment.ownerID = userID
+        self.inputLike.ownerID = userID
         
-        let document =  COLLECTION_USERS.document(branch.ownerID).collection("branches")
-            .document(branch.id).collection("likes").document(like.id)
+        let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
+            .document(self.currentBranch.id).collection("likes").document(self.inputLike.id)
         
         do {
-            try document.setData(from: like)
+            try document.setData(from: self.inputLike)
             completion(true)
             return
             
@@ -86,18 +91,18 @@ class CommunityViewModel: ObservableObject {
     
     
     
-    func sendComment(branch:Branch,completion: @escaping (_ success: Bool) -> ()){
+    func sendComment(completion: @escaping (_ success: Bool) -> ()){
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in like function")
             completion(false)
             return
         }
         
-        comment.ownerID = userID
-        let document =  COLLECTION_USERS.document(branch.ownerID).collection("branches")
-            .document(branch.id).collection("comments").document(comment.id)
+        self.inputComment.ownerID = userID
+        let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
+            .document(self.currentBranch.id).collection("comments").document(self.inputComment.id)
         do {
-            try document.setData(from: comment)
+            try document.setData(from: self.inputComment)
             completion(true)
             return
             
@@ -120,7 +125,8 @@ class CommunityViewModel: ObservableObject {
     
     func getlikes(branch:Branch, completion: @escaping (_ success: Bool) -> ()){
         
-            COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
+        COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
+            .whereField("like", isEqualTo: 1)
             .limit(to:20)
 
         let first  = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
@@ -131,7 +137,7 @@ class CommunityViewModel: ObservableObject {
                 guard let lastSnapshot = snapshot?.documents.last else {completion(false)
                 return}
             
-             COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
+            COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
                 .order(by:"serverTimestamp")
                 .limit(to:20)
                 .start(afterDocument: lastSnapshot)
@@ -147,7 +153,37 @@ class CommunityViewModel: ObservableObject {
     }
     
     
-    func getComments(branch:Branch, completion: @escaping (_ success: Bool) -> ()) {
+    func getDislikes(branch:Branch, completion: @escaping (_ success: Bool) -> ()){
+        
+        COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
+            .whereField("like", isEqualTo: -1)
+            .limit(to:20)
+
+        let first  = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
+            .order(by:"serverTimestamp")
+            .limit(to:20)
+        
+        first.addSnapshotListener() { snapshot, _ in
+                guard let lastSnapshot = snapshot?.documents.last else {completion(false)
+                return}
+            
+            COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
+                .order(by:"serverTimestamp")
+                .limit(to:20)
+                .start(afterDocument: lastSnapshot)
+                .getDocuments { snapshot, _ in
+                    guard let documents = snapshot?.documents else { return }
+                    self.fetchedDislikes = documents.compactMap({try? $0.data(as: Like.self)})
+            
+            completion(true)
+            return
+        }
+        
+    }
+    }
+    
+    
+    func getComments(branch:Branch,completion: @escaping (_ success: Bool) -> ()) {
         
         let first  = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("comments")
             .order(by:"serverTimestamp")
@@ -157,7 +193,7 @@ class CommunityViewModel: ObservableObject {
                 guard let lastSnapshot = snapshot?.documents.last else {completion(false)
                 return}
             
-            let next = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("comments")
+            COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("comments")
                 .order(by:"serverTimestamp")
                 .start(afterDocument: lastSnapshot)
                 .getDocuments { snapshot, _ in
@@ -170,6 +206,43 @@ class CommunityViewModel: ObservableObject {
     }
     
     
+    
+    func fetchCommentsAndProfiles(branch:Branch,completion: @escaping (_ success: Bool) -> ()){
+        var commentProfilePairs:OrderedDictionary<Comment,User> = [:]
+        var profiles:Set<User> = Set<User>()
+        
+        let group = DispatchGroup()
+        
+        group.enter()
+        self.getComments(branch: branch) { success in
+            if success {
+                for comment in self.fetchedComments{
+                    self.getProfile(comment: comment) { user in
+                        if let user = user {
+                            profiles.insert(user)
+                            commentProfilePairs[comment] = user
+                            group.leave()
+                        } else {
+                            print("fail to get corresponding user for this comment")
+                            completion(false)
+                            return
+                        }
+                    }
+                }
+            } else {
+                print("fail to get corresponding comments for this branch")
+                completion(false)
+                return
+            }
+        }
+        
+        group.notify(queue: .main){
+            self.fetchedCommentsAndProfiles = commentProfilePairs
+            self.fetchedProfiles = Array(profiles)
+            completion(true)
+            return
+        }
+    }
     
     
     

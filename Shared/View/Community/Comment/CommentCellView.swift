@@ -11,22 +11,10 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct CommentCellView: View {
-    let comment: Comment
+    let comment:Comment
     
-    var user:User
+    let user:User
     
-    @ObservedObject var communityvm:CommunityViewModel
-    
-    init(communityvm:CommunityViewModel, comment: Comment) {
-        self.communityvm = communityvm
-        self.comment = comment
-        communityvm.getProfile(comment: comment) { user in
-            if let user = user {
-                self.user = user
-            }
-        }
-        
-    }
     
     var body: some View {
         HStack {
@@ -36,7 +24,7 @@ struct CommentCellView: View {
                 .frame(width: 36, height: 36)
                 .clipShape(Circle())
             
-            Text(user.userName ?? "Anonymous").font(.system(size: 14, weight: .semibold)) +
+            Text(user.userName ?? "unknown").font(.system(size: 14, weight: .semibold)) +
             Text(" \(comment.content)").font(.system(size: 14))
             
             Spacer()
@@ -50,6 +38,6 @@ struct CommentCellView: View {
 
 struct CommentCellView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentCellView(communityvm: CommunityViewModel(), comment: Comment(id: "", ownerID: "", serverTimestamp: Timestamp(date:Date()), content: "this is awesome and I cant wait to see next episode"))
+        CommentCellView(comment: Comment(id: "", ownerID: "", serverTimestamp: Timestamp(date: Date()), content: "This is an awesome work"), user: User(profileImageURL: "https://www.google.com/webhp?hl=zh-TW&ictx=2&sa=X&ved=0ahUKEwjxoa-g2_zzAhWGwJQKHTNuBiYQPQgJ", userName:"Titan"))
     }
 }

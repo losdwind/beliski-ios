@@ -14,5 +14,5 @@ struct Like: Identifiable, Codable {
     var id:String = UUID().uuidString
     var ownerID:String = ""
     @ServerTimestamp var serverTimestamp:Timestamp?
-    var likeorHate:Int = 0
+    var like:Int = 0
 }

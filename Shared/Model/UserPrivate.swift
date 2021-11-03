@@ -1,15 +1,15 @@
 //
-//  Profile.swift
-//  Beliski2
+//  UserPrivate.swift
+//  Beliski
 //
-//  Created by Losd wind on 2021/9/22.
+//  Created by Losd wind on 2021/11/4.
 //
 
+import Foundation
 import Firebase
 import FirebaseFirestoreSwift
-import Foundation
 
-struct User: Identifiable, Codable, Hashable {
+struct UserPrivate: Identifiable, Codable, Hashable{
     
     // can be retreive from the Auth.auth().currentUser : uid, email. photoURL
     var id: String?
@@ -34,7 +34,5 @@ struct User: Identifiable, Codable, Hashable {
     var WBIndex:Dictionary<String, Int>? // career, health, emotion, finance, community
     var trajectories:String? // save in google storage
     var misc:String?
-    
 
-    
 }

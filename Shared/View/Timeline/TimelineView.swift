@@ -33,6 +33,11 @@ struct TimelineView: View {
         
         UIPageControl.appearance().currentPageIndicatorTintColor = .clear
         UIPageControl.appearance().pageIndicatorTintColor = .clear
+        
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().isTranslucent = true
+        UITabBar.appearance().backgroundColor = .white
     }
     
     var body: some View {
@@ -117,7 +122,7 @@ struct TimelineView: View {
                 }
             }
             .sheet(isPresented: $isShowingSearchView){
-                SearchView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager)
+                SearchView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager, branchvm: branchvm)
             }
             .onAppear {
                 personvm.fetchPersons{ success in
@@ -156,7 +161,7 @@ struct TimelineView: View {
 
 struct TimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        TimelineView(timelineManger: TimelineManager(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
+        TimelineView(timelineManger: TimelineManager(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
             .preferredColorScheme(.light)
             .environment(\.sizeCategory, .extraSmall)
     }

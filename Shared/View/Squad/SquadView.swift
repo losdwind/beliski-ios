@@ -28,9 +28,19 @@ struct SquadView: View {
                         HStack{
                             ForEach(squadvm.fetchedOnInviteBranches, id: \.self) { branch in
                                 NavigationLink{
-                                    ChatView(squadvm: squadvm, branch: branch)
+                                    ChatView(squadvm: squadvm)
                                 } label: {
                                     SquadCardView(branch: branch)
+                                }
+                                .onTapGesture {
+                                    squadvm.currentBranch = branch
+                                    squadvm.fetchProfilesAndMessages(branch: branch) { success in
+                                        if success {
+                                            print("successfully get the messages")
+                                        } else{
+                                            print("error to get related messages")
+                                        }
+                                    }
                                 }
                             }
                             

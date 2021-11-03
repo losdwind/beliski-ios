@@ -19,15 +19,15 @@ struct InputCommentView: View {
                 .padding(.bottom, 8)
             
             HStack {
-                TextField("Input here", text: $communityvm.comment.content)
+                TextField("Input here", text: $communityvm.inputComment.content)
                     .textFieldStyle(PlainTextFieldStyle())
                     .font(.body)
                     .frame(minHeight: 30)
                 
                 Button{
-                    communityvm.sendComment(branch: $communityvm.branch) { success in
+                    communityvm.sendComment() { success in
                         if success {
-                            communityvm.comment = Comment()
+                            communityvm.inputComment = Comment()
                         }
                     }
                 } label: {
