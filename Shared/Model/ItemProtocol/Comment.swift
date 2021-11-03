@@ -9,14 +9,14 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-struct Comment: Identifiable, Codable {
+struct Comment: Identifiable, Codable, Hashable {
     
     var id:String = UUID().uuidString
     
-    var ownerID:String
+    var ownerID:String = ""
     
     @ServerTimestamp var serverTimestamp: Timestamp?
     
-    var content: String
+    var content: String = ""
     
 }

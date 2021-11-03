@@ -19,8 +19,9 @@ struct MessageView: View {
     @ObservedObject var squadvm:SquadViewModel
     
     init(message:Message, squadvm:SquadViewModel){
-        self.squadvm = squadvm
         self.message = message
+        self.squadvm = squadvm
+        
         squadvm.getProfile(message: message){ user in
             if let user = user {
                 self.profileImageURL = user.profileImageURL ?? ""

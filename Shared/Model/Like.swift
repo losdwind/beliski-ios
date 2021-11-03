@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 
 struct Like: Identifiable, Codable {
     var id:String = UUID().uuidString
-    var ownerID:String
+    var ownerID:String = ""
     @ServerTimestamp var serverTimestamp:Timestamp?
-    var likeorHate:Int
+    var likeorHate:Int = 0
 }

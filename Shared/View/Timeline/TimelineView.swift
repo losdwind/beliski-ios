@@ -16,11 +16,12 @@ struct TimelineView: View {
     @ObservedObject var dataLinkedManger:DataLinkedManager
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var tagPanelvm:TagPanelViewModel
+    @ObservedObject var branchvm: BranchViewModel
     
     @State var isShowingSearchView = false
     
     
-    init(timelineManger:TimelineManager, journalvm:JournalViewModel, taskvm:TaskViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel){
+    init(timelineManger:TimelineManager, journalvm:JournalViewModel, taskvm:TaskViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel, branchvm:BranchViewModel){
         self.timelineManager = timelineManger
         self.journalvm = journalvm
         self.taskvm = taskvm
@@ -28,6 +29,7 @@ struct TimelineView: View {
         self.dataLinkedManger = dataLinkedManager
         self.searchvm = searchvm
         self.tagPanelvm = tagPanelvm
+        self.branchvm = branchvm
         
         UIPageControl.appearance().currentPageIndicatorTintColor = .clear
         UIPageControl.appearance().pageIndicatorTintColor = .clear
@@ -73,7 +75,7 @@ struct TimelineView: View {
                 case .EVENTS:
                     TaskListView(taskvm: taskvm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
                 case .TOPICS:
-                    TopicView(timelineManager: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                    TopicView(timelineManager: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm)
                     
                     
                 }

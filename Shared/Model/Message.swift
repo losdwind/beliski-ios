@@ -10,9 +10,10 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct Message:Identifiable, Codable {
+    
     var id:String = UUID().uuidString
-    var ownerID:String
+    var ownerID:String = ""
     @ServerTimestamp var serverTimestamp:Timestamp?
-    var content: String
-    var sendToID:String
+    var content: String = ""
+    var sendToID:String = ""
 }

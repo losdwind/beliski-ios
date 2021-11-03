@@ -61,7 +61,7 @@ struct JournalItemView: View {
             
             VStack(alignment: .leading){
             
-            TimestampView(time:journal.convertFIRTimestamptoString(timestamp: journal.localTimestamp))
+            TimestampView(time:convertFIRTimestamptoString(timestamp: journal.localTimestamp))
             
             
             TagCollectionView(tagvm:journalTagvm)

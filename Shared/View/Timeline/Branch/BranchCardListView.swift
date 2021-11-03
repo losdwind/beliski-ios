@@ -10,7 +10,7 @@ import SwiftUI
 struct BranchCardListView: View {
     
     @ObservedObject var branchvm:BranchViewModel
-
+    
     @ObservedObject var dataLinkedManager:DataLinkedManager
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var tagPanelvm:TagPanelViewModel
@@ -26,7 +26,7 @@ struct BranchCardListView: View {
                 
                 LazyVStack{
                     ForEach(branchvm.fetchedAllBranches, id: \.self) { branch in
-  
+                        
                         BranchCardView(branch: branch)
                             .background{
                                 NavigationLink(destination: LinkedItemsView(dataLinkedManager: dataLinkedManager), isActive: $isShowingLinkedItemView) {
@@ -50,14 +50,14 @@ struct BranchCardListView: View {
                                         title: { Text("Delete") },
                                         icon: { Image(systemName: "trash.circle") })})
                                     .disabled(branch.openess != OpenType.Private)
-
-                            
+                                
+                                
                                 
                                 // Edit
                                 Button(action:{
                                     branchvm.branch = branch
                                     branchvm.localTimestamp = branch.serverTimestamp?.dateValue() ?? Date(timeIntervalSince1970: 0)
-                             
+                                    
                                     isUpdatingBranch = true
                                     
                                 }
@@ -65,7 +65,7 @@ struct BranchCardListView: View {
                                         title: { Text("Edit") },
                                         icon: { Image(systemName: "pencil.circle") }))
                                     .disabled(branch.openess == OpenType.Public)
-                                    
+                                
                                 
                                 // Link
                                 Button(action:{
@@ -78,7 +78,14 @@ struct BranchCardListView: View {
                                         title: { Text("Link") },
                                         icon: { Image(systemName: "link.circle") })})
                                     .disabled(branch.openess == OpenType.Public)
-                        
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                            }
                         
                         
                         
@@ -95,46 +102,42 @@ struct BranchCardListView: View {
                                 }
                             } //: onTapGesture
                         
-                                    .sheet(isPresented: $isUpdatingBranch){
-                                        // MARK: - think about the invalide id, because maybe the journal haven't yet been uploaded
-                                        
-                                        BranchCardEditorView(branchvm: branchvm)
-                                    }
-                                    .sheet(isPresented: $isShowingLinkView, onDismiss: {
-                                        branchvm.uploadBranch{ success in
-                                            if success {
-                                                print("successfully linked items and uploaded to firebase")
-                                                journalvm.fetchJournals { _ in
-                                                }
-                                                branchvm.fetchAllBranchs(completion: {_ in})
-                                            } else {
-                                                print("Booom! failed to linke items and upload to firebase")
-                                            }
-                                            
+                            .sheet(isPresented: $isUpdatingBranch){
+                                // MARK: - think about the invalide id, because maybe the journal haven't yet been uploaded
+                                
+                                BranchCardEditorView(branchvm: branchvm)
+                            }
+                            .sheet(isPresented: $isShowingLinkView, onDismiss: {
+                                branchvm.uploadBranch{ success in
+                                    if success {
+                                        print("successfully linked items and uploaded to firebase")
+                                        journalvm.fetchJournals { _ in
                                         }
-                                    }){
-                                        SearchAndLinkingView(linkedIDs: $branchvm.branch.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
-                                        
+                                        branchvm.fetchAllBranchs(completion: {_ in})
+                                    } else {
+                                        print("Booom! failed to linke items and upload to firebase")
                                     }
-                        
+                                    
+                                }
+                            }){
+                                SearchAndLinkingView(linkedIDs: $branchvm.branch.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                                
+                            }
                         
                         
                     }
                     
-                    
                 }
-                
-            }
                 .padding()
                 .frame(maxWidth: 640)
-        }
-        
-    }
-}
-}
-    
-    struct BranchCardListView_Previews: PreviewProvider {
-        static var previews: some View {
-            BranchCardListView(branchvm: BranchViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
+            }
+            
         }
     }
+}
+
+struct BranchCardListView_Previews: PreviewProvider {
+    static var previews: some View {
+        BranchCardListView(branchvm: BranchViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
+    }
+}

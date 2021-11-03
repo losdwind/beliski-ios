@@ -44,7 +44,7 @@ struct SearchResultView: View {
             }
             
         case .branch:
-            progressView()
+            ProgressView()
             
         }
         

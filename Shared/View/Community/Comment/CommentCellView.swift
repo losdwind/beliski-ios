@@ -18,6 +18,8 @@ struct CommentCellView: View {
     @ObservedObject var communityvm:CommunityViewModel
     
     init(communityvm:CommunityViewModel, comment: Comment) {
+        self.communityvm = communityvm
+        self.comment = comment
         communityvm.getProfile(comment: comment) { user in
             if let user = user {
                 self.user = user
@@ -28,13 +30,13 @@ struct CommentCellView: View {
     
     var body: some View {
         HStack {
-            KFImage(URL(string: user.profileImageURL))
+            KFImage(URL(string: user.profileImageURL ?? ""))
                 .resizable()
                 .scaledToFill()
                 .frame(width: 36, height: 36)
                 .clipShape(Circle())
             
-            Text(user.userName).font(.system(size: 14, weight: .semibold)) +
+            Text(user.userName ?? "Anonymous").font(.system(size: 14, weight: .semibold)) +
             Text(" \(comment.content)").font(.system(size: 14))
             
             Spacer()

@@ -113,6 +113,6 @@ struct BranchCardPublicListView: View {
 
 struct BranchCardPublicListView_Previews: PreviewProvider {
     static var previews: some View {
-        BranchCardPublicListView(communityvm: CommunityViewModel())
+        BranchCardPublicListView(communityvm: CommunityViewModel(), dataLinkedManager: DataLinkedManager())
     }
 }

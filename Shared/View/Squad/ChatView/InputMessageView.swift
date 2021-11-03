@@ -29,7 +29,7 @@ struct InputMessageView: View {
                     .frame(minHeight: 30)
                 
                 Button{
-                    squadvm.sendMessages(branch: squadvm.branch) { success in
+                    squadvm.sendMessage{ success in
                         if success {
                             squadvm.message = Message()
                         }

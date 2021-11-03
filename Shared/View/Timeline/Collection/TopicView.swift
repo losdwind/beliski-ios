@@ -50,6 +50,6 @@ struct TopicView: View {
 
 struct TopicView_Previews: PreviewProvider {
     static var previews: some View {
-        TopicView(timelineManager: TimelineManager(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
+        TopicView(timelineManager: TimelineManager(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
     }
 }

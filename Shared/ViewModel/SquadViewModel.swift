@@ -8,10 +8,10 @@
 import Foundation
 class SquadViewModel: ObservableObject {
     
-    @Published var fetchedOnInviteBranches:[Branch]  = []
+    @Published var fetchedOnInviteBranches:[Branch]  = [Branch]()
         
     
-    @Published var fetchedMessages:[String] = []
+    @Published var fetchedMessages:[Message] = [Message]()
     
     @Published var message:Message = Message()
     
@@ -81,15 +81,16 @@ class SquadViewModel: ObservableObject {
                 guard let lastSnapshot = snapshot?.documents.last else {completion(false)
                 return}
             
-            let next = COLLECTION_USERS.document(self.branch.ownerID).collection("branches").document(self.branch.id).collection("messages")
+            COLLECTION_USERS.document(self.branch.ownerID).collection("branches").document(self.branch.id).collection("messages")
                 .order(by:"serverTimestamp")
                 .start(afterDocument: lastSnapshot)
-                .getDocuments { snapshot, _ in
+                .getDocuments { (snapshot, _) in
                     guard let documents = snapshot?.documents else { return }
                     self.fetchedMessages = documents.compactMap({try? $0.data(as: Message.self)})
             
             completion(true)
         }
+    }
     }
     
     

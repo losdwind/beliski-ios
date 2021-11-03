@@ -11,9 +11,9 @@ struct ChatView: View {
     @ObservedObject var squadvm: SquadViewModel
     
     init(squadvm:SquadViewModel, branch:Branch){
-        squadvm.branch = branch
-        squadvm.getMessages { _ in
-            
+        
+        self.squadvm.branch = branch
+        self.squadvm.getMessages { _ in
         }
         
         
@@ -23,7 +23,7 @@ struct ChatView: View {
         VStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
-                    ForEach(squadvm.fetchedMessages) { message in
+                    ForEach(squadvm.fetchedMessages, id:\.self) { message in
                         MessageView(message: message, squadvm: squadvm)
                     }
                 }

@@ -25,7 +25,7 @@ struct InputCommentView: View {
                     .frame(minHeight: 30)
                 
                 Button{
-                    communityvm.sendComment(branch: communityvm.branch) { success in
+                    communityvm.sendComment(branch: $communityvm.branch) { success in
                         if success {
                             communityvm.comment = Comment()
                         }

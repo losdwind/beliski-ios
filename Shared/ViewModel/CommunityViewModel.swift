@@ -10,9 +10,9 @@ import Foundation
 class CommunityViewModel: ObservableObject {
     @Published var fetchedOpenBranches:[Branch] = [Branch]()
     
-    @Published var fetchedLikes: [Like] = []
+    @Published var fetchedLikes: [Like] = [Like]()
     
-    @Published var fetchedComments:[Comment] = []
+    @Published var fetchedComments:[Comment] = [Comment]()
     
     
     @Published var comment:Comment = Comment()
@@ -131,18 +131,19 @@ class CommunityViewModel: ObservableObject {
                 guard let lastSnapshot = snapshot?.documents.last else {completion(false)
                 return}
             
-            let next = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
+             COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
                 .order(by:"serverTimestamp")
                 .limit(to:20)
                 .start(afterDocument: lastSnapshot)
                 .getDocuments { snapshot, _ in
                     guard let documents = snapshot?.documents else { return }
-                    self.fetchedLikes= documents.compactMap({try? $0.data(as: Like.self)})
+                    self.fetchedLikes = documents.compactMap({try? $0.data(as: Like.self)})
             
             completion(true)
             return
         }
         
+    }
     }
     
     
@@ -161,10 +162,11 @@ class CommunityViewModel: ObservableObject {
                 .start(afterDocument: lastSnapshot)
                 .getDocuments { snapshot, _ in
                     guard let documents = snapshot?.documents else { return }
-                    self.fetchedComments= documents.compactMap({try? $0.data(as: Comment.self)})
+                    self.fetchedComments = documents.compactMap({try? $0.data(as: Comment.self)})
             
             completion(true)
         }
+    }
     }
     
     

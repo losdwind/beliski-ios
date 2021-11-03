@@ -37,7 +37,7 @@ struct MainView: View {
             TabView(selection: $selectedTab){
                 
                 // Show the timeline of user journals
-                TimelineView(timelineManger: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm)
+                TimelineView(timelineManger: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm)
                     .tabItem{
                         VStack{
                             Image(systemName: "text.redaction")
@@ -73,7 +73,7 @@ struct MainView: View {
                 
                 
                 // Show team formed by connected users, message and personal profile
-                CommunityView(communityvm: communityvm)
+                CommunityView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
                     .tabItem {
                         VStack{
                             Image(systemName: "building.2")
