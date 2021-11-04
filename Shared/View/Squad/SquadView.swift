@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SquadView: View {
     
-    @ObservedObject var branchvm:BranchViewModel
     @ObservedObject var squadvm: SquadViewModel
     @ObservedObject var dataLinkedManager: DataLinkedManager
     
@@ -20,7 +19,7 @@ struct SquadView: View {
                 
                 VStack{
                     
-                    Text("Joined")
+                    Text("Your Squads")
                         .font(.title3.bold())
                         .frame(maxWidth: .infinity,alignment: .leading)
                     
@@ -30,7 +29,7 @@ struct SquadView: View {
                                 NavigationLink{
                                     ChatView(squadvm: squadvm)
                                 } label: {
-                                    SquadCardView(branch: branch)
+                                    SquadCardView(branch: branch, squadvm: squadvm)
                                 }
                                 .onTapGesture {
                                     squadvm.currentBranch = branch
@@ -48,20 +47,7 @@ struct SquadView: View {
                     }
                     
                     
-                    Text("Subscribed")
-                        .font(.title3.bold())
-                        .frame(maxWidth: .infinity,alignment: .leading)
                     
-                    VStack{
-                        ForEach($branchvm.fetchedAllBranches, id: \.self) { branch in
-                            NavigationLink{
-                                LinkedItemsView(dataLinkedManager: dataLinkedManager)
-                            } label: {
-                                BranchCardView(branch: branch.wrappedValue)
-                            }
-                        }
-                        
-                    }
                     
                     
                 }
@@ -69,15 +55,17 @@ struct SquadView: View {
                 
             }
             .padding()
-            
+            .navigationTitle("Squad")
             .onAppear {
-                branchvm.fetchAllBranchs { success in
+                squadvm.fetchOnInviteBranches { success in
                     if success {
-                        print("successfully fetched the branches")
+                        print("successfully fetched the invited branches")
+                        
+                    } else {
+                        print("failed to fetch the inivted branches")
                     }
                 }
             }
-            .navigationTitle("Squad")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -85,6 +73,6 @@ struct SquadView: View {
 
 struct SquadView_Previews: PreviewProvider {
     static var previews: some View {
-        SquadView(branchvm: BranchViewModel(), squadvm: SquadViewModel(), dataLinkedManager: DataLinkedManager())
+        SquadView(squadvm: SquadViewModel(), dataLinkedManager: DataLinkedManager())
     }
 }

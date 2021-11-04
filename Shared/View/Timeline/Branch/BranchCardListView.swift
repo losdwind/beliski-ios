@@ -124,6 +124,9 @@ struct BranchCardListView: View {
                 }
                 .padding()
                 .frame(maxWidth: 640)
+                .onAppear(perform: {
+                    branchvm.fetchAllBranchs(completion: {_ in})
+                })
             }
             
         }

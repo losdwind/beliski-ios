@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OpenBranchBottomView: View {
+struct BranchCardFooterView: View {
     
     
     let branch:Branch
@@ -15,18 +15,21 @@ struct OpenBranchBottomView: View {
     @ObservedObject var communityvm:CommunityViewModel
     
     @State var isShowingCommentView = false
-    @State var isLiked = false
-    @State var isDisliked = false
+
 
 
     var body: some View {
+        
         HStack(alignment: .center, spacing: 20){
+            
+            
+            // MARK: upvote
+            HStack{
             Button {
-                isLiked.toggle()
+                communityvm.inputLike.isLike.toggle()
                 communityvm.currentBranch = branch
                 
                 // iterate between 0 1
-                communityvm.inputLike.like = isLiked ? 1 : 0
                 communityvm.sendLike(){ success in
                     if success {
                         communityvm.inputLike = Like()
@@ -34,7 +37,7 @@ struct OpenBranchBottomView: View {
                     
                     
                 } }label: {
-                    if isLiked{
+                    if communityvm.inputLike.isLike {
                         Image(systemName: "hand.thumbsup.fill")
                             .foregroundColor(.pink)
                     } else {
@@ -44,22 +47,24 @@ struct OpenBranchBottomView: View {
                     
             }
             
-            Text(String(communityvm.fetchedLikes.count))
-                
+            Text(String(branch.likes))
+            }
+            
+            
+            // MARK: downvote
+            HStack{
             Button {
-                isDisliked.toggle()
+                communityvm.inputDislike.isDislike.toggle()
                 communityvm.currentBranch = branch
                 
-                // iterate between -1, 0
-                communityvm.inputDislike.like = isDisliked ? -1 : 0
-                communityvm.sendLike(){ success in
+                communityvm.sendDislike(){ success in
                     if success {
-                        communityvm.inputDislike = Like()
+                        communityvm.inputDislike = Dislike()
                 }
                     
                     
                 } }label: {
-                    if isDisliked{
+                    if communityvm.inputDislike.isDislike {
                         Image(systemName: "hand.thumbsdown.fill")
                             .foregroundColor(.pink)
                     } else {
@@ -69,10 +74,14 @@ struct OpenBranchBottomView: View {
                     
             }
             
-            Text(String(communityvm.fetchedDislikes.count))
+            Text(String(branch.dislikes))
+            
+            }
             
             
             
+            // MARK: Comment
+            HStack{
             Button {
                 isShowingCommentView.toggle()
                 communityvm.currentBranch = branch
@@ -82,25 +91,45 @@ struct OpenBranchBottomView: View {
                     Image(systemName: "buble.right.fill")
                         .foregroundColor(.pink)
                 } else {
-                    Image(systemName: "bubble.righ")
+                    Image(systemName: "bubble.right")
                         .foregroundColor(.secondary)
                 }
                 
             }
             
-            Text(String(communityvm.fetchedComments.count))
+            Text(String(branch.comments))
             
-            Spacer()
+            }
+            
+            // MARK: Sub
+            HStack{
+            Button {
+                communityvm.inputSub.isSubed.toggle()
+
+                communityvm.currentBranch = branch
+                
+                communityvm.sendSub(){ success in
+                    if success {
+                        communityvm.inputSub = Sub()
+                }
+                    
+                    
+                } }label: {
+                    if communityvm.inputSub.isSubed{
+                        Image(systemName: "star.circle.fill")
+                            .foregroundColor(.pink)
+                    } else {
+                        Image(systemName: "star.circle")
+                            .foregroundColor(.secondary)
+                    }
+                    
+            }
+            }
+
+            
         }
         .sheet(isPresented: $isShowingCommentView){
             CommentsView(communityvm: communityvm)
-        }
-        .onAppear{
-            communityvm.currentBranch = branch
-            communityvm.getlikes(branch: branch, completion: {_ in})
-            communityvm.getDislikes(branch: branch, completion: {_ in})
-            communityvm.getComments(branch: branch, completion: {_ in})
-
         }
     }
         
@@ -108,6 +137,6 @@ struct OpenBranchBottomView: View {
 
 struct OpenBranchBottomView_Previews: PreviewProvider {
     static var previews: some View {
-        OpenBranchBottomView(branch: Branch(), communityvm: CommunityViewModel())
+        BranchCardFooterView(branch: Branch(), communityvm: CommunityViewModel())
     }
 }

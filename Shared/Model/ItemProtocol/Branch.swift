@@ -52,9 +52,13 @@ struct Branch:Identifiable, Codable, Hashable, Item {
     
     var likes:Int = 0
     
+    var dislikes:Int = 0
+    
     var comments:Int = 0
     
     var shares:Int = 0
+    
+    var subs:Int = 0
     
     
     

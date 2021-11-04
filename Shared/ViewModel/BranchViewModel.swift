@@ -37,8 +37,20 @@ class BranchViewModel: ObservableObject {
             return
         }
         branch.ownerID = userID
-        
+//
+//        switch branch.openess {
+//        case "Private ":
+//            let document = COLLECTION_USERS.document(userID).collection("privatebranches").document(branch.id)
+//
+//        case "OnInvite":
+//            let document = COLLECTION_USERS.document(userID).collection("oninvitebranches").document(branch.id)
+//
+//        case "Public":
+//            let document = COLLECTION_USERS.document(userID).collection("publicbranches").document(branch.id)
+//
+//        }
         let document = COLLECTION_USERS.document(userID).collection("branches").document(branch.id)
+        
         
         do {
             try document.setData(from: branch)
@@ -102,28 +114,6 @@ class BranchViewModel: ObservableObject {
             }
             
     }
-    
-    // MARK: get shared branches
-    func fetchSharedBranchs(completion: @escaping (_ success: Bool) -> ()) {
-        guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchJournal function")
-            completion(false)
-            return
-        }
-        
-        
-        COLLECTION_USERS.document(userID).collection("branches")
-            .whereField("openess", isNotEqualTo: OpenType.OnInvite.rawValue)
-            .addSnapshotListener { snapshot, _ in
-                guard let documents = snapshot?.documents else {
-                    completion(false)
-                    return }
-                self.fetchedSharedBranches = documents.compactMap({try? $0.data(as: Branch.self)})
-                completion(true)
-                return
-            }
-    }
-    
     
     
     

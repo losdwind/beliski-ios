@@ -19,7 +19,7 @@ struct MessageView: View {
         
     var body: some View {
         HStack {
-            if message.ownerID == userID {
+            if message.userID == userID {
                 Spacer()
                 Text(message.content)
                     .padding()

@@ -62,7 +62,7 @@ struct MainView: View {
                     }.tag(MainTab.create)
                 
                 // Show community information and open journals shared by internet users
-                SquadView(branchvm: branchvm, squadvm: squadvm, dataLinkedManager: dataLinkedManager)
+                SquadView(squadvm: squadvm, dataLinkedManager: dataLinkedManager)
                     .tabItem{
                         VStack{
                             Image(systemName: "circles.hexagongrid")

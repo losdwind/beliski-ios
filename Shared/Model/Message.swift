@@ -12,7 +12,8 @@ import FirebaseFirestoreSwift
 struct Message:Identifiable, Codable, Hashable {
     
     var id:String = UUID().uuidString
-    var ownerID:String = ""
+    var userID:String = ""
+    var branchID:String = ""
     @ServerTimestamp var serverTimestamp:Timestamp?
     var content: String = ""
     var sendToID:String = ""

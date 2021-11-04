@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BranchCardPublicListView: View {
+struct PopularBranchView: View {
     
     @AppStorage(CurrentUserDefaults.userID) var userID:String?
     @ObservedObject var communityvm:CommunityViewModel
@@ -25,7 +25,7 @@ struct BranchCardPublicListView: View {
             ScrollView(.vertical, showsIndicators: false){
                 
                 LazyVStack{
-                    ForEach(communityvm.fetchedOpenBranches, id: \.self) { branch in
+                    ForEach(communityvm.fetchedPublicBranches, id: \.self) { branch in
   
                         VStack(alignment:.leading){
                             
@@ -50,10 +50,9 @@ struct BranchCardPublicListView: View {
                                         }
                                     }
                                 } //: onTapGesture
+
                             
-                            
-                            
-                            OpenBranchBottomView(branch: branch, communityvm: communityvm)
+                            BranchCardFooterView(branch: branch, communityvm: communityvm)
                                 
                         }
                         
@@ -73,6 +72,6 @@ struct BranchCardPublicListView: View {
 
 struct BranchCardPublicListView_Previews: PreviewProvider {
     static var previews: some View {
-        BranchCardPublicListView(communityvm: CommunityViewModel(), dataLinkedManager: DataLinkedManager())
+        PopularBranchView(communityvm: CommunityViewModel(), dataLinkedManager: DataLinkedManager())
     }
 }

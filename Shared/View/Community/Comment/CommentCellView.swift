@@ -38,6 +38,6 @@ struct CommentCellView: View {
 
 struct CommentCellView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentCellView(comment: Comment(id: "", ownerID: "", serverTimestamp: Timestamp(date: Date()), content: "This is an awesome work"), user: User(profileImageURL: "https://www.google.com/webhp?hl=zh-TW&ictx=2&sa=X&ved=0ahUKEwjxoa-g2_zzAhWGwJQKHTNuBiYQPQgJ", userName:"Titan"))
+        CommentCellView(comment: Comment(id: "", userID: "", serverTimestamp: Timestamp(date: Date()), content: "This is an awesome work"), user: User(profileImageURL: "https://www.google.com/webhp?hl=zh-TW&ictx=2&sa=X&ved=0ahUKEwjxoa-g2_zzAhWGwJQKHTNuBiYQPQgJ", userName:"Titan"))
     }
 }

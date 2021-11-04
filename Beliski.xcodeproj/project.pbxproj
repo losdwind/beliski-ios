@@ -88,15 +88,19 @@
 		296FA4842731854700FEBF8A /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4832731854700FEBF8A /* CommentCellView.swift */; };
 		296FA486273187A100FEBF8A /* InPutCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA485273187A100FEBF8A /* InPutCommentsView.swift */; };
 		296FA487273187A100FEBF8A /* InPutCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA485273187A100FEBF8A /* InPutCommentsView.swift */; };
-		296FA4892731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */; };
-		296FA48A2731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */; };
+		296FA4892731A1C400FEBF8A /* PopularBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4882731A1C400FEBF8A /* PopularBranchView.swift */; };
+		296FA48A2731A1C400FEBF8A /* PopularBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4882731A1C400FEBF8A /* PopularBranchView.swift */; };
 		296FA48D2732AF8400FEBF8A /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 296FA48C2732AF8400FEBF8A /* Collections */; };
 		296FA48F2732AF8400FEBF8A /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 296FA48E2732AF8400FEBF8A /* DequeModule */; };
 		296FA4912732AF8400FEBF8A /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 296FA4902732AF8400FEBF8A /* OrderedCollections */; };
 		296FA4962732FC8E00FEBF8A /* UserPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4952732FC8E00FEBF8A /* UserPrivate.swift */; };
 		296FA4972732FC8E00FEBF8A /* UserPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4952732FC8E00FEBF8A /* UserPrivate.swift */; };
-		296FA49927330B8000FEBF8A /* OpenBranchBottomView.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49827330B8000FEBF8A /* OpenBranchBottomView.swift.swift */; };
-		296FA49A27330B8000FEBF8A /* OpenBranchBottomView.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49827330B8000FEBF8A /* OpenBranchBottomView.swift.swift */; };
+		296FA49927330B8000FEBF8A /* BranchCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */; };
+		296FA49A27330B8000FEBF8A /* BranchCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */; };
+		296FA49C27344EC000FEBF8A /* Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49B27344EC000FEBF8A /* Sub.swift */; };
+		296FA49D27344EC000FEBF8A /* Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49B27344EC000FEBF8A /* Sub.swift */; };
+		296FA49F273457DE00FEBF8A /* Dislike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49E273457DE00FEBF8A /* Dislike.swift */; };
+		296FA4A0273457DE00FEBF8A /* Dislike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49E273457DE00FEBF8A /* Dislike.swift */; };
 		29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFF270D5E8A00754817 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* MainView.swift */; };
@@ -206,10 +210,7 @@
 		29E1DDEE272E4C3200EC5E1D /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDEC272E4C3200EC5E1D /* TopicView.swift */; };
 		29E1DDF0272E4FE300EC5E1D /* BranchCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDEF272E4FE300EC5E1D /* BranchCardListView.swift */; };
 		29E1DDF1272E4FE300EC5E1D /* BranchCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDEF272E4FE300EC5E1D /* BranchCardListView.swift */; };
-		29E1DDF3272E54DD00EC5E1D /* BranchCardOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF2272E54DD00EC5E1D /* BranchCardOpenView.swift */; };
-		29E1DDF4272E54DD00EC5E1D /* BranchCardOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF2272E54DD00EC5E1D /* BranchCardOpenView.swift */; };
 		29E1DDF6272E591800EC5E1D /* SquadCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF5272E591800EC5E1D /* SquadCardView.swift */; };
-		29E1DDF7272E591800EC5E1D /* SquadCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF5272E591800EC5E1D /* SquadCardView.swift */; };
 		29E1DDF9272ED0FA00EC5E1D /* VIAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF8272ED0F900EC5E1D /* VIAView.swift */; };
 		29E1DDFA272ED0FA00EC5E1D /* VIAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF8272ED0F900EC5E1D /* VIAView.swift */; };
 		29E1DDFC272ED1CF00EC5E1D /* MBTIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDFB272ED1CF00EC5E1D /* MBTIView.swift */; };
@@ -326,9 +327,11 @@
 		296FA4812731853F00FEBF8A /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		296FA4832731854700FEBF8A /* CommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
 		296FA485273187A100FEBF8A /* InPutCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPutCommentsView.swift; sourceTree = "<group>"; };
-		296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardPublicListView.swift; sourceTree = "<group>"; };
+		296FA4882731A1C400FEBF8A /* PopularBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBranchView.swift; sourceTree = "<group>"; };
 		296FA4952732FC8E00FEBF8A /* UserPrivate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivate.swift; sourceTree = "<group>"; };
-		296FA49827330B8000FEBF8A /* OpenBranchBottomView.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenBranchBottomView.swift.swift; sourceTree = "<group>"; };
+		296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardFooterView.swift; sourceTree = "<group>"; };
+		296FA49B27344EC000FEBF8A /* Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub.swift; sourceTree = "<group>"; };
+		296FA49E273457DE00FEBF8A /* Dislike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dislike.swift; sourceTree = "<group>"; };
 		29C46BED270D5E8800754817 /* BeliskiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeliskiApp.swift; sourceTree = "<group>"; };
 		29C46BEE270D5E8800754817 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		29C46BEF270D5E8A00754817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -388,7 +391,6 @@
 		29E1DDE8272E41FF00EC5E1D /* PersonCompactItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCompactItemView.swift; sourceTree = "<group>"; };
 		29E1DDEC272E4C3200EC5E1D /* TopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
 		29E1DDEF272E4FE300EC5E1D /* BranchCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardListView.swift; sourceTree = "<group>"; };
-		29E1DDF2272E54DD00EC5E1D /* BranchCardOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardOpenView.swift; sourceTree = "<group>"; };
 		29E1DDF5272E591800EC5E1D /* SquadCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadCardView.swift; sourceTree = "<group>"; };
 		29E1DDF8272ED0F900EC5E1D /* VIAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIAView.swift; sourceTree = "<group>"; };
 		29E1DDFB272ED1CF00EC5E1D /* MBTIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTIView.swift; sourceTree = "<group>"; };
@@ -482,8 +484,6 @@
 				2907B4A4272A7BEE001A3DA1 /* BranchCardView.swift */,
 				2907B4AB272A82D5001A3DA1 /* BranchCardEditorView.swift */,
 				29E1DDEF272E4FE300EC5E1D /* BranchCardListView.swift */,
-				29E1DDF2272E54DD00EC5E1D /* BranchCardOpenView.swift */,
-				29E1DDF5272E591800EC5E1D /* SquadCardView.swift */,
 			);
 			path = Branch;
 			sourceTree = "<group>";
@@ -607,10 +607,12 @@
 				29ED115E271D8EF500E67D8B /* Protocols.swift */,
 				29E1DE07273120CF00EC5E1D /* Comment.swift */,
 				29C46C0F270D600900754817 /* User.swift */,
+				296FA4952732FC8E00FEBF8A /* UserPrivate.swift */,
 				29ED11252719C3ED00E67D8B /* Tag.swift */,
 				29E1DE0A273121DF00EC5E1D /* Message.swift */,
 				29E1DE04273120BF00EC5E1D /* Like.swift */,
-				296FA4952732FC8E00FEBF8A /* UserPrivate.swift */,
+				296FA49B27344EC000FEBF8A /* Sub.swift */,
+				296FA49E273457DE00FEBF8A /* Dislike.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -655,6 +657,7 @@
 			isa = PBXGroup;
 			children = (
 				29C46C15270D600900754817 /* SquadView.swift */,
+				29E1DDF5272E591800EC5E1D /* SquadCardView.swift */,
 				2907B4B4272AE362001A3DA1 /* ChatView */,
 			);
 			path = Squad;
@@ -725,13 +728,13 @@
 		29C46C22270D600900754817 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				296FA4802731853000FEBF8A /* Comment */,
 				29C46C23270D600900754817 /* CommunityView.swift */,
+				296FA4802731853000FEBF8A /* Comment */,
 				29E1DD67272D27DD00EC5E1D /* CarouselView.swift */,
 				29E1DD93272D59BA00EC5E1D /* NotificationView.swift */,
 				29E1DE01273046E500EC5E1D /* CategoryView.swift */,
-				296FA4882731A1C400FEBF8A /* BranchCardPublicListView.swift */,
-				296FA49827330B8000FEBF8A /* OpenBranchBottomView.swift.swift */,
+				296FA4882731A1C400FEBF8A /* PopularBranchView.swift */,
+				296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1087,7 +1090,6 @@
 				29552A6527100CD70056E675 /* JournalViewModel.swift in Sources */,
 				29C46C30270D600900754817 /* CommunityView.swift in Sources */,
 				2907B4B6272AE377001A3DA1 /* ChatView.swift in Sources */,
-				29E1DDF3272E54DD00EC5E1D /* BranchCardOpenView.swift in Sources */,
 				29E1DDE6272DBF9600EC5E1D /* UserProgressView.swift in Sources */,
 				29E1DD68272D27DD00EC5E1D /* CarouselView.swift in Sources */,
 				29ED1150271AE49000E67D8B /* TimelineView.swift in Sources */,
@@ -1107,6 +1109,8 @@
 				29E1DDB6272D746C00EC5E1D /* Legend.swift in Sources */,
 				29C46C2A270D600900754817 /* ProfileCompactView.swift in Sources */,
 				29E1DE202731649800EC5E1D /* InputMessageView.swift in Sources */,
+				296FA49F273457DE00FEBF8A /* Dislike.swift in Sources */,
+				296FA49C27344EC000FEBF8A /* Sub.swift in Sources */,
 				2924F1572729A789006CB556 /* SearchView.swift in Sources */,
 				29C46BFF270D5E8A00754817 /* MainView.swift in Sources */,
 				29E1DE05273120BF00EC5E1D /* Like.swift in Sources */,
@@ -1114,7 +1118,7 @@
 				29ED11262719C3ED00E67D8B /* Tag.swift in Sources */,
 				29E1DDE0272DB09700EC5E1D /* HiddenClueView.swift in Sources */,
 				29ED11402719E4B400E67D8B /* CheckboxStyle.swift in Sources */,
-				296FA4892731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */,
+				296FA4892731A1C400FEBF8A /* PopularBranchView.swift in Sources */,
 				29C46C39270D659D00754817 /* ResetPasswordView.swift in Sources */,
 				29ED1159271B470A00E67D8B /* Helplers.swift in Sources */,
 				29E1DDAE272D746C00EC5E1D /* LabelView.swift in Sources */,
@@ -1131,7 +1135,7 @@
 				29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */,
 				29E1DDC0272D746C00EC5E1D /* Line.swift in Sources */,
 				29ED11102718979100E67D8B /* LinkedItemsView.swift in Sources */,
-				296FA49927330B8000FEBF8A /* OpenBranchBottomView.swift.swift in Sources */,
+				296FA49927330B8000FEBF8A /* BranchCardFooterView.swift in Sources */,
 				2907B4B9272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */,
 				29E1DD91272D54F900EC5E1D /* CommunityViewModel.swift in Sources */,
 				29ED112F2719E49600E67D8B /* PersonItemView.swift in Sources */,
@@ -1263,12 +1267,11 @@
 				29ED1154271AE71E00E67D8B /* TimelineManager.swift in Sources */,
 				29C46C00270D5E8A00754817 /* MainView.swift in Sources */,
 				29ED115D271D735000E67D8B /* TagViewModel.swift in Sources */,
-				296FA49A27330B8000FEBF8A /* OpenBranchBottomView.swift.swift in Sources */,
-				29E1DDF4272E54DD00EC5E1D /* BranchCardOpenView.swift in Sources */,
+				296FA49A27330B8000FEBF8A /* BranchCardFooterView.swift in Sources */,
+				296FA4A0273457DE00FEBF8A /* Dislike.swift in Sources */,
 				29E1DDC5272D746C00EC5E1D /* PieChartRow.swift in Sources */,
 				29ED1157271B42B600E67D8B /* PersonDetailView.swift in Sources */,
 				29E1DDAF272D746C00EC5E1D /* LabelView.swift in Sources */,
-				29E1DDF7272E591800EC5E1D /* SquadCardView.swift in Sources */,
 				2942C858272010FF00ECD167 /* TagPanelView.swift in Sources */,
 				29E1DDE4272DBEB000EC5E1D /* DoubleBarGraphView.swift in Sources */,
 				29E1DDF1272E4FE300EC5E1D /* BranchCardListView.swift in Sources */,
@@ -1299,7 +1302,7 @@
 				29E1DE09273120CF00EC5E1D /* Comment.swift in Sources */,
 				29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */,
 				29E1DDBF272D746C00EC5E1D /* MultiLineChartView.swift in Sources */,
-				296FA48A2731A1C400FEBF8A /* BranchCardPublicListView.swift in Sources */,
+				296FA48A2731A1C400FEBF8A /* PopularBranchView.swift in Sources */,
 				2924F1582729A789006CB556 /* SearchView.swift in Sources */,
 				29E1DDEE272E4C3200EC5E1D /* TopicView.swift in Sources */,
 				29E1DDFA272ED0FA00EC5E1D /* VIAView.swift in Sources */,
@@ -1318,6 +1321,7 @@
 				29E1DDD5272DB04600EC5E1D /* LinkNetworkView.swift in Sources */,
 				2907B4AD272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */,
 				29E1DD66272D12F300EC5E1D /* PrivateStatsBarView.swift in Sources */,
+				296FA49D27344EC000FEBF8A /* Sub.swift in Sources */,
 				29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
 				29ED11322719E49600E67D8B /* PersonListView.swift in Sources */,
 				29E1DDD1272DB01700EC5E1D /* WordCloudView.swift in Sources */,

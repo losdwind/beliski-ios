@@ -21,7 +21,6 @@ struct CategoryView: View {
     @ObservedObject var dataLinkedManager: DataLinkedManager
     
     var body: some View {
-        ScrollView{
             
         // MARK: Category Grid
             VStack(alignment: .center, spacing: 5){
@@ -29,7 +28,7 @@ struct CategoryView: View {
                     HStack(alignment: .bottom){
                         ForEach(cate, id:\.self){ c in
                             NavigationLink {
-                                BranchCardPublicListView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
+                                PopularBranchView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
                             } label: {
                                 Button {
                                     communityvm.selectedCategory = c
@@ -39,16 +38,16 @@ struct CategoryView: View {
                                             .renderingMode(.original)
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(width: 40.0, height: 40.0)
+                                            .frame(width: 30.0, height: 30.0)
                                         
                                         Text(c)
-                                            .font(.headline)
+                                            .font(.footnote)
                                             .fontWeight(.regular)
                                             .foregroundColor(Color.primary)
                                         
                                         
                                     }
-                                    .frame(width: 100.0, height: 100.0)
+                                    .frame(width: 100.0, height: 70.0)
 
                                 }
                             }
@@ -59,12 +58,15 @@ struct CategoryView: View {
                     }
                       
                 }
+                
+                
+                
             }
             
   
             
             
-        }
+        
     }
 }
 
