@@ -93,8 +93,6 @@
 		296FA48D2732AF8400FEBF8A /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 296FA48C2732AF8400FEBF8A /* Collections */; };
 		296FA48F2732AF8400FEBF8A /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 296FA48E2732AF8400FEBF8A /* DequeModule */; };
 		296FA4912732AF8400FEBF8A /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 296FA4902732AF8400FEBF8A /* OrderedCollections */; };
-		296FA4962732FC8E00FEBF8A /* UserPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4952732FC8E00FEBF8A /* UserPrivate.swift */; };
-		296FA4972732FC8E00FEBF8A /* UserPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4952732FC8E00FEBF8A /* UserPrivate.swift */; };
 		296FA49927330B8000FEBF8A /* BranchCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */; };
 		296FA49A27330B8000FEBF8A /* BranchCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */; };
 		296FA49C27344EC000FEBF8A /* Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49B27344EC000FEBF8A /* Sub.swift */; };
@@ -328,7 +326,6 @@
 		296FA4832731854700FEBF8A /* CommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
 		296FA485273187A100FEBF8A /* InPutCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPutCommentsView.swift; sourceTree = "<group>"; };
 		296FA4882731A1C400FEBF8A /* PopularBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularBranchView.swift; sourceTree = "<group>"; };
-		296FA4952732FC8E00FEBF8A /* UserPrivate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivate.swift; sourceTree = "<group>"; };
 		296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardFooterView.swift; sourceTree = "<group>"; };
 		296FA49B27344EC000FEBF8A /* Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub.swift; sourceTree = "<group>"; };
 		296FA49E273457DE00FEBF8A /* Dislike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dislike.swift; sourceTree = "<group>"; };
@@ -607,7 +604,6 @@
 				29ED115E271D8EF500E67D8B /* Protocols.swift */,
 				29E1DE07273120CF00EC5E1D /* Comment.swift */,
 				29C46C0F270D600900754817 /* User.swift */,
-				296FA4952732FC8E00FEBF8A /* UserPrivate.swift */,
 				29ED11252719C3ED00E67D8B /* Tag.swift */,
 				29E1DE0A273121DF00EC5E1D /* Message.swift */,
 				29E1DE04273120BF00EC5E1D /* Like.swift */,
@@ -687,7 +683,7 @@
 				29ED1113271899DE00E67D8B /* SearchView */,
 				2942C810271EC3A300ECD167 /* LinkedItemsView */,
 				29ED11352719E4B400E67D8B /* Task */,
-				29ED112B2719E49600E67D8B /* People */,
+				29ED112B2719E49600E67D8B /* Person */,
 				29ED11212719C3AA00E67D8B /* TagView */,
 				29ED10F72710421100E67D8B /* Journal */,
 			);
@@ -911,7 +907,7 @@
 			path = TagView;
 			sourceTree = "<group>";
 		};
-		29ED112B2719E49600E67D8B /* People */ = {
+		29ED112B2719E49600E67D8B /* Person */ = {
 			isa = PBXGroup;
 			children = (
 				29ED112C2719E49600E67D8B /* PersonItemView.swift */,
@@ -920,7 +916,7 @@
 				29ED1155271B42B500E67D8B /* PersonDetailView.swift */,
 				29E1DDE8272E41FF00EC5E1D /* PersonCompactItemView.swift */,
 			);
-			path = People;
+			path = Person;
 			sourceTree = "<group>";
 		};
 		29ED11352719E4B400E67D8B /* Task */ = {
@@ -1102,7 +1098,6 @@
 				2942C848271FEA0900ECD167 /* TagEditorView.swift in Sources */,
 				29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
 				29ED11332719E49600E67D8B /* PersonEditorView.swift in Sources */,
-				296FA4962732FC8E00FEBF8A /* UserPrivate.swift in Sources */,
 				2907B4A5272A7BEF001A3DA1 /* BranchCardView.swift in Sources */,
 				29ED113E2719E4B400E67D8B /* TaskListView.swift in Sources */,
 				2907B4AC272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */,
@@ -1325,7 +1320,6 @@
 				29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
 				29ED11322719E49600E67D8B /* PersonListView.swift in Sources */,
 				29E1DDD1272DB01700EC5E1D /* WordCloudView.swift in Sources */,
-				296FA4972732FC8E00FEBF8A /* UserPrivate.swift in Sources */,
 				2907B4A9272A7C6B001A3DA1 /* Branch.swift in Sources */,
 				29E1DDE1272DB09700EC5E1D /* HiddenClueView.swift in Sources */,
 				2942C85B2721391E00ECD167 /* TagPanelViewModel.swift in Sources */,

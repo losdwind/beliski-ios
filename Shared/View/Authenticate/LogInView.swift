@@ -14,6 +14,7 @@ struct LogInView: View {
     
     @State private var errorMessage = ""
     @State private var isShowingAlert = false
+    @State private var isShowingLogInProgressView = false
     @Environment(\.presentationMode) var presentationMode
     
     
@@ -50,11 +51,17 @@ struct LogInView: View {
             
                 
                 Button {
+                    isShowingLogInProgressView.toggle()
                     connectToFirebase(email: email, password: password)
                 } label: {
-                    Text("Sign In")
-                        .font(.headline)
-                        .foregroundColor(.primary)
+                    if isShowingLogInProgressView {
+                        ProgressView()
+                    } else {
+                        Text("Sign In")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                    }
+                    
                 }
 
                 
@@ -105,6 +112,7 @@ struct LogInView: View {
                         AuthViewModel.shared.logInUserToApp(userID: userID) { (success) in
                             if success {
                                 print("Successful log in existing user")
+                                isShowingLogInProgressView.toggle()
                                 self.presentationMode.wrappedValue.dismiss()
                             } else {
                                 self.errorMessage = "Error logging existing user into our app"

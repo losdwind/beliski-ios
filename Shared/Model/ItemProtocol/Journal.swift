@@ -18,7 +18,7 @@ struct Journal:Identifiable, Codable, Hashable, Item{
     var id: String = UUID().uuidString
     @ServerTimestamp var serverTimestamp: Timestamp?
     var localTimestamp: Timestamp?
-    var ownerID:String = "unkown"
+    var ownerID:String = ""
     var linkedItems: [String] = []
 
     

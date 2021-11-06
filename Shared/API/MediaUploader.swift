@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 import Firebase
 import AVFoundation
+import SwiftUI
 
 
 
 struct MediaUploader {
+    
+    @AppStorage(CurrentUserDefaults.userID) var userID:String?
+    
     
     static func uploadImages(images: [UIImage], type: UploadType, handler: @escaping (_ imageURLs: [String]) -> ()) {
         var imageURLs = [String]()

@@ -39,6 +39,7 @@ struct BranchCardView: View {
                         .foregroundColor(Color.pink)
                     
                 }
+                .frame(maxWidth:.infinity)
                                 
                 if isShowingJoinButton {
                     Button {

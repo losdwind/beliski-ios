@@ -85,7 +85,11 @@ class SquadViewModel: ObservableObject {
         }
         
         self.inputMessage.userID = userID
-        self.inputMessage.branchID = currentBranch.id
+        self.inputMessage.branchID = self.currentBranch.id
+        
+        print("self.currentBranch.ownerID \(self.currentBranch.ownerID)")
+        print("self.currentBranch.id \(self.currentBranch.id)")
+        print("self.inputMessage.id \(self.inputMessage.id)")
         
         let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
             .document(self.currentBranch.id).collection("messages").document(self.inputMessage.id)
@@ -210,6 +214,7 @@ class SquadViewModel: ObservableObject {
                 self.fetchedOnInviteBranches.append(contentsOf: documents.compactMap({try? $0.data(as: Branch.self)}))
                 group.leave()
             }
+        
         group.notify(queue: .main){
             completion(true)
         }

@@ -30,7 +30,7 @@ struct TaskEditorView: View {
             Spacer()
             
             VStack(spacing: 16) {
-                TextField("Add Task", text: $taskvm.task.content)
+                TextField("Add Task", text: $taskvm.task.content, prompt: Text("What do you plan to do"))
                     .foregroundColor(.pink)
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .padding()
@@ -61,6 +61,7 @@ struct TaskEditorView: View {
                     Spacer()
                     Text("SAVE")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(taskvm.task.content.count == 0 ? Color.gray : Color.pink)
                     Spacer()
                 })
                     .disabled(taskvm.task.content.count == 0)

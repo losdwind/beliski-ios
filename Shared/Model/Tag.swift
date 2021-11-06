@@ -15,7 +15,7 @@ struct Tag: Identifiable,Hashable, Codable {
     var id: String = UUID().uuidString
     @ServerTimestamp var serverTimestamp: Timestamp?
     var localTimestamp: Timestamp?
-    var ownerItemID: String = "unknown"
+    var ownerItemID: String = ""
     var name: String = ""
     var linkedID:[String] = []
     var linkedIDCount:Int = 0

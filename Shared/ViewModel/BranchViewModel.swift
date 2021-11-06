@@ -36,6 +36,7 @@ class BranchViewModel: ObservableObject {
             completion(false)
             return
         }
+        
         branch.ownerID = userID
 //
 //        switch branch.openess {

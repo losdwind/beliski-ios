@@ -7,7 +7,7 @@
 
 import Foundation
 import Firebase
-
+import SwiftUI
 
 
 enum Filter {
@@ -90,7 +90,7 @@ enum UploadType:String, CaseIterable {
     case person
     
     var filePath: StorageReference {
-        let filename = NSUUID().uuidString
+        let filename = UUID().uuidString
         switch self {
         case .profile:
             return Storage.storage().reference(withPath: "/profile_medias/\(filename)")

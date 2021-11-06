@@ -30,6 +30,8 @@ struct SquadCardView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 40, height: 40)
+                    .cornerRadius(20)
+
                     .background(Circle()
                                     .stroke(.black,lineWidth: 1))
                 
@@ -39,13 +41,15 @@ struct SquadCardView: View {
                     KFImage(URL(string: member.profileImageURL ?? "") )
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 30, height: 30)
                         .background(Circle()
                                         .stroke(.black,lineWidth: 1))
+                        .frame(width: 30, height: 30)
+                        .cornerRadius(15)
                 
             }
                 
             }
+            .frame(maxWidth:.infinity)
             
             HStack(alignment:.center, spacing: 80){
                 Text("Unread \(12)")

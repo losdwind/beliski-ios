@@ -16,7 +16,7 @@ class ProfileViewModel: ObservableObject{
         
     // MARK: - here is the issue that the use could be nil becuase the AuthViewModel may not initlize the currentUser correctly (on time)
     
-    
+    @Published var userPrivate:Private = Private()
     
     
     func uploadUser(completion: @escaping (_ success: Bool) -> ()){
@@ -36,14 +36,15 @@ class ProfileViewModel: ObservableObject{
             completion(true)
             
         } catch let error {
-            print("Error upload person to Firestore: \(error)")
+            print("Error upload user to Firestore: \(error)")
             completion(false)
         }
         
     }
     
     
-    func fetchUser(completion: @escaping (_ success: Bool) -> ()){
+    
+    func uploadUserPrivate(completion: @escaping (_ success: Bool) -> ()){
         
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchPerson function")
@@ -51,15 +52,40 @@ class ProfileViewModel: ObservableObject{
             return
         }
         
-        COLLECTION_USERS.document(userID).getDocument { (document, error) in
+        let document = COLLECTION_USERS.document(userID).collection("privates").document(userPrivate.id)
+        
+        // MARK: - here I disabled the uploadImage because i want to upload right after the imagePicker
+        
+        do {
+            try document.setData(from: userPrivate)
+            completion(true)
+            
+        } catch let error {
+            print("Error upload user privates to Firestore: \(error)")
+            completion(false)
+        }
+        
+    }
+    
+    
+    func fetchUserPrivate(completion: @escaping (_ success: Bool) -> ()){
+        
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in fetchPerson function")
+            completion(false)
+            return
+        }
+        
+        COLLECTION_USERS.document(userID).collection("privates").document(userPrivate.id)
+            .getDocument { (document, error) in
             let result = Result {
-                  try document?.data(as: User.self)
+                  try document?.data(as: Private.self)
                 }
                 switch result {
-                case .success(let user):
-                    if let user = user {
+                case .success(let p):
+                    if let userPrivate = p {
                         // A `User` value was successfully initialized from the DocumentSnapshot.
-                        self.user = user
+                        self.userPrivate = userPrivate
                         completion(true)
                         return
                     } else {

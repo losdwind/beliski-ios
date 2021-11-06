@@ -23,12 +23,12 @@ struct ProfileEditorView: View {
             Section{
                 HStack{
                     Text("Full Name")
-                    TextField("Full Name", text: $profilevm.user.nickName ?? "", prompt: Text("e.g. Adam Smith"))
+                    TextField("Full Name", text: $profilevm.userPrivate.nickName ?? "", prompt: Text("e.g. Adam Smith"))
                 }
                 
                 HStack{
                     Text("Gender")
-                    Picker("Gender", selection: $profilevm.user.gender ?? "Male") {
+                    Picker("Gender", selection: $profilevm.userPrivate.gender ?? "Male") {
                         Text("Male").tag("Male")
                         Text("Female").tag("Female")
                         Text("Misc.").tag("Misc.")
@@ -73,7 +73,7 @@ struct ProfileEditorView: View {
                     .pickerStyle(.menu)
                     
 
-                    Picker("Job", selection:$profilevm.user.job){
+                    Picker("Job", selection:$profilevm.userPrivate.job){
                         ForEach(JOBS[jobCategory]!, id:\.self) { job in
                             Text(job).tag(job)
                         }

@@ -15,14 +15,14 @@ struct SingleEntryView: View {
             Text(String(number))
                 .font(.title2)
                 .fontWeight(.bold)
+                .foregroundColor(.primary)
             
             Capsule()
                 .fill(Color.gray)
                 .frame(width: 20, height: 2, alignment: .center)
             
             Text(text)
-                .font(.callout)
-                .fontWeight(.medium)
+                .foregroundColor(.gray)
         })
     }
 }

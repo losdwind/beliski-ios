@@ -20,7 +20,6 @@ struct BranchCardListView: View {
     @State var isShowingLinkView:Bool = false
     
     var body: some View {
-        NavigationView{
             
             ScrollView(.vertical, showsIndicators: false){
                 
@@ -129,7 +128,7 @@ struct BranchCardListView: View {
                 })
             }
             
-        }
+        
     }
 }
 

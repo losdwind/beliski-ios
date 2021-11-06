@@ -58,6 +58,7 @@ class AuthViewModel: ObservableObject {
     
     func logInUserToApp(userID: String, handler: @escaping (_ success: Bool) -> ()) {
         
+        
         // Get the users info
         fetchUser(userID: userID) { user in
             if let userName = user?.userName, let nickName = user?.nickName, let profileImgURL = user?.profileImageURL  {
@@ -77,6 +78,9 @@ class AuthViewModel: ObservableObject {
                 handler(false)
             }
         }
+        
+        
+        
         
         
     }
@@ -116,8 +120,19 @@ class AuthViewModel: ObservableObject {
                 do {
                     try document.setData(from: data)
                     print("Successfully uploaded user data to firestore...")
-                    handler(true)
-                    return
+                    let privates = Private(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, userName: userName, nickName: nickName, dateCreated:Timestamp(date: Date()))
+                    let privateDocument = COLLECTION_USERS.document(userID).collection("privates").document(privates.id)
+                    do {
+                        try privateDocument.setData(from: privates)
+                        print("successfully generate user privates data to firestore")
+                        handler(true)
+                        return
+                    } catch let error{
+                        print("Error upload Privates to Firestore: \(error)")
+                        handler(false)
+                        return
+                    }
+                    
                     
                 } catch let error {
                     print("Error upload User to Firestore: \(error)")

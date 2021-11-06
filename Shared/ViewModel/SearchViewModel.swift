@@ -40,6 +40,14 @@ class SearchViewModel: ObservableObject {
     @Published var selectedBranches: Set<Branch> = Set<Branch>()
     
     
+    func doubleLinkIDs(handler: @escaping(_ success: Bool) -> ()){
+        
+    }
+    
+    
+    
+    
+    
     func fetchIDsFromFilter(handler: @escaping(_ success: Bool) -> ()){
         
         guard let userID = AuthViewModel.shared.userID else {

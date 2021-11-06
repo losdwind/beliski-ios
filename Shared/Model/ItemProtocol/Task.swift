@@ -15,10 +15,10 @@ struct Task:Identifiable, Codable, Hashable, Item {
     var id:String = UUID().uuidString
     @ServerTimestamp var serverTimestamp: Timestamp?
     var localTimestamp: Timestamp?
-    var ownerID:String = "unkown"
+    var ownerID:String = ""
     var linkedItems:[String] = []
     
-    var content:String = "untitled"
+    var content:String = ""
     var description:String = ""
     var completion: Bool = false
     var reminder: Timestamp?

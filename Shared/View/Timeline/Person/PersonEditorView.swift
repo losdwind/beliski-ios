@@ -32,16 +32,19 @@ struct PersonEditorView: View {
     var body: some View {
         
         NavigationView {
-            List {
+            
+            ScrollView(.vertical, showsIndicators: false) {
                 
                 // Profile Image
                 Button(action: { avatarPickerPresented.toggle() }){
                     if personvm.avatarImage == UIImage() && personvm.person.avatarURL == "" {
-                        Image(systemName:"person.circle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 80, alignment: .leading)
-                            .cornerRadius(40)
+                        
+                        Image(systemName:"plus")
+                            .font(.title2)
+                            .foregroundColor(.primary)
+                            .padding(18)
+                            .background(Circle().stroke(Color.gray))
+                            .frame(width:80, height:80)
                         
                     } else{
                         if personvm.avatarImage != UIImage(){
@@ -71,53 +74,42 @@ struct PersonEditorView: View {
                 .padding()
                 
                 
-                
-                
-                Section {
+                GroupBox {
                     // First Name
-                    TextField(text: $personvm.person.firstName){
-                        Text("First Name")
-                    }
+                    CustomTextField(text:$personvm.person.firstName , placeholder: "First Name", labelImage: "person.fill")
                     .disableAutocorrection(true)
-                    
+
                     
                     // Last Name
-                    TextField(text: $personvm.person.lastName){
-                        Text("Last Name")
-                    }
+                    CustomTextField(text:$personvm.person.lastName , placeholder: "Last Name", labelImage: "")
                     .disableAutocorrection(true)
                     
+                    //phone
+                    CustomTextField(text: $personvm.person.contact , placeholder: "Phone", labelImage: "phone.fill")
+
                     // Birthday
                     DatePicker("Birthday", selection: $personvm.birthday)
                     
-                    
-                    //  contact
-                    TextField(text: $personvm.person.contact){
-                        Text("Phone")
-                    }
-                    
-                    // location
-                    
-                    
-                } header: {
+                } label: {
                     Text("Basic Information")
                 }
+
                 
-                
-                
-                Section{
+                GroupBox{
                     TextEditor(text: $personvm.person.description)
+                        .cornerRadius(10)
+                        .frame(minHeight: 200)
                         .onChange(of: personvm.person.description) { value in
                             let words = personvm.person.description.split { $0 == " " || $0.isNewline }
                             personvm.person.wordCount = words.count
                         }
                     
-                } header: {
+                } label: {
                     Text("Perspective Description")
                 }
                 
                 
-                Section {
+                GroupBox {
                     
                     if isShowingImageToggle{
                         
@@ -155,28 +147,25 @@ struct PersonEditorView: View {
                         
                     }
                     
-                } header: {
+                } label: {
                     
                     Toggle(isOn: $isShowingImageToggle) {
                         Text("Attach Photos?")
                     }
                 }
                 
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 
-                
-                
-                
-                Section {
+                GroupBox {
                     TagEditorView(tagNamesOfItem: $personvm.person.tagNames, tagvm: personTagvm)
                     
-                } header: {
+                } label: {
                     Text("Tags")
                 }
                 
                 
-            }//: List
-            .listStyle(InsetGroupedListStyle())
+                
+            } //: ScrollView
+            .padding()
             .navigationTitle("Moments")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -291,6 +280,7 @@ struct PersonEditorView: View {
         }
     }
 }
+
 
 struct PersonEditorView_Previews: PreviewProvider {
     static var previews: some View {

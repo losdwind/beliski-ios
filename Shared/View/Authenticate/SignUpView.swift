@@ -17,6 +17,7 @@ struct SignUpView: View {
     @State private var selectedImage: UIImage = UIImage()
     @State private var isShowingimagePicker = false
     @State private var isShowingAlert = false
+    @State private var isShowingRegisterProgressView = false
     @Environment(\.presentationMode) var mode
     
     var body: some View {
@@ -83,7 +84,9 @@ struct SignUpView: View {
                     .padding(.horizontal, 32)
             }
             
+            
             Button(action: {
+                isShowingRegisterProgressView.toggle()
                 AuthViewModel.shared.register(email: email, password: password,
                                               profileImage: selectedImage, nickName: nickname,
                                               userName: username)
@@ -91,18 +94,26 @@ struct SignUpView: View {
                                                     if success {
                                                         // MARK: - need to async?
                                                         isShowingAlert.toggle()
+                                                        isShowingRegisterProgressView.toggle()
+                                                        
                                                     }
                 }
                 
                 
                 
             }, label: {
-                Text("Sign Up")
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                    .frame(width: 360, height: 50)
-                    .clipShape(Capsule())
-                    .padding()
+                
+                if isShowingRegisterProgressView {
+                    ProgressView()
+                } else {
+                    Text("Sign Up")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                        .frame(width: 360, height: 50)
+                        .clipShape(Capsule())
+                        .padding()
+                }
+                
             })
             
             Spacer()
