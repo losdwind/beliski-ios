@@ -93,7 +93,7 @@ struct TaskListView: View {
                             }
                         }
                     } content: {
-                        SearchAndLinkingView(linkedIDs: $taskvm.task.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                        SearchAndLinkingView(item:task, searchvm: searchvm, tagPanelvm: tagPanelvm)
                     }
                     .onTapGesture(perform: {
                         isShowingLinkedItemView.toggle()

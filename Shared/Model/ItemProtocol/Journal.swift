@@ -19,7 +19,7 @@ struct Journal:Identifiable, Codable, Hashable, Item{
     @ServerTimestamp var serverTimestamp: Timestamp?
     var localTimestamp: Timestamp?
     var ownerID:String = ""
-    var linkedItems: [String] = []
+    var linkedItems: [String] = []  //actually here the string is the id of the linked items
 
     
     var content: String = ""

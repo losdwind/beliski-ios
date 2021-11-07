@@ -113,7 +113,7 @@ struct BranchCardListView: View {
                                     
                                 }
                             }){
-                                SearchAndLinkingView(linkedIDs: $branchvm.branch.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                                SearchAndLinkingView(item:branch, searchvm: searchvm, tagPanelvm: tagPanelvm)
                                 
                             }
                         

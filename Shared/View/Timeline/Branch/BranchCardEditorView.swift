@@ -43,12 +43,6 @@ struct BranchCardEditorView: View {
                     }
                     
                     Spacer()
-
-                    Image("Profile")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 40, height: 40)
-                        .clipShape(Circle())
                 }
                 .overlay(
                 

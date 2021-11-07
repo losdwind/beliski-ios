@@ -22,11 +22,27 @@ class TaskViewModel: ObservableObject {
         
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid in uploadTask func")
+            handler(false)
             return }
-           let document = COLLECTION_USERS.document(userID).collection("tasks").document(task.id)
+        
+        if task.ownerID == "" {
+            task.ownerID = userID
+        }
+        
+        if task.ownerID != userID {
+                handler(false)
+                print("this task does not belong to you")
+                return
+            }
+            
+            
+            
+        let document = COLLECTION_USERS.document(userID).collection("tasks").document(task.id)
        
-        task.ownerID = userID
+       
+        
         task.reminder = Timestamp(date: self.reminder)
+        
         
         
         

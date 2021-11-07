@@ -130,7 +130,7 @@ struct CommunityView: View {
                 }
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+//        .navigationViewStyle(StackNavigationViewStyle())
         
         
     }

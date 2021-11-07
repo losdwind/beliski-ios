@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct SearchAndLinkingView: View {
+struct SearchAndLinkingView<T:Item>: View {
     
-    @Binding var linkedIDs: [String]
+    var item:T
     @ObservedObject var searchvm:SearchViewModel
     @ObservedObject var tagPanelvm:TagPanelViewModel
     
@@ -23,20 +23,11 @@ struct SearchAndLinkingView: View {
                 editMode = .active
             } else {
                 
-                var linkedIDsSet = Set(linkedIDs)
-                
-                for journal in searchvm.selectedJournals{
-                    linkedIDsSet.insert(journal.id)
+                searchvm.doubleLink(from: item) { success in
+                    if success {
+                        print("successfully double linked the items")
+                    }
                 }
-                
-                for task in searchvm.selectedTasks{
-                    linkedIDsSet.insert(task.id)
-                }
-                
-                for person in searchvm.selectedPersons{
-                    linkedIDsSet.insert(person.id)
-                }
-                self.linkedIDs = Array(linkedIDsSet)
                 presentationMode.wrappedValue.dismiss()
                 
                 
@@ -145,6 +136,6 @@ struct SearchAndLinkingView: View {
 struct LinkingView_Previews: PreviewProvider {
     @State static var linkedIDs:[String] = []
     static var previews: some View {
-        SearchAndLinkingView(linkedIDs: $linkedIDs, searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
+        SearchAndLinkingView(item:Journal(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
     }
 }

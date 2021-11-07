@@ -60,19 +60,17 @@ struct PersonItemView: View {
                 if person.avatarURL == "" {
                     Image(systemName:"person.circle")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+                        .frame(width: 80, height: 80, alignment: .leading)
+                        .clipShape(Circle())
                 } else{
                     KFImage(URL(string:person.avatarURL))
-                        .placeholder {
-                            // Placeholder while downloading.
-                            Image(systemName: "arrow.2.circlepath.circle")
-                                .font(.largeTitle)
-                                .opacity(0.3)
-                        }
                         .resizable()
-                        .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
-                        .clipShape(Circle())
+                        .placeholder {
+                            ProgressView()
+                        }
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 80.0, height: 80.0)
+                        .cornerRadius(40)
                 }
                 
                 
@@ -96,6 +94,7 @@ struct PersonItemView: View {
                     .font(.body)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.primary)
+                    .frame(maxWidth:.infinity, alignment: .leading)
             }
             
             
@@ -103,7 +102,11 @@ struct PersonItemView: View {
             // photos
             if isShowingPhtos {
                 if person.photoURLs.isEmpty == false{
-                    ImageGridView(imageURLs: person.photoURLs)
+                    if person.photoURLs.count == 1 {
+                        SingleImageView(imageURL: person.photoURLs[0])
+                    } else {
+                        ImageGridView(imageURLs: person.photoURLs)
+                    }
                 }
             }
             

@@ -217,7 +217,7 @@ struct PanelView: View {
             }
 
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+//        .navigationViewStyle(StackNavigationViewStyle())
         
     }
 }

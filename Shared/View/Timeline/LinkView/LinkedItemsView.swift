@@ -24,9 +24,7 @@ struct LinkedItemsView: View {
                     }
                 } label: {
                     Text("Journals")
-                        .font(.title)
                 }
-                .groupBoxStyle(.automatic)
                 
             
             GroupBox {
@@ -38,9 +36,8 @@ struct LinkedItemsView: View {
                 }
             } label: {
                 Text("Tasks")
-                    .font(.title)
             }
-            .groupBoxStyle(.automatic)
+            
             
             GroupBox {
                 LazyVStack{
@@ -51,12 +48,11 @@ struct LinkedItemsView: View {
                 }
             } label: {
                 Text("Persons")
-                    .font(.title)
             }
-            .groupBoxStyle(.automatic)
             
 
         }
+        .padding()
         .navigationTitle("Linked Items")
 
    

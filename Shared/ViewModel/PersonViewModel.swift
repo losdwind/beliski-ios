@@ -29,8 +29,16 @@ class PersonViewModel: ObservableObject {
         
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid in uploadTask func")
+            handler(false)
             return }
-        person.ownerID = userID
+        if person.ownerID == "" {
+            person.ownerID = userID
+        }
+        if person.ownerID != userID{
+            handler(false)
+            print("this person does not belongs to you")
+            return
+        }
         let document = COLLECTION_USERS.document(userID).collection("persons").document(person.id)
         
         // MARK: - here I disabled the uploadImage because i want to upload right after the imagePicker
@@ -55,7 +63,7 @@ class PersonViewModel: ObservableObject {
             print("userID is not valid")
             return }
 
-            COLLECTION_USERS.document(userID).collection("persons").document(person.id).delete() { err in
+        COLLECTION_USERS.document(userID).collection("persons").document(person.id).delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
                     handler(false)

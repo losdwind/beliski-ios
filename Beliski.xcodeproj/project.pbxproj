@@ -496,13 +496,12 @@
 			path = ChatView;
 			sourceTree = "<group>";
 		};
-		2942C810271EC3A300ECD167 /* LinkedItemsView */ = {
+		2942C810271EC3A300ECD167 /* LinkView */ = {
 			isa = PBXGroup;
 			children = (
 				29ED110F2718979100E67D8B /* LinkedItemsView.swift */,
-				29ED111527189A3200E67D8B /* SearchAndLinkingView.swift */,
 			);
-			path = LinkedItemsView;
+			path = LinkView;
 			sourceTree = "<group>";
 		};
 		29552A36270D88F90056E675 /* Utils */ = {
@@ -681,7 +680,7 @@
 				2907B4AA272A82BE001A3DA1 /* Branch */,
 				29E1DDEB272E4C1C00EC5E1D /* Collection */,
 				29ED1113271899DE00E67D8B /* SearchView */,
-				2942C810271EC3A300ECD167 /* LinkedItemsView */,
+				2942C810271EC3A300ECD167 /* LinkView */,
 				29ED11352719E4B400E67D8B /* Task */,
 				29ED112B2719E49600E67D8B /* Person */,
 				29ED11212719C3AA00E67D8B /* TagView */,
@@ -893,6 +892,7 @@
 				2924F1562729A789006CB556 /* SearchView.swift */,
 				2942C85C2724000200ECD167 /* SearchResultView.swift */,
 				2924F1592729A8CE006CB556 /* SearchResultComplexView.swift */,
+				29ED111527189A3200E67D8B /* SearchAndLinkingView.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";

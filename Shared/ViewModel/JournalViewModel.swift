@@ -30,9 +30,17 @@ class JournalViewModel:ObservableObject {
         
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid in uploadJournal func")
+            handler(false)
             return }
+        if journal.ownerID == "" {
+            journal.ownerID = userID
+        }
         
-        journal.ownerID = userID
+        if journal.ownerID != userID{
+            handler(false)
+            print("this journal does not belong to you")
+            return
+        }
 
         let document = COLLECTION_USERS.document(userID).collection("journals").document(journal.id)
        

@@ -365,12 +365,15 @@ class CommunityViewModel: ObservableObject {
         COLLECTION_BRANCHES
             .whereField("openess", isEqualTo: OpenType.Public.rawValue)
             .order(by: "comments", descending: true)
-            .getDocuments { snapshot, _ in
+            .addSnapshotListener { snapshot, _ in
                 guard let documents = snapshot?.documents else {
                     completion(false)
                     return }
                 self.fetchedPublicBranches = documents.compactMap({try? $0.data(as: Branch.self)})
                 completion(true)
+                for branch in self.fetchedPublicBranches{
+                    print(branch.id)
+                }
                 return
             }
         
@@ -389,7 +392,7 @@ class CommunityViewModel: ObservableObject {
         COLLECTION_BRANCHES
             .whereField("openess", isEqualTo: OpenType.Public.rawValue)
             .whereField("subsID", arrayContains: userID)
-            .getDocuments { snapshot, _ in
+            .addSnapshotListener { snapshot, _ in
                 guard let documents = snapshot?.documents else {
                     completion(false)
                     return }

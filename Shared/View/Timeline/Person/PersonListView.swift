@@ -94,7 +94,7 @@ struct PersonListView: View {
                                         personvm.fetchPersons(handler: {_ in})
                                     }
                                 }){
-                                    SearchAndLinkingView(linkedIDs: $personvm.person.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                                    SearchAndLinkingView(item: person,searchvm: searchvm, tagPanelvm: tagPanelvm)
                                 }
                                 .sheet(isPresented: $isUpdatingPerson){
                                     PersonEditorView(personTagvm:TagViewModel(tagNamesOfItem: person.tagNames, ownerItemID: personvm.person.id, completion: {_ in}) , personvm: personvm)

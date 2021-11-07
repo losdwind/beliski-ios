@@ -37,20 +37,18 @@ class BranchViewModel: ObservableObject {
             return
         }
         
-        branch.ownerID = userID
-//
-//        switch branch.openess {
-//        case "Private ":
-//            let document = COLLECTION_USERS.document(userID).collection("privatebranches").document(branch.id)
-//
-//        case "OnInvite":
-//            let document = COLLECTION_USERS.document(userID).collection("oninvitebranches").document(branch.id)
-//
-//        case "Public":
-//            let document = COLLECTION_USERS.document(userID).collection("publicbranches").document(branch.id)
-//
-//        }
-        let document = COLLECTION_USERS.document(userID).collection("branches").document(branch.id)
+        if branch.ownerID == "" {
+            branch.ownerID = userID
+            branch.memberIDs.append(userID)
+        }
+        
+        if branch.ownerID != userID{
+            completion(false)
+            print("this branch does not belongs to you")
+            return
+        }
+
+        let document = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id)
         
         
         do {
@@ -63,7 +61,6 @@ class BranchViewModel: ObservableObject {
             completion(false)
             return
         }
-        
         
     }
     

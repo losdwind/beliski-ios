@@ -67,7 +67,7 @@ struct SquadView: View {
                 }
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+//        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

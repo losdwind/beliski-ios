@@ -64,7 +64,6 @@ struct JournalListView: View {
                             
                             // Link
                             Button(action:{
-                                journalvm.journal = journal
                                 isShowingLinkView = true
                                 
                             }
@@ -85,23 +84,16 @@ struct JournalListView: View {
                                 }
                             }
                         })
+                    
+                    
                         .sheet(isPresented: $isUpdatingJournal){
                             // MARK: - think about the invalide id, because maybe the journal haven't yet been uploaded
                             JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel(tagNamesOfItem: journalvm.journal.tagNames, ownerItemID: journalvm.journal.id, completion: {_ in}))
                         }
-                        .sheet(isPresented: $isShowingLinkView, onDismiss: {
-                            journalvm.uploadJournal { success in
-                                if success {
-                                    print("successfully linked items and uploaded to firebase")
-                                    journalvm.fetchJournals { _ in
-                                    }
-                                } else {
-                                    print("Booom! failed to linke items and upload to firebase")
-                                }
-                                
-                            }
-                        }){
-                            SearchAndLinkingView(linkedIDs: $journalvm.journal.linkedItems, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                    
+                    
+                        .sheet(isPresented: $isShowingLinkView){
+                            SearchAndLinkingView(item:journal, searchvm: searchvm, tagPanelvm: tagPanelvm)
                         }
 
                 }

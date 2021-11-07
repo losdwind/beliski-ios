@@ -42,26 +42,26 @@ struct PersonEditorView: View {
                         Image(systemName:"plus")
                             .font(.title2)
                             .foregroundColor(.primary)
-                            .padding(18)
-                            .background(Circle().stroke(Color.gray))
                             .frame(width:80, height:80)
+                            .background(
+                                Circle()
+                                    .stroke(lineWidth: 3)
+                                    .foregroundColor(Color.gray)
+                            )
+
                         
                     } else{
                         if personvm.avatarImage != UIImage(){
                             Image(uiImage: personvm.avatarImage)
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
                                 .frame(width: 80, height: 80, alignment: .leading)
-                                .cornerRadius(40)
+                                .clipShape(Circle())
                         } else {
                             KFImage(URL(string: personvm.person.avatarURL)) .placeholder {
-                                // Placeholder while downloading.
-                                Image(systemName: "arrow.2.circlepath.circle")
-                                    .font(.largeTitle)
-                                    .opacity(0.3)
+                                ProgressView()
                             }
                             .resizable()
-                            .frame(maxWidth: 80, maxHeight: 80, alignment: .leading)
+                            .frame(width: 80, height: 80, alignment: .leading)
                             .clipShape(Circle())
                             
                             

@@ -83,6 +83,14 @@ enum SearchType: String, CaseIterable {
     case branch
 }
 
+
+enum ItemType: CaseIterable {
+    case Journal
+    case Task
+    case Person
+    case Branch
+}
+
 enum UploadType:String, CaseIterable {
     case profile
     case journal

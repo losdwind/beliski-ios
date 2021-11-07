@@ -28,35 +28,6 @@ class SquadViewModel: ObservableObject {
     @Published var inputMessage:Message = Message()
 
     
-//
-//    func getProfile(message: Message,completion: @escaping (_ user: User?) -> () ){
-//        COLLECTION_USERS.document(message.ownerID).getDocument { (document, error) in
-//            let result = Result {
-//                  try document?.data(as: User.self)
-//                }
-//                switch result {
-//                case .success(let user):
-//                    if let user = user {
-//                        // A `User` value was successfully initialized from the DocumentSnapshot.
-//                        completion(user)
-//                        return
-//                    } else {
-//                        // A nil value was successfully initialized from the DocumentSnapshot,
-//                        // or the DocumentSnapshot was nil.
-//                        print("Document does not exist")
-//                        completion(nil)
-//                        return
-//                    }
-//                case .failure(let error):
-//                    // A `User` value could not be initialized from the DocumentSnapshot.
-//                    print("Error decoding journal: \(error)")
-//                    completion(nil)
-//                    return
-//                }
-//        }
-//    }
-//
-    
     // get the profiles of a branch by user ids
     func fetchProfiles(ids: [String], completion: @escaping (_ users: [User]?) -> () ){
     
@@ -134,14 +105,9 @@ class SquadViewModel: ObservableObject {
         var messageProfilePairs:OrderedDictionary<Message,User> = [:]
                 
         let group = DispatchGroup()
-        var profileIDs:[String] = []
-        profileIDs.append(branch.ownerID)
-        profileIDs.append(contentsOf: Array(branch.memberIDs.keys))
-        
-        print(profileIDs)
         
         group.enter()
-        self.fetchProfiles(ids: profileIDs, completion: { users in
+        self.fetchProfiles(ids: branch.memberIDs, completion: { users in
             if let users = users {
                 self.fetchedProfiles =  users
                 group.leave()
@@ -149,6 +115,8 @@ class SquadViewModel: ObservableObject {
             } else {
                 print("failed to fetch profiles from this branch")
                 group.leave()
+                completion(false)
+                return
             }
         })
         
@@ -162,10 +130,13 @@ class SquadViewModel: ObservableObject {
                             messageProfilePairs[message] = user
                         }
                     }
-                    group.leave()
 
-                    
                 }
+                group.leave()
+            } else{
+                group.leave()
+                completion(false)
+                return
             }
         }
         
@@ -174,23 +145,19 @@ class SquadViewModel: ObservableObject {
             completion(true)
             return
         }
-        
-        completion(false)
     }
     
     
     
-    // MARK: get OnInvite branches
+    // MARK: get OnInvite branches, branchid can only been exist as either a ownerid or a member id
+   
     func fetchOnInviteBranches(completion: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in fetchJournal function")
             completion(false)
             return
         }
-        self.fetchedOnInviteBranches = []
-        let group = DispatchGroup()
-        
-        group.enter()
+        var fetchedDocs:[Branch] = []
         COLLECTION_BRANCHES
             .whereField("openess", isEqualTo: OpenType.OnInvite.rawValue)
             .whereField("memberIDs", arrayContains: userID)
@@ -199,25 +166,15 @@ class SquadViewModel: ObservableObject {
                     completion(false)
                     return
                 }
-                self.fetchedOnInviteBranches.append(contentsOf: documents.compactMap({try? $0.data(as: Branch.self)}))
-                group.leave()
-            }
-        group.enter()
-        COLLECTION_BRANCHES
-            .whereField("openess", isEqualTo: OpenType.OnInvite.rawValue)
-            .whereField("ownerID", isEqualTo: userID)
-            .addSnapshotListener { snapshot, _ in
-                guard let documents = snapshot?.documents else {
-                    completion(false)
+                
+                fetchedDocs = documents.compactMap({try? $0.data(as: Branch.self)})
+                if fetchedDocs.isEmpty == false {
+                    self.fetchedOnInviteBranches = fetchedDocs
+                    completion(true)
                     return
                 }
-                self.fetchedOnInviteBranches.append(contentsOf: documents.compactMap({try? $0.data(as: Branch.self)}))
-                group.leave()
             }
-        
-        group.notify(queue: .main){
-            completion(true)
-        }
+
         
     }
     

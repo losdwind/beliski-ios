@@ -155,7 +155,7 @@ struct TimelineView: View {
             )
             
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+//        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

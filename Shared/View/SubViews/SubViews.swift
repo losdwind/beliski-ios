@@ -27,10 +27,11 @@ struct SingleImageView: View {
         // 按照最大区域 180x180 等比缩放
         KFImage(URL(string: imageURL))
             .placeholder {
-                // Placeholder while downloading.
-                Image(systemName: "arrow.2.circlepath.circle")
-                    .font(.largeTitle)
-                    .opacity(0.3)
+//                // Placeholder while downloading.
+//                Image(systemName: "arrow.2.circlepath.circle")
+//                    .font(.largeTitle)
+//                    .opacity(0.3)
+                ProgressView()
             }
             .resizable()
             .aspectRatio(contentMode: .fit)
@@ -81,9 +82,7 @@ struct ImageGridView: View {
                 KFImage(URL(string: imageURLs[row * self.cols + col]))
                     .placeholder {
                         // Placeholder while downloading.
-                        Image(systemName: "arrow.2.circlepath.circle")
-                            .font(.largeTitle)
-                            .opacity(0.3)
+                        ProgressView()
                     }
                     .resizable()
                     .aspectRatio(contentMode:.fill)
