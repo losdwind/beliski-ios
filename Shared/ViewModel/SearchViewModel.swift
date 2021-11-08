@@ -220,6 +220,10 @@ class SearchViewModel: ObservableObject {
         
         group.notify(queue: .main){
             completion(true)
+            self.selectedJournals = Set<Journal>()
+            self.selectedTasks = Set<Task>()
+            self.selectedPersons = Set<Person>()
+            self.selectedBranches = Set<Branch>()
         }
         
         

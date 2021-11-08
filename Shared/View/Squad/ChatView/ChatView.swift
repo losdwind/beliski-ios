@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct ChatView: View {
+    
+    var branch:Branch
     @ObservedObject var squadvm: SquadViewModel
+    
+    
     
     var body: some View {
         VStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
-                    ForEach(squadvm.fetchedMessagesAndProfiles.keys) { message in
+                    ForEach(squadvm.fetchedMessages) { message in
                         
-                        MessageView(message: message , user: squadvm.fetchedMessagesAndProfiles[message] ?? User())
+                        MessageView(message: message)
                     }
                 }
             }.padding(.top)
@@ -25,12 +29,23 @@ struct ChatView: View {
                 .padding()
             
         }
+        .onAppear {
+            squadvm.currentBranch = branch
+            squadvm.getMessages(branch: branch) { success in
+                if success {
+                    print("successfully get the messages")
+                } else{
+                    print("error to get related messages")
+                }
+            }
+        }
 
     }
+        
 }
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(squadvm: SquadViewModel())
+        ChatView(branch: Branch(), squadvm: SquadViewModel())
     }
 }

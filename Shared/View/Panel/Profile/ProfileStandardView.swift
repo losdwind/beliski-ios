@@ -65,10 +65,7 @@ struct ProfileStandardView: View {
                 //                    Text(AuthViewModel.shared.currentUser?.email ?? "aijieshu@figurich.com" )
                 //                        .font(.footnote)
                 
-                Text("@\(profilevm.user.userName ?? "ajshu#24156")")
-                    .font(.caption)
-                
-                
+
                 HStack(alignment: .center, spacing: 20){
                     Image("score")
                         .resizable()

@@ -11,16 +11,15 @@ import OrderedCollections
 class CommunityViewModel: ObservableObject {
     
     @Published var fetchedSubscribedBranches:[Branch] = [Branch]()
-
+    
     
     @Published var fetchedPublicBranches:[Branch] = [Branch]()
     @Published var fetchedLikes: [Like] = [Like]()
     @Published var fetchedDislikes:[Dislike] = [Dislike]()
     @Published var fetchedProfiles:[User] = [User]()
     @Published var fetchedComments:[Comment] = [Comment]()
-    @Published var fetchedCommentsAndProfiles:OrderedDictionary<Comment,User> = [:]
     @Published var fetchedSubs:[Sub] = [Sub]()
-
+    
     
     
     @Published var inputComment:Comment = Comment()
@@ -38,7 +37,7 @@ class CommunityViewModel: ObservableObject {
     
     
     func getProfile(comment: Comment,completion: @escaping (_ user: User?) -> () ){
-        COLLECTION_USERS.document(comment.userID).getDocument { (document, error) in
+        COLLECTION_USERS.document(comment.userID).getDocument  { (document, error) in
             let result = Result {
                   try document?.data(as: User.self)
                 }
@@ -136,6 +135,8 @@ class CommunityViewModel: ObservableObject {
         }
         
         self.inputComment.userID = userID
+        self.inputComment.nickName = AuthViewModel.shared.nickName!
+        self.inputComment.userProfileImageURL = AuthViewModel.shared.nickName!
         self.inputComment.branchID = currentBranch.id
         
         let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
@@ -153,7 +154,7 @@ class CommunityViewModel: ObservableObject {
         
     }
     
-
+    
     // !!!: here exists a performance issue: https://firebase.google.com/docs/firestore/solutions/counters#swift_1
     func sendSub(completion: @escaping (_ success: Bool) -> ()){
         guard let userID = AuthViewModel.shared.userID else {
@@ -187,35 +188,22 @@ class CommunityViewModel: ObservableObject {
     
     // MARK: get
     
-    // FIXME: I think it is better to use cloud founctions to calculate the 
+    // FIXME: I think it is better to use cloud founctions to calculate the
     
     func getlikes(branch:Branch, completion: @escaping (_ success: Bool) -> ()){
         
         COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
             .whereField("isLike", isEqualTo: true)
             .limit(to:20)
-
-        let first  = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
-            .order(by:"serverTimestamp")
-            .limit(to:20)
-        
-        first.addSnapshotListener() { snapshot, _ in
-                guard let lastSnapshot = snapshot?.documents.last else {completion(false)
-                return}
-            
-            COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
-                .order(by:"serverTimestamp")
-                .limit(to:20)
-                .start(afterDocument: lastSnapshot)
                 .getDocuments { snapshot, _ in
                     guard let documents = snapshot?.documents else { return }
                     self.fetchedLikes = documents.compactMap({try? $0.data(as: Like.self)})
+                    
+                    completion(true)
+                    return
+                }
             
-            completion(true)
-            return
-        }
         
-    }
     }
     
     
@@ -224,51 +212,31 @@ class CommunityViewModel: ObservableObject {
         COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("dislikes")
             .whereField("isDislike", isEqualTo: true)
             .limit(to:20)
-
-        let first  = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("dislikes")
-            .order(by:"serverTimestamp")
-            .limit(to:20)
-        
-        first.addSnapshotListener() { snapshot, _ in
-                guard let lastSnapshot = snapshot?.documents.last else {completion(false)
-                return}
-            
-            COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("dislikes")
-                .order(by:"serverTimestamp")
-                .limit(to:20)
-                .start(afterDocument: lastSnapshot)
                 .getDocuments { snapshot, _ in
                     guard let documents = snapshot?.documents else { return }
                     self.fetchedDislikes = documents.compactMap({try? $0.data(as: Dislike.self)})
+                    
+                    completion(true)
+                    return
+                }
             
-            completion(true)
-            return
-        }
         
-    }
     }
     
     
     func getComments(branch:Branch,completion: @escaping (_ success: Bool) -> ()) {
         
-        let first  = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("comments")
+        COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("comments")
             .order(by:"serverTimestamp")
             .limit(to:20)
-        
-        first.addSnapshotListener() { snapshot, _ in
-                guard let lastSnapshot = snapshot?.documents.last else {completion(false)
-                return}
-            
-            COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("comments")
-                .order(by:"serverTimestamp")
-                .start(afterDocument: lastSnapshot)
-                .getDocuments { snapshot, _ in
-                    guard let documents = snapshot?.documents else { return }
-                    self.fetchedComments = documents.compactMap({try? $0.data(as: Comment.self)})
-            
-            completion(true)
-        }
-    }
+            .getDocuments { snapshot, _ in
+                guard let documents = snapshot?.documents else { return }
+                self.fetchedComments = documents.compactMap({try? $0.data(as: Comment.self)})
+                for comment in self.fetchedComments {
+                    print(comment.content)
+                }
+                completion(true)
+            }
     }
     
     
@@ -277,78 +245,17 @@ class CommunityViewModel: ObservableObject {
         COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("subs")
             .whereField("isSubed", isEqualTo: true)
             .limit(to:20)
-
-        let first  = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("subs")
-            .order(by:"serverTimestamp")
-            .limit(to:20)
-        
-        first.addSnapshotListener() { snapshot, _ in
-                guard let lastSnapshot = snapshot?.documents.last else {completion(false)
-                return}
-            
-            COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("subs")
-                .order(by:"serverTimestamp")
-                .limit(to:20)
-                .start(afterDocument: lastSnapshot)
-                .getDocuments { snapshot, _ in
-                    guard let documents = snapshot?.documents else { return }
+            .getDocuments { snapshot, _ in
+                    guard let documents = snapshot?.documents else {
+                        completion(false)
+                        return }
                     self.fetchedSubs = documents.compactMap({try? $0.data(as: Sub.self)})
-            
-            completion(true)
-            return
-        }
-        
-    }
-    }
-    
-    
-    
-    func fetchCommentsAndProfiles(branch:Branch,completion: @escaping (_ success: Bool) -> ()){
-        var commentProfilePairs:OrderedDictionary<Comment,User> = [:]
-        var profiles:Set<User> = Set<User>()
-        
-        let group = DispatchGroup()
-        
-        group.enter()
-        self.getComments(branch: branch) { success in
-            if success {
-                for comment in self.fetchedComments{
-                    self.getProfile(comment: comment) { user in
-                        if let user = user {
-                            profiles.insert(user)
-                            commentProfilePairs[comment] = user
-                            group.leave()
-                        } else {
-                            print("fail to get corresponding user for this comment")
-                            completion(false)
-                            return
-                        }
-                    }
+                    completion(true)
+                    return
                 }
-            } else {
-                print("fail to get corresponding comments for this branch")
-                completion(false)
-                return
-            }
+            
         }
-        
-        group.notify(queue: .main){
-            self.fetchedCommentsAndProfiles = commentProfilePairs
-            self.fetchedProfiles = Array(profiles)
-            completion(true)
-            return
-        }
-    }
-    
-    
-    
-    
 
-    
-    
-    
-    
-    
     
     
     
@@ -371,9 +278,6 @@ class CommunityViewModel: ObservableObject {
                     return }
                 self.fetchedPublicBranches = documents.compactMap({try? $0.data(as: Branch.self)})
                 completion(true)
-                for branch in self.fetchedPublicBranches{
-                    print(branch.id)
-                }
                 return
             }
         
@@ -402,7 +306,7 @@ class CommunityViewModel: ObservableObject {
             }
         
     }
-
+    
     
     
 }

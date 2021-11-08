@@ -20,11 +20,10 @@ struct PopularBranchView: View {
   
     
     var body: some View {
-        NavigationView{
             
-            ScrollView(.vertical, showsIndicators: false){
-                
-                LazyVStack{
+                VStack{
+                    
+                    
                     ForEach(communityvm.fetchedPublicBranches, id: \.self) { branch in
   
                         VStack(alignment:.leading){
@@ -62,10 +61,10 @@ struct PopularBranchView: View {
                     
                 }
                 
-            }
+            
                 .padding()
                 .frame(maxWidth: 640)
-        }
+        
         
     }
 }

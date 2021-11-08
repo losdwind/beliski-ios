@@ -23,6 +23,8 @@ class AuthViewModel: ObservableObject {
     
     
     @AppStorage(CurrentUserDefaults.userID) var userID: String?
+    @AppStorage(CurrentUserDefaults.nickName) var nickName:String?
+    @AppStorage(CurrentUserDefaults.profileImgURL) var profileImageURL:String?
 
     
     func logInUserToFirebase(email: String, password: String, handler: @escaping (_ providerID: String?, _ isError: Bool, _ isNewUser: Bool?, _ userID: String?) -> ()){
@@ -61,12 +63,11 @@ class AuthViewModel: ObservableObject {
         
         // Get the users info
         fetchUser(userID: userID) { user in
-            if let userName = user?.userName, let nickName = user?.nickName, let profileImgURL = user?.profileImageURL  {
+            if let nickName = user?.nickName, let profileImgURL = user?.profileImageURL  {
                 // Success
                 print("Success getting user info while logging in")
                 // Set the users info into our app
                 UserDefaults.standard.set(userID, forKey: CurrentUserDefaults.userID)
-                UserDefaults.standard.set(userName, forKey: CurrentUserDefaults.userName)
                 UserDefaults.standard.set(nickName, forKey: CurrentUserDefaults.nickName)
                 UserDefaults.standard.set(profileImgURL, forKey: CurrentUserDefaults.profileImgURL)
                 handler(true)
@@ -115,12 +116,12 @@ class AuthViewModel: ObservableObject {
             
             MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
                 
-                let data = User(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, userName: userName, nickName: nickName, dateCreated:Timestamp(date: Date()))
+                let data = User(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
                 
                 do {
                     try document.setData(from: data)
                     print("Successfully uploaded user data to firestore...")
-                    let privates = Private(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, userName: userName, nickName: nickName, dateCreated:Timestamp(date: Date()))
+                    let privates = Private(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
                     let privateDocument = COLLECTION_USERS.document(userID).collection("privates").document(privates.id)
                     do {
                         try privateDocument.setData(from: privates)

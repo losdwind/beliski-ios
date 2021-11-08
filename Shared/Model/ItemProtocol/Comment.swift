@@ -12,12 +12,13 @@ import FirebaseFirestoreSwift
 struct Comment: Identifiable, Codable, Hashable {
     
     var id:String = UUID().uuidString
+    var branchID:String = ""
+    @ServerTimestamp var serverTimestamp: Timestamp?
+    var content: String = ""
+    
     
     var userID:String = ""
-    var branchID:String = ""
-    
-    @ServerTimestamp var serverTimestamp: Timestamp?
-    
-    var content: String = ""
+    var userProfileImageURL:String = ""
+    var nickName:String = ""
     
 }

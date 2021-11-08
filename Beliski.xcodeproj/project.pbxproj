@@ -84,6 +84,11 @@
 		29552A7227101A7C0056E675 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A7027101A7C0056E675 /* ProfileDetailView.swift */; };
 		29552A7627101B620056E675 /* PanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A7527101B620056E675 /* PanelView.swift */; };
 		29552A7727101B620056E675 /* PanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A7527101B620056E675 /* PanelView.swift */; };
+		296960072738FC7500C5A946 /* SubscribedBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296960062738FC7500C5A946 /* SubscribedBranchView.swift */; };
+		296960082738FC7500C5A946 /* SubscribedBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296960062738FC7500C5A946 /* SubscribedBranchView.swift */; };
+		296960092738FC8800C5A946 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C23270D600900754817 /* CommunityView.swift */; };
+		2969600A2739052600C5A946 /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4832731854700FEBF8A /* CommentCellView.swift */; };
+		2969600B2739052A00C5A946 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4812731853F00FEBF8A /* CommentsView.swift */; };
 		296FA4822731853F00FEBF8A /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4812731853F00FEBF8A /* CommentsView.swift */; };
 		296FA4842731854700FEBF8A /* CommentCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA4832731854700FEBF8A /* CommentCellView.swift */; };
 		296FA486273187A100FEBF8A /* InPutCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA485273187A100FEBF8A /* InPutCommentsView.swift */; };
@@ -322,6 +327,7 @@
 		29552A6D271010160056E675 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		29552A7027101A7C0056E675 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		29552A7527101B620056E675 /* PanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelView.swift; sourceTree = "<group>"; };
+		296960062738FC7500C5A946 /* SubscribedBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedBranchView.swift; sourceTree = "<group>"; };
 		296FA4812731853F00FEBF8A /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		296FA4832731854700FEBF8A /* CommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
 		296FA485273187A100FEBF8A /* InPutCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPutCommentsView.swift; sourceTree = "<group>"; };
@@ -637,12 +643,12 @@
 			children = (
 				29C46BED270D5E8800754817 /* BeliskiApp.swift */,
 				29C46BEE270D5E8800754817 /* MainView.swift */,
-				29E1DD75272D316800EC5E1D /* SubViews */,
-				29C46C19270D600900754817 /* Timeline */,
-				29C46C14270D600900754817 /* Squad */,
-				29C46C1B270D600900754817 /* Panel */,
-				29C46C1D270D600900754817 /* Authenticate */,
 				29C46C20270D600900754817 /* Create */,
+				29C46C1D270D600900754817 /* Authenticate */,
+				29C46C19270D600900754817 /* Timeline */,
+				29C46C1B270D600900754817 /* Panel */,
+				29E1DD75272D316800EC5E1D /* SubViews */,
+				29C46C14270D600900754817 /* Squad */,
 				29C46C22270D600900754817 /* Community */,
 			);
 			path = View;
@@ -730,6 +736,7 @@
 				29E1DE01273046E500EC5E1D /* CategoryView.swift */,
 				296FA4882731A1C400FEBF8A /* PopularBranchView.swift */,
 				296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */,
+				296960062738FC7500C5A946 /* SubscribedBranchView.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1201,6 +1208,7 @@
 				29552A51270F0EC40056E675 /* Constants.swift in Sources */,
 				29E1DE02273046E500EC5E1D /* CategoryView.swift in Sources */,
 				2907B4D1272C1594001A3DA1 /* SettingsLabelView.swift in Sources */,
+				296960072738FC7500C5A946 /* SubscribedBranchView.swift in Sources */,
 				29E1DD82272D3B3D00EC5E1D /* SocialAbstractView.swift in Sources */,
 				29E1DD8B272D3B9900EC5E1D /* FinancialAbstractView.swift in Sources */,
 				2942C85A2721391E00ECD167 /* TagPanelViewModel.swift in Sources */,
@@ -1251,6 +1259,7 @@
 				29552A6C271010070056E675 /* Task.swift in Sources */,
 				29ED115A271B470A00E67D8B /* Helplers.swift in Sources */,
 				29552A3F270D95900056E675 /* AuthViewModel.swift in Sources */,
+				2969600B2739052A00C5A946 /* CommentsView.swift in Sources */,
 				29E1DE03273046E500EC5E1D /* CategoryView.swift in Sources */,
 				29E1DDBB272D746C00EC5E1D /* MagnifierRect.swift in Sources */,
 				29E1DDDB272DB07500EC5E1D /* MediaFileView.swift in Sources */,
@@ -1275,6 +1284,7 @@
 				2907B4CF272C1582001A3DA1 /* SettingsRowView.swift in Sources */,
 				29E1DD74272D307D00EC5E1D /* LineGraphtView.swift in Sources */,
 				29E1DD83272D3B3D00EC5E1D /* SocialAbstractView.swift in Sources */,
+				296960092738FC8800C5A946 /* CommunityView.swift in Sources */,
 				29E1DDAB272D746C00EC5E1D /* BarChartView.swift in Sources */,
 				29E1DDE7272DBF9600EC5E1D /* UserProgressView.swift in Sources */,
 				29E1DD86272D3B5300EC5E1D /* CareerAbstractView.swift in Sources */,
@@ -1297,6 +1307,7 @@
 				29E1DE09273120CF00EC5E1D /* Comment.swift in Sources */,
 				29ED10FA2710422600E67D8B /* JournalItemView.swift in Sources */,
 				29E1DDBF272D746C00EC5E1D /* MultiLineChartView.swift in Sources */,
+				2969600A2739052600C5A946 /* CommentCellView.swift in Sources */,
 				296FA48A2731A1C400FEBF8A /* PopularBranchView.swift in Sources */,
 				2924F1582729A789006CB556 /* SearchView.swift in Sources */,
 				29E1DDEE272E4C3200EC5E1D /* TopicView.swift in Sources */,
@@ -1316,6 +1327,7 @@
 				29E1DDD5272DB04600EC5E1D /* LinkNetworkView.swift in Sources */,
 				2907B4AD272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */,
 				29E1DD66272D12F300EC5E1D /* PrivateStatsBarView.swift in Sources */,
+				296960082738FC7500C5A946 /* SubscribedBranchView.swift in Sources */,
 				296FA49D27344EC000FEBF8A /* Sub.swift in Sources */,
 				29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
 				29ED11322719E49600E67D8B /* PersonListView.swift in Sources */,

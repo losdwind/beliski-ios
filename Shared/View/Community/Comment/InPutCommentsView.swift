@@ -13,21 +13,19 @@ struct InputCommentView: View {
     
     var body: some View {
         VStack {
-            Rectangle()
-                .foregroundColor(Color(.separator))
-                .frame(width: UIScreen.main.bounds.width, height: 0.75)
-                .padding(.bottom, 8)
             
             HStack {
-                TextField("Input here", text: $communityvm.inputComment.content)
+                TextField("Post your comment", text: $communityvm.inputComment.content)
                     .textFieldStyle(PlainTextFieldStyle())
                     .font(.body)
                     .frame(minHeight: 30)
                 
                 Button{
-                    communityvm.sendComment() { success in
+                   
+                    communityvm.sendComment { success in
                         if success {
                             communityvm.inputComment = Comment()
+                            communityvm.getComments(branch: communityvm.currentBranch) {_ in}
                         }
                     }
                 } label: {
@@ -35,11 +33,14 @@ struct InputCommentView: View {
                         .bold()
                         .foregroundColor(.black)
                 }
-                
-                .padding(.bottom, 8)
-                .padding(.horizontal)
+
             }
+            .padding()
+            .border(Color.gray, width: 2)
+
         }
+        .padding()
+        
     }
 }
 

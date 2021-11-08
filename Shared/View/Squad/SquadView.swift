@@ -11,7 +11,7 @@ struct SquadView: View {
     
     @ObservedObject var squadvm: SquadViewModel
     @ObservedObject var dataLinkedManager: DataLinkedManager
-    
+    @State var isShowingChatView:Bool = false
     
     var body: some View {
         NavigationView{
@@ -27,20 +27,11 @@ struct SquadView: View {
                         HStack{
                             ForEach(squadvm.fetchedOnInviteBranches, id: \.self) { branch in
                                 NavigationLink{
-                                    ChatView(squadvm: squadvm)
+                                    ChatView(branch:branch, squadvm: squadvm )
                                 } label: {
                                     SquadCardView(branch: branch, squadvm: squadvm)
                                 }
-                                .onTapGesture {
-                                    squadvm.currentBranch = branch
-                                    squadvm.fetchProfilesAndMessages(branch: branch) { success in
-                                        if success {
-                                            print("successfully get the messages")
-                                        } else{
-                                            print("error to get related messages")
-                                        }
-                                    }
-                                }
+                                
                             }
                             
                         }

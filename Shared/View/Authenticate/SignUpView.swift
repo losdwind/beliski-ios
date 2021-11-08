@@ -64,12 +64,6 @@ struct SignUpView: View {
                     .padding(.horizontal, 32)
                 
                 
-                CustomTextField(text: $username, placeholder: "User Name", labelImage: "person")
-                    .padding()
-                    .cornerRadius(10)
-                    .foregroundColor(.primary)
-                    .padding(.horizontal, 32)
-                
 
                 CustomTextField(text: $nickname, placeholder: "Nick Name", labelImage: "person")
                     .padding()

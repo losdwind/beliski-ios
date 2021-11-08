@@ -30,7 +30,7 @@ struct SettingsView: View {
                             .frame(width: 80, height: 80, alignment: .center)
                             .cornerRadius(12)
                         
-                        Text("Beliski is a research based human behavior analysing and mobile sensing app. It is a professional tool to extract pattern recognition result from the user's social-economic attributes, user-generated richmedia materials, health data, social acitivity as well as environment background. It is goal is to help users to achieve and keep eudaimonic wellbeing along with their lives.")
+                        Text("Beliski is a research-based human behavior analysis and mobile sensing app. It uses professional tools to extract user patterns from a variety of sources, including the user's social-economic attributes, self-generated rich-media materials, health datastream, daily activities and environmental backgrounds. Its goal is to help users to achieve and maintain eudaimonic wellbeing throughout their lives.")
                             .font(.footnote)
                         
                     })
@@ -91,7 +91,7 @@ struct SettingsView: View {
                     Button(action: {
                         openCustomURL(urlString: "https://www.bing.com")
                     }, label: {
-                        SettingsRowView(leftIcon: "globe", text: "DogGram's Website", color: Color.white)
+                        SettingsRowView(leftIcon: "globe", text: "Figurich's Website", color: Color.white)
                     })
 
                 })

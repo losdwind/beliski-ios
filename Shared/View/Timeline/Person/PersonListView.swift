@@ -76,7 +76,6 @@ struct PersonListView: View {
                                     
                                     // Link
                                     Button(action:{
-                                        personvm.person  = person
                                         isShowingLinkView = true
                                         
                                         

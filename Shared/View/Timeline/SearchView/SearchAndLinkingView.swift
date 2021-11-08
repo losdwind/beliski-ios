@@ -16,25 +16,34 @@ struct SearchAndLinkingView<T:Item>: View {
     @State private var editMode: EditMode = .inactive
     var isLinkingItem: Bool = true
     @Environment(\.presentationMode) var presentationMode
-        
+    @State var isShowingProgressView:Bool = false
+    
     private var editButton: some View {
         return Button {
             if editMode == .inactive {
                 editMode = .active
             } else {
-                
+                isShowingProgressView = true
                 searchvm.doubleLink(from: item) { success in
                     if success {
+                        isShowingProgressView = false
+                        self.presentationMode.wrappedValue.dismiss()
                         print("successfully double linked the items")
+                    } else {
+                        print("failed to double link the items")
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                 }
-                presentationMode.wrappedValue.dismiss()
-                
                 
             }
         } label: {
-            Text(editMode == .inactive ? "Select" : "Link")
-                .foregroundColor(editMode == .inactive ? Color.primary : Color.pink)
+            if isShowingProgressView {
+                ProgressView()
+            } else {
+                Text(editMode == .inactive ? "Select" : "Link")
+                    .foregroundColor(editMode == .inactive ? Color.primary : Color.pink)
+            }
+            
         }
     }
     

@@ -68,7 +68,6 @@ struct TaskListView: View {
                         
                         // Link
                         Button(action:{
-                            taskvm.task = task
                             isLinkingItem = true
                             
                         }
@@ -79,7 +78,7 @@ struct TaskListView: View {
                     .frame(alignment:.topLeading)
                     .sheet(isPresented: $isUpdatingTask) {
                         taskvm.task = Task()
-                        taskvm.reminder = Date()
+
                     } content: {
                         TaskEditorView(taskvm: taskvm)
                     }
@@ -87,13 +86,10 @@ struct TaskListView: View {
                     
                 
                     .sheet(isPresented: $isLinkingItem) {
-                        taskvm.uploadTask { success in
-                            if success {
-                                taskvm.fetchTasks(handler: {_ in})
-                            }
-                        }
-                    } content: {
                         SearchAndLinkingView(item:task, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                        
+                        
+                        
                     }
                     .onTapGesture(perform: {
                         isShowingLinkedItemView.toggle()

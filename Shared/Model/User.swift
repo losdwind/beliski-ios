@@ -17,7 +17,6 @@ struct User: Identifiable, Codable, Hashable {
     var providerID:String?
     var providerName: String?
     var profileImageURL: String?
-    var userName: String?
     var nickName: String? //first name, family name
     var dateCreated:Timestamp?
 
@@ -33,7 +32,6 @@ struct Private: Identifiable, Codable, Hashable{
     var providerID:String?
     var providerName: String?
     var profileImageURL: String?
-    var userName: String?
     var nickName: String? //first name, family name
     var dateCreated:Timestamp?
     

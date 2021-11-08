@@ -30,7 +30,8 @@ struct BranchCardFooterView: View {
                 communityvm.currentBranch = branch
                 
                 // iterate between 0 1
-                communityvm.sendLike(){ success in
+               
+                communityvm.sendLike{ success in
                     if success {
                         communityvm.inputLike = Like()
                 }
@@ -56,8 +57,7 @@ struct BranchCardFooterView: View {
             Button {
                 communityvm.inputDislike.isDislike.toggle()
                 communityvm.currentBranch = branch
-                
-                communityvm.sendDislike(){ success in
+                communityvm.sendDislike{ success in
                     if success {
                         communityvm.inputDislike = Dislike()
                 }
@@ -83,12 +83,20 @@ struct BranchCardFooterView: View {
             // MARK: Comment
             HStack{
             Button {
-                isShowingCommentView.toggle()
                 communityvm.currentBranch = branch
+                communityvm.getComments(branch: communityvm.currentBranch){
+                    success in
+                    if success {
+                        print("successfully get the comments")
+                        isShowingCommentView.toggle()
+                    } else {
+                        print("failed to get the comments")
+                    }
+                }
             } label: {
                 
                 if isShowingCommentView{
-                    Image(systemName: "buble.right.fill")
+                    Image(systemName: "bubble.right.fill")
                         .foregroundColor(.pink)
                 } else {
                     Image(systemName: "bubble.right")
@@ -108,7 +116,7 @@ struct BranchCardFooterView: View {
 
                 communityvm.currentBranch = branch
                 
-                communityvm.sendSub(){ success in
+                communityvm.sendSub{ success in
                     if success {
                         communityvm.inputSub = Sub()
                 }
@@ -128,6 +136,7 @@ struct BranchCardFooterView: View {
 
             
         }
+        
         .sheet(isPresented: $isShowingCommentView){
             CommentsView(communityvm: communityvm)
         }

@@ -34,14 +34,15 @@ class TaskViewModel: ObservableObject {
                 print("this task does not belong to you")
                 return
             }
-            
+        
+        task.reminder = Timestamp(date: self.reminder)
+
             
             
         let document = COLLECTION_USERS.document(userID).collection("tasks").document(task.id)
        
        
         
-        task.reminder = Timestamp(date: self.reminder)
         
         
         

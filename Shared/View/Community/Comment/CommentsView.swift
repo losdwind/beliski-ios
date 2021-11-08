@@ -15,15 +15,17 @@ struct CommentsView: View {
         VStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 24) {
-                    ForEach(communityvm.fetchedCommentsAndProfiles.keys) { comment in
-                        CommentCellView(comment: comment, user: communityvm.fetchedCommentsAndProfiles[comment] ?? User())
+                    ForEach(communityvm.fetchedComments) { comment in
+                        CommentCellView(comment: comment)
                     }
+
                 }
             }.padding(.top)
             
             InputCommentView(communityvm: communityvm)
             
         }
+        .padding()
     }
 }
 

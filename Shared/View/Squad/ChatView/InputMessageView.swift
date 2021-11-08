@@ -14,6 +14,9 @@ struct InputMessageView: View {
     
     @ObservedObject var squadvm:SquadViewModel
     
+    
+    
+    // MARK: - here exists a hidden bug maybe that if it cannot be initialized in new program
     var body: some View {
         VStack {
             Rectangle()
@@ -31,6 +34,8 @@ struct InputMessageView: View {
                     squadvm.sendMessage{ success in
                         if success {
                             squadvm.inputMessage = Message()
+                            squadvm.getMessages(branch: squadvm.currentBranch){_ in}
+                            
                         }
                     }
                 } label: {

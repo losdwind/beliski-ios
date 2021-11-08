@@ -10,16 +10,14 @@ import Kingfisher
 
 struct MessageView: View {
     
-    @AppStorage(CurrentUserDefaults.userID) var userID: String?
     
     let message: Message
     
-    let user:User
 
         
     var body: some View {
         HStack {
-            if message.userID == userID {
+            if message.userID == AuthViewModel.shared.userID {
                 Spacer()
                 Text(message.content)
                     .padding()
@@ -33,8 +31,7 @@ struct MessageView: View {
             } else {
                 HStack(alignment: .bottom) {
                     
-                    KFImage(URL(string:user.profileImageURL ?? ""))
-                        
+                    KFImage(URL(string:message.userProfileImageURL))
                         .resizable()
                         .scaledToFill()
                         .frame(width: 40, height: 40)

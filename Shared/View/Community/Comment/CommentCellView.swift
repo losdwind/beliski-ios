@@ -12,32 +12,36 @@ import FirebaseFirestoreSwift
 
 struct CommentCellView: View {
     let comment:Comment
-    
-    let user:User
-    
+        
     
     var body: some View {
-        HStack {
-            KFImage(URL(string: user.profileImageURL ?? ""))
+        HStack(alignment:.top) {
+            KFImage(URL(string: comment.userProfileImageURL))
                 .resizable()
-                .scaledToFill()
-                .frame(width: 36, height: 36)
-                .clipShape(Circle())
-            
-            Text(user.userName ?? "unknown").font(.system(size: 14, weight: .semibold)) +
-            Text(" \(comment.content)").font(.system(size: 14))
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 40, height: 40)
+                .cornerRadius(20)
+            VStack(alignment:.leading, spacing:8){
+                HStack {
+                    Text(comment.nickName).font(.body.bold())
+                    TimestampView(time: convertFIRTimestamptoString(timestamp: comment.serverTimestamp))
+                        .foregroundColor(.gray)
+                        .font(.body)
+                }
+                
+                Text(comment.content).font(.body)
+
+            }
             
             Spacer()
             
-            TimestampView(time: convertFIRTimestamptoString(timestamp: comment.serverTimestamp))
-                .foregroundColor(.gray)
-                .font(.system(size: 12))
-        }.padding(.horizontal)
+            
+        }.padding()
     }
 }
 
 struct CommentCellView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentCellView(comment: Comment(id: "", userID: "", serverTimestamp: Timestamp(date: Date()), content: "This is an awesome work"), user: User(profileImageURL: "https://www.google.com/webhp?hl=zh-TW&ictx=2&sa=X&ved=0ahUKEwjxoa-g2_zzAhWGwJQKHTNuBiYQPQgJ", userName:"Titan"))
+        CommentCellView(comment: Comment())
     }
 }
