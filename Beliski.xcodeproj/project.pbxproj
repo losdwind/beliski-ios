@@ -104,6 +104,8 @@
 		296FA49D27344EC000FEBF8A /* Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49B27344EC000FEBF8A /* Sub.swift */; };
 		296FA49F273457DE00FEBF8A /* Dislike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49E273457DE00FEBF8A /* Dislike.swift */; };
 		296FA4A0273457DE00FEBF8A /* Dislike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49E273457DE00FEBF8A /* Dislike.swift */; };
+		29824B67273AC14200868C9B /* InviteUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B66273AC14200868C9B /* InviteUserView.swift */; };
+		29824B68273AC5F000868C9B /* InviteUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B66273AC14200868C9B /* InviteUserView.swift */; };
 		29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFF270D5E8A00754817 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* MainView.swift */; };
@@ -335,6 +337,7 @@
 		296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardFooterView.swift; sourceTree = "<group>"; };
 		296FA49B27344EC000FEBF8A /* Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub.swift; sourceTree = "<group>"; };
 		296FA49E273457DE00FEBF8A /* Dislike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dislike.swift; sourceTree = "<group>"; };
+		29824B66273AC14200868C9B /* InviteUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUserView.swift; sourceTree = "<group>"; };
 		29C46BED270D5E8800754817 /* BeliskiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeliskiApp.swift; sourceTree = "<group>"; };
 		29C46BEE270D5E8800754817 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		29C46BEF270D5E8A00754817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -487,6 +490,7 @@
 				2907B4A4272A7BEE001A3DA1 /* BranchCardView.swift */,
 				2907B4AB272A82D5001A3DA1 /* BranchCardEditorView.swift */,
 				29E1DDEF272E4FE300EC5E1D /* BranchCardListView.swift */,
+				29824B66273AC14200868C9B /* InviteUserView.swift */,
 			);
 			path = Branch;
 			sourceTree = "<group>";
@@ -1180,6 +1184,7 @@
 				29E1DDE9272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */,
 				29E1DDB8272D746C00EC5E1D /* LineChartView.swift in Sources */,
 				29D2BA8F2727D4DA007F76B8 /* SettingsView.swift in Sources */,
+				29824B67273AC14200868C9B /* InviteUserView.swift in Sources */,
 				29ED1156271B42B600E67D8B /* PersonDetailView.swift in Sources */,
 				29ED10FC2710423800E67D8B /* JournalEditorView.swift in Sources */,
 				296FA4842731854700FEBF8A /* CommentCellView.swift in Sources */,
@@ -1240,6 +1245,7 @@
 				29E1DDD8272DB06100EC5E1D /* AllTagsView.swift in Sources */,
 				29E1DDEA272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */,
 				29E1DDAD272D746C00EC5E1D /* BarChartRow.swift in Sources */,
+				29824B68273AC5F000868C9B /* InviteUserView.swift in Sources */,
 				29E1DDCE272D9EAD00EC5E1D /* SingleEntryView.swift in Sources */,
 				2907B4C4272C0E7F001A3DA1 /* ProfileAvatarView.swift in Sources */,
 				2942C84C271FEA2B00ECD167 /* TagCollectionView.swift in Sources */,

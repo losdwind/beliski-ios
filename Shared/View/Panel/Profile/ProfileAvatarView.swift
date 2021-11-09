@@ -15,41 +15,18 @@ struct ProfileAvatarView: View {
     var body: some View {
         
             
-            if let profileImageURL = profileImageURL {
-                KFImage(URL(string: profileImageURL))
+                KFImage(URL(string: profileImageURL ?? ""))
                     .placeholder {
-                        // Placeholder while downloading.
-                        Image(systemName: "arrow.2.circlepath.circle")
-                            .font(.largeTitle)
-                            .opacity(0.3)
+                        ProgressView()
                     }
-                 .resizable()
-                 .aspectRatio(contentMode: .fit)
-                 .frame(width: 20, height: 20)
-                 .padding(4)
-                 .background(.white,in: Circle())
-             // border...
-                 .background(
-                     
-                     Circle()
-                         .stroke(.black,lineWidth: 1)
-                 )
-                 
-                 
-            } else {
-                Image("animoji1")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 20, height: 20)
-                    .padding(4)
-                    .background(.white,in: Circle())
-                // border...
-                    .background(
-                        
-                        Circle()
-                            .stroke(.black,lineWidth: 1)
-                    )
-            }
+                    .aspectRatio(contentMode: .fill)
+                    .background(Circle()
+                                    .stroke(.black,lineWidth: 1))
+                    .frame(width: 30, height: 30)
+                    .cornerRadius(15)
+                 
+           
             
             
         }

@@ -215,6 +215,11 @@ struct PanelView: View {
             .sheet(isPresented: $isShowingProfileDetailView) {
                 ProfileDetailView(profilevm: profilevm)
             }
+            .onAppear {
+                profilevm.fetchCurrentUser { success in
+                    print("successfully fetched current user profile")
+                }
+            }
 
         }
 //        .navigationViewStyle(StackNavigationViewStyle())

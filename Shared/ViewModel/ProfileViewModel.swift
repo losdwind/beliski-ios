@@ -7,7 +7,8 @@
 
 import Foundation
 import SwiftUI
-
+import Firebase
+import FirebaseFirestoreSwift
 
 
 class ProfileViewModel: ObservableObject{
@@ -86,6 +87,44 @@ class ProfileViewModel: ObservableObject{
                     if let userPrivate = p {
                         // A `User` value was successfully initialized from the DocumentSnapshot.
                         self.userPrivate = userPrivate
+                        completion(true)
+                        return
+                    } else {
+                        // A nil value was successfully initialized from the DocumentSnapshot,
+                        // or the DocumentSnapshot was nil.
+                        print("Document does not exist")
+                        completion(false)
+                        return
+                    }
+                case .failure(let error):
+                    // A `User` value could not be initialized from the DocumentSnapshot.
+                    print("Error decoding journal: \(error)")
+                    completion(true)
+                    return
+                }
+        }
+        
+    }
+    
+    
+    func fetchCurrentUser(completion: @escaping (_ success: Bool) -> ()){
+        
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in fetchPerson function")
+            completion(false)
+            return
+        }
+        
+        COLLECTION_USERS.document(userID)
+            .getDocument { (document, error) in
+            let result = Result {
+                  try document?.data(as: User.self)
+                }
+                switch result {
+                case .success(let u):
+                    if let user = u {
+                        // A `User` value was successfully initialized from the DocumentSnapshot.
+                        self.user = user
                         completion(true)
                         return
                     } else {

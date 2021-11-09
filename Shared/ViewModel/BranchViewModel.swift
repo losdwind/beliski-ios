@@ -42,11 +42,14 @@ class BranchViewModel: ObservableObject {
             branch.memberIDs.append(userID)
         }
         
+        branch.memberIDs = Array(Set(branch.memberIDs))
+        
         if branch.ownerID != userID{
             completion(false)
             print("this branch does not belongs to you")
             return
         }
+        
 
         let document = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id)
         
@@ -88,6 +91,31 @@ class BranchViewModel: ObservableObject {
        
         
     }
+    
+    func searchUser(email:String, completion: @escaping (_ users: [User]?) -> ()){
+        guard AuthViewModel.shared.userID != nil else {
+            print("userID is not valid here in like function")
+            completion(nil)
+            return
+        }
+        COLLECTION_USERS
+            .whereField("email", isEqualTo: email)
+        .getDocuments { (snapshot, error) in
+            
+            guard let documents = snapshot?.documents else {
+                completion(nil)
+                return
+            }
+            
+           let users = documents.compactMap({try? $0.data(as: User.self)})
+
+                completion(users)
+                return
+
+        }
+        
+    }
+    
     
     
     

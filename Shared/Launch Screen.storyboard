@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Black logo - no background" translatesAutoresizingMaskIntoConstraints="NO" id="isZ-5m-E20">
-                                <rect key="frame" x="78" y="382" width="258.00000000000034" height="133.00000000000011"/>
+                                <rect key="frame" x="78" y="304" width="258.00000000000034" height="133.00000000000011"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="AccentColor"/>
                             </imageView>

@@ -30,7 +30,10 @@ class SquadViewModel: ObservableObject {
     // get the profiles of a branch by user ids
     func fetchProfiles(ids: [String], completion: @escaping (_ users: [User]?) -> () ){
     
+        
         var users:[User] = []
+        
+        if !ids.isEmpty {
         COLLECTION_USERS
             .whereField("id", in: ids)
             .getDocuments { (snapshot, _) in
@@ -40,7 +43,15 @@ class SquadViewModel: ObservableObject {
                 users = documents.compactMap({try? $0.data(as: User.self)})
                 completion(users)
     }
+        } else {
+            completion(nil)
+            return
+        }
     }
+    
+    
+    
+
 
     
     

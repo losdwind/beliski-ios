@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-import SwiftUI
+import Kingfisher
 
 struct BranchCardEditorView: View {
     
@@ -21,6 +21,21 @@ struct BranchCardEditorView: View {
     @State var currentBranchOpenessType = "Public"
     
     @State var isShowingAddCollaboratorView:Bool = false
+    
+    @State var users:[User] = []
+    
+    func getUsers(completion: @escaping (_ success:Bool) -> ()){
+        let squadvm = SquadViewModel()
+        squadvm.fetchProfiles(ids: branchvm.branch.memberIDs) { users in
+            if let users = users {
+                self.users = users
+                completion(true)
+            } else {
+                self.users = []
+                completion(false)
+            }
+        }
+    }
     
     var body: some View {
         
@@ -119,21 +134,19 @@ struct BranchCardEditorView: View {
                     
 
                     HStack(spacing: 0){
+                 
                         
-                        ForEach(1...3,id: \.self){index in
+                        
+                        
+                        ForEach(self.users,id: \.self){user in
                             
-                            Image("animoji\(index)")
+                            KFImage(URL(string: user.profileImageURL ?? ""))
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20, height: 20)
-                                .padding(4)
-                                .background(.white,in: Circle())
-                            // border...
-                                .background(
-                                
-                                    Circle()
-                                        .stroke(.black,lineWidth: 1)
-                                )
+                                .aspectRatio(contentMode: .fill)
+                                .background(Circle()
+                                                .stroke(.black,lineWidth: 1))
+                                .frame(width: 30, height: 30)
+                                .cornerRadius(15)
                         }
                         
                         Spacer(minLength: 10)
@@ -207,6 +220,12 @@ struct BranchCardEditorView: View {
         .background(Color.gray.opacity(0.2))
 //        .overlay(CustomDatePicker(date: $branchvm.branch.localTimestamp, showPicker: $showDatePicker))
         .transition(.move(edge: .bottom))
+        .sheet(isPresented: $isShowingAddCollaboratorView) {
+            InviteUserView(branchvm: branchvm)
+        }
+        .onAppear {
+            getUsers(completion: {_ in})
+        }
     }
 }
 // Meeting tab Button...

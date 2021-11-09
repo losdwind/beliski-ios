@@ -16,7 +16,7 @@ class TimelineManager: ObservableObject {
     @Published var selectedMainTab:MainTab = .timeline
     
     @Published var selectedTab:TimelineTab = .TODAY
-    @Published var selectedMenu:SearchType = .person
+    @Published var selectedMenu:SearchType = .branch
 
     
     @Published var showFilterView: Bool = false

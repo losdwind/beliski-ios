@@ -31,13 +31,13 @@ struct TimelineView: View {
         self.tagPanelvm = tagPanelvm
         self.branchvm = branchvm
         
-        UIPageControl.appearance().currentPageIndicatorTintColor = .clear
-        UIPageControl.appearance().pageIndicatorTintColor = .clear
+//        UIPageControl.appearance().currentPageIndicatorTintColor = .clear
+//        UIPageControl.appearance().pageIndicatorTintColor = .clear
         
-        UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().backgroundImage = UIImage()
-        UITabBar.appearance().isTranslucent = true
-        UITabBar.appearance().backgroundColor = .white
+//        UITabBar.appearance().shadowImage = UIImage()
+//        UITabBar.appearance().backgroundImage = UIImage()
+//        UITabBar.appearance().isTranslucent = true
+//        UITabBar.appearance().backgroundColor = .white
     }
     
     var body: some View {
@@ -83,7 +83,28 @@ struct TimelineView: View {
                     TopicView(timelineManager: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm)
                     
                     
+                   
                 }
+                
+//                Menu("something") {
+//                    Picker("Filter", selection:$timelineManager.selectedTab){
+//                        // Todo: - check the TimelineManager Enum
+//                        Text("Today").tag(TimelineTab.TODAY)
+//                            .foregroundColor(timelineManager.selectedTab == .TODAY ? .blue : .red)
+//
+//                        Text("Events").tag(TimelineTab.EVENTS)
+//                            .foregroundColor(timelineManager.selectedTab == .EVENTS ? .blue : .red)
+//
+//
+//                        Text("Topics")
+//                        .tag(TimelineTab.TOPICS)
+//                            .foregroundColor(timelineManager.selectedTab == .TOPICS ? .blue : .red)
+//
+//
+//
+//                    }
+//                    .pickerStyle(MenuPickerStyle())
+//                }
 //                TabView(selection: $timelineManager.selectedTab) {
 //
 //                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)

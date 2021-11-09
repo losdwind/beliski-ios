@@ -83,7 +83,7 @@ struct MainView: View {
                     }.tag(MainTab.community)
                 
             }
-            .accentColor(.primary)
+            .accentColor(.pink)
             .onAppear {
                 personvm.fetchPersons{ success in
                     if success {
