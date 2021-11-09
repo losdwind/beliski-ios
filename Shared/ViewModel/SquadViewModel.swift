@@ -81,7 +81,7 @@ class SquadViewModel: ObservableObject {
         COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("messages")
             .order(by:"serverTimestamp")
             .limit(to:20)
-                .getDocuments { (snapshot, _) in
+            .addSnapshotListener { (snapshot, _) in
                     guard let documents = snapshot?.documents else { return }
                     self.fetchedMessages = documents.compactMap({try? $0.data(as: Message.self)})
             

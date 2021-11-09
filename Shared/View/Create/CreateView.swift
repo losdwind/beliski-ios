@@ -36,8 +36,7 @@ struct CreateView: View {
                     .font(.system(size: 24, weight: .bold, design: .rounded))
             })
             .modifier(NewButtonGradientBackground())
-            .sheet(isPresented: $isShowingJournalEditor, onDismiss: {journalvm.fetchJournals(handler: { _ in
-            })}) {
+            .sheet(isPresented: $isShowingJournalEditor){
                 JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel())}
             // MARK: - here we have a bug
             
@@ -55,8 +54,7 @@ struct CreateView: View {
                     .font(.system(size: 24, weight: .bold, design: .rounded))
             })
             .modifier(NewButtonGradientBackground())
-            .sheet(isPresented: $isShowingTaskEditor, onDismiss: {taskvm.fetchTasks(handler: { _ in
-            })}) {
+            .sheet(isPresented: $isShowingTaskEditor){
                 TaskEditorView(taskvm: taskvm)}
             
             
@@ -72,8 +70,7 @@ struct CreateView: View {
                     .font(.system(size: 24, weight: .bold, design: .rounded))
             })
             .modifier(NewButtonGradientBackground())
-            .sheet(isPresented: $isShowingPersonEditor, onDismiss: {personvm.fetchPersons(handler: { _ in
-            })}) {
+            .sheet(isPresented: $isShowingPersonEditor){
                 PersonEditorView(personTagvm: TagViewModel(), personvm: personvm)}
             
             // New Branch
@@ -88,8 +85,7 @@ struct CreateView: View {
                     .font(.system(size: 24, weight: .bold, design: .rounded))
             })
             .modifier(NewButtonGradientBackground())
-            .sheet(isPresented: $isShowingBranchEditor, onDismiss: {branchvm.fetchAllBranchs(completion: { _ in
-            })}) {
+            .sheet(isPresented: $isShowingBranchEditor) {
                 BranchCardEditorView(branchvm: branchvm)
                 
             }

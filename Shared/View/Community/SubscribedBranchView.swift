@@ -35,6 +35,7 @@ struct SubscribedBranchView: View {
             }
             
         }
+        .frame(maxWidth:640)
     }
 }
 

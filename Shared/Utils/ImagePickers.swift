@@ -42,7 +42,6 @@ struct ImagePickers: UIViewControllerRepresentable {
             
             self.parent.presentationMode.wrappedValue.dismiss()
             
-            
             for img in results {
                 
                 if img.itemProvider.canLoadObject(ofClass: UIImage.self) {

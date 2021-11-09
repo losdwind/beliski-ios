@@ -114,7 +114,7 @@ struct PersonEditorView: View {
                     if isShowingImageToggle{
                         
                         Button {
-                            
+                            personvm.images = [UIImage]()
                             photosPickerPresented.toggle()
                             
                         } label: {
@@ -148,7 +148,6 @@ struct PersonEditorView: View {
                     }
                     
                 } label: {
-                    
                     Toggle(isOn: $isShowingImageToggle) {
                         Text("Attach Photos?")
                     }

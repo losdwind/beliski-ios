@@ -96,7 +96,7 @@ class JournalViewModel:ObservableObject {
             return
         }
         
-        COLLECTION_USERS.document(userID).collection("journals").order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("journals").order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             self.fetchedJournals = documents.compactMap({try? $0.data(as: Journal.self)})
             handler(true)
@@ -112,7 +112,7 @@ class JournalViewModel:ObservableObject {
         
         let dayStart = Calendar.current.startOfDay(for: Date())
         
-        COLLECTION_USERS.document(userID).collection("journals").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("journals").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).addSnapshotListener{ snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             self.fetchedJournals = documents.compactMap({try? $0.data(as: Journal.self)})
             handler(true)

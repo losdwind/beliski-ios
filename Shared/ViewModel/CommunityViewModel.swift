@@ -14,6 +14,10 @@ class CommunityViewModel: ObservableObject {
     
     
     @Published var fetchedPublicBranches:[Branch] = [Branch]()
+    
+    
+    
+    // for branch
     @Published var fetchedLikes: [Like] = [Like]()
     @Published var fetchedDislikes:[Dislike] = [Dislike]()
     @Published var fetchedProfiles:[User] = [User]()
@@ -21,19 +25,88 @@ class CommunityViewModel: ObservableObject {
     @Published var fetchedSubs:[Sub] = [Sub]()
     
     
+    // for user
+    @Published var fetchedUserSubs:[Sub] = [Sub]()
+    
     
     @Published var inputComment:Comment = Comment()
     @Published var inputLike:Like = Like()
     @Published var inputDislike:Dislike = Dislike()
     @Published var inputSub:Sub = Sub()
+
     
     @Published var currentBranch:Branch = Branch()
     
-    
+
     
     
     @Published var selectedCategory:String = ""
     @Published var isShowingLinkedBranchView = false
+    
+    func getStatus(branch:Branch,completion: @escaping (_ success: Bool) -> ()){
+        
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in fetchJournal function")
+            completion(false)
+            return
+        }
+        
+        let group = DispatchGroup()
+        
+        
+        
+        // isLike
+        group.enter()
+        COLLECTION_USERS.document(branch.ownerID).collection("branches")
+            .document(branch.id).collection("likes").document(userID)
+        .getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let like = try? document.data(as: Like.self){
+                    self.inputLike.isLike = like.isLike
+                }
+            }
+            group.leave()
+        }
+        
+        
+        // isDislike
+        group.enter()
+        COLLECTION_USERS.document(branch.ownerID).collection("branches")
+            .document(branch.id).collection("dislikes").document(userID)
+        .getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let dislike = try? document.data(as: Dislike.self){
+                    self.inputDislike.isDislike = dislike.isDislike
+                }
+            }
+            group.leave()
+        }
+        
+        
+        // isSubed
+        group.enter()
+        COLLECTION_USERS.document(branch.ownerID).collection("branches")
+            .document(branch.id).collection("subs").document(userID)
+        .getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let sub = try? document.data(as: Sub.self){
+                    self.inputSub.isSubed = sub.isSubed
+                }
+            }
+            group.leave()
+        }
+        
+        
+        
+        group.notify(queue: .main){
+            completion(true)
+            return
+        }
+        
+        
+    }
+    
+    
     
     
     func getProfile(comment: Comment,completion: @escaping (_ user: User?) -> () ){
@@ -77,10 +150,12 @@ class CommunityViewModel: ObservableObject {
         
         
         self.inputLike.userID = userID
-        self.inputLike.branchID = currentBranch.id
+        self.inputLike.branchID = self.currentBranch.id
         
+        
+        // here we put self.inputLike.userID as the documentID is to better identify the like status
         let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
-            .document(self.currentBranch.id).collection("likes").document(self.inputLike.id)
+            .document(self.currentBranch.id).collection("likes").document(self.inputLike.userID)
         
         do {
             try document.setData(from: self.inputLike)
@@ -107,13 +182,13 @@ class CommunityViewModel: ObservableObject {
         
         
         self.inputDislike.userID = userID
-        self.inputDislike.branchID = currentBranch.id
+        self.inputDislike.branchID = self.currentBranch.id
         
         let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
-            .document(self.currentBranch.id).collection("dislikes").document(self.inputDislike.id)
+            .document(self.currentBranch.id).collection("dislikes").document(self.inputDislike.userID)
         
         do {
-            try document.setData(from: self.inputLike)
+            try document.setData(from: self.inputDislike)
             completion(true)
             return
             
@@ -136,7 +211,7 @@ class CommunityViewModel: ObservableObject {
         
         self.inputComment.userID = userID
         self.inputComment.nickName = AuthViewModel.shared.nickName!
-        self.inputComment.userProfileImageURL = AuthViewModel.shared.nickName!
+        self.inputComment.userProfileImageURL = AuthViewModel.shared.profileImageURL!
         self.inputComment.branchID = currentBranch.id
         
         let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
@@ -168,7 +243,7 @@ class CommunityViewModel: ObservableObject {
         self.inputSub.branchID = currentBranch.id
         
         let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
-            .document(self.currentBranch.id).collection("subs").document(self.inputSub.id)
+            .document(self.currentBranch.id).collection("subs").document(self.inputSub.userID)
         
         do {
             try document.setData(from: self.inputSub)
@@ -226,17 +301,21 @@ class CommunityViewModel: ObservableObject {
     
     func getComments(branch:Branch,completion: @escaping (_ success: Bool) -> ()) {
         
-        COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("comments")
+        let listener = COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("comments")
             .order(by:"serverTimestamp")
             .limit(to:20)
-            .getDocuments { snapshot, _ in
+            .addSnapshotListener { snapshot, _ in
                 guard let documents = snapshot?.documents else { return }
                 self.fetchedComments = documents.compactMap({try? $0.data(as: Comment.self)})
                 for comment in self.fetchedComments {
                     print(comment.content)
                 }
                 completion(true)
+                
             }
+        if branch != currentBranch {
+            listener.remove()
+        }
     }
     
     
@@ -255,7 +334,8 @@ class CommunityViewModel: ObservableObject {
                 }
             
         }
-
+    
+    
     
     
     
@@ -272,6 +352,7 @@ class CommunityViewModel: ObservableObject {
         COLLECTION_BRANCHES
             .whereField("openess", isEqualTo: OpenType.Public.rawValue)
             .order(by: "comments", descending: true)
+            .limit(to: 20)
             .addSnapshotListener { snapshot, _ in
                 guard let documents = snapshot?.documents else {
                     completion(false)
@@ -293,18 +374,37 @@ class CommunityViewModel: ObservableObject {
         }
         
         
-        COLLECTION_BRANCHES
-            .whereField("openess", isEqualTo: OpenType.Public.rawValue)
-            .whereField("subsID", arrayContains: userID)
-            .addSnapshotListener { snapshot, _ in
+        COLLECTION_SUBS
+            .whereField("userID", isEqualTo: userID)
+            .addSnapshotListener { snapshot, error in
                 guard let documents = snapshot?.documents else {
                     completion(false)
                     return }
-                self.fetchedSubscribedBranches = documents.compactMap({try? $0.data(as: Branch.self)})
-                completion(true)
-                return
+                self.fetchedUserSubs = documents.compactMap({try? $0.data(as: Sub.self)})
+                
+                let subscribedBranchIDs = self.fetchedUserSubs.map{$0.branchID}
+                
+                if !subscribedBranchIDs.isEmpty{
+                    COLLECTION_BRANCHES
+                        .whereField("openess", isEqualTo: OpenType.Public.rawValue)
+                        .whereField("isSubed", isEqualTo: true)
+                        .whereField("id", in: subscribedBranchIDs)
+                        .getDocuments { snapshot, _ in
+                            guard let documents = snapshot?.documents else {
+                                completion(false)
+                                return }
+                            self.fetchedSubscribedBranches = documents.compactMap({try? $0.data(as: Branch.self)})
+                            completion(true)
+                            return
+                        }
+                } else {
+                    completion(false)
+                    return
+                }
+                
+               
+                
             }
-        
     }
     
     

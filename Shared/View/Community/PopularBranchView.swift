@@ -62,7 +62,6 @@ struct PopularBranchView: View {
                 }
                 
             
-                .padding()
                 .frame(maxWidth: 640)
         
         

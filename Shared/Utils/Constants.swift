@@ -11,6 +11,7 @@ import FirebaseFirestore
 
 let COLLECTION_USERS = Firestore.firestore().collection("users")
 let COLLECTION_BRANCHES = Firestore.firestore().collectionGroup("branches")
+let COLLECTION_SUBS = Firestore.firestore().collectionGroup("subs")
 
 let JOBS = [
     "Architecture and engineering" : ["Architect","Civil engineer","Landscape architect","Sustainable designer","Biomedical engineer"],

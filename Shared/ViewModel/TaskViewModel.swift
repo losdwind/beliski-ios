@@ -95,7 +95,7 @@ class TaskViewModel: ObservableObject {
             return
         }
         
-        COLLECTION_USERS.document(userID).collection("tasks").order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("tasks").order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             self.fetchedTasks = documents.compactMap({try? $0.data(as: Task.self)})
             handler(true)
@@ -111,7 +111,7 @@ class TaskViewModel: ObservableObject {
         
         let dayStart = Calendar.current.startOfDay(for: Date())
         
-        COLLECTION_USERS.document(userID).collection("tasks").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("tasks").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             self.fetchedTasks = documents.compactMap({try? $0.data(as: Task.self)})
             handler(true)

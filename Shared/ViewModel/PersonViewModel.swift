@@ -87,7 +87,7 @@ class PersonViewModel: ObservableObject {
             return
         }
         
-        COLLECTION_USERS.document(userID).collection("persons").order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("persons").order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             self.fetchedPersons = documents.compactMap({try? $0.data(as: Person.self)})
             handler(true)
@@ -103,7 +103,7 @@ class PersonViewModel: ObservableObject {
         
         let dayStart = Calendar.current.startOfDay(for: Date())
         
-        COLLECTION_USERS.document(userID).collection("persons").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("persons").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             self.fetchedPersons = documents.compactMap({try? $0.data(as: Person.self)})
             handler(true)

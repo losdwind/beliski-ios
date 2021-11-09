@@ -23,26 +23,25 @@ struct SquadView: View {
                         .font(.title3.bold())
                         .frame(maxWidth: .infinity,alignment: .leading)
                     
-                    ScrollView(.horizontal, showsIndicators: false){
-                        HStack{
-                            ForEach(squadvm.fetchedOnInviteBranches, id: \.self) { branch in
-                                NavigationLink{
-                                    ChatView(branch:branch, squadvm: squadvm )
-                                } label: {
-                                    SquadCardView(branch: branch, squadvm: squadvm)
-                                }
-                                
-                            }
-                            
+                    
+                    ForEach(squadvm.fetchedOnInviteBranches, id: \.self) { branch in
+                        NavigationLink{
+                            ChatView(branch:branch, squadvm: squadvm )
+                        } label: {
+                            SquadCardView(branch: branch, squadvm: squadvm)
                         }
+                        
                     }
                     
                     
                     
                     
                     
+                    
+                    
+                    
                 }
-
+                
                 
             }
             .padding()
@@ -58,7 +57,7 @@ struct SquadView: View {
                 }
             }
         }
-//        .navigationViewStyle(StackNavigationViewStyle())
+        //        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

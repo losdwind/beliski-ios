@@ -15,8 +15,7 @@ struct BranchCardFooterView: View {
     @ObservedObject var communityvm:CommunityViewModel
     
     @State var isShowingCommentView = false
-
-
+    
 
     var body: some View {
         
@@ -34,6 +33,7 @@ struct BranchCardFooterView: View {
                 communityvm.sendLike{ success in
                     if success {
                         communityvm.inputLike = Like()
+                        communityvm.getStatus(branch: branch, completion: {_ in})
                 }
                     
                     
@@ -47,7 +47,7 @@ struct BranchCardFooterView: View {
                     }
                     
             }
-            
+                            
             Text(String(branch.likes))
             }
             
@@ -57,9 +57,11 @@ struct BranchCardFooterView: View {
             Button {
                 communityvm.inputDislike.isDislike.toggle()
                 communityvm.currentBranch = branch
+                
                 communityvm.sendDislike{ success in
                     if success {
                         communityvm.inputDislike = Dislike()
+                        communityvm.getStatus(branch: branch, completion: {_ in})
                 }
                     
                     
@@ -73,22 +75,53 @@ struct BranchCardFooterView: View {
                     }
                     
             }
-            
+        
             Text(String(branch.dislikes))
             
             }
+            
+            // MARK: Sub
+            HStack{
+            Button {
+                communityvm.inputSub.isSubed.toggle()
+
+                communityvm.currentBranch = branch
+                
+                communityvm.sendSub{ success in
+                    if success {
+                        communityvm.inputSub = Sub()
+                        communityvm.getStatus(branch: branch, completion: {_ in})
+                        communityvm.fetchPublicBranches(completion: {_ in})
+                }
+                    
+                    
+                } }label: {
+                    if communityvm.inputSub.isSubed{
+                        Image(systemName: "star.circle.fill")
+                            .foregroundColor(.pink)
+                    } else {
+                        Image(systemName: "star.circle")
+                            .foregroundColor(.secondary)
+                    }
+                    
+            }
+                
+                
+                Text(String(branch.subs))
+            }
+            
             
             
             
             // MARK: Comment
             HStack{
             Button {
+                isShowingCommentView.toggle()
                 communityvm.currentBranch = branch
                 communityvm.getComments(branch: communityvm.currentBranch){
                     success in
                     if success {
                         print("successfully get the comments")
-                        isShowingCommentView.toggle()
                     } else {
                         print("failed to get the comments")
                     }
@@ -109,33 +142,13 @@ struct BranchCardFooterView: View {
             
             }
             
-            // MARK: Sub
-            HStack{
-            Button {
-                communityvm.inputSub.isSubed.toggle()
-
-                communityvm.currentBranch = branch
-                
-                communityvm.sendSub{ success in
-                    if success {
-                        communityvm.inputSub = Sub()
-                }
-                    
-                    
-                } }label: {
-                    if communityvm.inputSub.isSubed{
-                        Image(systemName: "star.circle.fill")
-                            .foregroundColor(.pink)
-                    } else {
-                        Image(systemName: "star.circle")
-                            .foregroundColor(.secondary)
-                    }
-                    
-            }
-            }
+            
 
             
         }
+        .onAppear(perform: {
+            communityvm.getStatus(branch: branch, completion: {_ in})
+        })
         
         .sheet(isPresented: $isShowingCommentView){
             CommentsView(communityvm: communityvm)
