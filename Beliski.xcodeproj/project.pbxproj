@@ -46,8 +46,6 @@
 		2942C858272010FF00ECD167 /* TagPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C856272010FF00ECD167 /* TagPanelView.swift */; };
 		2942C85A2721391E00ECD167 /* TagPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C8592721391E00ECD167 /* TagPanelViewModel.swift */; };
 		2942C85B2721391E00ECD167 /* TagPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C8592721391E00ECD167 /* TagPanelViewModel.swift */; };
-		2942C85D2724000200ECD167 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C85C2724000200ECD167 /* SearchResultView.swift */; };
-		2942C85E2724000200ECD167 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C85C2724000200ECD167 /* SearchResultView.swift */; };
 		29552A38270D89150056E675 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A37270D89150056E675 /* CustomTextField.swift */; };
 		29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */; };
 		29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A3D270D95900056E675 /* AuthViewModel.swift */; };
@@ -128,6 +126,10 @@
 		29824B8D273BAD1800868C9B /* WBIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C1C270D600900754817 /* WBIndexView.swift */; };
 		29824B8E273BAD1E00868C9B /* SquadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C15270D600900754817 /* SquadView.swift */; };
 		29824B8F273BAD1E00868C9B /* SquadCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDF5272E591800EC5E1D /* SquadCardView.swift */; };
+		29824B93273C09B800868C9B /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B92273C09B800868C9B /* FilterView.swift */; };
+		29824B94273C09B800868C9B /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B92273C09B800868C9B /* FilterView.swift */; };
+		29824B96273C0BF500868C9B /* SearchResultSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */; };
+		29824B97273C0BF500868C9B /* SearchResultSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */; };
 		29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFF270D5E8A00754817 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* MainView.swift */; };
@@ -324,7 +326,6 @@
 		2942C8532720099400ECD167 /* SubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViews.swift; sourceTree = "<group>"; };
 		2942C856272010FF00ECD167 /* TagPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPanelView.swift; sourceTree = "<group>"; };
 		2942C8592721391E00ECD167 /* TagPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPanelViewModel.swift; sourceTree = "<group>"; };
-		2942C85C2724000200ECD167 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		29552A37270D89150056E675 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureTextField.swift; sourceTree = "<group>"; };
 		29552A3D270D95900056E675 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -351,6 +352,8 @@
 		296FA49E273457DE00FEBF8A /* Dislike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dislike.swift; sourceTree = "<group>"; };
 		29824B66273AC14200868C9B /* InviteUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUserView.swift; sourceTree = "<group>"; };
 		29824B90273BB6B700868C9B /* Beliski (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Beliski (iOS).entitlements"; sourceTree = "<group>"; };
+		29824B92273C09B800868C9B /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSimpleView.swift; sourceTree = "<group>"; };
 		29C46BED270D5E8800754817 /* BeliskiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeliskiApp.swift; sourceTree = "<group>"; };
 		29C46BEE270D5E8800754817 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		29C46BEF270D5E8A00754817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -914,9 +917,10 @@
 			children = (
 				2942C856272010FF00ECD167 /* TagPanelView.swift */,
 				2924F1562729A789006CB556 /* SearchView.swift */,
-				2942C85C2724000200ECD167 /* SearchResultView.swift */,
 				2924F1592729A8CE006CB556 /* SearchResultComplexView.swift */,
 				29ED111527189A3200E67D8B /* SearchAndLinkingView.swift */,
+				29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */,
+				29824B92273C09B800868C9B /* FilterView.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -1132,6 +1136,7 @@
 				296FA49F273457DE00FEBF8A /* Dislike.swift in Sources */,
 				296FA49C27344EC000FEBF8A /* Sub.swift in Sources */,
 				2924F1572729A789006CB556 /* SearchView.swift in Sources */,
+				29824B96273C0BF500868C9B /* SearchResultSimpleView.swift in Sources */,
 				29C46BFF270D5E8A00754817 /* MainView.swift in Sources */,
 				29E1DE05273120BF00EC5E1D /* Like.swift in Sources */,
 				2942C851271FED2300ECD167 /* TagItemView.swift in Sources */,
@@ -1164,6 +1169,7 @@
 				29ED11312719E49600E67D8B /* PersonListView.swift in Sources */,
 				29ED113C2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
 				29E1DDB0272D746C00EC5E1D /* BarChartCell.swift in Sources */,
+				29824B93273C09B800868C9B /* FilterView.swift in Sources */,
 				29C46C26270D600900754817 /* Struct & Enum.swift in Sources */,
 				29C46C2F270D600900754817 /* CreateView.swift in Sources */,
 				2942C8542720099400ECD167 /* SubViews.swift in Sources */,
@@ -1205,7 +1211,6 @@
 				29552A7127101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				29E1DDC6272D746C00EC5E1D /* PieChartHelpers.swift in Sources */,
 				2942C84B271FEA2B00ECD167 /* TagCollectionView.swift in Sources */,
-				2942C85D2724000200ECD167 /* SearchResultView.swift in Sources */,
 				29E1DDBA272D746C00EC5E1D /* MagnifierRect.swift in Sources */,
 				2907B4C6272C1037001A3DA1 /* OpenStatsBarView.swift in Sources */,
 				2907B4A8272A7C6B001A3DA1 /* Branch.swift in Sources */,
@@ -1240,7 +1245,6 @@
 			files = (
 				29552A6627100CD70056E675 /* JournalViewModel.swift in Sources */,
 				29E1DDB9272D746C00EC5E1D /* LineChartView.swift in Sources */,
-				2942C85E2724000200ECD167 /* SearchResultView.swift in Sources */,
 				29C46C37270D658500754817 /* SignUpView.swift in Sources */,
 				29E1DD69272D27DD00EC5E1D /* CarouselView.swift in Sources */,
 				29552A7727101B620056E675 /* PanelView.swift in Sources */,
@@ -1272,6 +1276,7 @@
 				29552A59270F0FEA0056E675 /* MediaUploader.swift in Sources */,
 				29ED1151271AE49000E67D8B /* TimelineView.swift in Sources */,
 				29E1DE00272ED22900EC5E1D /* BigFiveView.swift in Sources */,
+				29824B97273C0BF500868C9B /* SearchResultSimpleView.swift in Sources */,
 				29ED11342719E49600E67D8B /* PersonEditorView.swift in Sources */,
 				29824B7A273BACB700868C9B /* CustomTextField.swift in Sources */,
 				29E1DDCB272D746C00EC5E1D /* PieChartView.swift in Sources */,
@@ -1304,6 +1309,7 @@
 				29552A4F270F0BDE0056E675 /* LogInView.swift in Sources */,
 				29E1DDDE272DB08600EC5E1D /* MainThreadView.swift in Sources */,
 				29824B75273BACB700868C9B /* CustomedViewModifier.swift in Sources */,
+				29824B94273C09B800868C9B /* FilterView.swift in Sources */,
 				2907B4CF272C1582001A3DA1 /* SettingsRowView.swift in Sources */,
 				29E1DD74272D307D00EC5E1D /* LineGraphtView.swift in Sources */,
 				29E1DD83272D3B3D00EC5E1D /* SocialAbstractView.swift in Sources */,

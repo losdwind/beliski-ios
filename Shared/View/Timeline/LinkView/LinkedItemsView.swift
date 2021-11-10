@@ -22,6 +22,7 @@ struct LinkedItemsView: View {
                             JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
                         }
                     }
+                                        
                 } label: {
                     Text("Journals")
                 }

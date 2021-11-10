@@ -31,8 +31,8 @@ class SearchViewModel: ObservableObject {
     
     @Published var filteredJournals: [Journal] = [Journal]()
     @Published var filteredTasks: [Task] = [Task]()
-    @Published var fileteredPersons:[Person] = [Person]()
-    @Published var fileteredBranches:[Branch] = [Branch]()
+    @Published var filteredPersons:[Person] = [Person]()
+    @Published var filteredBranches:[Branch] = [Branch]()
     
     
     //
@@ -284,7 +284,7 @@ class SearchViewModel: ObservableObject {
                 guard let documents = snapshot?.documents else {
                     group.leave()
                     return }
-                self.fileteredPersons = documents.compactMap({try? $0.data(as: Person.self)})
+                self.filteredPersons = documents.compactMap({try? $0.data(as: Person.self)})
                 group.leave()
             }
         
@@ -306,7 +306,7 @@ class SearchViewModel: ObservableObject {
                 guard let documents = snapshot?.documents else {
                     group.leave()
                     return }
-                self.fileteredBranches = documents.compactMap({try? $0.data(as: Branch.self)})
+                self.filteredBranches = documents.compactMap({try? $0.data(as: Branch.self)})
                 group.leave()
             }
         

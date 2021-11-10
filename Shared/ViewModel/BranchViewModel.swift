@@ -44,7 +44,7 @@ class BranchViewModel: ObservableObject {
         
         branch.memberIDs = Array(Set(branch.memberIDs))
         
-        if branch.ownerID != userID{
+        if branch.ownerID != userID && !branch.memberIDs.contains(userID){
             completion(false)
             print("this branch does not belongs to you")
             return

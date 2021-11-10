@@ -16,6 +16,7 @@ struct SearchResultComplexView: View {
     @ObservedObject var dataLinkedManger:DataLinkedManager
     @ObservedObject var tagPanelvm:TagPanelViewModel
     @ObservedObject var branchvm:BranchViewModel
+    
 
     var body: some View {
         

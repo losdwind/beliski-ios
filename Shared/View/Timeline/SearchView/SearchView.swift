@@ -23,85 +23,9 @@ struct SearchView: View {
     
     var body: some View {
             ScrollView(.vertical,showsIndicators: false){
-            VStack(alignment:.leading) {
                 
                 
-                
-                
-                // dates
-                Text("Filt by Date")
-                    .font(.title3.bold())
-                    .frame(maxWidth: .infinity,alignment: .leading)
-                
-                VStack{
-                    DatePicker("Start Date", selection: $searchvm.dateStart)
-                    
-                    DatePicker("End Date", selection: $searchvm.dateEnd)
-                }
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(10)
-                
-                
-                
-                
-                // tags
-                Text("Filt by Tag")
-                    .font(.title3.bold())
-                    .frame(maxWidth: .infinity,alignment: .leading)
-                TagPanelView(tagPanelvm: tagPanelvm)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(10)
-                    .frame(maxWidth:.infinity)
-                
-                
-                
-                
-                // types
-                Text("Filt by Type")
-                    .font(.title3.bold())
-                    .frame(maxWidth: .infinity,alignment: .leading)
-                Picker("Filter", selection:$searchvm.searchType){
-                    
-                    Text("Journal").tag(SearchType.journal)
-                        .foregroundColor(searchvm.searchType == .journal ? .blue : .red)
-                    
-                    Text("Task").tag(SearchType.task)
-                        .foregroundColor(searchvm.searchType == .task ? .blue : .red)
-                    
-                    Text("Person").tag(SearchType.person)
-                        .foregroundColor(searchvm.searchType == .person ? .blue : .red)
-                    
-                    Text("Branch").tag(SearchType.branch)
-                        .foregroundColor(searchvm.searchType == .branch ? .blue : .red)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                
-                
-                // keywords
-                
-                Text("Filt by Keywords")
-                    .font(.title3.bold())
-                    .frame(maxWidth: .infinity,alignment: .leading)
-                
-                
-                TextField("Search", text: $searchvm.keywords, prompt: Text("Put a keyword here"))
-                    .textInputAutocapitalization(.never)
-                    .disableAutocorrection(true)
-                    .foregroundColor(.primary)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(10)
-                
-                
-                
-               
-                
-                
-                
-            } //: VStack
-            .padding()
+                FilterView(tagPanelvm: tagPanelvm, searchvm: searchvm)
 
                 if isShowingSearchResultView{
                     Text("Results")
@@ -136,8 +60,8 @@ struct SearchView: View {
                                 print("successfully get the filtered items and assign to item list view")
                                 journalvm.fetchedJournals = searchvm.filteredJournals
                                 taskvm.fetchedTasks = searchvm.filteredTasks
-                                personvm.fetchedPersons = searchvm.fileteredPersons
-                                branchvm.fetchedAllBranches = searchvm.fileteredBranches
+                                personvm.fetchedPersons = searchvm.filteredPersons
+                                branchvm.fetchedAllBranches = searchvm.filteredBranches
                                 isShowingSearchResultView = true
                             } else {
                                 print("failed to get the filtered items or assign to item list view ")
@@ -146,8 +70,8 @@ struct SearchView: View {
                             
                         }
                     } label: {
-                        Text("Search")
-                            .foregroundColor(Color.primary)
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(Color.pink)
                     }
                 }
                 
