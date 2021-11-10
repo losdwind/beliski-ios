@@ -22,7 +22,6 @@ struct SearchView: View {
     @State var isShowingSearchResultView:Bool = false
     
     var body: some View {
-        NavigationView{
             ScrollView(.vertical,showsIndicators: false){
             VStack(alignment:.leading) {
                 
@@ -46,8 +45,6 @@ struct SearchView: View {
                 
                 
                 
-                
-                
                 // tags
                 Text("Filt by Tag")
                     .font(.title3.bold())
@@ -56,11 +53,15 @@ struct SearchView: View {
                     .padding()
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(10)
+                    .frame(maxWidth:.infinity)
                 
                 
                 
                 
                 // types
+                Text("Filt by Type")
+                    .font(.title3.bold())
+                    .frame(maxWidth: .infinity,alignment: .leading)
                 Picker("Filter", selection:$searchvm.searchType){
                     
                     Text("Journal").tag(SearchType.journal)
@@ -71,13 +72,16 @@ struct SearchView: View {
                     
                     Text("Person").tag(SearchType.person)
                         .foregroundColor(searchvm.searchType == .person ? .blue : .red)
+                    
+                    Text("Branch").tag(SearchType.branch)
+                        .foregroundColor(searchvm.searchType == .branch ? .blue : .red)
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 
                 
                 // keywords
                 
-                Text("Keywords")
+                Text("Filt by Keywords")
                     .font(.title3.bold())
                     .frame(maxWidth: .infinity,alignment: .leading)
                 
@@ -92,33 +96,19 @@ struct SearchView: View {
                 
                 
                 
+               
                 
-                // Search Confirm Button
                 
-                    Button {
-                        searchvm.fetchIDsFromFilter { success in
-                            if success {
-                                print("successfully get the filtered items and assign to item list view")
-                                journalvm.fetchedJournals = searchvm.filteredJournals
-                                taskvm.fetchedTasks = searchvm.filteredTasks
-                                personvm.fetchedPersons = searchvm.fileteredPersons
-                                isShowingSearchResultView = true
-                            } else {
-                                print("failed to get the filtered items or assign to item list view ")
-                            }
-                            
-                            
-                        }
-                        
-                    } label: {
-                        Text("Search")
-                            .font(.title2.bold())
-                            .padding()
-                            .background(Color.pink)
-                            .cornerRadius(10)
-                    }
                 
+            } //: VStack
+            .padding()
+
                 if isShowingSearchResultView{
+                    Text("Results")
+                        .font(.title3.bold())
+                        .frame(maxWidth: .infinity,alignment: .leading)
+                        .padding()
+                    
                     SearchResultComplexView(timelineManager: timelineManager, searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, branchvm: branchvm)
                         
                 }
@@ -127,9 +117,8 @@ struct SearchView: View {
                 
                 Spacer()
                 
+                
             }
-            }
-            .padding()
             .frame(maxWidth:640)
             
             
@@ -140,11 +129,24 @@ struct SearchView: View {
             .toolbar {
                 
                 
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+                        searchvm.fetchIDsFromFilter { success in
+                            if success {
+                                print("successfully get the filtered items and assign to item list view")
+                                journalvm.fetchedJournals = searchvm.filteredJournals
+                                taskvm.fetchedTasks = searchvm.filteredTasks
+                                personvm.fetchedPersons = searchvm.fileteredPersons
+                                branchvm.fetchedAllBranches = searchvm.fileteredBranches
+                                isShowingSearchResultView = true
+                            } else {
+                                print("failed to get the filtered items or assign to item list view ")
+                            }
+                            
+                            
+                        }
                     } label: {
-                        Text("Close")
+                        Text("Search")
                             .foregroundColor(Color.primary)
                     }
                 }
@@ -156,7 +158,7 @@ struct SearchView: View {
                 
             }
             
-        }
+        
     }
 }
 

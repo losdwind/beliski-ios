@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
+import UIKit
 
 struct JournalEditorView: View {
     @ObservedObject var journalvm:JournalViewModel

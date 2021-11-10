@@ -7,7 +7,6 @@
 
 import Foundation
 
-import UIKit
 import Firebase
 import AVFoundation
 import SwiftUI

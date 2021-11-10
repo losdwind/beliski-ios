@@ -8,7 +8,6 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
-
 import UIKit
 
 class JournalViewModel:ObservableObject {

@@ -17,9 +17,7 @@ struct TimelineView: View {
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var tagPanelvm:TagPanelViewModel
     @ObservedObject var branchvm: BranchViewModel
-    
-    @State var isShowingSearchView = false
-    
+        
     
     init(timelineManger:TimelineManager, journalvm:JournalViewModel, taskvm:TaskViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel, branchvm:BranchViewModel){
         self.timelineManager = timelineManger
@@ -125,11 +123,13 @@ struct TimelineView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement:.navigationBarLeading){
-                    Button(
-                        action: {
-                            isShowingSearchView.toggle()}
-                        ,label: {
-                            Image(systemName: "magnifyingglass.circle")})
+
+                    NavigationLink {
+                        SearchView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager, branchvm: branchvm)
+                    } label: {
+                        Image(systemName: "magnifyingglass.circle")
+                    }
+
                     
                 }
                 
@@ -142,9 +142,7 @@ struct TimelineView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isShowingSearchView){
-                SearchView(searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager, branchvm: branchvm)
-            }
+          
 
             
         }

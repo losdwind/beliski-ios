@@ -8,7 +8,6 @@
 import Foundation
 import FirebaseFirestoreSwift
 import Firebase
-import UIKit
 import CoreLocation
 import MapKit
 

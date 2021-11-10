@@ -42,6 +42,9 @@ struct TagPanelView: View {
                     
 
                 }
+                .pickerStyle(.wheel)
+                .frame(height:100)
+                .clipped()
             }
             
         }

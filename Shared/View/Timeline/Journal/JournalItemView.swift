@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import VideoPlayer
 import Kingfisher
 import FirebaseFirestoreSwift
 import Firebase
@@ -49,14 +48,14 @@ struct JournalItemView: View {
                 }
             }
             
-            if journal.videoURLs.isEmpty == false {
-                LazyVStack{
-                    ForEach(journal.videoURLs, id: \.self){
-                        videoURL in
-                        SingleVideoView(videoURL: videoURL)
-                    }
-                }
-            }
+//            if journal.videoURLs.isEmpty == false {
+//                LazyVStack{
+//                    ForEach(journal.videoURLs, id: \.self){
+//                        videoURL in
+//                        SingleVideoView(videoURL: videoURL)
+//                    }
+//                }
+//            }
             }
             
             VStack(alignment: .leading){

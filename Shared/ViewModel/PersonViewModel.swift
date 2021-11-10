@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 import MapKit
-import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 

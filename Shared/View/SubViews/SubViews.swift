@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import VideoPlayer
+//import VideoPlayer
 import Kingfisher
 
 
@@ -132,42 +132,42 @@ struct ImageGridDataView: View {
 
 
 
-struct SingleVideoView: View {
-    let videoURL:String
-    
-    /// 控制开始播放 / 控制停止播放
-    @State private var play: Bool = false
-    
-    /// 播放中 / 非播放状态（例如缓冲、错误、暂停等）
-    @State private var isPlaying: Bool = false
-    
-    
-    
-    var body: some View {
-        ZStack {
-            VideoPlayer(url: URL(string: videoURL)!, play: $play)
-                .onStateChanged { state in
-                    switch state {
-                    case .playing:  self.isPlaying = true
-                    default:        self.isPlaying = false
-                    }
-                }
-            // 可见时播放，不可见时暂停
-                .onAppear { self.play = true }
-                .onDisappear { self.play = false }
-            
-            // MARK: - here pending solved to show the video cover
-            //            if !isPlaying {
-            //                // 非播放状态下显示封面图
-            //                Image(video.cover!)
-            //                    .resizable()
-            //            }
-        }
-        // 按照最大区域 225x225 等比缩放
-        .aspectRatio(contentMode: .fit)
-        .frame(maxWidth: 225, maxHeight: 225, alignment: .leading)
-    }
-}
+//struct SingleVideoView: View {
+//    let videoURL:String
+//
+//    /// 控制开始播放 / 控制停止播放
+//    @State private var play: Bool = false
+//
+//    /// 播放中 / 非播放状态（例如缓冲、错误、暂停等）
+//    @State private var isPlaying: Bool = false
+//
+//
+//
+//    var body: some View {
+//        ZStack {
+//            VideoPlayer(url: URL(string: videoURL)!, play: $play)
+//                .onStateChanged { state in
+//                    switch state {
+//                    case .playing:  self.isPlaying = true
+//                    default:        self.isPlaying = false
+//                    }
+//                }
+//            // 可见时播放，不可见时暂停
+//                .onAppear { self.play = true }
+//                .onDisappear { self.play = false }
+//
+//            // MARK: - here pending solved to show the video cover
+//            //            if !isPlaying {
+//            //                // 非播放状态下显示封面图
+//            //                Image(video.cover!)
+//            //                    .resizable()
+//            //            }
+//        }
+//        // 按照最大区域 225x225 等比缩放
+//        .aspectRatio(contentMode: .fit)
+//        .frame(maxWidth: 225, maxHeight: 225, alignment: .leading)
+//    }
+//}
 
 struct TimestampView: View {
     let time: String

@@ -59,7 +59,7 @@ struct ProfileEditorView: View {
                         profilevm.connectSocialMedia(source: contactCategory, completion: {_ in})
                     } label: {
                         Text("Connect")
-                            .buttonBorderShape(.capsule)
+                           
                     }
 
                 }

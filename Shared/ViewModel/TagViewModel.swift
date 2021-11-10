@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import UIKit
 import Firebase
 import FirebaseFirestoreSwift
-
+import UIKit
 class TagViewModel: ObservableObject {
     
 //
