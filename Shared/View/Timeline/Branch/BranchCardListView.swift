@@ -52,7 +52,7 @@ struct BranchCardListView: View {
                                         Image(systemName: "trash.circle")
                                     })
                                 }
-                                .disabled(branch.openess != OpenType.Private.rawValue)
+                                .disabled(branch.ownerID != AuthViewModel.shared.userID!)
                                 
                                 
                                 
@@ -66,7 +66,7 @@ struct BranchCardListView: View {
                                 } label:{Label(
                                 title: { Text("Edit") },
                                 icon: { Image(systemName: "pencil.circle") })}
-                            .disabled(branch.openess == OpenType.Public.rawValue)
+                                .disabled(branch.ownerID != AuthViewModel.shared.userID! && !branch.memberIDs.contains(AuthViewModel.shared.userID!))
                                 
                                 
                                 // Link
@@ -77,7 +77,7 @@ struct BranchCardListView: View {
                                 } label:{Label(
                                         title: { Text("Link") },
                                         icon: { Image(systemName: "link.circle") })}
-                                .disabled(branch.openess == OpenType.Public.rawValue)
+                                .disabled(branch.ownerID != AuthViewModel.shared.userID! && !branch.memberIDs.contains(AuthViewModel.shared.userID!))
                                 
                                 
                             }

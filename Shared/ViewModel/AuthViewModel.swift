@@ -119,26 +119,46 @@ class AuthViewModel: ObservableObject {
                 
                 do {
                     try document.setData(from: data)
-                    print("Successfully uploaded user data to firestore...")
-                    let privates = Private(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
-                    let privateDocument = COLLECTION_USERS.document(userID).collection("privates").document(privates.id)
-                    do {
-                        try privateDocument.setData(from: privates)
-                        print("successfully generate user privates data to firestore")
-                        handler(true)
-                        return
-                    } catch let error{
-                        print("Error upload Privates to Firestore: \(error)")
-                        handler(false)
-                        return
-                    }
-                    
-                    
+
                 } catch let error {
                     print("Error upload User to Firestore: \(error)")
                     handler(false)
                     return
                 }
+                
+                
+                let privates = Private(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
+                let privateDocument = COLLECTION_USERS.document(userID).collection("privates").document(privates.id)
+                do {
+                    try privateDocument.setData(from: privates)
+                    print("successfully generate user privates data to firestore")
+                } catch let error{
+                    print("Error upload Privates to Firestore: \(error)")
+                    handler(false)
+                    return
+                }
+                
+                
+                
+                let userSubscribe = UserSubscibe(profileImageURL: imageUrl, nickName: nickName)
+                let userSubscribeDocument = COLLECTION_USERS.document(userID).collection("usersubscribe").document(userSubscribe.id)
+                do {
+                    try userSubscribeDocument.setData(from: userSubscribe)
+                    print("successfully initialize user subscription data to firestore")
+                } catch let error{
+                    print("Error initialize user subscription data to Firestore: \(error)")
+                    handler(false)
+                    return
+                }
+                
+                
+                print("Successfully uploaded user data to firestore...")
+
+                
+                
+                handler(true)
+                return
+                
             }
             
             

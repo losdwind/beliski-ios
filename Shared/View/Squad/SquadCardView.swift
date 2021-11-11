@@ -29,11 +29,15 @@ struct SquadCardView: View {
                     
                     KFImage(URL(string: member.profileImageURL ?? "") )
                         .resizable()
+                        .placeholder({ progress in
+                            ProgressView(progress)
+                        })
                         .aspectRatio(contentMode: .fill)
                         .background(Circle()
                                         .stroke(.black,lineWidth: 1))
                         .frame(width: 30, height: 30)
                         .cornerRadius(15)
+                    
                 
             }
                 
@@ -52,9 +56,7 @@ struct SquadCardView: View {
             }
             
         }
-        .padding()
-        .background(Color.gray.opacity(0.2))
-        .cornerRadius(10)
+        .modifier(BranchCardGradientBackground())
         .onAppear {
             
             

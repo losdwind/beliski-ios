@@ -9,6 +9,39 @@ import Firebase
 import FirebaseFirestoreSwift
 import Foundation
 
+
+
+enum SocialMediaCategory: String, CaseIterable{
+    case facebook
+    case instagram
+    case linkedin
+    case paypal
+    case pinterest
+    case skype
+    case spotify
+    case twitter
+    case youtube
+}
+
+enum Marriage:String, CaseIterable {
+    case single
+    case married
+    case divorced
+    case separated
+    case spouseDeceased
+}
+
+
+enum Income:String, CaseIterable {
+    case single
+    case married
+    case divorced
+    case separated
+    case spouseDeceased
+}
+
+
+
 struct User: Identifiable, Codable, Hashable {
     
     // can be retreive from the Auth.auth().currentUser : uid, email. photoURL
@@ -36,13 +69,19 @@ struct Private: Identifiable, Codable, Hashable{
     var dateCreated:Timestamp?
     
     var bio: String?
+    
+    var realName:String?
     var gender:String?
     var birthday:Timestamp?
     var address:String?
-    var contact:Dictionary<String,String>? // phone, facebook, twitter, wechat
+    var mobile:String?
     var job:String?
     var income:String?
     var marriage:String?
+    
+    var socialMedia:Dictionary<String,String>? // phone, facebook, twitter, wechat
+    
+    
     var interest:[String]? //fishing, gaming
     var bigFive:Dictionary<String,Int>? //O C E A N
     var WBIndex:Dictionary<String, Int>? // career, health, emotion, finance, community
@@ -53,14 +92,13 @@ struct Private: Identifiable, Codable, Hashable{
 
 
 struct UserSubscibe: Identifiable, Codable, Hashable{
-    var id:String?
+    var id:String = UUID().uuidString
     var profileImageURL: String?
-    var userName: String?
     var nickName: String? //first name, family name
     
-    var likes:[String]
-    var disLikes:[String]
-    var comments:[String]
-    var shares:[String]
-    var subs:[String]
+    var likes:[String] = []
+    var disLikes:[String] = []
+    var comments:[String] = []
+    var shares:[String] = []
+    var subs:[String] = []
 }

@@ -139,8 +139,8 @@ class SearchViewModel: ObservableObject {
         
         
         for journal in selectedJournals{
-            group.enter()
             if !journal.linkedItems.contains(sourceID){
+                group.enter()
                 var newJournal = journal
                 newJournal.linkedItems.append(sourceID)
                 let vm = JournalViewModel()
@@ -159,8 +159,8 @@ class SearchViewModel: ObservableObject {
         
         
         for task in selectedTasks{
-            group.enter()
             if !task.linkedItems.contains(sourceID){
+                group.enter()
                 var newTask = task
                 newTask.linkedItems.append(sourceID)
                 let vm = TaskViewModel()
@@ -179,8 +179,9 @@ class SearchViewModel: ObservableObject {
         
         
         for person in selectedPersons{
-            group.enter()
             if !person.linkedItems.contains(sourceID){
+                group.enter()
+
                 var newPerson = person
                 newPerson.linkedItems.append(sourceID)
                 let vm = PersonViewModel()
@@ -199,8 +200,9 @@ class SearchViewModel: ObservableObject {
         
         
         for branch in selectedBranches{
-            group.enter()
             if !branch.linkedItems.contains(sourceID){
+                group.enter()
+
                 var newBranch = branch
                 newBranch.linkedItems.append(sourceID)
                 let vm = BranchViewModel()

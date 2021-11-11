@@ -30,7 +30,7 @@ struct CommunityView: View {
             ScrollView(.vertical, showsIndicators: false){
                 CategoryView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
 
-                VStack{
+                VStack(alignment: .leading){
                     //                CarouselView(branches: $communityvm.openBranchs)
                     
                     
@@ -108,6 +108,15 @@ struct CommunityView: View {
                         print("failed to fetch the subscribed branchs")
                     }
                 }
+                
+//                
+//                communityvm.getUserSubscribe { success in
+//                    if success {
+//                        print("successfully fetched the subscribe history")
+//                    } else {
+//                        print("failed to fetch the subscribe history")
+//                    }
+//                }
             }
             .navigationTitle("Community")
             //        .navigationViewStyle(StackNavigationViewStyle())

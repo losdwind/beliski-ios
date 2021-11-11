@@ -15,17 +15,22 @@ struct ProfileEditorView: View {
     
     @State var birthday:Date = Date(timeIntervalSince1970: 0)
     @State var address:String = ""
-    @State var jobCategory:String = ""
-    @State var contactCategory:SocialMediaCategory = .linkedin
+    @State var jobCategory:String = "Architecture and engineering"
+    @State var socialMediaCategory:SocialMediaCategory = .linkedin
 
     var body: some View {
         Form{
             Section{
+                VStack{
+                    
+                   // fullname
                 HStack{
                     Text("Full Name")
-                    TextField("Full Name", text: $profilevm.userPrivate.nickName ?? "", prompt: Text("e.g. Adam Smith"))
+                    TextField("Full Name", text: $profilevm.userPrivate.realName ?? "", prompt: Text("e.g. Adam Smith"))
                 }
-                
+                    
+                    
+                // gender
                 HStack{
                     Text("Gender")
                     Picker("Gender", selection: $profilevm.userPrivate.gender ?? "Male") {
@@ -36,33 +41,24 @@ struct ProfileEditorView: View {
                     .pickerStyle(.segmented)
                 }
                 
-                HStack{
-                    Text("Birthday")
                     DatePicker("Birthday", selection: $birthday)
-                }
                 
                 
+                    // address
                 HStack{
                     Text("Address")
-                    TextField("Address", text: $address, prompt: Text("No.181, Jiangjun Rd., Hechuan, Chongqing, CHINA "))
+                    TextField("Address", text: $profilevm.userPrivate.address ?? "", prompt: Text("Hechuan, Chongqing, CHINA "))
+                }
+                    
+                    
+                // mobile
+                HStack{
+                    Text("Mobile")
+                    TextField("mobile", text: $profilevm.userPrivate.mobile ?? "", prompt: Text("000-000-0000"))
                 }
                 
-                HStack{
-                    Text("Contact")
-                    
-                    Picker("Contact Type", selection: $contactCategory){
-                        ForEach(SocialMediaCategory.allCases, id:\.self){ category in
-                            Image(category.rawValue).tag(category)
-                        }
-                    }
-                    Button {
-                        profilevm.connectSocialMedia(source: contactCategory, completion: {_ in})
-                    } label: {
-                        Text("Connect")
-                           
-                    }
-
-                }
+                
+                // job
                 HStack{
                     Text("Job")
                     Picker("Category", selection: $jobCategory) {
@@ -80,20 +76,101 @@ struct ProfileEditorView: View {
                                 
                     }
                     .pickerStyle(.menu)
+                                        
 
                 }
+                    
+                    // income
+                   
+                    
+                    HStack {
+                        Text("Annual Income")
+                        TextField("Annual Income", text: $profilevm.userPrivate.income ?? "", prompt: Text("$"))
+
+                        
+                    }
+
+                    
+                    // marital status
+                    HStack{
+                        Picker(selection: $profilevm.userPrivate.marriage) {
+                            ForEach(Marriage.allCases, id:\.self){m in
+                                Text(m.rawValue).tag(m)
+                            }
+                        } label: {
+                            Text("Marital Status")
+                        }
+                        .pickerStyle(.automatic)
+
+                    }
                 
                 
+                }
                 
             } header: {
                 Text("Basic Infos")
             }
             
-            
-               
                 
-   
+                Section{
+                    VStack{
+                        ForEach(SocialMediaCategory.allCases, id:\.self){ category in
+                            HStack {
+                                Label {
+                                    Text(category.rawValue)
+                                        .font(.headline)
+                                } icon: {
+                                    Image(category.rawValue)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 20, height: 20, alignment: .center)
+                                        .tag(category)
+                                }
+
+                                
+                                Spacer()
+                                Button {
+                                    profilevm.connectSocialMedia(source: socialMediaCategory, completion: {_ in})
+                                } label: {
+                                    Text("Connect")
+                                        .font(.footnote)
+                                        .foregroundColor(.blue)
+                                       
+                                }
+                                .buttonStyle(.bordered)
+                                .buttonBorderShape(.capsule)
+
+                                
+                            }
+
+                            
+                            
+                        }
+                 
+                    
+                    
+
+                    }
+                    
+                } header: {
+                    Text("Social Media")
+                }
+            
+            
+            Section {
+                // interedt
+                HStack {
+                    Text("Pending to add")
+                    
+
+                    
+                }
+            } header: {
+                Text("Personal Interest")
             }
+
+            }
+
         }
     }
 

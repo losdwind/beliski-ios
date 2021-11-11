@@ -22,7 +22,7 @@ struct CreateView: View {
 
     
     var body: some View {
-        VStack {
+        VStack(alignment:.center) {
 
             // New Journal
             Button(action: {
@@ -34,6 +34,7 @@ struct CreateView: View {
                     .font(.system(size: 30, weight: .semibold, design: .rounded))
                 Text("Journal")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .frame(width: 100, alignment: .leading)
             })
             .modifier(NewButtonGradientBackground())
             .sheet(isPresented: $isShowingJournalEditor){
@@ -52,6 +53,8 @@ struct CreateView: View {
                     .font(.system(size: 30, weight: .semibold, design: .rounded))
                 Text("Task")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .frame(width: 100, alignment: .leading)
+
             })
             .modifier(NewButtonGradientBackground())
             .sheet(isPresented: $isShowingTaskEditor){
@@ -68,6 +71,8 @@ struct CreateView: View {
                     .font(.system(size: 30, weight: .semibold, design: .rounded))
                 Text("Person")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .frame(width: 100, alignment: .leading)
+
             })
             .modifier(NewButtonGradientBackground())
             .sheet(isPresented: $isShowingPersonEditor){
@@ -83,6 +88,8 @@ struct CreateView: View {
                     .font(.system(size: 30, weight: .semibold, design: .rounded))
                 Text("Branch")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .frame(width: 100, alignment: .leading)
+
             })
             .modifier(NewButtonGradientBackground())
             .sheet(isPresented: $isShowingBranchEditor) {

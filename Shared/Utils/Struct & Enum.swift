@@ -112,14 +112,4 @@ enum UploadType:String, CaseIterable {
     }
 }
 
-enum SocialMediaCategory: String, CaseIterable{
-    case facebook
-    case instagram
-    case linkedin
-    case paypal
-    case pinterest
-    case skype
-    case spotify
-    case twitter
-    case youtube
-}
+

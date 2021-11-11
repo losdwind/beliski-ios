@@ -37,7 +37,7 @@ struct MainView: View {
             TabView(selection: $selectedTab){
                 
                 // Show the timeline of user journals
-                TimelineView(timelineManger: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm)
+                TimelineView(timelineManger: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm, profilevm: profilevm)
                     .tabItem{
                         VStack{
                             Image(systemName: "text.redaction")

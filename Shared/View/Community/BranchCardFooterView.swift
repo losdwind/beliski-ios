@@ -12,6 +12,8 @@ struct BranchCardFooterView: View {
     
     let branch:Branch
     
+    @State var status:Dictionary<String, Bool> = [:]
+    
     @ObservedObject var communityvm:CommunityViewModel
     
     @State var isShowingCommentView = false
@@ -25,20 +27,20 @@ struct BranchCardFooterView: View {
             // MARK: upvote
             HStack{
             Button {
-                communityvm.inputLike.isLike.toggle()
                 communityvm.currentBranch = branch
+                communityvm.inputLike.isLike.toggle()
                 
                 // iterate between 0 1
                
                 communityvm.sendLike{ success in
                     if success {
                         communityvm.inputLike = Like()
-                        communityvm.getStatus(branch: branch, completion: {_ in})
+                        self.communityvm.getStatus(branch: branch, completion: {_ in})
                 }
                     
                     
                 } }label: {
-                    if communityvm.inputLike.isLike {
+                    if status["isLike"] ?? false {
                         Image(systemName: "hand.thumbsup.fill")
                             .foregroundColor(.pink)
                     } else {
@@ -66,7 +68,7 @@ struct BranchCardFooterView: View {
                     
                     
                 } }label: {
-                    if communityvm.inputDislike.isDislike {
+                    if status["isDislike"] ?? false {
                         Image(systemName: "hand.thumbsdown.fill")
                             .foregroundColor(.pink)
                     } else {
@@ -96,7 +98,7 @@ struct BranchCardFooterView: View {
                     
                     
                 } }label: {
-                    if communityvm.inputSub.isSubed{
+                    if status["isSubed"] ?? false{
                         Image(systemName: "star.circle.fill")
                             .foregroundColor(.pink)
                     } else {
@@ -147,7 +149,13 @@ struct BranchCardFooterView: View {
             
         }
         .onAppear(perform: {
-            communityvm.getStatus(branch: branch, completion: {_ in})
+            communityvm.getStatus(branch: branch, completion: {status in
+                if let status = status {
+                    self.status = status
+                }else {
+                    print("failed to get the user subscribe status")
+                }
+            })
         })
         
         .sheet(isPresented: $isShowingCommentView){

@@ -15,19 +15,33 @@ struct ChatView: View {
     
     
     var body: some View {
-        VStack {
+        VStack{
             ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
-                    ForEach(squadvm.fetchedMessages) { message in
-                        
-                        MessageView(message: message)
+                ScrollViewReader { value in
+                    LazyVStack{
+                        ForEach(squadvm.fetchedMessages) { message in
+                            
+                            MessageView(message: message)
+                                .id(message.id)
+                        }
+                        .padding(.top)
+                
+                        .onChange(of: squadvm.fetchedMessages.count) { _ in
+                            value.scrollTo(squadvm.fetchedMessages.last?.id)
+                        } // https://stackoverflow.com/posts/67730429/edit
+                
                     }
                 }
-            }.padding(.top)
+                
+                
+                
+                }
             
+        
             InputMessageView(squadvm: squadvm)
                 .padding()
             
+        
         }
         .onAppear {
             squadvm.currentBranch = branch
@@ -39,7 +53,6 @@ struct ChatView: View {
                 }
             }
         }
-
     }
         
 }

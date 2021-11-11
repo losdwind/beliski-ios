@@ -95,8 +95,10 @@ struct BranchCardView: View {
                 
             }
         }
-        .padding()
-        .background(getColor(opentype: OpenType(rawValue:branch.openess)!),in: RoundedRectangle(cornerRadius: 10))
+//        .padding()
+//        .background(getColor(opentype: OpenType(rawValue:branch.openess)!),in: RoundedRectangle(cornerRadius: 10))
+        
+        .modifier(BranchCardGradientBackground())
     }
     
     

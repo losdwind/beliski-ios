@@ -17,9 +17,10 @@ struct TimelineView: View {
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var tagPanelvm:TagPanelViewModel
     @ObservedObject var branchvm: BranchViewModel
-        
+    @ObservedObject var profilevm:ProfileViewModel
+
     
-    init(timelineManger:TimelineManager, journalvm:JournalViewModel, taskvm:TaskViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel, branchvm:BranchViewModel){
+    init(timelineManger:TimelineManager, journalvm:JournalViewModel, taskvm:TaskViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel, branchvm:BranchViewModel, profilevm:ProfileViewModel){
         self.timelineManager = timelineManger
         self.journalvm = journalvm
         self.taskvm = taskvm
@@ -28,6 +29,7 @@ struct TimelineView: View {
         self.searchvm = searchvm
         self.tagPanelvm = tagPanelvm
         self.branchvm = branchvm
+        self.profilevm = profilevm
         
 //        UIPageControl.appearance().currentPageIndicatorTintColor = .clear
 //        UIPageControl.appearance().pageIndicatorTintColor = .clear
@@ -134,11 +136,18 @@ struct TimelineView: View {
                 }
                 
                 ToolbarItem(placement:.navigationBarTrailing){
-                    Menu {
-                        Button("Compact", action: {timelineManager.theme = Theme.compact} )
-                        Button("Full", action: {timelineManager.theme = Theme.full} )
+//                    Menu {
+//                        Button("Compact", action: {timelineManager.theme = Theme.compact} )
+//                        Button("Full", action: {timelineManager.theme = Theme.full} )
+//                    } label: {
+//                        Label("Theme", systemImage: "sparkles")
+//                    }
+//
+                    
+                    NavigationLink {
+                        InspireView(profilevm: profilevm)
                     } label: {
-                        Label("Theme", systemImage: "sparkles")
+                        Image(systemName: "sparkles")
                     }
                 }
             }
@@ -152,7 +161,7 @@ struct TimelineView: View {
 
 struct TimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        TimelineView(timelineManger: TimelineManager(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
+        TimelineView(timelineManger: TimelineManager(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel(), profilevm: ProfileViewModel())
             .preferredColorScheme(.light)
             .environment(\.sizeCategory, .extraSmall)
     }

@@ -13,6 +13,10 @@ struct InputCommentView: View {
     
     var body: some View {
         VStack {
+            Rectangle()
+                .foregroundColor(Color(.separator))
+                .frame(width: UIScreen.main.bounds.width, height: 0.75)
+                .padding(.bottom, 8)
             
             HStack {
                 TextField("Post your comment", text: $communityvm.inputComment.content)
@@ -35,11 +39,10 @@ struct InputCommentView: View {
                 }
 
             }
-            .padding()
-            .border(Color.gray, width: 2)
+            .padding(.bottom, 8)
+            .padding(.horizontal)
 
         }
-        .padding()
         
     }
 }

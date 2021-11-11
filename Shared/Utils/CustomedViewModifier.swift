@@ -24,6 +24,23 @@ struct NewButtonGradientBackground: ViewModifier {
 }
 
 
+struct BranchCardGradientBackground: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 15)
+            .background(
+              LinearGradient(gradient: Gradient(colors: [Color.pink, Color.blue]), startPoint: .leading, endPoint: .trailing)
+                .clipShape(RoundedRectangle(cornerRadius: 18))
+            )
+            .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 8, x: 0.0, y: 4.0)
+            
+    }
+}
+
+
 struct SaveButtonBackground: ViewModifier {
     
     let isButtonDisabled: Bool

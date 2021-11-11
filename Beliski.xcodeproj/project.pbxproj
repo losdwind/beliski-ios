@@ -91,6 +91,7 @@
 		296FA49A27330B8000FEBF8A /* BranchCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */; };
 		296FA49C27344EC000FEBF8A /* Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49B27344EC000FEBF8A /* Sub.swift */; };
 		296FA49F273457DE00FEBF8A /* Dislike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49E273457DE00FEBF8A /* Dislike.swift */; };
+		29716176273D8C7A00D3964D /* InspireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29716175273D8C7A00D3964D /* InspireView.swift */; };
 		29824B67273AC14200868C9B /* InviteUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B66273AC14200868C9B /* InviteUserView.swift */; };
 		29824B68273AC5F000868C9B /* InviteUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B66273AC14200868C9B /* InviteUserView.swift */; };
 		29824B6A273BABF900868C9B /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 29824B69273BABF900868C9B /* OrderedCollections */; };
@@ -217,17 +218,11 @@
 		29E1DDCD272D9EAD00EC5E1D /* SingleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDCC272D9EAD00EC5E1D /* SingleEntryView.swift */; };
 		29E1DDCE272D9EAD00EC5E1D /* SingleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDCC272D9EAD00EC5E1D /* SingleEntryView.swift */; };
 		29E1DDD0272DB01700EC5E1D /* WordCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDCF272DB01700EC5E1D /* WordCloudView.swift */; };
-		29E1DDD1272DB01700EC5E1D /* WordCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDCF272DB01700EC5E1D /* WordCloudView.swift */; };
 		29E1DDD4272DB04600EC5E1D /* LinkNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDD3272DB04600EC5E1D /* LinkNetworkView.swift */; };
-		29E1DDD5272DB04600EC5E1D /* LinkNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDD3272DB04600EC5E1D /* LinkNetworkView.swift */; };
 		29E1DDD7272DB06100EC5E1D /* AllTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDD6272DB06100EC5E1D /* AllTagsView.swift */; };
-		29E1DDD8272DB06100EC5E1D /* AllTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDD6272DB06100EC5E1D /* AllTagsView.swift */; };
 		29E1DDDA272DB07500EC5E1D /* MediaFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDD9272DB07500EC5E1D /* MediaFileView.swift */; };
-		29E1DDDB272DB07500EC5E1D /* MediaFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDD9272DB07500EC5E1D /* MediaFileView.swift */; };
 		29E1DDDD272DB08600EC5E1D /* MainThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDDC272DB08600EC5E1D /* MainThreadView.swift */; };
-		29E1DDDE272DB08600EC5E1D /* MainThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDDC272DB08600EC5E1D /* MainThreadView.swift */; };
 		29E1DDE0272DB09700EC5E1D /* HiddenClueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDDF272DB09700EC5E1D /* HiddenClueView.swift */; };
-		29E1DDE1272DB09700EC5E1D /* HiddenClueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDDF272DB09700EC5E1D /* HiddenClueView.swift */; };
 		29E1DDE3272DBEB000EC5E1D /* DoubleBarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDE2272DBEB000EC5E1D /* DoubleBarGraphView.swift */; };
 		29E1DDE4272DBEB000EC5E1D /* DoubleBarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDE2272DBEB000EC5E1D /* DoubleBarGraphView.swift */; };
 		29E1DDE6272DBF9600EC5E1D /* UserProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DDE5272DBF9600EC5E1D /* UserProgressView.swift */; };
@@ -350,6 +345,7 @@
 		296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardFooterView.swift; sourceTree = "<group>"; };
 		296FA49B27344EC000FEBF8A /* Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub.swift; sourceTree = "<group>"; };
 		296FA49E273457DE00FEBF8A /* Dislike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dislike.swift; sourceTree = "<group>"; };
+		29716175273D8C7A00D3964D /* InspireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspireView.swift; sourceTree = "<group>"; };
 		29824B66273AC14200868C9B /* InviteUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUserView.swift; sourceTree = "<group>"; };
 		29824B90273BB6B700868C9B /* Beliski (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Beliski (iOS).entitlements"; sourceTree = "<group>"; };
 		29824B92273C09B800868C9B /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -577,6 +573,20 @@
 			path = Comment;
 			sourceTree = "<group>";
 		};
+		29716174273D8C6A00D3964D /* Inspires */ = {
+			isa = PBXGroup;
+			children = (
+				29716175273D8C7A00D3964D /* InspireView.swift */,
+				29E1DDCF272DB01700EC5E1D /* WordCloudView.swift */,
+				29E1DDD3272DB04600EC5E1D /* LinkNetworkView.swift */,
+				29E1DDD6272DB06100EC5E1D /* AllTagsView.swift */,
+				29E1DDD9272DB07500EC5E1D /* MediaFileView.swift */,
+				29E1DDDC272DB08600EC5E1D /* MainThreadView.swift */,
+				29E1DDDF272DB09700EC5E1D /* HiddenClueView.swift */,
+			);
+			path = Inspires;
+			sourceTree = "<group>";
+		};
 		29C46BE7270D5E8800754817 = {
 			isa = PBXGroup;
 			children = (
@@ -703,6 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				29ED114F271AE49000E67D8B /* TimelineView.swift */,
+				29716174273D8C6A00D3964D /* Inspires */,
 				2907B4AA272A82BE001A3DA1 /* Branch */,
 				29E1DDEB272E4C1C00EC5E1D /* Collection */,
 				29ED1113271899DE00E67D8B /* SearchView */,
@@ -871,12 +882,6 @@
 		29E1DDD2272DB02300EC5E1D /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
-				29E1DDCF272DB01700EC5E1D /* WordCloudView.swift */,
-				29E1DDD3272DB04600EC5E1D /* LinkNetworkView.swift */,
-				29E1DDD6272DB06100EC5E1D /* AllTagsView.swift */,
-				29E1DDD9272DB07500EC5E1D /* MediaFileView.swift */,
-				29E1DDDC272DB08600EC5E1D /* MainThreadView.swift */,
-				29E1DDDF272DB09700EC5E1D /* HiddenClueView.swift */,
 				29E1DDF8272ED0F900EC5E1D /* VIAView.swift */,
 				29E1DDFB272ED1CF00EC5E1D /* MBTIView.swift */,
 				29E1DDFE272ED22900EC5E1D /* BigFiveView.swift */,
@@ -1127,6 +1132,7 @@
 				2942C848271FEA0900ECD167 /* TagEditorView.swift in Sources */,
 				29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
 				29ED11332719E49600E67D8B /* PersonEditorView.swift in Sources */,
+				29716176273D8C7A00D3964D /* InspireView.swift in Sources */,
 				2907B4A5272A7BEF001A3DA1 /* BranchCardView.swift in Sources */,
 				29ED113E2719E4B400E67D8B /* TaskListView.swift in Sources */,
 				2907B4AC272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */,
@@ -1259,7 +1265,6 @@
 				29824B78273BACB700868C9B /* CustomSecureTextField.swift in Sources */,
 				29E1DDFD272ED1CF00EC5E1D /* MBTIView.swift in Sources */,
 				29ED11472719E4CD00E67D8B /* PersonViewModel.swift in Sources */,
-				29E1DDD8272DB06100EC5E1D /* AllTagsView.swift in Sources */,
 				29E1DDEA272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */,
 				29E1DDAD272D746C00EC5E1D /* BarChartRow.swift in Sources */,
 				29824B68273AC5F000868C9B /* InviteUserView.swift in Sources */,
@@ -1289,7 +1294,6 @@
 				29E1DDBB272D746C00EC5E1D /* MagnifierRect.swift in Sources */,
 				29824B8F273BAD1E00868C9B /* SquadCardView.swift in Sources */,
 				29824B72273BACB700868C9B /* ImagePicker.swift in Sources */,
-				29E1DDDB272DB07500EC5E1D /* MediaFileView.swift in Sources */,
 				29C46C3A270D659D00754817 /* ResetPasswordView.swift in Sources */,
 				29552A7227101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				29E1DDB7272D746C00EC5E1D /* Legend.swift in Sources */,
@@ -1307,7 +1311,6 @@
 				29E1DDE4272DBEB000EC5E1D /* DoubleBarGraphView.swift in Sources */,
 				29E1DDF1272E4FE300EC5E1D /* BranchCardListView.swift in Sources */,
 				29552A4F270F0BDE0056E675 /* LogInView.swift in Sources */,
-				29E1DDDE272DB08600EC5E1D /* MainThreadView.swift in Sources */,
 				29824B75273BACB700868C9B /* CustomedViewModifier.swift in Sources */,
 				29824B94273C09B800868C9B /* FilterView.swift in Sources */,
 				2907B4CF272C1582001A3DA1 /* SettingsRowView.swift in Sources */,
@@ -1358,7 +1361,6 @@
 				29E1DD8C272D3B9900EC5E1D /* FinancialAbstractView.swift in Sources */,
 				29824B84273BACC600868C9B /* Person.swift in Sources */,
 				29824B6B273BAC8300868C9B /* ProfileViewModel.swift in Sources */,
-				29E1DDD5272DB04600EC5E1D /* LinkNetworkView.swift in Sources */,
 				29824B7F273BACC600868C9B /* Sub.swift in Sources */,
 				29824B83273BACC600868C9B /* User.swift in Sources */,
 				2907B4AD272A82D5001A3DA1 /* BranchCardEditorView.swift in Sources */,
@@ -1368,8 +1370,6 @@
 				29824B85273BACC600868C9B /* Message.swift in Sources */,
 				29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
 				29ED11322719E49600E67D8B /* PersonListView.swift in Sources */,
-				29E1DDD1272DB01700EC5E1D /* WordCloudView.swift in Sources */,
-				29E1DDE1272DB09700EC5E1D /* HiddenClueView.swift in Sources */,
 				2942C85B2721391E00ECD167 /* TagPanelViewModel.swift in Sources */,
 				2942C8552720099400ECD167 /* SubViews.swift in Sources */,
 				2942C80F271EB88800ECD167 /* DataLinkedManager.swift in Sources */,
