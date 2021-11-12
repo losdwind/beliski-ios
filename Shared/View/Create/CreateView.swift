@@ -19,9 +19,14 @@ struct CreateView: View {
     @State var isShowingTaskEditor = false
     @State var isShowingPersonEditor = false
     @State var isShowingBranchEditor = false
+    
+    
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
 
     
     var body: some View {
+        
+        ZStack {
         VStack(alignment:.center) {
 
             // New Journal
@@ -39,6 +44,8 @@ struct CreateView: View {
             .modifier(NewButtonGradientBackground())
             .sheet(isPresented: $isShowingJournalEditor){
                 JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel())}
+            
+
             // MARK: - here we have a bug
             
             
@@ -57,9 +64,9 @@ struct CreateView: View {
 
             })
             .modifier(NewButtonGradientBackground())
-            .sheet(isPresented: $isShowingTaskEditor){
-                TaskEditorView(taskvm: taskvm)}
-            
+//            .fullScreenCover(isPresented: $isShowingTaskEditor) {
+//                TaskEditorView(taskvm: taskvm)
+//            }
             
             // New Person
             Button(action: {
@@ -78,6 +85,9 @@ struct CreateView: View {
             .sheet(isPresented: $isShowingPersonEditor){
                 PersonEditorView(personTagvm: TagViewModel(), personvm: personvm)}
             
+
+            
+            
             // New Branch
             Button(action: {
                 isShowingBranchEditor = true
@@ -94,11 +104,53 @@ struct CreateView: View {
             .modifier(NewButtonGradientBackground())
             .sheet(isPresented: $isShowingBranchEditor) {
                 BranchCardEditorView(branchvm: branchvm)
-                
+
+            }
+            
+
+            
+        }
+        .blur(radius: isShowingTaskEditor ? 5 : 0)
+            
+            
+        .padding()
+//        .halfSheet(isPresented: $isShowingJournalEditor) {
+//        } content: {
+//            JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel())
+//        }
+//
+//        .halfSheet(isPresented: $isShowingBranchEditor) {
+//
+//        } content: {
+//            BranchCardEditorView(branchvm: branchvm)
+//        }
+//
+//        .halfSheet(isPresented:$isShowingPersonEditor) {
+//
+//        } content: {
+//            PersonEditorView(personTagvm: TagViewModel(), personvm: personvm)
+//        }
+//
+//        .halfSheet(isPresented: $isShowingTaskEditor) {
+//
+//        } content: {
+//            TaskEditorView(taskvm: taskvm)
+//        }
+            
+            if isShowingTaskEditor {
+              BlankView(
+                backgroundColor: isDarkMode ? Color.black : Color.gray,
+                backgroundOpacity: isDarkMode ? 0.3 : 0.5)
+                .onTapGesture {
+                  withAnimation() {
+                      isShowingTaskEditor = false
+                  }
+                }
+              
+                TaskEditorView(taskvm: taskvm)
             }
             
         }
-        .padding()
     }
 }
 

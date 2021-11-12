@@ -40,9 +40,17 @@ struct TaskEditorView: View {
                     .cornerRadius(10)
 
                 
-                DatePicker("Reminder", selection: $taskvm.reminder, in: Date()...)
-                    .foregroundColor(.pink)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+
+                    DatePicker(selection: $taskvm.reminder, in: Date()...) {
+                        
+                        Image(systemName: "bell")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.pink)
+                    }
+                
+                
 
                 
                 Button(action: {
@@ -61,10 +69,11 @@ struct TaskEditorView: View {
                     Spacer()
                     Text("SAVE")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
-                        .foregroundColor(taskvm.task.content.count == 0 ? Color.gray : Color.pink)
+                        .padding()
+//                        .foregroundColor(taskvm.task.content.count == 0 ? Color.gray : Color.pink)
                     Spacer()
                 })
-                    .disabled(taskvm.task.content.count == 0)
+                    .modifier(SaveButtonBackground(isButtonDisabled: taskvm.task.content.count == 0))
                     .onTapGesture {
                         if taskvm.task.content.count == 0 {
                             playSound(sound: "sound-tap", type: "mp3")

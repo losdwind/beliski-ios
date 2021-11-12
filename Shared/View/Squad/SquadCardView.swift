@@ -15,9 +15,6 @@ struct SquadCardView: View {
     @ObservedObject var squadvm:SquadViewModel
     
     
-    @State var members: [User] = []
-        
-    
     var body: some View {
         VStack(alignment:.leading){
             
@@ -25,9 +22,9 @@ struct SquadCardView: View {
             
             HStack{
                 
-                ForEach(members,id: \.self){member in
+                ForEach(branch.memberIDsAvatar,id: \.self){avatar in
                     
-                    KFImage(URL(string: member.profileImageURL ?? "") )
+                    KFImage(URL(string: avatar ))
                         .resizable()
                         .placeholder({ progress in
                             ProgressView(progress)
@@ -55,22 +52,13 @@ struct SquadCardView: View {
             
         }
         .modifier(BranchCardGradientBackground())
-        .onAppear {
-            
-            
-            squadvm.fetchProfiles(ids: branch.memberIDs) { users in
-                if let users = users {
-                    self.members = users
-                }
-            }
-        }
         
     }
 }
 
 struct SquadCardView_Previews: PreviewProvider {
     
-    @State static var branch:Branch = Branch(id: "", serverTimestamp: Timestamp(date:Date()), localTimestamp: Timestamp(date:Date()), ownerID: "", linkedItems: [], title: "This is a test for what", timeSlot: "Everyday 5~6PM", description: "In this branch we gonna test its permission issue and allow some other things. NOW STREAMING: Mark Zuckerberg and Facebook executives share their vision for the metaverse—the next…", memberIDs: [], openess: "Private")
+    @State static var branch:Branch = Branch(id: "", serverTimestamp: Timestamp(date:Date()), localTimestamp: Timestamp(date:Date()), ownerID: "", linkedItems: [], title: "This is a test for what", timeSlot: "Everyday 5~6PM", description: "In this branch we gonna test its permission issue and allow some other things. NOW STREAMING: Mark Zuckerberg and Facebook executives share their vision for the metaverse—the next…", openess: "Private")
     
     static var previews: some View {
         SquadCardView(branch: branch, squadvm: SquadViewModel())

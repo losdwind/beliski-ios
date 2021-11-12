@@ -24,18 +24,6 @@ struct BranchCardEditorView: View {
     
     @State var users:[User] = []
     
-    func getUsers(completion: @escaping (_ success:Bool) -> ()){
-        let squadvm = SquadViewModel()
-        squadvm.fetchProfiles(ids: branchvm.branch.memberIDs) { users in
-            if let users = users {
-                self.users = users
-                completion(true)
-            } else {
-                self.users = []
-                completion(false)
-            }
-        }
-    }
     
     var body: some View {
         
@@ -60,7 +48,7 @@ struct BranchCardEditorView: View {
                     Spacer()
                 }
                 .overlay(
-                
+                    
                     Text("New Branch")
                         .font(.system(size: 18))
                 )
@@ -119,7 +107,7 @@ struct BranchCardEditorView: View {
                             Image(systemName: "calendar")
                                 .foregroundColor(.black)
                         }
-
+                        
                     }
                     
                     Divider()
@@ -132,15 +120,15 @@ struct BranchCardEditorView: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.gray)
                     
-
+                    
                     HStack(spacing: 0){
-                 
                         
                         
                         
-                        ForEach(self.users,id: \.self){user in
+                        
+                        ForEach(branchvm.branch.memberIDsAvatar,id: \.self){avatar in
                             
-                            KFImage(URL(string: user.profileImageURL ?? ""))
+                            KFImage(URL(string: avatar))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .background(Circle()
@@ -160,12 +148,12 @@ struct BranchCardEditorView: View {
                                 .padding(.vertical,10)
                                 .padding(.horizontal,20)
                                 .background(
-                                
+                                    
                                     Capsule()
                                         .stroke(.black,lineWidth: 1)
                                 )
                         }
-
+                        
                     }
                     
                     Divider()
@@ -180,10 +168,10 @@ struct BranchCardEditorView: View {
                     
                     // Simply Creating Array....
                     HStack(spacing: 15){
-                   
+                        
                         
                         ForEach(["Private","Public","OnInvite"],id: \.self){tab in
-
+                            
                             OpenessTabButton(title: tab, currentType: $branchvm.branch.openess)
                         }
                     }
@@ -208,25 +196,17 @@ struct BranchCardEditorView: View {
                         .padding(.horizontal,30)
                 }
                 .modifier(SaveButtonBackground(isButtonDisabled: branchvm.branch.title == ""))
-//                .buttonStyle(.bordered)
-//                .controlSize(.small)
-//                .tint(.black)
-//                .disabled(branchvm.branch.title == "")
-
-
+                
             }
             .padding()
         })
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .background(Color.gray.opacity(0.2))
-//        .overlay(CustomDatePicker(date: $branchvm.branch.localTimestamp, showPicker: $showDatePicker))
-        .transition(.move(edge: .bottom))
-        .sheet(isPresented: $isShowingAddCollaboratorView) {
-            InviteUserView(branchvm: branchvm)
-        }
-        .onAppear {
-            getUsers(completion: {_ in})
-        }
+
+        //        .overlay(CustomDatePicker(date: $branchvm.branch.localTimestamp, showPicker: $showDatePicker))
+            .transition(.move(edge: .bottom))
+            .sheet(isPresented: $isShowingAddCollaboratorView) {
+                InviteUserView(branchvm: branchvm)
+            }
+        
     }
 }
 // Meeting tab Button...
@@ -248,20 +228,20 @@ struct OpenessTabButton: View{
                 .font(.footnote)
                 .foregroundColor(title != currentType ? .black : .white)
                 .padding(.vertical,8)
-                // Max Width...
+            // Max Width...
                 .frame(maxWidth: .infinity)
                 .background(
-                
+                    
                     Capsule()
                         .stroke(.black,lineWidth: 1)
                 )
                 .background(
-                
+                    
                     Capsule()
                         .fill(.black.opacity(title == currentType ? 1 : 0))
                 )
         }
-
+        
     }
 }
 
@@ -298,7 +278,7 @@ struct CustomDatePicker: View{
             }
             .padding(10)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-
+            
         }
         .opacity(showPicker ? 1 : 0)
     }

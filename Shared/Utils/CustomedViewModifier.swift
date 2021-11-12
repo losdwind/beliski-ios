@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+
+struct PinkTintButtonStyle: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+            
+    }
+}
+
+
+    
+
 struct NewButtonGradientBackground: ViewModifier {
     
     func body(content: Content) -> some View {

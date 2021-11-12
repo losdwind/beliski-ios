@@ -29,125 +29,177 @@ struct JournalEditorView: View {
     
     
     var body: some View {
-        NavigationView{
-            List {
-                Section{
-                    TextEditor(text: $journalvm.journal.content)
-                        .onChange(of: journalvm.journal.content) { value in
-                            let words = journalvm.journal.content.split { $0 == " " || $0.isNewline }
-                            journalvm.journal.wordCount = words.count
-                        }
-                        .frame(maxWidth: 640, maxHeight:240)
-                        .foregroundColor(.pink)
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                        .padding(0)
-                        .cornerRadius(10)
-                } header: {
+        ScrollView(.vertical, showsIndicators: false){
+            VStack(spacing:20){
+            
+            HStack{
+                
+                Button {
                     
-                    Text("Description")
+                    withAnimation{
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .font(.title2)
+                        .foregroundColor(.black)
                 }
                 
+                Spacer()
+            }
+            .overlay(
+                Text("New Journal")
+                    .font(.system(size: 18))
+            )
+               
+               
+               VStack(alignment: .leading, spacing: 15) {
+                   
+                   Text("Description")
+                       .fontWeight(.semibold)
+                       .foregroundColor(.gray)
+                   
+                   TextEditor(text: $journalvm.journal.content)
+                       .onChange(of: journalvm.journal.content) { value in
+                           let words = journalvm.journal.content.split { $0 == " " || $0.isNewline }
+                           journalvm.journal.wordCount = words.count
+                       }
+                       .font(.system(size: 16).bold())
+                       .frame(maxWidth: 640, maxHeight:240)
+                       .foregroundColor(.pink)
+                       .padding(0)
+                       .cornerRadius(10)
+                   
+                   Divider()
+               }
+               .padding(.top,10)
+               
+               
                 
                 Section {
                     
-                    if isShowingImageToggle{
-                        
-                        Button {
-                            
-                            imagePickerPresented.toggle()
-                            
-                        } label: {
-                            
-                            ZStack{
-                                
-                                if journalvm.images.isEmpty && journalvm.journal.imageURLs.isEmpty{
-                                    Image(systemName: "plus")
-                                        .font(.largeTitle)
-                                        .foregroundColor(.primary)
-                                }
-                                else{
-                                    if journalvm.journal.imageURLs.isEmpty == false{
-                                        
-                                        ImageGridView(imageURLs: journalvm.journal.imageURLs)
-                                    }
-                                    if journalvm.images.isEmpty == false{
-                                        
-                                        ImageGridDataView(images: journalvm.images)
-                                    }
-                                }
-                                
-                            }
-                            .frame(height: 200)
-                            .cornerRadius(10)
-                            .shadow(radius: 2)
-                            .padding(.top,8)
-                        }
-                        .frame(maxWidth: .infinity,alignment: .center)
-                        
-                    }
+                    
                     
                 } header: {
                     
-                    Toggle(isOn: $isShowingImageToggle) {
-                        Text("Attach Photos?")
-                    }
+                    
                 }
+                .padding()
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 
+               
+               
+               VStack(alignment: .leading, spacing: 15) {
+                   
+                   Toggle(isOn: $isShowingImageToggle) {
+                       Text("Attach Photos?")
+                           .fontWeight(.semibold)
+                           .foregroundColor(.gray)
+                   }
+                       
+                   
+                   if isShowingImageToggle{
+                       
+                       Button {
+                           
+                           imagePickerPresented.toggle()
+                           
+                       } label: {
+                           
+                           ZStack{
+                               
+                               if journalvm.images.isEmpty && journalvm.journal.imageURLs.isEmpty{
+                                   Image(systemName: "plus")
+                                       .font(.largeTitle)
+                                       .foregroundColor(.primary)
+                               }
+                               else{
+                                   if journalvm.journal.imageURLs.isEmpty == false{
+                                       
+                                       ImageGridView(imageURLs: journalvm.journal.imageURLs)
+                                   }
+                                   if journalvm.images.isEmpty == false{
+                                       
+                                       ImageGridDataView(images: journalvm.images)
+                                   }
+                               }
+                               
+                           }
+                           .frame(height: 200)
+                           .cornerRadius(10)
+                           .shadow(radius: 2)
+                           .padding(.top,8)
+                       }
+                       .frame(maxWidth: .infinity,alignment: .center)
+                       
+                   }
+                   
+                   Divider()
+               }
+               .padding(.top,10)
                 
                 
                 //                TimestampView(time:journalvm.journal.convertFIRTimestamptoString(timestamp: journalvm.journal.localTimestamp))
                 
+               
+               VStack(alignment: .leading, spacing: 15) {
+                   
+                   Text("When happened")
+                       .fontWeight(.semibold)
+                       .foregroundColor(.gray)
+                   
+                   DatePicker("", selection: $journalvm.localTimestamp)
+                       .labelsHidden()
+                       .font(.system(size: 16).bold())
+                   
+                   Divider()
+               }
+               .padding(.top,10)
+               
+               
                 
-                Section {
-                    
-                    DatePicker("", selection: $journalvm.localTimestamp)
-                        .labelsHidden()
-                    
-                } header: {
-                    
-                    Text("Journal Happened")
-                }
+               VStack(alignment: .leading, spacing: 15) {
+                   
+                   Text("Tag")
+                       .fontWeight(.semibold)
+                       .foregroundColor(.gray)
+                   
+                   TagEditorView(tagNamesOfItem: $journalvm.journal.tagNames, tagvm:journalTagvm)
+                       .font(.system(size: 16).bold())
+                       .lineLimit(4)
+                   
+                   Divider()
+               }
+               .padding(.top,10)
+               
                 
-                Section{
-                    TagEditorView(tagNamesOfItem: $journalvm.journal.tagNames, tagvm:journalTagvm)
-                    
-                } header: {
-                    Text("Tag")
-                }
                 
-            } //: List
-            .listStyle(InsetGroupedListStyle())
-            .navigationTitle("Moments")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                
-                ToolbarItem(placement: .navigationBarLeading) {
                     
-                    Button("Close"){
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    .foregroundColor(Color.gray)
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    
-                    Button("Store"){
+                    Button{
                         save()
                         playSound(sound: "sound-ding", type: "mp3")
                         presentationMode.wrappedValue.dismiss()
 
                         
+                    } label: {
+                        Text("Save")
+                            .padding(.vertical,6)
+                            .padding(.horizontal,30)
                     }
+                    .modifier(SaveButtonBackground(isButtonDisabled: journalvm.journal.wordCount == 0))
                     .onTapGesture {
                         if journalvm.journal.wordCount == 0 {
                             playSound(sound: "sound-tap", type: "mp3")
                         }
                     }
-                    .disabled(journalvm.journal.wordCount == 0)
-                    .foregroundColor(journalvm.journal.wordCount == 0 ? Color.gray : Color.pink)
-                }
+                    
+                    
             }
+            .padding()
+
+            } //: ScrollView
+           .transition(.move(edge: .bottom))
             .alert(isPresented: $showAlert) {
                 
                 Alert(title: Text("Message"), message: Text(alertMsg), dismissButton: .destructive(Text("Ok")))
@@ -159,7 +211,7 @@ struct JournalEditorView: View {
                     .accentColor(colorScheme == .light ? .primary: .secondary)
                 
             })
-        }
+        
     }
     
     private func save(){

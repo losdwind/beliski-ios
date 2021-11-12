@@ -85,6 +85,8 @@ struct InviteUserView: View {
                         Button {
                             if !branchvm.branch.memberIDs.contains(user.id!) {
                                 branchvm.branch.memberIDs.append(user.id!)
+                                branchvm.branch.memberIDsAvatar.append(user.profileImageURL!)
+                                branchvm.branch.memberIDsNickname.append(user.nickName!)
                                 branchvm.uploadBranch {success in
                                     if success {
                                         presentationMode.wrappedValue.dismiss()

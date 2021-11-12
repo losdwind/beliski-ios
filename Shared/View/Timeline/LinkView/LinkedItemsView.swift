@@ -26,12 +26,7 @@ struct LinkedItemsView: View {
                         JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
                     }
                 
-                if dataLinkedManager.linkedJournals.isEmpty {
-                    Text("Empty")
-                        .frame(minWidth:.infinity)
-                        .frame(height: 100, alignment: .center)
-                }
-                
+
                 
                 
                 
@@ -41,13 +36,7 @@ struct LinkedItemsView: View {
                         task in
                         TaskRowItemView(task: task)
                     }
-                
-                if dataLinkedManager.linkedTasks.isEmpty{
-                    Text("Empty")
-                        .frame(minWidth:.infinity)
-                        .frame(height: 100, alignment: .center)
-                }
-                
+
                 Text("Persons")
                     .font(.title3.bold())
                 
@@ -55,12 +44,7 @@ struct LinkedItemsView: View {
                         person in
                         PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id, isShowingPhtos: false, isShowingDescription: false, isShowingTags: true)
                     }
-                if dataLinkedManager.linkedPersons.isEmpty {
-                    Text("Empty")
-                        .frame(minWidth:.infinity)
-                        .frame(height: 100, alignment: .center)
-                }
-                
+
             }
             
         }

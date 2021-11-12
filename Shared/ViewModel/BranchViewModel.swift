@@ -12,7 +12,7 @@ class BranchViewModel: ObservableObject {
     
     
     
-    @Published var branch:Branch = Branch()
+    @Published var branch:Branch = Branch(ownerID:AuthViewModel.shared.userID!, memberIDs: [AuthViewModel.shared.userID!], memberIDsAvatar: [AuthViewModel.shared.profileImageURL!],memberIDsNickname: [AuthViewModel.shared.nickName!] )
     @Published var localTimestamp:Date = Date()
     
     
@@ -40,9 +40,10 @@ class BranchViewModel: ObservableObject {
         if branch.ownerID == "" {
             branch.ownerID = userID
             branch.memberIDs.append(userID)
+            branch.memberIDsAvatar.append(AuthViewModel.shared.profileImageURL!)
+            branch.memberIDsNickname.append(AuthViewModel.shared.nickName!)
         }
         
-        branch.memberIDs = Array(Set(branch.memberIDs))
         
         if branch.ownerID != userID && !branch.memberIDs.contains(userID){
             completion(false)

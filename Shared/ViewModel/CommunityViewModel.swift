@@ -102,7 +102,7 @@ class CommunityViewModel: ObservableObject {
             }
             group.leave()
         }
-
+        
 
 
         group.notify(queue: .main){

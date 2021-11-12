@@ -30,17 +30,40 @@ struct PersonEditorView: View {
     
     var body: some View {
         
-        NavigationView {
             
             ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing:20){
                 
+                HStack{
+                    
+                    Button {
+                        
+                        withAnimation{
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        
+                    } label: {
+                        Image(systemName: "arrow.left")
+                            .font(.title2)
+                            .foregroundColor(.black)
+                    }
+                    
+                    Spacer()
+                }
+                .overlay(
+                    
+                    Text("New Person")
+                        .font(.system(size: 18))
+                )
+                
+                VStack{
                 // Profile Image
                 Button(action: { avatarPickerPresented.toggle() }){
                     if personvm.avatarImage == UIImage() && personvm.person.avatarURL == "" {
                         
                         Image(systemName:"plus")
                             .font(.title2)
-                            .foregroundColor(.primary)
+                            .foregroundColor(.gray)
                             .frame(width:80, height:80)
                             .background(
                                 Circle()
@@ -73,28 +96,45 @@ struct PersonEditorView: View {
                 .padding()
                 
                 
-                GroupBox {
-                    // First Name
-                    CustomTextField(text:$personvm.person.firstName , placeholder: "First Name", labelImage: "person.fill")
-                    .disableAutocorrection(true)
+                
+                VStack(alignment: .leading, spacing: 15) {
+                    
+                    Text("Basic Information")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.gray)
+                    HStack{
+                        // First Name
+                        CustomTextField(text:$personvm.person.firstName , placeholder: "First Name", labelImage: "person.fill")
+                        .disableAutocorrection(true)
+                        
+                        // Last Name
+                        CustomTextField(text:$personvm.person.lastName , placeholder: "Last Name", labelImage: "")
+                        .disableAutocorrection(true)
+                    }
+                    
 
-                    
-                    // Last Name
-                    CustomTextField(text:$personvm.person.lastName , placeholder: "Last Name", labelImage: "")
-                    .disableAutocorrection(true)
-                    
+
                     //phone
                     CustomTextField(text: $personvm.person.contact , placeholder: "Phone", labelImage: "phone.fill")
 
                     // Birthday
                     DatePicker("Birthday", selection: $personvm.birthday)
+                        .font(.system(size: 16).bold())
                     
-                } label: {
-                    Text("Basic Information")
+                    Divider()
                 }
+                .padding(.top,10)
+                
+                
+                
 
                 
-                GroupBox{
+                VStack(alignment: .leading, spacing: 15) {
+                    
+                    Text("Perspective Description")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.gray)
+                    
                     TextEditor(text: $personvm.person.description)
                         .cornerRadius(10)
                         .frame(minHeight: 200)
@@ -102,13 +142,23 @@ struct PersonEditorView: View {
                             let words = personvm.person.description.split { $0 == " " || $0.isNewline }
                             personvm.person.wordCount = words.count
                         }
+                        .font(.system(size: 16).bold())
                     
-                } label: {
-                    Text("Perspective Description")
+                    Divider()
                 }
+                .padding(.top,10)
                 
                 
-                GroupBox {
+               
+                
+                VStack(alignment: .leading, spacing: 15) {
+                    
+                    Toggle(isOn: $isShowingImageToggle) {
+                        Text("Attach Photos?")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.gray)
+                    }
+                        
                     
                     if isShowingImageToggle{
                         
@@ -146,52 +196,52 @@ struct PersonEditorView: View {
                         
                     }
                     
-                } label: {
-                    Toggle(isOn: $isShowingImageToggle) {
-                        Text("Attach Photos?")
-                    }
+                    Divider()
                 }
+                .padding(.top,10)
+                   
+
                 
-                
-                GroupBox {
-                    TagEditorView(tagNamesOfItem: $personvm.person.tagNames, tagvm: personTagvm)
+                VStack(alignment: .leading, spacing: 15) {
                     
-                } label: {
                     Text("Tags")
-                }
-                
-                
-                
-            } //: ScrollView
-            .padding()
-            .navigationTitle("Moments")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                
-                ToolbarItem(placement: .navigationBarLeading) {
+                        .fontWeight(.semibold)
+                        .foregroundColor(.gray)
                     
-                    Button("Close"){
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    .foregroundColor(Color.gray)
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
+                    TagEditorView(tagNamesOfItem: $personvm.person.tagNames, tagvm: personTagvm)
+                        .font(.system(size: 16).bold())
                     
-                    Button("Store"){
+                    Divider()
+                }
+           
+                
+                
+                
+                    
+                    Button{
                         save()
                         playSound(sound: "sound-ding", type: "mp3")
                         presentationMode.wrappedValue.dismiss()
+                    }label:{
+                        Text("Save")
+                            .padding(.vertical,6)
+                            .padding(.horizontal,30)
                     }
+//                    .foregroundColor(personvm.person.firstName == "" ? Color.gray : Color.pink)
+                    .modifier(SaveButtonBackground(isButtonDisabled: personvm.person.firstName == ""))
                     .onTapGesture {
                         if personvm.person.firstName == "" {
                             playSound(sound: "sound-tap", type: "mp3")
                         }
                     }
-                    .disabled(personvm.person.firstName == "")
-                    .foregroundColor(personvm.person.firstName == "" ? Color.gray : Color.pink)
+                    
                 }
-            } // toolbar
+                }
+                .padding()
+            
+
+            } //: ScrollView
+            .transition(.move(edge: .bottom))
             .alert(isPresented: $showAlert) {
                 
                 Alert(title: Text("Message"), message: Text(alertMsg), dismissButton: .destructive(Text("Ok")))
@@ -205,7 +255,7 @@ struct PersonEditorView: View {
             .sheet(isPresented: $photosPickerPresented) {
                 ImagePickers(images: $personvm.images)
             }
-        }
+        
         
         
         

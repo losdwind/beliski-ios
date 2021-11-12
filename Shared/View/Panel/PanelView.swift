@@ -18,17 +18,17 @@ struct PanelView: View {
     @State var selectedTab:WellbeingTab = .Career
     var body: some View {
         NavigationView{
-            ScrollView {
+            ScrollView(.vertical,showsIndicators: false) {
                 
-                VStack{
+            
                                             
                 
                     // MARK: Wellbeing Index
                 VStack{
-                    Text("Wellbeing Index")
-                        .font(.title3.bold())
-                        .frame(maxWidth: .infinity,alignment: .leading)
-                        
+//                    Text("Wellbeing Index")
+//                        .font(.title3.bold())
+//                        .frame(maxWidth: .infinity,alignment: .leading)
+//
                         WBScoreView()
                         .padding()
                         .background(Color.gray.opacity(0.2))
@@ -65,6 +65,9 @@ struct PanelView: View {
                         }
                 }
 
+                    
+                    
+                    // Survey Result
                     VStack{
                         Text("Survey Results")
                             .font(.title3.bold())
@@ -99,10 +102,11 @@ struct PanelView: View {
                         
                     }
                
-                }
-                .padding()
-                .frame(alignment:.top)
+                
+                
             }
+            .padding()
+            
             .navigationTitle("Dashboard")
             
             .toolbar {

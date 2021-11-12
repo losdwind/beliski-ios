@@ -72,19 +72,10 @@ struct TagEditorView: View {
                     }
                 } label: {
                     Text("Add")
-//                        .font(.caption)
-                        .foregroundColor(.primary)
-                        .padding(.vertical,10)
-                        .padding(.horizontal,20)
-                        .background(
-                        
-                            Capsule()
-                                .stroke(.black,lineWidth: 1)
-                        )
+                        .foregroundColor(tagvm.tagName == "" ? Color.gray.opacity(0.2) : Color.pink)
                 }
-                // Disabling Button...
+                .modifier(PinkTintButtonStyle())
                 .disabled(tagvm.tagName == "")
-                .opacity(tagvm.tagName == "" ? 0.6 : 1)
                 .layoutPriority(1)
             }
             

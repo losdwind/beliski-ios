@@ -20,13 +20,15 @@ struct TaskListView: View {
     @State var isLinkingItem = false
     @State var isShowingLinkedItemView: Bool = false
     
-    
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+
     // MARK: - FUNCTION
     
     
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
+            ZStack{
             LazyVStack(alignment: .leading) {
                 ForEach(taskvm.fetchedTasks, id: \.id) { task in
                     TaskRowItemView(task: task)
@@ -74,12 +76,12 @@ struct TaskListView: View {
                                     icon: { Image(systemName: "link.circle") }) })
                         }
                         .frame(alignment: .topLeading)
-                        .sheet(isPresented: $isUpdatingTask) {
-                            taskvm.task = Task()
-                            
-                        } content: {
-                            TaskEditorView(taskvm: taskvm)
-                        }
+//                        .sheet(isPresented: $isUpdatingTask) {
+//                            taskvm.task = Task()
+//
+//                        } content: {
+//                            TaskEditorView(taskvm: taskvm)
+//                        }
                     
                     
                     
@@ -104,9 +106,27 @@ struct TaskListView: View {
                 }
                 
                 
-            }
+            } //: VStack
             .padding()
             .frame(maxWidth: 640)
+            .blur(radius: isUpdatingTask ? 5 : 0)
+                
+                
+                if isUpdatingTask {
+                  BlankView(
+                    backgroundColor: isDarkMode ? Color.black : Color.gray,
+                    backgroundOpacity: isDarkMode ? 0.3 : 0.5)
+                    .onTapGesture {
+                      withAnimation() {
+                          isUpdatingTask = false
+                      }
+                    }
+                  
+                    TaskEditorView(taskvm: taskvm)
+                }
+                
+                
+            } //:ZStack
         }
         
         

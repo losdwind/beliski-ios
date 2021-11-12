@@ -38,7 +38,11 @@ struct BranchCardFooterView: View {
                 communityvm.sendLike{ success in
                     if success {
                         communityvm.inputLike = Like()
-                        self.communityvm.getStatus(branch: branch, completion: {_ in})
+                        self.communityvm.getStatus(branch: branch, completion: {status in
+                            if let status = status{
+                                self.status = status
+                            }
+                            })
                 }
                     
                     
@@ -66,7 +70,11 @@ struct BranchCardFooterView: View {
                 communityvm.sendDislike{ success in
                     if success {
                         communityvm.inputDislike = Dislike()
-                        communityvm.getStatus(branch: branch, completion: {_ in})
+                        communityvm.getStatus(branch: branch, completion: {status in
+                            if let status = status{
+                                self.status = status
+                            }
+                            })
                 }
                     
                     
@@ -138,37 +146,55 @@ struct BranchCardFooterView: View {
                 communityvm.sendSub{ success in
                     if success {
                         communityvm.inputSub = Sub()
-                        communityvm.getStatus(branch: branch, completion: {_ in})
-                        communityvm.fetchPublicBranches(completion: {_ in})
+                        communityvm.getStatus(branch: branch, completion: {status in
+                            if let status = status{
+                                self.status = status
+                            }
+                            })
+//                        communityvm.fetchPublicBranches(completion: {_ in})
                 }
                     
                     
                 } }label: {
                     if status["isSubed"] ?? false{
                         Text("Subed!")
+                            .foregroundColor(.pink)
                     } else {
                         Text("Sub")
                     }
                     
                     
             }
-                .buttonStyle(.bordered)
-                .controlSize(.small)
-                .tint(.pink)
-                .shadow(radius: 1.2)
+                .modifier(PinkTintButtonStyle())
             
             
-            
+            // join
             if branch.memberIDs.count < 5 {
                 Button {
                     isShowingJoinView.toggle()
                 } label: {
+                    
                     Text("Join")
                 }
-                .buttonStyle(.bordered)
-                .controlSize(.small)
-                .tint(.pink)
-                .shadow(radius: 1.2)
+                .modifier(PinkTintButtonStyle())
+                .alert(Text("Sorry"), isPresented: $isShowingJoinView
+                        ) {
+                            Button("OK") {
+                                isShowingCommentView.toggle()
+                                communityvm.currentBranch = branch
+                                communityvm.getComments(branch: communityvm.currentBranch){
+                                    success in
+                                    if success {
+                                        print("successfully get the comments")
+                                    } else {
+                                        print("failed to get the comments")
+                                    }
+                                }
+                            }
+                        } message: {
+                            Text("This function is not available now. if you want to join this branch, leave your comment with the acount email address on the following page")
+                        }
+                
             }
             
             

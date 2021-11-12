@@ -116,7 +116,6 @@ struct SettingsView: View {
                                         presentationMode.wrappedValue.dismiss()
                                     }, label: {
                                         Image(systemName: "xmark")
-                                            .font(.title)
                                     })
                                     .accentColor(.primary)
             )
