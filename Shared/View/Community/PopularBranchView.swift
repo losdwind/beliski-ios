@@ -14,9 +14,7 @@ struct PopularBranchView: View {
     @ObservedObject var dataLinkedManager:DataLinkedManager
 
     
-    
-    @State var isShowingLinkedItemView = false
-    
+        
   
     
     var body: some View {
@@ -26,34 +24,7 @@ struct PopularBranchView: View {
                     
                     ForEach(communityvm.fetchedPublicBranches, id: \.self) { branch in
   
-                        VStack(alignment:.leading){
-                            
-                            BranchCardView(branch: branch)
-                                .background{
-                                    NavigationLink(destination: LinkedItemsView(dataLinkedManager: dataLinkedManager), isActive: $isShowingLinkedItemView) {
-                                        EmptyView()
-                                    }
-                                    
-                                } //: background
-                            
-                                .onTapGesture {
-                                    
-                                    isShowingLinkedItemView.toggle()
-                                    dataLinkedManager.linkedIds = branch.linkedItems
-                                    dataLinkedManager.fetchItems { success in
-                                        if success {
-                                            print("successfully loaded the linked Items from DataLinkedManager")
-                                            
-                                        } else {
-                                            print("failed to loaded the linked Items from DataLinkedManager")
-                                        }
-                                    }
-                                } //: onTapGesture
-
-                            
-                            BranchCardFooterView(branch: branch, communityvm: communityvm)
-                                
-                        }
+                        OpenBranchCardView(branch: branch,communityvm: communityvm, dataLinkedManager: dataLinkedManager)
                         
                         
                     }

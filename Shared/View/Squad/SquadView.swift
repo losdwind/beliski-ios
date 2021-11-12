@@ -17,7 +17,7 @@ struct SquadView: View {
         NavigationView{
             ScrollView(.vertical, showsIndicators: false){
                 
-                VStack{
+                
                     
                     Text("Your Squads")
                         .font(.title3.bold())
@@ -40,7 +40,6 @@ struct SquadView: View {
                     
                     
                     
-                }
                 
                 
             }

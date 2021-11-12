@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 
 import Kingfisher
 struct PersonEditorView: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode
     @State var avatarPickerPresented = false
     @State var photosPickerPresented = false
@@ -199,6 +199,8 @@ struct PersonEditorView: View {
             .sheet(isPresented: $avatarPickerPresented
                    , content: {
                 ImagePicker(image: $personvm.avatarImage)
+                    .preferredColorScheme(colorScheme)
+                    .accentColor(colorScheme == .light ? .primary: .secondary)
             })
             .sheet(isPresented: $photosPickerPresented) {
                 ImagePickers(images: $personvm.images)

@@ -41,7 +41,7 @@ struct SettingsView: View {
                 GroupBox(label: SettingsLabelView(labelText: "Profile", labelImage: "person.fill"), content: {
                     
                     NavigationLink(
-                        destination: ProfileEditorView(profilevm: profilevm),
+                        destination: PrivateEditorView(profilevm: profilevm),
                         label: {
                             SettingsRowView(leftIcon: "person.circle", text: "Profile Info", color: Color.pink)
                         })

@@ -18,7 +18,8 @@ struct JournalEditorView: View {
     @State var alertMsg = ""
     @State var showAlert = false
     
-    
+    @Environment(\.colorScheme) var colorScheme
+
     @Environment(\.presentationMode) var presentationMode
     
     // new in iOS 15
@@ -154,6 +155,9 @@ struct JournalEditorView: View {
             .sheet(isPresented: $imagePickerPresented
                    , content: {
                 ImagePickers(images: $journalvm.images)
+                    .preferredColorScheme(colorScheme)
+                    .accentColor(colorScheme == .light ? .primary: .secondary)
+                
             })
         }
     }

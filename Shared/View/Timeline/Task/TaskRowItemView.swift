@@ -20,9 +20,8 @@ struct TaskRowItemView: View {
         withAnimation {
             Toggle(isOn: $completion){
                 Text(task.content)
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .font(.system(.body, design: .rounded))
                     .foregroundColor(completion ? Color.pink : Color.primary)
-                    .padding(.vertical)
                 Spacer()
         } //: Toggle
         .toggleStyle(CheckboxStyle())
@@ -32,6 +31,9 @@ struct TaskRowItemView: View {
             tempTaskvm.task.completion = newValue
             tempTaskvm.uploadTask{_ in }
         }
+        .padding()
+        .background(Color.gray.opacity(0.2))
+        .cornerRadius(18)
         
     }
         

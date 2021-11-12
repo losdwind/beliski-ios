@@ -13,12 +13,10 @@ import FirebaseFirestoreSwift
 struct BranchCardView: View {
     var branch:Branch
     
-    @State var isShowingJoinButton:Bool = false
-    @State var isShowingJoinView: Bool = false
-    
+
     var body: some View {
         
-        VStack{
+        VStack(alignment:.leading){
             
             HStack(alignment: .top){
                 
@@ -29,34 +27,29 @@ struct BranchCardView: View {
                     
                     Text(branch.title)
                         .font(.title2.bold())
-                        .lineLimit(1)
+                        .lineLimit(2)
                     
                     Text(branch.description)
                         .font(.footnote)
+                        .lineLimit(3)
                     
                     Text(branch.timeSlot)
                         .font(.caption.bold())
                         .foregroundColor(Color.pink)
+                        .padding(.horizontal, 8)
+                        .background(.white.opacity(0.9),in: Capsule())
+                        
                     
                 }
-                .frame(maxWidth:.infinity)
                                 
-                if isShowingJoinButton {
-                    Button {
-                        isShowingJoinView.toggle()
-                    } label: {
-                        Text("Join")
-                            .foregroundColor(.secondary)
-                            .padding(.horizontal,10)
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-                    .tint(.pink)
-                    .shadow(radius: 1.2)
-                }
+              
                 
                 
             }
+            
+            
+            
+            
             
             HStack(alignment:.center){
                     HStack{
@@ -81,25 +74,15 @@ struct BranchCardView: View {
                 
                 
                 
-                VStack(alignment:.leading, spacing: 0){
-                    Text("\(branch.subIDs.count) Subscribers")
-                        .font(.caption)
-                    HStack{
-                        StarsView(rating: 4.3)
-                            .frame(width:60)
-                        Text("4.3")
-                    }
+             
                     
 
                 }
                 
             }
         }
-//        .padding()
-//        .background(getColor(opentype: OpenType(rawValue:branch.openess)!),in: RoundedRectangle(cornerRadius: 10))
         
-        .modifier(BranchCardGradientBackground())
-    }
+    
     
     
     func getColor(opentype: OpenType)->Color{
@@ -146,7 +129,7 @@ struct StarsView: View {
 }
 
 struct BranchCardView_Previews: PreviewProvider {
-    @State static var branch:Branch = Branch(id: "", serverTimestamp: Timestamp(date:Date()), localTimestamp: Timestamp(date:Date()), ownerID: "", linkedItems: [], title: "This is a test for what", timeSlot: "Everyday 5~6PM", description: "In this branch we gonna test its permission issue and allow some other things. NOW STREAMING: Mark Zuckerberg and Facebook executives share their vision for the metaverse—the next…", memberIDs: [], subIDs: [], openess: "Private")
+    @State static var branch:Branch = Branch(id: "", serverTimestamp: Timestamp(date:Date()), localTimestamp: Timestamp(date:Date()), ownerID: "", linkedItems: [], title: "This is a test for what", timeSlot: "Everyday 5~6PM", description: "In this branch we gonna test its permission issue and allow some other things. NOW STREAMING: Mark Zuckerberg and Facebook executives share their vision for the metaverse—the next…", memberIDs: [], openess: "Private")
     static var previews: some View {
         BranchCardView(branch: branch)
             .previewLayout(.sizeThatFits)

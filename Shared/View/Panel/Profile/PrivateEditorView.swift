@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct ProfileEditorView: View {
+struct PrivateEditorView: View {
     
     @ObservedObject var profilevm:ProfileViewModel
 
@@ -21,7 +21,7 @@ struct ProfileEditorView: View {
     var body: some View {
         Form{
             Section{
-                VStack{
+                Group{
                     
                    // fullname
                 HStack{
@@ -64,6 +64,7 @@ struct ProfileEditorView: View {
                     Picker("Category", selection: $jobCategory) {
                         ForEach(Array(JOBS.keys), id:\.self) { key in
                             Text(key).tag(key)
+                                .frame(width: 60)
                         }
                     }
                     .pickerStyle(.menu)
@@ -72,6 +73,7 @@ struct ProfileEditorView: View {
                     Picker("Job", selection:$profilevm.userPrivate.job){
                         ForEach(JOBS[jobCategory]!, id:\.self) { job in
                             Text(job).tag(job)
+                                .frame(width: 60)
                         }
                                 
                     }
@@ -90,20 +92,19 @@ struct ProfileEditorView: View {
                         
                     }
 
-                    
                     // marital status
+
                     HStack{
-                        Picker(selection: $profilevm.userPrivate.marriage) {
+                        Text("Marital Status")
+
+                        Picker("Marital Status", selection: $profilevm.userPrivate.marriage) {
                             ForEach(Marriage.allCases, id:\.self){m in
                                 Text(m.rawValue).tag(m)
                             }
-                        } label: {
-                            Text("Marital Status")
                         }
-                        .pickerStyle(.automatic)
+                        .pickerStyle(.menu)
 
                     }
-                
                 
                 }
                 
@@ -113,7 +114,7 @@ struct ProfileEditorView: View {
             
                 
                 Section{
-                    VStack{
+                    Group{
                         ForEach(SocialMediaCategory.allCases, id:\.self){ category in
                             HStack {
                                 Label {
@@ -177,6 +178,6 @@ struct ProfileEditorView: View {
 
 struct ProfileEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditorView(profilevm: ProfileViewModel())
+        PrivateEditorView(profilevm: ProfileViewModel())
     }
 }

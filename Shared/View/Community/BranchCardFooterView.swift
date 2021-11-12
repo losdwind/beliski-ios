@@ -17,11 +17,14 @@ struct BranchCardFooterView: View {
     @ObservedObject var communityvm:CommunityViewModel
     
     @State var isShowingCommentView = false
+    @State var isShowingJoinButton:Bool = false
+    @State var isShowingJoinView: Bool = false
     
-
+    
+    
     var body: some View {
         
-        HStack(alignment: .center, spacing: 20){
+        HStack(alignment: .center){
             
             
             // MARK: upvote
@@ -82,36 +85,7 @@ struct BranchCardFooterView: View {
             
             }
             
-            // MARK: Sub
-            HStack{
-            Button {
-                communityvm.inputSub.isSubed.toggle()
 
-                communityvm.currentBranch = branch
-                
-                communityvm.sendSub{ success in
-                    if success {
-                        communityvm.inputSub = Sub()
-                        communityvm.getStatus(branch: branch, completion: {_ in})
-                        communityvm.fetchPublicBranches(completion: {_ in})
-                }
-                    
-                    
-                } }label: {
-                    if status["isSubed"] ?? false{
-                        Image(systemName: "star.circle.fill")
-                            .foregroundColor(.pink)
-                    } else {
-                        Image(systemName: "star.circle")
-                            .foregroundColor(.secondary)
-                    }
-                    
-            }
-                
-                
-                Text(String(branch.subs))
-            }
-            
             
             
             
@@ -139,15 +113,75 @@ struct BranchCardFooterView: View {
                 }
                 
             }
-            
-            Text(String(branch.comments))
+                Text(String(branch.comments))
             
             }
+
+            
+            // star
+//
+//            HStack{
+//                StarsView(rating: branch.rating)
+//                Text(String(branch.rating))
+//            }
+
+            
+            
+            
+            // MARK: Sub
+            
+            Button {
+                communityvm.inputSub.isSubed.toggle()
+
+                communityvm.currentBranch = branch
+                
+                communityvm.sendSub{ success in
+                    if success {
+                        communityvm.inputSub = Sub()
+                        communityvm.getStatus(branch: branch, completion: {_ in})
+                        communityvm.fetchPublicBranches(completion: {_ in})
+                }
+                    
+                    
+                } }label: {
+                    if status["isSubed"] ?? false{
+                        Text("Subed!")
+                    } else {
+                        Text("Sub")
+                    }
+                    
+                    
+            }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                .tint(.pink)
+                .shadow(radius: 1.2)
+            
+            
+            
+            if branch.memberIDs.count < 5 {
+                Button {
+                    isShowingJoinView.toggle()
+                } label: {
+                    Text("Join")
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                .tint(.pink)
+                .shadow(radius: 1.2)
+            }
+            
+            
+            
+            
+            
             
             
 
             
         }
+        .font(.footnote)
+        
         .onAppear(perform: {
             communityvm.getStatus(branch: branch, completion: {status in
                 if let status = status {

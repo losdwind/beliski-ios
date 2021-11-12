@@ -44,12 +44,23 @@ struct Branch:Identifiable, Codable, Hashable, Item {
     
     
     // FIXME: here we shall not store the strings, maybe in a subcollection, because the id is usually 20 character, while the 1MB limitation only allows maximum 400,000 users
-    var subIDs:[String] = []
     
     var openess: String = "Private"
     
+    
+    
+    
+    
+    
     var address: String = ""
     
+    var category:String = ""
+    
+    
+    
+    
+    // statistics
+
     var likes:Int = 0
     
     var dislikes:Int = 0
@@ -59,6 +70,8 @@ struct Branch:Identifiable, Codable, Hashable, Item {
     var shares:Int = 0
     
     var subs:Int = 0
+    
+    var rating:Double = 4.0
     
     
     

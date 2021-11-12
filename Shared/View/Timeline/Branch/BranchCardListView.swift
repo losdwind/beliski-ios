@@ -27,6 +27,7 @@ struct BranchCardListView: View {
                     ForEach(branchvm.fetchedAllBranches, id: \.self) { branch in
                         
                         BranchCardView(branch: branch)
+                            .modifier(BranchCardPrivateBackground())
                             .background{
                                 NavigationLink(destination: LinkedItemsView(dataLinkedManager: dataLinkedManager), isActive: $isShowingLinkedItemView) {
                                     EmptyView()

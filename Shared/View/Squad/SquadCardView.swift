@@ -33,10 +33,8 @@ struct SquadCardView: View {
                             ProgressView(progress)
                         })
                         .aspectRatio(contentMode: .fill)
-                        .background(Circle()
-                                        .stroke(.black,lineWidth: 1))
-                        .frame(width: 30, height: 30)
-                        .cornerRadius(15)
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(30)
                     
                 
             }
@@ -72,7 +70,7 @@ struct SquadCardView: View {
 
 struct SquadCardView_Previews: PreviewProvider {
     
-    @State static var branch:Branch = Branch(id: "", serverTimestamp: Timestamp(date:Date()), localTimestamp: Timestamp(date:Date()), ownerID: "", linkedItems: [], title: "This is a test for what", timeSlot: "Everyday 5~6PM", description: "In this branch we gonna test its permission issue and allow some other things. NOW STREAMING: Mark Zuckerberg and Facebook executives share their vision for the metaverse—the next…", memberIDs: [], subIDs: [], openess: "Private")
+    @State static var branch:Branch = Branch(id: "", serverTimestamp: Timestamp(date:Date()), localTimestamp: Timestamp(date:Date()), ownerID: "", linkedItems: [], title: "This is a test for what", timeSlot: "Everyday 5~6PM", description: "In this branch we gonna test its permission issue and allow some other things. NOW STREAMING: Mark Zuckerberg and Facebook executives share their vision for the metaverse—the next…", memberIDs: [], openess: "Private")
     
     static var previews: some View {
         SquadCardView(branch: branch, squadvm: SquadViewModel())

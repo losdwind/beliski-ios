@@ -35,7 +35,7 @@ struct InputCommentView: View {
                 } label: {
                     Text("Send")
                         .bold()
-                        .foregroundColor(.black)
+                        .foregroundColor(communityvm.inputComment.content == "" ? Color.gray.opacity(0.2) : Color.pink)
                 }
 
             }

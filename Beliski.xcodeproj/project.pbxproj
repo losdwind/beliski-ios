@@ -16,8 +16,8 @@
 		2907B4B0272A832C001A3DA1 /* BranchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4AE272A832C001A3DA1 /* BranchViewModel.swift */; };
 		2907B4B6272AE377001A3DA1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B5272AE377001A3DA1 /* ChatView.swift */; };
 		2907B4B7272AE377001A3DA1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B5272AE377001A3DA1 /* ChatView.swift */; };
-		2907B4B9272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */; };
-		2907B4BA272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */; };
+		2907B4B9272BDE74001A3DA1 /* PrivateEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B8272BDE73001A3DA1 /* PrivateEditorView.swift */; };
+		2907B4BA272BDE74001A3DA1 /* PrivateEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4B8272BDE73001A3DA1 /* PrivateEditorView.swift */; };
 		2907B4C3272C0E7F001A3DA1 /* ProfileAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4C2272C0E7F001A3DA1 /* ProfileAvatarView.swift */; };
 		2907B4C4272C0E7F001A3DA1 /* ProfileAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4C2272C0E7F001A3DA1 /* ProfileAvatarView.swift */; };
 		2907B4C6272C1037001A3DA1 /* OpenStatsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907B4C5272C1037001A3DA1 /* OpenStatsBarView.swift */; };
@@ -131,6 +131,8 @@
 		29824B94273C09B800868C9B /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B92273C09B800868C9B /* FilterView.swift */; };
 		29824B96273C0BF500868C9B /* SearchResultSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */; };
 		29824B97273C0BF500868C9B /* SearchResultSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */; };
+		29AC38C2273E938400CA1B98 /* OpenBranchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC38C1273E938400CA1B98 /* OpenBranchCardView.swift */; };
+		29AC38C3273E938400CA1B98 /* OpenBranchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC38C1273E938400CA1B98 /* OpenBranchCardView.swift */; };
 		29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BED270D5E8800754817 /* BeliskiApp.swift */; };
 		29C46BFF270D5E8A00754817 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46BEE270D5E8800754817 /* MainView.swift */; };
@@ -306,7 +308,7 @@
 		2907B4AB272A82D5001A3DA1 /* BranchCardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCardEditorView.swift; sourceTree = "<group>"; };
 		2907B4AE272A832C001A3DA1 /* BranchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchViewModel.swift; sourceTree = "<group>"; };
 		2907B4B5272AE377001A3DA1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
+		2907B4B8272BDE73001A3DA1 /* PrivateEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateEditorView.swift; sourceTree = "<group>"; };
 		2907B4C2272C0E7F001A3DA1 /* ProfileAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatarView.swift; sourceTree = "<group>"; };
 		2907B4C5272C1037001A3DA1 /* OpenStatsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenStatsBarView.swift; sourceTree = "<group>"; };
 		2907B4C8272C106F001A3DA1 /* ProfileStandardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStandardView.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 		29824B90273BB6B700868C9B /* Beliski (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Beliski (iOS).entitlements"; sourceTree = "<group>"; };
 		29824B92273C09B800868C9B /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSimpleView.swift; sourceTree = "<group>"; };
+		29AC38C1273E938400CA1B98 /* OpenBranchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenBranchCardView.swift; sourceTree = "<group>"; };
 		29C46BED270D5E8800754817 /* BeliskiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeliskiApp.swift; sourceTree = "<group>"; };
 		29C46BEE270D5E8800754817 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		29C46BEF270D5E8A00754817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -699,7 +702,7 @@
 			children = (
 				29C46C18270D600900754817 /* ProfileCompactView.swift */,
 				29552A7027101A7C0056E675 /* ProfileDetailView.swift */,
-				2907B4B8272BDE73001A3DA1 /* ProfileEditorView.swift */,
+				2907B4B8272BDE73001A3DA1 /* PrivateEditorView.swift */,
 				2907B4C2272C0E7F001A3DA1 /* ProfileAvatarView.swift */,
 				2907B4C5272C1037001A3DA1 /* OpenStatsBarView.swift */,
 				29E1DD64272D12F300EC5E1D /* PrivateStatsBarView.swift */,
@@ -768,6 +771,7 @@
 				296FA4882731A1C400FEBF8A /* PopularBranchView.swift */,
 				296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */,
 				296960062738FC7500C5A946 /* SubscribedBranchView.swift */,
+				29AC38C1273E938400CA1B98 /* OpenBranchCardView.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1167,7 +1171,7 @@
 				29E1DDC0272D746C00EC5E1D /* Line.swift in Sources */,
 				29ED11102718979100E67D8B /* LinkedItemsView.swift in Sources */,
 				296FA49927330B8000FEBF8A /* BranchCardFooterView.swift in Sources */,
-				2907B4B9272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */,
+				2907B4B9272BDE74001A3DA1 /* PrivateEditorView.swift in Sources */,
 				29E1DD91272D54F900EC5E1D /* CommunityViewModel.swift in Sources */,
 				29ED112F2719E49600E67D8B /* PersonItemView.swift in Sources */,
 				29E1DDD0272DB01700EC5E1D /* WordCloudView.swift in Sources */,
@@ -1219,6 +1223,7 @@
 				2942C84B271FEA2B00ECD167 /* TagCollectionView.swift in Sources */,
 				29E1DDBA272D746C00EC5E1D /* MagnifierRect.swift in Sources */,
 				2907B4C6272C1037001A3DA1 /* OpenStatsBarView.swift in Sources */,
+				29AC38C2273E938400CA1B98 /* OpenBranchCardView.swift in Sources */,
 				2907B4A8272A7C6B001A3DA1 /* Branch.swift in Sources */,
 				29C46C27270D600900754817 /* ProfileViewModel.swift in Sources */,
 				29552A7627101B620056E675 /* PanelView.swift in Sources */,
@@ -1353,8 +1358,9 @@
 				29E1DE1E273163B900EC5E1D /* ChatBubbleView.swift in Sources */,
 				29824B7B273BACB700868C9B /* Struct & Enum.swift in Sources */,
 				29E1DD95272D59BA00EC5E1D /* NotificationView.swift in Sources */,
-				2907B4BA272BDE74001A3DA1 /* ProfileEditorView.swift in Sources */,
+				2907B4BA272BDE74001A3DA1 /* PrivateEditorView.swift in Sources */,
 				29824B76273BACB700868C9B /* SoundPlayer.swift in Sources */,
+				29AC38C3273E938400CA1B98 /* OpenBranchCardView.swift in Sources */,
 				29824B82273BACC600868C9B /* Protocols.swift in Sources */,
 				29E1DDC7272D746C00EC5E1D /* PieChartHelpers.swift in Sources */,
 				29824B86273BACC600868C9B /* Like.swift in Sources */,

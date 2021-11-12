@@ -33,9 +33,25 @@ struct BranchCardGradientBackground: ViewModifier {
             .padding(.vertical, 15)
             .background(
               LinearGradient(gradient: Gradient(colors: [Color.pink, Color.blue]), startPoint: .leading, endPoint: .trailing)
-                .clipShape(RoundedRectangle(cornerRadius: 18))
+                .clipShape(RoundedRectangle(cornerRadius: 18)
+                            )
             )
-            .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 8, x: 0.0, y: 4.0)
+            .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.2), radius: 3, x: 0.0, y: 3.0)
+            
+    }
+}
+
+struct BranchCardPrivateBackground: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 15)
+            .background(LinearGradient(gradient: Gradient(colors: [Color.gray.opacity(0.2), Color.gray.opacity(0.2)]), startPoint: .leading, endPoint: .trailing)
+                            .clipShape(RoundedRectangle(cornerRadius: 18)
+                                        ))
+            .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.2), radius: 3, x: 0.0, y: 3.0)
             
     }
 }
@@ -54,7 +70,7 @@ struct SaveButtonBackground: ViewModifier {
                 playSound(sound: "sound-tap", type: "mp3")
               }
             }
-            .padding()
+            .padding(.horizontal, 8)
             .foregroundColor(.white)
             .background(isButtonDisabled ? Color.blue : Color.pink)
             .cornerRadius(10)

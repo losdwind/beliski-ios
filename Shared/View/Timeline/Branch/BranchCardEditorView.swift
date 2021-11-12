@@ -207,10 +207,11 @@ struct BranchCardEditorView: View {
                         .padding(.vertical,6)
                         .padding(.horizontal,30)
                 }
-                .buttonStyle(.bordered)
-                .controlSize(.small)
-                .tint(.black)
-                .disabled(branchvm.branch.title == "")
+                .modifier(SaveButtonBackground(isButtonDisabled: branchvm.branch.title == ""))
+//                .buttonStyle(.bordered)
+//                .controlSize(.small)
+//                .tint(.black)
+//                .disabled(branchvm.branch.title == "")
 
 
             }

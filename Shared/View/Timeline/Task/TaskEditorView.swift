@@ -42,7 +42,7 @@ struct TaskEditorView: View {
                 
                 DatePicker("Reminder", selection: $taskvm.reminder, in: Date()...)
                     .foregroundColor(.pink)
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
 
                 
                 Button(action: {

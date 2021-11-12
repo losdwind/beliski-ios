@@ -41,7 +41,7 @@ struct InputMessageView: View {
                 } label: {
                     Text("Send")
                         .bold()
-                        .foregroundColor(.black)
+                        .foregroundColor(squadvm.inputMessage.content == "" ? Color.gray.opacity(0.2) : Color.pink)
                 }
                 
                 .padding(.bottom, 8)

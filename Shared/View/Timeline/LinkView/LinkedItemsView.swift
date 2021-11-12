@@ -15,48 +15,59 @@ struct LinkedItemsView: View {
         
         // TODO: - add a list without segemeting
         ScrollView(.vertical, showsIndicators: false){
-                GroupBox {
-                    LazyVStack{
-                        ForEach(dataLinkedManager.linkedJournals){
-                            journal in
-                            JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
-                        }
+            LazyVStack(alignment:.leading) {
+                
+                
+                Text("Journals")
+                    .font(.title3.bold())
+                
+                    ForEach(dataLinkedManager.linkedJournals){
+                        journal in
+                        JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
                     }
-                                        
-                } label: {
-                    Text("Journals")
+                
+                if dataLinkedManager.linkedJournals.isEmpty {
+                    Text("Empty")
+                        .frame(minWidth:.infinity)
+                        .frame(height: 100, alignment: .center)
                 }
                 
-            
-            GroupBox {
-                LazyVStack{
+                
+                
+                
+                Text("Tasks")
+                    .font(.title3.bold())
                     ForEach(dataLinkedManager.linkedTasks){
                         task in
                         TaskRowItemView(task: task)
                     }
+                
+                if dataLinkedManager.linkedTasks.isEmpty{
+                    Text("Empty")
+                        .frame(minWidth:.infinity)
+                        .frame(height: 100, alignment: .center)
                 }
-            } label: {
-                Text("Tasks")
-            }
-            
-            
-            GroupBox {
-                LazyVStack{
+                
+                Text("Persons")
+                    .font(.title3.bold())
+                
                     ForEach(dataLinkedManager.linkedPersons){
                         person in
                         PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id, isShowingPhtos: false, isShowingDescription: false, isShowingTags: true)
                     }
+                if dataLinkedManager.linkedPersons.isEmpty {
+                    Text("Empty")
+                        .frame(minWidth:.infinity)
+                        .frame(height: 100, alignment: .center)
                 }
-            } label: {
-                Text("Persons")
+                
             }
             
-
         }
         .padding()
         .navigationTitle("Linked Items")
-
-   
+        
+        
     }
 }
 

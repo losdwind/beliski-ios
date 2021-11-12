@@ -19,6 +19,9 @@ struct BeliskiApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .font(.system(.body ,design: .rounded))
+                .font(.system(.footnote ,design: .rounded))
+
 
         }
     }

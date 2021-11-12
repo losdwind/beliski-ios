@@ -39,10 +39,10 @@ struct MessageView: View {
                     
                     Text(message.content)
                         .padding()
-                        .background(Color(.systemGray5))
+                        .background(Color.gray.opacity(0.2))
                         .font(.body)
                         .clipShape(ChatBubble(isFromCurrentUser: false))
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                     
                 }
                 .padding(.horizontal)
