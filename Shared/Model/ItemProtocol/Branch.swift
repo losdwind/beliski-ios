@@ -58,7 +58,6 @@ struct Branch:Identifiable, Codable, Hashable, Item {
     
     
     var address: String = ""
-    
     var category:String = ""
     
     

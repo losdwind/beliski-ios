@@ -57,7 +57,7 @@ class AuthViewModel: ObservableObject {
     }
     
     
-    func logInUserToApp(userID: String, handler: @escaping (_ success: Bool) -> ()) {
+    func logInUserToAppStorage(userID: String, handler: @escaping (_ success: Bool) -> ()) {
         
         
         // Get the users info
@@ -111,11 +111,10 @@ class AuthViewModel: ObservableObject {
             
             // Set up a user Document with the user Collection
             let document = COLLECTION_USERS.document()
-            let userID = document.documentID
             
             MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
                 
-                let data = User(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
+                let data = User(id: user.uid, email: email, profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
                 
                 do {
                     try document.setData(from: data)
@@ -127,8 +126,8 @@ class AuthViewModel: ObservableObject {
                 }
                 
                 
-                let privates = Private(id: userID, email: email, providerID: user.uid, providerName: "Email", profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
-                let privateDocument = COLLECTION_USERS.document(userID).collection("privates").document(privates.id)
+                let privates = Private(id: user.uid, email: email, profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
+                let privateDocument = COLLECTION_USERS.document(user.uid).collection("privates").document(user.uid)
                 do {
                     try privateDocument.setData(from: privates)
                     print("successfully generate user privates data to firestore")
@@ -140,8 +139,8 @@ class AuthViewModel: ObservableObject {
                 
                 
                 
-                let userSubscribe = UserSubscibe(profileImageURL: imageUrl, nickName: nickName)
-                let userSubscribeDocument = COLLECTION_USERS.document(userID).collection("usersubscribe").document(userSubscribe.id)
+                let userSubscribe = UserSubscibe(id: user.uid, profileImageURL: imageUrl, nickName: nickName)
+                let userSubscribeDocument = COLLECTION_USERS.document(user.uid).collection("usersubscribe").document(user.uid)
                 do {
                     try userSubscribeDocument.setData(from: userSubscribe)
                     print("successfully initialize user subscription data to firestore")

@@ -26,8 +26,9 @@ struct BranchCardListView: View {
                 LazyVStack{
                     ForEach(branchvm.fetchedAllBranches, id: \.self) { branch in
                         
-                        BranchCardView(branch: branch)
-                            .modifier(BranchCardPrivateBackground())
+                            BranchCardView(branch: branch)
+//                            .background(Color.gray.opacity(branch.openess == "Private" ? 0.2 : 0.0))
+                            .modifier(BranchCardGradientBackground())
                             .background{
                                 NavigationLink(destination: LinkedItemsView(dataLinkedManager: dataLinkedManager), isActive: $isShowingLinkedItemView) {
                                     EmptyView()

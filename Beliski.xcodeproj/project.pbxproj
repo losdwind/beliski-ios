@@ -73,6 +73,22 @@
 		29552A7227101A7C0056E675 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A7027101A7C0056E675 /* ProfileDetailView.swift */; };
 		29552A7627101B620056E675 /* PanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A7527101B620056E675 /* PanelView.swift */; };
 		29552A7727101B620056E675 /* PanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A7527101B620056E675 /* PanelView.swift */; };
+		2964A30727464B4F002C2595 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A30627464B4F002C2595 /* FirebaseAppCheck */; };
+		2964A30927464B67002C2595 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A30827464B67002C2595 /* FirebaseFunctions */; };
+		2964A30D27464B8D002C2595 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A30C27464B8D002C2595 /* FirebaseInAppMessaging-Beta */; };
+		2964A30F27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A30E27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta */; };
+		2964A31127464B8D002C2595 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A31027464B8D002C2595 /* FirebaseMessaging */; };
+		2964A31327464BC3002C2595 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A31227464BC3002C2595 /* FirebaseAppCheck */; };
+		2964A31527464BC3002C2595 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A31427464BC3002C2595 /* FirebaseFunctions */; };
+		2964A31727464BC4002C2595 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A31627464BC4002C2595 /* FirebaseMessaging */; };
+		2964A3192747D10C002C2595 /* PPCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964A3182747D10C002C2595 /* PPCarouselView.swift */; };
+		2964A31A2747D10C002C2595 /* PPCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964A3182747D10C002C2595 /* PPCarouselView.swift */; };
+		2964A31C2747D116002C2595 /* PPDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964A31B2747D115002C2595 /* PPDetailView.swift */; };
+		2964A31D2747D116002C2595 /* PPDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964A31B2747D115002C2595 /* PPDetailView.swift */; };
+		2964A3212747D29A002C2595 /* PPCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964A3202747D29A002C2595 /* PPCardView.swift */; };
+		2964A3222747D29A002C2595 /* PPCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964A3202747D29A002C2595 /* PPCardView.swift */; };
+		2964A3242747D2BD002C2595 /* PPCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964A3232747D2BD002C2595 /* PPCard.swift */; };
+		2964A3252747D2BD002C2595 /* PPCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964A3232747D2BD002C2595 /* PPCard.swift */; };
 		296960072738FC7500C5A946 /* SubscribedBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296960062738FC7500C5A946 /* SubscribedBranchView.swift */; };
 		296960082738FC7500C5A946 /* SubscribedBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296960062738FC7500C5A946 /* SubscribedBranchView.swift */; };
 		296960092738FC8800C5A946 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C23270D600900754817 /* CommunityView.swift */; };
@@ -304,6 +320,8 @@
 		29ED115C271D734F00E67D8B /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED115B271D734F00E67D8B /* TagViewModel.swift */; };
 		29ED115D271D735000E67D8B /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED115B271D734F00E67D8B /* TagViewModel.swift */; };
 		29ED115F271D8EF500E67D8B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED115E271D8EF500E67D8B /* Protocols.swift */; };
+		29F7D8DF2747ECB100B50844 /* NewGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8DE2747ECB100B50844 /* NewGridView.swift */; };
+		29F7D8E02747ECB100B50844 /* NewGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8DE2747ECB100B50844 /* NewGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -343,6 +361,10 @@
 		29552A6D271010160056E675 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		29552A7027101A7C0056E675 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		29552A7527101B620056E675 /* PanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelView.swift; sourceTree = "<group>"; };
+		2964A3182747D10C002C2595 /* PPCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPCarouselView.swift; sourceTree = "<group>"; };
+		2964A31B2747D115002C2595 /* PPDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPDetailView.swift; sourceTree = "<group>"; };
+		2964A3202747D29A002C2595 /* PPCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPCardView.swift; sourceTree = "<group>"; };
+		2964A3232747D2BD002C2595 /* PPCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPCard.swift; sourceTree = "<group>"; };
 		296960062738FC7500C5A946 /* SubscribedBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedBranchView.swift; sourceTree = "<group>"; };
 		296FA4812731853F00FEBF8A /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		296FA4832731854700FEBF8A /* CommentCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellView.swift; sourceTree = "<group>"; };
@@ -457,6 +479,7 @@
 		29ED1158271B470A00E67D8B /* Helplers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helplers.swift; sourceTree = "<group>"; };
 		29ED115B271D734F00E67D8B /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 		29ED115E271D8EF500E67D8B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		29F7D8DE2747ECB100B50844 /* NewGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -464,7 +487,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2964A30D27464B8D002C2595 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				296FA4912732AF8400FEBF8A /* OrderedCollections in Frameworks */,
+				2964A30F27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				29ED10F32710311A00E67D8B /* Kingfisher in Frameworks */,
 				296FA48D2732AF8400FEBF8A /* Collections in Frameworks */,
 				29552A4C270F029F0056E675 /* FirebaseStorageSwift-Beta in Frameworks */,
@@ -472,6 +497,9 @@
 				296FA48F2732AF8400FEBF8A /* DequeModule in Frameworks */,
 				29552A4A270F029F0056E675 /* FirebaseStorage in Frameworks */,
 				29552A44270F029F0056E675 /* FirebaseAuth in Frameworks */,
+				2964A30727464B4F002C2595 /* FirebaseAppCheck in Frameworks */,
+				2964A30927464B67002C2595 /* FirebaseFunctions in Frameworks */,
+				2964A31127464B8D002C2595 /* FirebaseMessaging in Frameworks */,
 				29552A46270F029F0056E675 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +515,9 @@
 				29D2BA9B2727D9E8007F76B8 /* FirebaseStorage in Frameworks */,
 				29D2BA972727D9E8007F76B8 /* FirebaseFirestore in Frameworks */,
 				29824B6A273BABF900868C9B /* OrderedCollections in Frameworks */,
+				2964A31527464BC3002C2595 /* FirebaseFunctions in Frameworks */,
+				2964A31327464BC3002C2595 /* FirebaseAppCheck in Frameworks */,
+				2964A31727464BC4002C2595 /* FirebaseMessaging in Frameworks */,
 				29D2BA9D2727D9E8007F76B8 /* FirebaseStorageSwift-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +604,24 @@
 			path = WillbeingScore;
 			sourceTree = "<group>";
 		};
+		2964A31E2747D12F002C2595 /* PositivePsychology */ = {
+			isa = PBXGroup;
+			children = (
+				2964A3182747D10C002C2595 /* PPCarouselView.swift */,
+				2964A31B2747D115002C2595 /* PPDetailView.swift */,
+				2964A3202747D29A002C2595 /* PPCardView.swift */,
+			);
+			path = PositivePsychology;
+			sourceTree = "<group>";
+		};
+		2964A31F2747D141002C2595 /* DailyNotes */ = {
+			isa = PBXGroup;
+			children = (
+				29F7D8DE2747ECB100B50844 /* NewGridView.swift */,
+			);
+			path = DailyNotes;
+			sourceTree = "<group>";
+		};
 		296FA4802731853000FEBF8A /* Comment */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +703,7 @@
 				29E1DE04273120BF00EC5E1D /* Like.swift */,
 				296FA49B27344EC000FEBF8A /* Sub.swift */,
 				296FA49E273457DE00FEBF8A /* Dislike.swift */,
+				2964A3232747D2BD002C2595 /* PPCard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -763,6 +813,8 @@
 			isa = PBXGroup;
 			children = (
 				29C46C21270D600900754817 /* CreateView.swift */,
+				2964A31F2747D141002C2595 /* DailyNotes */,
+				2964A31E2747D12F002C2595 /* PositivePsychology */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -1012,6 +1064,11 @@
 				296FA48C2732AF8400FEBF8A /* Collections */,
 				296FA48E2732AF8400FEBF8A /* DequeModule */,
 				296FA4902732AF8400FEBF8A /* OrderedCollections */,
+				2964A30627464B4F002C2595 /* FirebaseAppCheck */,
+				2964A30827464B67002C2595 /* FirebaseFunctions */,
+				2964A30C27464B8D002C2595 /* FirebaseInAppMessaging-Beta */,
+				2964A30E27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta */,
+				2964A31027464B8D002C2595 /* FirebaseMessaging */,
 			);
 			productName = "Beliski (iOS)";
 			productReference = 29C46BF4270D5E8A00754817 /* Beliski.app */;
@@ -1039,6 +1096,9 @@
 				29D2BA9C2727D9E8007F76B8 /* FirebaseStorageSwift-Beta */,
 				29D2BA9E2727D9E8007F76B8 /* Kingfisher */,
 				29824B69273BABF900868C9B /* OrderedCollections */,
+				2964A31227464BC3002C2595 /* FirebaseAppCheck */,
+				2964A31427464BC3002C2595 /* FirebaseFunctions */,
+				2964A31627464BC4002C2595 /* FirebaseMessaging */,
 			);
 			productName = "Beliski (macOS)";
 			productReference = 29C46BFA270D5E8A00754817 /* Beliski.app */;
@@ -1136,6 +1196,7 @@
 				29E1DD68272D27DD00EC5E1D /* CarouselView.swift in Sources */,
 				29ED1150271AE49000E67D8B /* TimelineView.swift in Sources */,
 				29552A62271009900056E675 /* ImagePickers.swift in Sources */,
+				2964A3192747D10C002C2595 /* PPCarouselView.swift in Sources */,
 				29E1DE1A2731634A00EC5E1D /* MessageView.swift in Sources */,
 				2942C857272010FF00ECD167 /* TagPanelView.swift in Sources */,
 				29E1DDFF272ED22900EC5E1D /* BigFiveView.swift in Sources */,
@@ -1144,6 +1205,7 @@
 				2942C848271FEA0900ECD167 /* TagEditorView.swift in Sources */,
 				29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
 				29ED11332719E49600E67D8B /* PersonEditorView.swift in Sources */,
+				2964A3212747D29A002C2595 /* PPCardView.swift in Sources */,
 				29716176273D8C7A00D3964D /* InspireView.swift in Sources */,
 				2907B4A5272A7BEF001A3DA1 /* BranchCardView.swift in Sources */,
 				29ED113E2719E4B400E67D8B /* TaskListView.swift in Sources */,
@@ -1165,6 +1227,7 @@
 				296FA4892731A1C400FEBF8A /* PopularBranchView.swift in Sources */,
 				29C46C39270D659D00754817 /* ResetPasswordView.swift in Sources */,
 				29ED1159271B470A00E67D8B /* Helplers.swift in Sources */,
+				2964A31C2747D116002C2595 /* PPDetailView.swift in Sources */,
 				29E1DDAE272D746C00EC5E1D /* LabelView.swift in Sources */,
 				29E1DD73272D307C00EC5E1D /* LineGraphtView.swift in Sources */,
 				29ED10F92710422600E67D8B /* JournalItemView.swift in Sources */,
@@ -1175,6 +1238,7 @@
 				29E1DDD7272DB06100EC5E1D /* AllTagsView.swift in Sources */,
 				29E1DDDD272DB08600EC5E1D /* MainThreadView.swift in Sources */,
 				29E1DDED272E4C3200EC5E1D /* TopicView.swift in Sources */,
+				29F7D8DF2747ECB100B50844 /* NewGridView.swift in Sources */,
 				29E1DD65272D12F300EC5E1D /* PrivateStatsBarView.swift in Sources */,
 				29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */,
 				29E1DDC0272D746C00EC5E1D /* Line.swift in Sources */,
@@ -1209,6 +1273,7 @@
 				29ED1149271A97C700E67D8B /* TaskViewModel.swift in Sources */,
 				2907B4C9272C106F001A3DA1 /* ProfileStandardView.swift in Sources */,
 				29ED115F271D8EF500E67D8B /* Protocols.swift in Sources */,
+				2964A3242747D2BD002C2595 /* PPCard.swift in Sources */,
 				29E1DE172731463300EC5E1D /* SquadViewModel.swift in Sources */,
 				29C46C2B270D600900754817 /* JournalListView.swift in Sources */,
 				29E1DD88272D3B8200EC5E1D /* PhysicalAbstractView.swift in Sources */,
@@ -1264,6 +1329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2964A31A2747D10C002C2595 /* PPCarouselView.swift in Sources */,
 				29552A6627100CD70056E675 /* JournalViewModel.swift in Sources */,
 				29E1DDB9272D746C00EC5E1D /* LineChartView.swift in Sources */,
 				29C46C37270D658500754817 /* SignUpView.swift in Sources */,
@@ -1286,6 +1352,7 @@
 				29824B68273AC5F000868C9B /* InviteUserView.swift in Sources */,
 				29E1DDCE272D9EAD00EC5E1D /* SingleEntryView.swift in Sources */,
 				2907B4C4272C0E7F001A3DA1 /* ProfileAvatarView.swift in Sources */,
+				29F7D8E02747ECB100B50844 /* NewGridView.swift in Sources */,
 				2942C84C271FEA2B00ECD167 /* TagCollectionView.swift in Sources */,
 				29ED113F2719E4B400E67D8B /* TaskListView.swift in Sources */,
 				29824B8B273BAD0500868C9B /* SettingsView.swift in Sources */,
@@ -1311,6 +1378,7 @@
 				29824B8F273BAD1E00868C9B /* SquadCardView.swift in Sources */,
 				29824B72273BACB700868C9B /* ImagePicker.swift in Sources */,
 				29C46C3A270D659D00754817 /* ResetPasswordView.swift in Sources */,
+				2964A3252747D2BD002C2595 /* PPCard.swift in Sources */,
 				29552A7227101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				29E1DDB7272D746C00EC5E1D /* Legend.swift in Sources */,
 				29E1DDB5272D746C00EC5E1D /* LineView.swift in Sources */,
@@ -1367,6 +1435,7 @@
 				29824B74273BACB700868C9B /* ImagePickers.swift in Sources */,
 				29E1DD8F272D3BA700EC5E1D /* CommunityAbstractView.swift in Sources */,
 				2907B4B0272A832C001A3DA1 /* BranchViewModel.swift in Sources */,
+				2964A3222747D29A002C2595 /* PPCardView.swift in Sources */,
 				29E1DE1E273163B900EC5E1D /* ChatBubbleView.swift in Sources */,
 				29824B7B273BACB700868C9B /* Struct & Enum.swift in Sources */,
 				29E1DD95272D59BA00EC5E1D /* NotificationView.swift in Sources */,
@@ -1387,6 +1456,7 @@
 				296960082738FC7500C5A946 /* SubscribedBranchView.swift in Sources */,
 				29824B85273BACC600868C9B /* Message.swift in Sources */,
 				29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
+				2964A31D2747D116002C2595 /* PPDetailView.swift in Sources */,
 				29ED11322719E49600E67D8B /* PersonListView.swift in Sources */,
 				2942C85B2721391E00ECD167 /* TagPanelViewModel.swift in Sources */,
 				2942C8552720099400ECD167 /* SubViews.swift in Sources */,
@@ -1523,8 +1593,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Beliski (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KTF37Z8L24;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Beliski--iOS--Info.plist";
@@ -1542,7 +1613,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurich.Beliski;
 				PRODUCT_NAME = Beliski;
 				SDKROOT = iphoneos;
@@ -1560,8 +1631,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Beliski (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KTF37Z8L24;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Beliski--iOS--Info.plist";
@@ -1579,7 +1651,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurich.Beliski;
 				PRODUCT_NAME = Beliski;
 				SDKROOT = iphoneos;
@@ -1612,7 +1684,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurich.Beliski;
 				PRODUCT_NAME = Beliski;
 				SDKROOT = macosx;
@@ -1642,7 +1714,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurich.Beliski;
 				PRODUCT_NAME = Beliski;
 				SDKROOT = macosx;
@@ -1735,6 +1807,46 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageSwift-Beta";
+		};
+		2964A30627464B4F002C2595 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		2964A30827464B67002C2595 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		2964A30C27464B8D002C2595 /* FirebaseInAppMessaging-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessaging-Beta";
+		};
+		2964A30E27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseInAppMessagingSwift-Beta";
+		};
+		2964A31027464B8D002C2595 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		2964A31227464BC3002C2595 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		2964A31427464BC3002C2595 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		2964A31627464BC4002C2595 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		296FA48C2732AF8400FEBF8A /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State var selectedTab = MainTab.timeline
+    @State var selectedTab = MainTab.create
     @State var email:String = ""
     @State var password: String = ""
     

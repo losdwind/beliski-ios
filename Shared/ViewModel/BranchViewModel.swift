@@ -12,7 +12,7 @@ class BranchViewModel: ObservableObject {
     
     
     
-    @Published var branch:Branch = Branch(ownerID:AuthViewModel.shared.userID!, memberIDs: [AuthViewModel.shared.userID!], memberIDsAvatar: [AuthViewModel.shared.profileImageURL!],memberIDsNickname: [AuthViewModel.shared.nickName!] )
+    @Published var branch:Branch = Branch()
     @Published var localTimestamp:Date = Date()
     
     
@@ -35,13 +35,6 @@ class BranchViewModel: ObservableObject {
             print("userID is not valid here in fetchJournal function")
             completion(false)
             return
-        }
-        
-        if branch.ownerID == "" {
-            branch.ownerID = userID
-            branch.memberIDs.append(userID)
-            branch.memberIDsAvatar.append(AuthViewModel.shared.profileImageURL!)
-            branch.memberIDsNickname.append(AuthViewModel.shared.nickName!)
         }
         
         

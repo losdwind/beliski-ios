@@ -24,5 +24,9 @@ struct Task:Identifiable, Codable, Hashable, Item {
     var reminder: Timestamp?
     var tagNames:[String] = []
     
+    var openess:String = "Private"
+
+    
+    
     
 }

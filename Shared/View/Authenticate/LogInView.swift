@@ -109,7 +109,7 @@ struct LogInView: View {
                     // EXISTING USER
                     if let userID = returnedUserID {
                         // SUCCESS, LOG IN TO APP
-                        AuthViewModel.shared.logInUserToApp(userID: userID) { (success) in
+                        AuthViewModel.shared.logInUserToAppStorage(userID: userID) { (success) in
                             if success {
                                 print("Successful log in existing user")
                                 isShowingLogInProgressView.toggle()

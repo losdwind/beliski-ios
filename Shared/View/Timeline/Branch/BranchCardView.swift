@@ -80,12 +80,13 @@ struct BranchCardView: View {
                 }
                 
             }
+        
         }
         
     
     
     
-    func getColor(opentype: OpenType)->Color{
+    func getColor(opentype: OpenType) -> Color{
         
         switch opentype {
             

@@ -206,6 +206,12 @@ struct BranchCardEditorView: View {
             .sheet(isPresented: $isShowingAddCollaboratorView) {
                 InviteUserView(branchvm: branchvm)
             }
+            .onAppear {
+                
+                if branchvm.branch.ownerID == "" {
+                    branchvm.branch = Branch(ownerID:AuthViewModel.shared.userID!, memberIDs: [AuthViewModel.shared.userID!], memberIDsAvatar: [AuthViewModel.shared.profileImageURL!],memberIDsNickname: [AuthViewModel.shared.nickName!] )
+                }
+            }
         
     }
 }

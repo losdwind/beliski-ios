@@ -47,8 +47,6 @@ struct User: Identifiable, Codable, Hashable {
     // can be retreive from the Auth.auth().currentUser : uid, email. photoURL
     var id: String?
     var email: String?
-    var providerID:String?
-    var providerName: String?
     var profileImageURL: String?
     var nickName: String? //first name, family name
     var dateCreated:Timestamp?
@@ -62,8 +60,7 @@ struct Private: Identifiable, Codable, Hashable{
     // can be retreive from the Auth.auth().currentUser : uid, email. photoURL
     var id: String = UUID().uuidString
     var email: String?
-    var providerID:String?
-    var providerName: String?
+    
     var profileImageURL: String?
     var nickName: String? //first name, family name
     var dateCreated:Timestamp?

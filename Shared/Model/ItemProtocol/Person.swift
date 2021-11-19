@@ -35,4 +35,7 @@ struct Person: Identifiable, Codable, Hashable, Item {
     var videoURLs:[String] = []
     var priority:Int = 0
     var tagNames:[String] = []
+    var openess:String = "Private"
+
+    
 }

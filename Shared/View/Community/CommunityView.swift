@@ -37,9 +37,9 @@ struct CommunityView: View {
                     Text("Popular Around")
                         .font(.title3.bold())
                         .padding(.top)
-                    ScrollView(.horizontal, showsIndicators: false){
+                    
                         PopularBranchView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
-                    }
+                    
                     
 
 
