@@ -75,8 +75,6 @@
 		29552A7727101B620056E675 /* PanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A7527101B620056E675 /* PanelView.swift */; };
 		2964A30727464B4F002C2595 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A30627464B4F002C2595 /* FirebaseAppCheck */; };
 		2964A30927464B67002C2595 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A30827464B67002C2595 /* FirebaseFunctions */; };
-		2964A30D27464B8D002C2595 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A30C27464B8D002C2595 /* FirebaseInAppMessaging-Beta */; };
-		2964A30F27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A30E27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta */; };
 		2964A31127464B8D002C2595 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A31027464B8D002C2595 /* FirebaseMessaging */; };
 		2964A31327464BC3002C2595 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A31227464BC3002C2595 /* FirebaseAppCheck */; };
 		2964A31527464BC3002C2595 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 2964A31427464BC3002C2595 /* FirebaseFunctions */; };
@@ -124,7 +122,6 @@
 		29824B79273BACB700868C9B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A50270F0EC40056E675 /* Constants.swift */; };
 		29824B7A273BACB700868C9B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A37270D89150056E675 /* CustomTextField.swift */; };
 		29824B7B273BACB700868C9B /* Struct & Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C46C10270D600900754817 /* Struct & Enum.swift */; };
-		29824B7D273BACC600868C9B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE07273120CF00EC5E1D /* Comment.swift */; };
 		29824B7E273BACC600868C9B /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED11252719C3ED00E67D8B /* Tag.swift */; };
 		29824B7F273BACC600868C9B /* Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49B27344EC000FEBF8A /* Sub.swift */; };
 		29824B80273BACC600868C9B /* Dislike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296FA49E273457DE00FEBF8A /* Dislike.swift */; };
@@ -265,7 +262,6 @@
 		29E1DE02273046E500EC5E1D /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE01273046E500EC5E1D /* CategoryView.swift */; };
 		29E1DE03273046E500EC5E1D /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE01273046E500EC5E1D /* CategoryView.swift */; };
 		29E1DE05273120BF00EC5E1D /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE04273120BF00EC5E1D /* Like.swift */; };
-		29E1DE08273120CF00EC5E1D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE07273120CF00EC5E1D /* Comment.swift */; };
 		29E1DE0B273121DF00EC5E1D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE0A273121DF00EC5E1D /* Message.swift */; };
 		29E1DE172731463300EC5E1D /* SquadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE162731463300EC5E1D /* SquadViewModel.swift */; };
 		29E1DE182731463300EC5E1D /* SquadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E1DE162731463300EC5E1D /* SquadViewModel.swift */; };
@@ -322,6 +318,13 @@
 		29ED115F271D8EF500E67D8B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED115E271D8EF500E67D8B /* Protocols.swift */; };
 		29F7D8DF2747ECB100B50844 /* NewGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8DE2747ECB100B50844 /* NewGridView.swift */; };
 		29F7D8E02747ECB100B50844 /* NewGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8DE2747ECB100B50844 /* NewGridView.swift */; };
+		29F7D8E42749040900B50844 /* HealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8E32749040900B50844 /* HealthStoreManager.swift */; };
+		29F7D8E52749040900B50844 /* HealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8E32749040900B50844 /* HealthStoreManager.swift */; };
+		29F7D8EA274939A300B50844 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8E9274939A300B50844 /* Comment.swift */; };
+		29F7D8EB274939A300B50844 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8E9274939A300B50844 /* Comment.swift */; };
+		29F7D8EE27493A0900B50844 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8ED27493A0900B50844 /* Step.swift */; };
+		29F7D8EF27493A0900B50844 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8ED27493A0900B50844 /* Step.swift */; };
+		29F7D8F027495EA900B50844 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F7D8E12748D8A700B50844 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -446,7 +449,6 @@
 		29E1DDFE272ED22900EC5E1D /* BigFiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigFiveView.swift; sourceTree = "<group>"; };
 		29E1DE01273046E500EC5E1D /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		29E1DE04273120BF00EC5E1D /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
-		29E1DE07273120CF00EC5E1D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = ItemProtocol/Comment.swift; sourceTree = "<group>"; };
 		29E1DE0A273121DF00EC5E1D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		29E1DE162731463300EC5E1D /* SquadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadViewModel.swift; sourceTree = "<group>"; };
 		29E1DE192731634900EC5E1D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -480,6 +482,10 @@
 		29ED115B271D734F00E67D8B /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 		29ED115E271D8EF500E67D8B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		29F7D8DE2747ECB100B50844 /* NewGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGridView.swift; sourceTree = "<group>"; };
+		29F7D8E12748D8A700B50844 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		29F7D8E32749040900B50844 /* HealthStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreManager.swift; sourceTree = "<group>"; };
+		29F7D8E9274939A300B50844 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		29F7D8ED27493A0900B50844 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -487,15 +493,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2964A30D27464B8D002C2595 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				296FA4912732AF8400FEBF8A /* OrderedCollections in Frameworks */,
-				2964A30F27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				29ED10F32710311A00E67D8B /* Kingfisher in Frameworks */,
 				296FA48D2732AF8400FEBF8A /* Collections in Frameworks */,
 				29552A4C270F029F0056E675 /* FirebaseStorageSwift-Beta in Frameworks */,
 				29552A48270F029F0056E675 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				296FA48F2732AF8400FEBF8A /* DequeModule in Frameworks */,
 				29552A4A270F029F0056E675 /* FirebaseStorage in Frameworks */,
+				29F7D8F027495EA900B50844 /* HealthKit.framework in Frameworks */,
 				29552A44270F029F0056E675 /* FirebaseAuth in Frameworks */,
 				2964A30727464B4F002C2595 /* FirebaseAppCheck in Frameworks */,
 				2964A30927464B67002C2595 /* FirebaseFunctions in Frameworks */,
@@ -694,9 +699,10 @@
 		29C46C0E270D600900754817 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				29ED1161271DB87000E67D8B /* ItemProtocol */,
+				29F7D8EC274939CE00B50844 /* Health */,
+				29ED1161271DB87000E67D8B /* Item */,
 				29ED115E271D8EF500E67D8B /* Protocols.swift */,
-				29E1DE07273120CF00EC5E1D /* Comment.swift */,
+				29F7D8E9274939A300B50844 /* Comment.swift */,
 				29C46C0F270D600900754817 /* User.swift */,
 				29ED11252719C3ED00E67D8B /* Tag.swift */,
 				29E1DE0A273121DF00EC5E1D /* Message.swift */,
@@ -724,6 +730,7 @@
 				2907B4AE272A832C001A3DA1 /* BranchViewModel.swift */,
 				29E1DD90272D54F900EC5E1D /* CommunityViewModel.swift */,
 				29E1DE162731463300EC5E1D /* SquadViewModel.swift */,
+				29F7D8E32749040900B50844 /* HealthStoreManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -838,6 +845,7 @@
 		29D2BA912727D9E7007F76B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29F7D8E12748D8A700B50844 /* HealthKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1027,7 +1035,7 @@
 			path = Task;
 			sourceTree = "<group>";
 		};
-		29ED1161271DB87000E67D8B /* ItemProtocol */ = {
+		29ED1161271DB87000E67D8B /* Item */ = {
 			isa = PBXGroup;
 			children = (
 				29552A6727100E850056E675 /* Journal.swift */,
@@ -1035,7 +1043,15 @@
 				29552A6D271010160056E675 /* Person.swift */,
 				2907B4A7272A7C6B001A3DA1 /* Branch.swift */,
 			);
-			path = ItemProtocol;
+			path = Item;
+			sourceTree = "<group>";
+		};
+		29F7D8EC274939CE00B50844 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				29F7D8ED27493A0900B50844 /* Step.swift */,
+			);
+			path = Health;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1066,8 +1082,6 @@
 				296FA4902732AF8400FEBF8A /* OrderedCollections */,
 				2964A30627464B4F002C2595 /* FirebaseAppCheck */,
 				2964A30827464B67002C2595 /* FirebaseFunctions */,
-				2964A30C27464B8D002C2595 /* FirebaseInAppMessaging-Beta */,
-				2964A30E27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta */,
 				2964A31027464B8D002C2595 /* FirebaseMessaging */,
 			);
 			productName = "Beliski (iOS)";
@@ -1129,6 +1143,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 29C46BE7270D5E8800754817;
 			packageReferences = (
@@ -1222,12 +1237,15 @@
 				29E1DE05273120BF00EC5E1D /* Like.swift in Sources */,
 				2942C851271FED2300ECD167 /* TagItemView.swift in Sources */,
 				29ED11262719C3ED00E67D8B /* Tag.swift in Sources */,
+				29F7D8EA274939A300B50844 /* Comment.swift in Sources */,
 				29E1DDE0272DB09700EC5E1D /* HiddenClueView.swift in Sources */,
 				29ED11402719E4B400E67D8B /* CheckboxStyle.swift in Sources */,
 				296FA4892731A1C400FEBF8A /* PopularBranchView.swift in Sources */,
+				29F7D8EE27493A0900B50844 /* Step.swift in Sources */,
 				29C46C39270D659D00754817 /* ResetPasswordView.swift in Sources */,
 				29ED1159271B470A00E67D8B /* Helplers.swift in Sources */,
 				2964A31C2747D116002C2595 /* PPDetailView.swift in Sources */,
+				29F7D8E42749040900B50844 /* HealthStoreManager.swift in Sources */,
 				29E1DDAE272D746C00EC5E1D /* LabelView.swift in Sources */,
 				29E1DD73272D307C00EC5E1D /* LineGraphtView.swift in Sources */,
 				29ED10F92710422600E67D8B /* JournalItemView.swift in Sources */,
@@ -1283,7 +1301,6 @@
 				29E1DDD4272DB04600EC5E1D /* LinkNetworkView.swift in Sources */,
 				29E1DDFC272ED1CF00EC5E1D /* MBTIView.swift in Sources */,
 				29E1DDF6272E591800EC5E1D /* SquadCardView.swift in Sources */,
-				29E1DE08273120CF00EC5E1D /* Comment.swift in Sources */,
 				29E1DDE9272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */,
 				29E1DDB8272D746C00EC5E1D /* LineChartView.swift in Sources */,
 				29D2BA8F2727D4DA007F76B8 /* SettingsView.swift in Sources */,
@@ -1341,7 +1358,6 @@
 				29E1DD7B272D326300EC5E1D /* BarGraphView.swift in Sources */,
 				29ED111727189A3200E67D8B /* SearchAndLinkingView.swift in Sources */,
 				29824B81273BACC600868C9B /* Journal.swift in Sources */,
-				29824B7D273BACC600868C9B /* Comment.swift in Sources */,
 				2907B4D2272C1594001A3DA1 /* SettingsLabelView.swift in Sources */,
 				29AC38CC273EF2FE00CA1B98 /* BlankView.swift in Sources */,
 				29824B78273BACB700868C9B /* CustomSecureTextField.swift in Sources */,
@@ -1376,12 +1392,14 @@
 				29824B73273BACB700868C9B /* Helplers.swift in Sources */,
 				29E1DDBB272D746C00EC5E1D /* MagnifierRect.swift in Sources */,
 				29824B8F273BAD1E00868C9B /* SquadCardView.swift in Sources */,
+				29F7D8EB274939A300B50844 /* Comment.swift in Sources */,
 				29824B72273BACB700868C9B /* ImagePicker.swift in Sources */,
 				29C46C3A270D659D00754817 /* ResetPasswordView.swift in Sources */,
 				2964A3252747D2BD002C2595 /* PPCard.swift in Sources */,
 				29552A7227101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				29E1DDB7272D746C00EC5E1D /* Legend.swift in Sources */,
 				29E1DDB5272D746C00EC5E1D /* LineView.swift in Sources */,
+				29F7D8EF27493A0900B50844 /* Step.swift in Sources */,
 				29ED1154271AE71E00E67D8B /* TimelineManager.swift in Sources */,
 				29C46C00270D5E8A00754817 /* MainView.swift in Sources */,
 				29ED115D271D735000E67D8B /* TagViewModel.swift in Sources */,
@@ -1458,6 +1476,7 @@
 				29ED113D2719E4B400E67D8B /* TaskRowItemView.swift in Sources */,
 				2964A31D2747D116002C2595 /* PPDetailView.swift in Sources */,
 				29ED11322719E49600E67D8B /* PersonListView.swift in Sources */,
+				29F7D8E52749040900B50844 /* HealthStoreManager.swift in Sources */,
 				2942C85B2721391E00ECD167 /* TagPanelViewModel.swift in Sources */,
 				2942C8552720099400ECD167 /* SubViews.swift in Sources */,
 				2942C80F271EB88800ECD167 /* DataLinkedManager.swift in Sources */,
@@ -1600,6 +1619,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Beliski--iOS--Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your daily acitivities including steps, sleep, exercise data will be fetched by our app for anlayzing physical wellbeing status. We will never share this data with third-party organization without your permission.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1638,6 +1658,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Beliski--iOS--Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your daily acitivities including steps, sleep, exercise data will be fetched by our app for anlayzing physical wellbeing status. We will never share this data with third-party organization without your permission.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1817,16 +1838,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
-		};
-		2964A30C27464B8D002C2595 /* FirebaseInAppMessaging-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseInAppMessaging-Beta";
-		};
-		2964A30E27464B8D002C2595 /* FirebaseInAppMessagingSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseInAppMessagingSwift-Beta";
 		};
 		2964A31027464B8D002C2595 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;

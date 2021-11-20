@@ -26,7 +26,17 @@ func convertFIRTimestamptoString(timestamp: Timestamp?) -> String {
         formatter.unitsStyle = .abbreviated
         return formatter.string(from: timestamp!.dateValue(), to: Date()) ?? "Timestamp cannot be converted"
     } else {
-        return "Timestamp is nil"
+        return "nil"
     }
 
+}
+
+func convertFIRTimetamptoWeekdayString(timestamp:Timestamp?) -> String {
+    if timestamp != nil {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: timestamp!.dateValue())
+    } else {
+        return "Timestamp is nil"
+    }
 }

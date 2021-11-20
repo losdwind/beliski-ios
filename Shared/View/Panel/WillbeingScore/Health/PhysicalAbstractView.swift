@@ -6,14 +6,24 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestoreSwift
 
 struct PhysicalAbstractView: View {
+    
+    @StateObject var healthStoreManager = HealthStoreManager()
+    
+    @State var steps:[Step] = []
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     // MARK: Number of Steps
-                    BarChartView(data: TestData.values ,
+                    BarChartView(data:
+                                    ChartData(values: steps.map{
+                        (convertFIRTimetamptoWeekdayString(timestamp: $0.localTimestamp), $0.count)}
+                                             ) ,
                                  title: "Steps",
                                  legend: "Weekly",
                                  valueSpecifier: "%.0f")
@@ -38,6 +48,22 @@ struct PhysicalAbstractView: View {
                         .padding()
                 }
                 
+                
+            }
+            .onAppear {
+                
+                if healthStoreManager.healthStore != nil {
+                    healthStoreManager.requestAuthorization { success in
+                        if success {
+                            healthStoreManager.calculateSteps { statisticsCollection in
+                                if let statisticsCollection = statisticsCollection {
+                                    // update the UI
+                                    self.steps = healthStoreManager.updateUIFromStatistics(statisticsCollection: statisticsCollection)
+                                }
+                            }
+                        }
+                    }
+                }
                 
             }
         }
