@@ -13,6 +13,8 @@ struct BeliskiApp: App {
     
     
     init(){
+        let providerFactory = AppCheckDebugProviderFactory()
+        AppCheck.setAppCheckProviderFactory(providerFactory)
         FirebaseApp.configure()
     }
 

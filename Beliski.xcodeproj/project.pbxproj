@@ -325,6 +325,12 @@
 		29F7D8EE27493A0900B50844 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8ED27493A0900B50844 /* Step.swift */; };
 		29F7D8EF27493A0900B50844 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8ED27493A0900B50844 /* Step.swift */; };
 		29F7D8F027495EA900B50844 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F7D8E12748D8A700B50844 /* HealthKit.framework */; };
+		29F7D8F5274A124600B50844 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 29F7D8F4274A124600B50844 /* GoogleSignIn */; };
+		29F7D8F7274A125D00B50844 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 29F7D8F6274A125D00B50844 /* GoogleSignIn */; };
+		29F7D8F9274A20B700B50844 /* AppleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8F8274A20B700B50844 /* AppleSignInService.swift */; };
+		29F7D8FA274A20B700B50844 /* AppleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8F8274A20B700B50844 /* AppleSignInService.swift */; };
+		29F7D8FC274A20C600B50844 /* GoogleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8FB274A20C600B50844 /* GoogleSignInService.swift */; };
+		29F7D8FD274A20C600B50844 /* GoogleSignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F7D8FB274A20C600B50844 /* GoogleSignInService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -486,6 +492,8 @@
 		29F7D8E32749040900B50844 /* HealthStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreManager.swift; sourceTree = "<group>"; };
 		29F7D8E9274939A300B50844 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		29F7D8ED27493A0900B50844 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		29F7D8F8274A20B700B50844 /* AppleSignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInService.swift; sourceTree = "<group>"; };
+		29F7D8FB274A20C600B50844 /* GoogleSignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,6 +514,7 @@
 				2964A30927464B67002C2595 /* FirebaseFunctions in Frameworks */,
 				2964A31127464B8D002C2595 /* FirebaseMessaging in Frameworks */,
 				29552A46270F029F0056E675 /* FirebaseFirestore in Frameworks */,
+				29F7D8F5274A124600B50844 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +527,7 @@
 				29D2BA9F2727D9E8007F76B8 /* Kingfisher in Frameworks */,
 				29D2BA952727D9E8007F76B8 /* FirebaseDynamicLinks in Frameworks */,
 				29D2BA9B2727D9E8007F76B8 /* FirebaseStorage in Frameworks */,
+				29F7D8F7274A125D00B50844 /* GoogleSignIn in Frameworks */,
 				29D2BA972727D9E8007F76B8 /* FirebaseFirestore in Frameworks */,
 				29824B6A273BABF900868C9B /* OrderedCollections in Frameworks */,
 				2964A31527464BC3002C2595 /* FirebaseFunctions in Frameworks */,
@@ -592,6 +602,8 @@
 			isa = PBXGroup;
 			children = (
 				29552A57270F0FEA0056E675 /* MediaUploader.swift */,
+				29F7D8F8274A20B700B50844 /* AppleSignInService.swift */,
+				29F7D8FB274A20C600B50844 /* GoogleSignInService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1083,6 +1095,7 @@
 				2964A30627464B4F002C2595 /* FirebaseAppCheck */,
 				2964A30827464B67002C2595 /* FirebaseFunctions */,
 				2964A31027464B8D002C2595 /* FirebaseMessaging */,
+				29F7D8F4274A124600B50844 /* GoogleSignIn */,
 			);
 			productName = "Beliski (iOS)";
 			productReference = 29C46BF4270D5E8A00754817 /* Beliski.app */;
@@ -1113,6 +1126,7 @@
 				2964A31227464BC3002C2595 /* FirebaseAppCheck */,
 				2964A31427464BC3002C2595 /* FirebaseFunctions */,
 				2964A31627464BC4002C2595 /* FirebaseMessaging */,
+				29F7D8F6274A125D00B50844 /* GoogleSignIn */,
 			);
 			productName = "Beliski (macOS)";
 			productReference = 29C46BFA270D5E8A00754817 /* Beliski.app */;
@@ -1150,6 +1164,7 @@
 				29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				29ED10F12710311A00E67D8B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				296FA48B2732AF8300FEBF8A /* XCRemoteSwiftPackageReference "swift-collections" */,
+				29F7D8F3274A124600B50844 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 29C46BF5270D5E8A00754817 /* Products */;
 			projectDirPath = "";
@@ -1252,9 +1267,11 @@
 				29E1DDF0272E4FE300EC5E1D /* BranchCardListView.swift in Sources */,
 				29C46C28270D600900754817 /* SquadView.swift in Sources */,
 				29552A54270F0F2E0056E675 /* ImagePicker.swift in Sources */,
+				29F7D8F9274A20B700B50844 /* AppleSignInService.swift in Sources */,
 				29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29E1DDD7272DB06100EC5E1D /* AllTagsView.swift in Sources */,
 				29E1DDDD272DB08600EC5E1D /* MainThreadView.swift in Sources */,
+				29F7D8FC274A20C600B50844 /* GoogleSignInService.swift in Sources */,
 				29E1DDED272E4C3200EC5E1D /* TopicView.swift in Sources */,
 				29F7D8DF2747ECB100B50844 /* NewGridView.swift in Sources */,
 				29E1DD65272D12F300EC5E1D /* PrivateStatsBarView.swift in Sources */,
@@ -1352,6 +1369,7 @@
 				29C46C37270D658500754817 /* SignUpView.swift in Sources */,
 				29E1DD69272D27DD00EC5E1D /* CarouselView.swift in Sources */,
 				29552A7727101B620056E675 /* PanelView.swift in Sources */,
+				29F7D8FD274A20C600B50844 /* GoogleSignInService.swift in Sources */,
 				29E1DDC9272D746C00EC5E1D /* PieChartCell.swift in Sources */,
 				29824B8E273BAD1E00868C9B /* SquadView.swift in Sources */,
 				29E1DDB1272D746C00EC5E1D /* BarChartCell.swift in Sources */,
@@ -1401,6 +1419,7 @@
 				29E1DDB5272D746C00EC5E1D /* LineView.swift in Sources */,
 				29F7D8EF27493A0900B50844 /* Step.swift in Sources */,
 				29ED1154271AE71E00E67D8B /* TimelineManager.swift in Sources */,
+				29F7D8FA274A20B700B50844 /* AppleSignInService.swift in Sources */,
 				29C46C00270D5E8A00754817 /* MainView.swift in Sources */,
 				29ED115D271D735000E67D8B /* TagViewModel.swift in Sources */,
 				296FA49A27330B8000FEBF8A /* BranchCardFooterView.swift in Sources */,
@@ -1801,6 +1820,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		29F7D8F3274A124600B50844 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1918,6 +1945,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29ED10F12710311A00E67D8B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		29F7D8F4274A124600B50844 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29F7D8F3274A124600B50844 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		29F7D8F6274A125D00B50844 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29F7D8F3274A124600B50844 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

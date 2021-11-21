@@ -10,6 +10,7 @@ import Firebase
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestoreSwift
+import GoogleSignIn
 import SwiftUI
 
 class AuthViewModel: ObservableObject {
@@ -19,12 +20,53 @@ class AuthViewModel: ObservableObject {
     @Published var isShowingSignUpView:Bool = false
     
     static let shared = AuthViewModel()
-    
+
     
     @AppStorage(CurrentUserDefaults.userID) var userID: String?
     @AppStorage(CurrentUserDefaults.nickName) var nickName:String?
     @AppStorage(CurrentUserDefaults.profileImgURL) var profileImageURL:String?
 
+    
+    
+    func logInUserToFirebase(credential:FIRGoogleAuthCredential) async -> Bool{
+        
+    }
+    
+    func logInUserToFirebase(credential:OAuthCredential) async -> (_ providerID: String?, _ isError: Bool, _ isNewUser: Bool?, _ userID: String?) {
+        
+        Auth.auth().signIn(with: credential) { (result, err) in
+            
+            if let error = err{
+                self.handleError(error: error)
+                return
+            }
+            
+            guard let user = result?.user else {
+                handler(nil, true, nil, nil)
+                return
+            }
+            
+            self.checkIfUserExistsInFirestore(providerID: user.uid) { (returnedUserID) in
+                
+                if let userID = returnedUserID {
+                    // User exists, log in to app immediately
+                    handler(user.uid, false, false, userID)
+                    return
+                    
+                } else {
+                    // User exist in Authenticate but no in the firestore, try register with the same method again
+                    handler(user.uid, false, true, nil)
+                    return
+                }
+                
+            }
+        }
+    }
+    
+    
+    
+    
+    
     
     func logInUserToFirebase(email: String, password: String, handler: @escaping (_ providerID: String?, _ isError: Bool, _ isNewUser: Bool?, _ userID: String?) -> ()){
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
@@ -57,6 +99,10 @@ class AuthViewModel: ObservableObject {
     }
     
     
+    
+    
+    
+    
     func logInUserToAppStorage(userID: String, handler: @escaping (_ success: Bool) -> ()) {
         
         
@@ -86,6 +132,60 @@ class AuthViewModel: ObservableObject {
     }
     
 
+    
+    
+    func registerToCloudStore(user: FirebaseAuth.User,  handler: @escaping (_ success: Bool) -> ()) {
+        
+        
+        // Set up a user Document with the user Collection
+        let document = COLLECTION_USERS.document()
+                    
+        let data = User(id: user.uid, email: user.email, profileImageURL: user.photoURL, nickName: user.displayName, dateCreated:Timestamp(date: Date()))
+            
+            do {
+                try document.setData(from: data)
+
+            } catch let error {
+                print("Error upload User to Firestore: \(error)")
+                handler(false)
+                return
+            }
+            
+//
+//            let privates = Private(id: user.uid, email: email, profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
+//            let privateDocument = COLLECTION_USERS.document(user.uid).collection("privates").document(user.uid)
+//            do {
+//                try privateDocument.setData(from: privates)
+//                print("successfully generate user privates data to firestore")
+//            } catch let error{
+//                print("Error upload Privates to Firestore: \(error)")
+//                handler(false)
+//                return
+//            }
+//
+//
+//
+//            let userSubscribe = UserSubscibe(id: user.uid, profileImageURL: imageUrl, nickName: nickName)
+//            let userSubscribeDocument = COLLECTION_USERS.document(user.uid).collection("usersubscribe").document(user.uid)
+//            do {
+//                try userSubscribeDocument.setData(from: userSubscribe)
+//                print("successfully initialize user subscription data to firestore")
+//            } catch let error{
+//                print("Error initialize user subscription data to Firestore: \(error)")
+//                handler(false)
+//                return
+//            }
+            
+            
+            print("Successfully uploaded user data to firestore...")
+
+            
+            
+            handler(true)
+            return
+            
+        
+    }
   
     
     func register(email: String, password: String,
@@ -103,67 +203,37 @@ class AuthViewModel: ObservableObject {
                 return
             }
             
-            
             guard let user = result?.user else {
                 handler(false)
                 return }
             print("Successfully registered user...")
             
-            // Set up a user Document with the user Collection
-            let document = COLLECTION_USERS.document()
-            
             MediaUploader.uploadImage(image: image, type: .profile) { imageUrl in
-                
-                let data = User(id: user.uid, email: email, profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
-                
-                do {
-                    try document.setData(from: data)
-
-                } catch let error {
-                    print("Error upload User to Firestore: \(error)")
-                    handler(false)
-                    return
+                user.photoURL = URL(string: imageUrl)
+                self.registerToCloudStore(user: user) { success in
+                    if success {
+                        handler(true)
+                    } else {
+                        handler(false)
+                        print("failed to register user")
+                    }
                 }
-                
-                
-                let privates = Private(id: user.uid, email: email, profileImageURL: imageUrl, nickName: nickName, dateCreated:Timestamp(date: Date()))
-                let privateDocument = COLLECTION_USERS.document(user.uid).collection("privates").document(user.uid)
-                do {
-                    try privateDocument.setData(from: privates)
-                    print("successfully generate user privates data to firestore")
-                } catch let error{
-                    print("Error upload Privates to Firestore: \(error)")
-                    handler(false)
-                    return
-                }
-                
-                
-                
-                let userSubscribe = UserSubscibe(id: user.uid, profileImageURL: imageUrl, nickName: nickName)
-                let userSubscribeDocument = COLLECTION_USERS.document(user.uid).collection("usersubscribe").document(user.uid)
-                do {
-                    try userSubscribeDocument.setData(from: userSubscribe)
-                    print("successfully initialize user subscription data to firestore")
-                } catch let error{
-                    print("Error initialize user subscription data to Firestore: \(error)")
-                    handler(false)
-                    return
-                }
-                
-                
-                print("Successfully uploaded user data to firestore...")
-
-                
-                
-                handler(true)
-                return
-                
             }
+
+            
+            
+            
+            
+           
             
             
             
         }
     }
+    
+    
+    
+    
     
     func signout(handler: @escaping (_ success: Bool) -> ()) {
         do {

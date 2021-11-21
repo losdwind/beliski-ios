@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct LogInView: View {
         
@@ -17,6 +18,7 @@ struct LogInView: View {
     @State private var isShowingLogInProgressView = false
     @Environment(\.presentationMode) var presentationMode
     
+    @StateObject var appleSignInService = AppleSignInService()
     
     var body: some View {
         NavigationView {
@@ -66,7 +68,46 @@ struct LogInView: View {
 
                 
                     
+                // Apple Sign In...
+                // See my Apple Sign in Video for more depth....
+                SignInWithAppleButton(onRequest: { request in
+                    
+                    // requesting paramertes from apple login...
+                    appleSignInService.nonce = randomNonceString()
+                    request.requestedScopes = [.email,.fullName]
+                    request.nonce = sha256(appleSignInService.nonce)
+                    
+                }, onCompletion: { result in
+                    
+                    // getting error or success...
+                    
+                    switch result{
+                    case .success(let user):
+                        print("success")
+                        // do Login With Firebase...
+                        guard let credential = user.credential as? ASAuthorizationAppleIDCredential else{
+                            print("error with firebase")
+                            return
+                        }
+                        appleSignInService.authenticate(credential: credential)
+                    case.failure(let error):
+                        print(error.localizedDescription)
+                    }
+                    
+                })
+                .signInWithAppleButtonStyle(.whiteOutline)
+                .frame(width: 55,height: 55)
+                .opacity(0.02)
+                
+            )
+                
+                
+                
+                
+                
+
                 Spacer()
+                
                 
                 NavigationLink(
                     destination:
