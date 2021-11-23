@@ -16,22 +16,13 @@ import AuthenticationServices
 import CryptoKit
 
 class AuthViewModel: ObservableObject {
-    init(){
-        addListeners()
-    }
+
     
     @Published var didSendResetPasswordLink = false
 
     
     static let shared = AuthViewModel()
     
-    
-    @Published var currentUser:FirebaseAuth.User?
-    
-    // user state handler
-    var handle: AuthStateDidChangeListenerHandle?
-    
-
     @AppStorage(CurrentUserDefaults.userID) var userID: String?
     @AppStorage(CurrentUserDefaults.nickName) var nickName:String?
     @AppStorage(CurrentUserDefaults.profileImageURL) var profileImageURL:String?
@@ -40,20 +31,6 @@ class AuthViewModel: ObservableObject {
     // For Apple Signin...
     @Published var nonce = ""
 
-    private func addListeners() {
-      if let handle = handle {
-        Auth.auth().removeStateDidChangeListener(handle)
-      }
-
-        handle = Auth.auth()
-        .addStateDidChangeListener { auth, user in
-            if let user = user {
-                self.currentUser = user
-            } else {
-                self.currentUser = nil
-            }
-        }
-    }
     
 // MARK: - Sign In with Apple
     func signInWithApple(credential: ASAuthorizationAppleIDCredential){

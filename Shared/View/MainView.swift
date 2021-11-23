@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MainView: View {
     
@@ -25,11 +26,12 @@ struct MainView: View {
     @StateObject var communityvm = CommunityViewModel()
     @StateObject var squadvm = SquadViewModel()
     
-    
+    @AppStorage(CurrentUserDefaults.userID) var userID: String?
+
     
     var body: some View {
         
-        if AuthViewModel.shared.currentUser == nil {
+        if userID == nil {
             SignInView()
         } else {
             TabView(selection: $selectedTab){
