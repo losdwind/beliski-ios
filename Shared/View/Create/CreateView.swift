@@ -11,7 +11,7 @@ import SwiftUI
 struct CreateView: View {
     
     @ObservedObject var journalvm: JournalViewModel
-    @ObservedObject var taskvm: TaskViewModel
+    @ObservedObject var todovm: TodoViewModel
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var branchvm:BranchViewModel
     
@@ -25,7 +25,7 @@ struct CreateView: View {
 
                     PPCarouselView(cards: PPCards)
                   
-                    NewGridView(journalvm: journalvm, taskvm: taskvm, personvm: personvm, branchvm: branchvm)
+                    NewGridView(journalvm: journalvm, todovm: todovm, personvm: personvm, branchvm: branchvm)
                 
                 Spacer()
                 
@@ -50,10 +50,10 @@ struct CreateView: View {
     //            PersonEditorView(personTagvm: TagViewModel(), personvm: personvm)
     //        }
     //
-    //        .halfSheet(isPresented: $isShowingTaskEditor) {
+    //        .halfSheet(isPresented: $isShowingTodoEditor) {
     //
     //        } content: {
-    //            TaskEditorView(taskvm: taskvm)
+    //            TodoEditorView(todovm: todovm)
     //        }
                 
             .navigationBarHidden(true)
@@ -66,6 +66,6 @@ struct CreateView: View {
 
 struct CreateView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateView(journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), branchvm: BranchViewModel())
+        CreateView(journalvm: JournalViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), branchvm: BranchViewModel())
     }
 }

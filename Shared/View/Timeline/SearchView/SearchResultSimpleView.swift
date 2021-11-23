@@ -47,28 +47,28 @@ struct SearchResultView: View {
             }
             
             
-        case .task:
+        case .todo:
             VStack{
-                ForEach(searchvm.filteredTasks, id: \.self){
-                    task in
+                ForEach(searchvm.filteredTodos, id: \.self){
+                    todo in
                     Button {
-                        if searchvm.selectedTasks.contains(task){
-                            searchvm.selectedTasks.remove(task)
+                        if searchvm.selectedTodos.contains(todo){
+                            searchvm.selectedTodos.remove(todo)
                         } else {
-                            searchvm.selectedTasks.insert(task)
+                            searchvm.selectedTodos.insert(todo)
                         }
                     } label: {
                         ZStack(alignment:.center){
                             
                 
-                            TaskRowItemView(task: task)
+                            TodoRowItemView(todo: todo)
                                 .foregroundColor(.primary)
-                                .blur(radius:  searchvm.selectedTasks.contains(task) ? 5 : 0)
+                                .blur(radius:  searchvm.selectedTodos.contains(todo) ? 5 : 0)
                             
                             Image(systemName: "checkmark")
                                 .font(.largeTitle)
                                 .foregroundColor(.pink)
-                                .opacity(searchvm.selectedTasks.contains(task) ? 1 : 0)
+                                .opacity(searchvm.selectedTodos.contains(todo) ? 1 : 0)
                         }
                         .padding()
                     }

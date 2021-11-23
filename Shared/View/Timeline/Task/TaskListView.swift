@@ -1,5 +1,5 @@
 //
-//  TaskListView.swift
+//  TodoListView.swift
 //  Beliski
 //
 //  Created by Wind Losd on 2021/5/8.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct TaskListView: View {
+struct TodoListView: View {
     
     // FETCHING DATA
-    @ObservedObject var taskvm: TaskViewModel
+    @ObservedObject var todovm: TodoViewModel
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var tagPanelvm: TagPanelViewModel
     @ObservedObject var dataLinkedManager: DataLinkedManager
     
     
-    @State var isUpdatingTask = false
+    @State var isUpdatingTodo = false
     @State var isLinkingItem = false
     @State var isShowingLinkedItemView: Bool = false
     
@@ -30,8 +30,8 @@ struct TaskListView: View {
         ScrollView(.vertical, showsIndicators: false) {
             ZStack{
             LazyVStack(alignment: .leading) {
-                ForEach(taskvm.fetchedTasks, id: \.id) { task in
-                    TaskRowItemView(task: task)
+                ForEach(todovm.fetchedTodos, id: \.id) { todo in
+                    TodoRowItemView(todo: todo)
                         
                     
                         .background {
@@ -45,9 +45,9 @@ struct TaskListView: View {
                             
                             // Delete
                             Button(action: {
-                                taskvm.deleteTask(task: task) { success in
+                                todovm.deleteTodo(todo: todo) { success in
                                     if success {
-                                        taskvm.fetchTasks { _ in }
+                                        todovm.fetchTodos { _ in }
                                     }
                                 }
                                 
@@ -58,8 +58,8 @@ struct TaskListView: View {
                             
                             // Edit
                             Button(action: {
-                                isUpdatingTask = true
-                                taskvm.task = task
+                                isUpdatingTodo = true
+                                todovm.todo = todo
                                 
                             }
                                    , label: { Label(
@@ -76,24 +76,24 @@ struct TaskListView: View {
                                     icon: { Image(systemName: "link.circle") }) })
                         }
                         .frame(alignment: .topLeading)
-//                        .sheet(isPresented: $isUpdatingTask) {
-//                            taskvm.task = Task()
+//                        .sheet(isPresented: $isUpdatingTodo) {
+//                            todovm.todo = Todo()
 //
 //                        } content: {
-//                            TaskEditorView(taskvm: taskvm)
+//                            TodoEditorView(todovm: todovm)
 //                        }
                     
                     
                     
                         .sheet(isPresented: $isLinkingItem) {
-                            SearchAndLinkingView(item: task, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                            SearchAndLinkingView(item: todo, searchvm: searchvm, tagPanelvm: tagPanelvm)
                             
                             
                             
                         }
                         .onTapGesture(perform: {
                             isShowingLinkedItemView.toggle()
-                            dataLinkedManager.linkedIds = task.linkedItems
+                            dataLinkedManager.linkedIds = todo.linkedItems
                             dataLinkedManager.fetchItems { success in
                                 if success {
                                     print("successfully loaded the linked Items from DataLinkedManager")
@@ -109,20 +109,20 @@ struct TaskListView: View {
             } //: VStack
             .padding()
             .frame(maxWidth: 640)
-            .blur(radius: isUpdatingTask ? 5 : 0)
+            .blur(radius: isUpdatingTodo ? 5 : 0)
                 
                 
-                if isUpdatingTask {
+                if isUpdatingTodo {
                   BlankView(
                     backgroundColor: isDarkMode ? Color.black : Color.gray,
                     backgroundOpacity: isDarkMode ? 0.3 : 0.5)
                     .onTapGesture {
                       withAnimation() {
-                          isUpdatingTask = false
+                          isUpdatingTodo = false
                       }
                     }
                   
-                    TaskEditorView(taskvm: taskvm)
+                    TodoEditorView(todovm: todovm)
                 }
                 
                 
@@ -135,16 +135,16 @@ struct TaskListView: View {
     
 }
 
-struct TaskListView_Previews: PreviewProvider {
+struct TodoListView_Previews: PreviewProvider {
     
-    static var taskvm: TaskViewModel {
-        let taskvm = TaskViewModel()
-        taskvm.fetchTasks { _ in }
-        return taskvm
+    static var todovm: TodoViewModel {
+        let todovm = TodoViewModel()
+        todovm.fetchTodos { _ in }
+        return todovm
     }
     
     static var previews: some View {
-        TaskListView(taskvm: TaskViewModel(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), dataLinkedManager: DataLinkedManager())
+        TodoListView(todovm: TodoViewModel(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), dataLinkedManager: DataLinkedManager())
             .previewLayout(.sizeThatFits)
         
     }

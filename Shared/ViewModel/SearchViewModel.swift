@@ -30,18 +30,18 @@ class SearchViewModel: ObservableObject {
     
     
     @Published var filteredJournals: [Journal] = [Journal]()
-    @Published var filteredTasks: [Task] = [Task]()
+    @Published var filteredTodos: [Todo] = [Todo]()
     @Published var filteredPersons:[Person] = [Person]()
     @Published var filteredBranches:[Branch] = [Branch]()
     
     
     //
     //    @Published var journal:Journal = Journal()
-    //    @Published var task:Task = Task()
+    //    @Published var todo:Todo = Todo()
     //    @Published var person:Person = Person()
     //    @Published var branch:Branch = Branch()
     @Published var selectedJournals: Set<Journal> = Set<Journal>()
-    @Published var selectedTasks: Set<Task> = Set<Task>()
+    @Published var selectedTodos: Set<Todo> = Set<Todo>()
     @Published var selectedPersons:Set<Person> = Set<Person>()
     @Published var selectedBranches: Set<Branch> = Set<Branch>()
     
@@ -56,8 +56,8 @@ class SearchViewModel: ObservableObject {
             idSet.insert(journal.id)
         }
         
-        for task in selectedTasks {
-            idSet.insert(task.id)
+        for todo in selectedTodos {
+            idSet.insert(todo.id)
         }
         
         for person in selectedPersons{
@@ -86,13 +86,13 @@ class SearchViewModel: ObservableObject {
             }
         }
         
-        if let source = item as? Task {
+        if let source = item as? Todo {
             sourceID = source.id
-            let vm = TaskViewModel()
-            vm.task = source
-            vm.task.linkedItems = Array(idSet.union(Set(source.linkedItems)))
+            let vm = TodoViewModel()
+            vm.todo = source
+            vm.todo.linkedItems = Array(idSet.union(Set(source.linkedItems)))
             group.enter()
-            vm.uploadTask { success in
+            vm.uploadTodo { success in
                 if success {
                     group.leave()
                 } else {
@@ -158,14 +158,14 @@ class SearchViewModel: ObservableObject {
         }
         
         
-        for task in selectedTasks{
-            if !task.linkedItems.contains(sourceID){
+        for todo in selectedTodos{
+            if !todo.linkedItems.contains(sourceID){
                 group.enter()
-                var newTask = task
-                newTask.linkedItems.append(sourceID)
-                let vm = TaskViewModel()
-                vm.task = newTask
-                vm.uploadTask { success in
+                var newTodo = todo
+                newTodo.linkedItems.append(sourceID)
+                let vm = TodoViewModel()
+                vm.todo = newTodo
+                vm.uploadTodo { success in
                     if success {
                         group.leave()
                     } else {
@@ -223,7 +223,7 @@ class SearchViewModel: ObservableObject {
         group.notify(queue: .main){
             completion(true)
             self.selectedJournals = Set<Journal>()
-            self.selectedTasks = Set<Task>()
+            self.selectedTodos = Set<Todo>()
             self.selectedPersons = Set<Person>()
             self.selectedBranches = Set<Branch>()
         }
@@ -263,7 +263,7 @@ class SearchViewModel: ObservableObject {
         
         group.enter()
         
-        COLLECTION_USERS.document(userID).collection("tasks")
+        COLLECTION_USERS.document(userID).collection("todos")
             .whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dateStart))
             .whereField("localTimestamp", isLessThanOrEqualTo: Timestamp(date: dateEnd))
             .order(by: "localTimestamp", descending: true)
@@ -271,7 +271,7 @@ class SearchViewModel: ObservableObject {
                 guard let documents = snapshot?.documents else {
                     group.leave()
                     return }
-                self.filteredTasks = documents.compactMap({try? $0.data(as: Task.self)})
+                self.filteredTodos = documents.compactMap({try? $0.data(as: Todo.self)})
                 group.leave()
             }
         
@@ -291,7 +291,7 @@ class SearchViewModel: ObservableObject {
             }
         
         group.notify(queue: .main){
-            print("successfully get the filtered items for each type (journals, tasks and persons)")
+            print("successfully get the filtered items for each type (journals, todos and persons)")
             handler(true)
             return
         }
@@ -313,7 +313,7 @@ class SearchViewModel: ObservableObject {
             }
         
         group.notify(queue: .main){
-            print("successfully get the filtered items for each type (journals, tasks and persons branches)")
+            print("successfully get the filtered items for each type (journals, todos and persons branches)")
             handler(true)
             return
         }

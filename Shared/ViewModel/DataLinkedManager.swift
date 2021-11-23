@@ -16,7 +16,7 @@ class DataLinkedManager: ObservableObject {
 
     @Published var linkedIds:[String] = []
     @Published var linkedJournals:[Journal] = [Journal]()
-    @Published var linkedTasks:[Task] = [Task]()
+    @Published var linkedTodos:[Todo] = [Todo]()
     @Published var linkedPersons:[Person] = [Person]()
     
     
@@ -47,7 +47,7 @@ class DataLinkedManager: ObservableObject {
         
         
         self.linkedJournals = [Journal]()
-        self.linkedTasks = [Task]()
+        self.linkedTodos = [Todo]()
         self.linkedPersons = [Person]()
         
         
@@ -100,15 +100,15 @@ class DataLinkedManager: ObservableObject {
             }
             
             group.enter()
-            COLLECTION_USERS.document(userID).collection("tasks").document(id).getDocument { (document, error) in
+            COLLECTION_USERS.document(userID).collection("todos").document(id).getDocument { (document, error) in
                 let result = Result {
-                      try document?.data(as: Task.self)
+                      try document?.data(as: Todo.self)
                     }
                     switch result {
-                    case .success(let task):
-                        if let task = task {
+                    case .success(let todo):
+                        if let todo = todo {
                             // A `City` value was successfully initialized from the DocumentSnapshot.
-                            self.linkedTasks.append(task)
+                            self.linkedTodos.append(todo)
                         } else {
                             // A nil value was successfully initialized from the DocumentSnapshot,
                             // or the DocumentSnapshot was nil.

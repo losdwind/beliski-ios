@@ -81,21 +81,26 @@ struct SignUpView: View {
             
             Button(action: {
                 isShowingRegisterProgressView.toggle()
-                AuthViewModel.shared.register(email: email, password: password,
-                                              profileImage: selectedImage, nickName: nickname,
-                                              userName: username)
-                                                {success in
-                                                    if success {
-                                                        // MARK: - need to async?
-                                                        isShowingAlert.toggle()
-                                                        isShowingRegisterProgressView.toggle()
-                                                        
-                                                    }
+                Task {
+                    do {
+                        let success = try await AuthViewModel.shared.signUpWithEmail(email: email, password: password)
+                        if success {
+                            isShowingAlert.toggle()
+                            isShowingRegisterProgressView.toggle()
+                        }
+                        
+                    } catch {
+                        print(error)
+                    }
+                    
+                                }
+                
+                            
                 }
                 
                 
                 
-            }, label: {
+            , label: {
                 
                 if isShowingRegisterProgressView {
                     ProgressView()

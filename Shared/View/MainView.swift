@@ -15,7 +15,7 @@ struct MainView: View {
     
     @StateObject var profilevm = ProfileViewModel()
     @StateObject var journalvm = JournalViewModel()
-    @StateObject var taskvm = TaskViewModel()
+    @StateObject var todovm = TodoViewModel()
     @StateObject var personvm = PersonViewModel()
     @StateObject var timelineManager = TimelineManager()
     @StateObject var dataLinkedManager = DataLinkedManager()
@@ -25,19 +25,17 @@ struct MainView: View {
     @StateObject var communityvm = CommunityViewModel()
     @StateObject var squadvm = SquadViewModel()
     
-    @AppStorage(CurrentUserDefaults.userID) var userID: String?
-
+    
+    
     var body: some View {
         
-        if userID == nil {
-            
-            LogInView()
-            
+        if AuthViewModel.shared.currentUser == nil {
+            SignInView()
         } else {
             TabView(selection: $selectedTab){
                 
                 // Show the timeline of user journals
-                TimelineView(timelineManger: timelineManager, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm, profilevm: profilevm)
+                TimelineView(timelineManger: timelineManager, journalvm: journalvm, todovm: todovm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm, profilevm: profilevm)
                     .tabItem{
                         VStack{
                             Image(systemName: "text.redaction")
@@ -56,7 +54,7 @@ struct MainView: View {
                     }.tag(MainTab.score)
                 
                 // Show the create launcher with multiple categories of journal type
-                CreateView(journalvm: journalvm, taskvm: taskvm, personvm: personvm, branchvm: branchvm)
+                CreateView(journalvm: journalvm, todovm: todovm, personvm: personvm, branchvm: branchvm)
                     .tabItem {
                         Image(systemName: "plus.circle")
                     }.tag(MainTab.create)
@@ -103,12 +101,12 @@ struct MainView: View {
                 }
             }
             .onAppear(perform:{
-                taskvm.fetchTasks(handler: {
+                todovm.fetchTodos(handler: {
                     success in
                     if success {
-                        print("successfully fetched the tasks from firebase ")
+                        print("successfully fetched the todos from firebase ")
                     } else {
-                        print("failed to fetched the tasks from firebase")
+                        print("failed to fetched the todos from firebase")
                     }
                 })
             }

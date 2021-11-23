@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import GoogleSignIn
 
 @main
 struct BeliskiApp: App {
@@ -15,7 +16,9 @@ struct BeliskiApp: App {
     init(){
         let providerFactory = AppCheckDebugProviderFactory()
         AppCheck.setAppCheckProviderFactory(providerFactory)
+        
         FirebaseApp.configure()
+
     }
 
     var body: some Scene {

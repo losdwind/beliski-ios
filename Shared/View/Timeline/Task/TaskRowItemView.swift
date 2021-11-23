@@ -1,5 +1,5 @@
 //
-//  TaskRowItemView.swift
+//  TodoRowItemView.swift
 //  Beliski
 //
 //  Created by Wind Losd on 2021/5/8.
@@ -7,29 +7,29 @@
 
 import SwiftUI
 
-struct TaskRowItemView: View {
+struct TodoRowItemView: View {
     
-    var task:Task
+    var todo:Todo
     @State var completion:Bool
     
-    init(task:Task){
-        self.task = task
-        self.completion = task.completion
+    init(todo:Todo){
+        self.todo = todo
+        self.completion = todo.completion
     }
     var body: some View {
         withAnimation {
             Toggle(isOn: $completion){
-                Text(task.content)
+                Text(todo.content)
                     .font(.system(.body, design: .rounded))
                     .foregroundColor(completion ? Color.pink : Color.primary)
                 Spacer()
         } //: Toggle
         .toggleStyle(CheckboxStyle())
         .onChange(of: completion) { newValue in
-            let tempTaskvm = TaskViewModel()
-            tempTaskvm.task = task
-            tempTaskvm.task.completion = newValue
-            tempTaskvm.uploadTask{_ in }
+            let tempTodovm = TodoViewModel()
+            tempTodovm.todo = todo
+            tempTodovm.todo.completion = newValue
+            tempTodovm.uploadTodo{_ in }
         }
         .padding()
         .background(Color.gray.opacity(0.2))
@@ -40,20 +40,20 @@ struct TaskRowItemView: View {
     }
 }
 
-//struct TaskRowItemView_Previews: PreviewProvider {
+//struct TodoRowItemView_Previews: PreviewProvider {
 //    
 //    init(){
-//        self.taskvm = TaskViewModel()
-//        taskvm.fetchTasks(handler: {_ in })
-//        self.task = self.taskvm.fetchedTasks[0]
+//        self.todovm = TodoViewModel()
+//        todovm.fetchTodos(handler: {_ in })
+//        self.todo = self.todovm.fetchedTodos[0]
 //    }
 //    
-//    @State var task:Task
-//    @StateObject var taskvm: TaskViewModel
+//    @State var todo:Todo
+//    @StateObject var todovm: TodoViewModel
 //    
 //
 //    static var previews: some View {
-//        TaskRowItemView(task: $task, taskvm: TaskViewModel())
+//        TodoRowItemView(todo: $todo, todovm: TodoViewModel())
 //            .previewLayout(.sizeThatFits)
 //        
 //    }

@@ -30,11 +30,11 @@ struct LinkedItemsView: View {
                 
                 
                 
-                Text("Tasks")
+                Text("Todos")
                     .font(.title3.bold())
-                    ForEach(dataLinkedManager.linkedTasks){
-                        task in
-                        TaskRowItemView(task: task)
+                    ForEach(dataLinkedManager.linkedTodos){
+                        todo in
+                        TodoRowItemView(todo: todo)
                     }
 
                 Text("Persons")

@@ -8,7 +8,7 @@
 import SwiftUI
 import AuthenticationServices
 
-struct LogInView: View {
+struct SignInView: View {
         
     @State private var email:String = ""
     @State private var password: String = ""
@@ -18,7 +18,7 @@ struct LogInView: View {
     @State private var isShowingLogInProgressView = false
     @Environment(\.presentationMode) var presentationMode
     
-    @StateObject var appleSignInService = AppleSignInService()
+    
     
     var body: some View {
         NavigationView {
@@ -29,13 +29,13 @@ struct LogInView: View {
                     .frame(width: 200.0)
 
                 
-                
+                // Email/Password Sign In
                 VStack(alignment: .leading, spacing: 20.0) {
                     CustomTextField(text: $email, placeholder: "Email", labelImage: "envelope")
                     
                     CustomSecureTextField(text: $password, placeholder: "Password", labelImage: "lock")
                 }
-                .padding(.horizontal, 50.0)
+                .frame(width: 300)
 
                 HStack {
                     Spacer()
@@ -53,8 +53,19 @@ struct LogInView: View {
             
                 
                 Button {
-                    isShowingLogInProgressView.toggle()
-                    connectToFirebase(email: email, password: password)
+                    Task {
+                               do {
+                                   isShowingLogInProgressView.toggle()
+                                   try await AuthViewModel.shared.signInWithEmail(email: email, password: password)
+                                   
+                                       isShowingLogInProgressView.toggle()
+                                   
+
+                               } catch {
+                                   print(error)
+                               }
+                    }
+                       
                 } label: {
                     if isShowingLogInProgressView {
                         ProgressView()
@@ -63,8 +74,8 @@ struct LogInView: View {
                             .font(.headline)
                             .foregroundColor(.primary)
                     }
-                    
                 }
+                
 
                 
                     
@@ -73,9 +84,9 @@ struct LogInView: View {
                 SignInWithAppleButton(onRequest: { request in
                     
                     // requesting paramertes from apple login...
-                    appleSignInService.nonce = randomNonceString()
+                    AuthViewModel.shared.nonce = AuthViewModel.shared.randomNonceString()
                     request.requestedScopes = [.email,.fullName]
-                    request.nonce = sha256(appleSignInService.nonce)
+                    request.nonce = AuthViewModel.shared.sha256(AuthViewModel.shared.nonce)
                     
                 }, onCompletion: { result in
                     
@@ -89,23 +100,38 @@ struct LogInView: View {
                             print("error with firebase")
                             return
                         }
-                        appleSignInService.authenticate(credential: credential)
+                        AuthViewModel.shared.signInWithApple(credential: credential)
                     case.failure(let error):
                         print(error.localizedDescription)
                     }
                     
                 })
-                .signInWithAppleButtonStyle(.whiteOutline)
-                .frame(width: 55,height: 55)
-                .opacity(0.02)
+                    .signInWithAppleButtonStyle(.black)
+                    .frame(width:300, height: 40)
                 
-            )
-                
-                
-                
-                
-                
+                // Google Sign In
+                Button {
+                    AuthViewModel.shared.signInWithGoogle()
+                } label: {
+                    
+                    HStack(spacing: 5){
+                        
+                        Image("Google")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 18, height: 18)
+                        
+                        Text("Sign In with Google")
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .foregroundColor(Color.init(hexString: "000000"))
 
+                    }
+                    .frame(width:300, height: 40)
+                    .background(Color.init(hexString: "EEEEEE"), in: RoundedRectangle(cornerRadius: 8))
+                }
+                
+                
                 Spacer()
                 
                 
@@ -131,56 +157,12 @@ struct LogInView: View {
         }
     }
     
-    
-    func connectToFirebase(email: String, password:String) {
-        
-        AuthViewModel.shared.logInUserToFirebase(email:email, password:password) { (returnedProviderID, isError, isNewUser, returnedUserID)  in
-            if let newUser = isNewUser {
-                if newUser {
-                    // NEW USER
-                    if let providerID = returnedProviderID, !isError {
-                        self.errorMessage = "User exists in the database,but failed to get info, retry sign in or sign up as a new user"
-                        self.isShowingAlert.toggle()
-                    } else {
-                        // ERROR
-                        self.errorMessage = "Error getting provider ID from log in user to Firebase"
-                        self.isShowingAlert.toggle()
-                    }
-                } else {
-                    // EXISTING USER
-                    if let userID = returnedUserID {
-                        // SUCCESS, LOG IN TO APP
-                        AuthViewModel.shared.logInUserToAppStorage(userID: userID) { (success) in
-                            if success {
-                                print("Successful log in existing user")
-                                isShowingLogInProgressView.toggle()
-                                self.presentationMode.wrappedValue.dismiss()
-                            } else {
-                                self.errorMessage = "Error logging existing user into our app"
-                                self.isShowingAlert.toggle()
-                            }
-                        }
-                    } else {
-                        // ERROR
-                        self.errorMessage = "Error getting USER ID from existing user to Firebase"
-                        self.isShowingAlert.toggle()
-
-                    }
-                }
-            } else {
-                self.errorMessage = "Login failed There is no user record corresponding"
-                self.isShowingAlert.toggle()
-            }
-            
-        }
-        
-    }
-    
 }
 
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView()
+        SignInView()
     }
 }
+

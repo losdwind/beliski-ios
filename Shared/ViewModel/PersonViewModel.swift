@@ -27,7 +27,7 @@ class PersonViewModel: ObservableObject {
     func uploadPerson(handler: @escaping (_ success: Bool) -> ()) {
         
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid in uploadTask func")
+            print("userID is not valid in uploadTodo func")
             handler(false)
             return }
         if person.ownerID == "" {

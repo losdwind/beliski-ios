@@ -1,5 +1,5 @@
 //
-//  TaskViewModel.swift
+//  TodoViewModel.swift
 //  Beliski
 //
 //  Created by Losd wind on 2021/10/16.
@@ -11,35 +11,35 @@ import CoreData
 import Firebase
 import FirebaseFirestoreSwift
 
-class TaskViewModel: ObservableObject {
+class TodoViewModel: ObservableObject {
     
-    @Published var task:Task = Task()
+    @Published var todo:Todo = Todo()
     @Published var reminder: Date = Date()
-    @Published var fetchedTasks:[Task] = [Task]()
+    @Published var fetchedTodos:[Todo] = [Todo]()
     
     
-    func uploadTask(handler: @escaping (_ success: Bool) -> ()) {
+    func uploadTodo(handler: @escaping (_ success: Bool) -> ()) {
         
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid in uploadTask func")
+            print("userID is not valid in uploadTodo func")
             handler(false)
             return }
         
-        if task.ownerID == "" {
-            task.ownerID = userID
+        if todo.ownerID == "" {
+            todo.ownerID = userID
         }
         
-        if task.ownerID != userID {
+        if todo.ownerID != userID {
                 handler(false)
-                print("this task does not belong to you")
+                print("this todo does not belong to you")
                 return
             }
         
-        task.reminder = Timestamp(date: self.reminder)
+        todo.reminder = Timestamp(date: self.reminder)
 
             
             
-        let document = COLLECTION_USERS.document(userID).collection("tasks").document(task.id)
+        let document = COLLECTION_USERS.document(userID).collection("todos").document(todo.id)
        
        
         
@@ -52,7 +52,7 @@ class TaskViewModel: ObservableObject {
 
         
         do {
-            try document.setData(from: task)
+            try document.setData(from: todo)
             handler(true)
             
         } catch let error {
@@ -64,14 +64,14 @@ class TaskViewModel: ObservableObject {
     }
     
     
-    func deleteTask(task: Task, handler: @escaping (_ success: Bool) -> ()){
+    func deleteTodo(todo: Todo, handler: @escaping (_ success: Bool) -> ()){
         
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid")
             return }
         
         
-        COLLECTION_USERS.document(userID).collection("tasks").document(task.id).delete() { err in
+        COLLECTION_USERS.document(userID).collection("todos").document(todo.id).delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
                     handler(false)
@@ -89,31 +89,31 @@ class TaskViewModel: ObservableObject {
     
     
     
-    func fetchTasks(handler: @escaping (_ success: Bool) -> ()) {
+    func fetchTodos(handler: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchTasks function")
+            print("userID is not valid here in fetchTodos function")
             return
         }
         
-        COLLECTION_USERS.document(userID).collection("tasks").order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("todos").order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
-            self.fetchedTasks = documents.compactMap({try? $0.data(as: Task.self)})
+            self.fetchedTodos = documents.compactMap({try? $0.data(as: Todo.self)})
             handler(true)
         }
     }
     
     
-    func fetchTodayTasks(handler: @escaping (_ success: Bool) -> ()) {
+    func fetchTodayTodos(handler: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchTasks function")
+            print("userID is not valid here in fetchTodos function")
             return
         }
         
         let dayStart = Calendar.current.startOfDay(for: Date())
         
-        COLLECTION_USERS.document(userID).collection("tasks").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("todos").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
-            self.fetchedTasks = documents.compactMap({try? $0.data(as: Task.self)})
+            self.fetchedTodos = documents.compactMap({try? $0.data(as: Todo.self)})
             handler(true)
         }
     }

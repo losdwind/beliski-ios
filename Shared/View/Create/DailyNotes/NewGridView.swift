@@ -10,12 +10,12 @@ import Firebase
 struct NewGridView: View {
     
     @ObservedObject var journalvm: JournalViewModel
-    @ObservedObject var taskvm: TaskViewModel
+    @ObservedObject var todovm: TodoViewModel
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var branchvm:BranchViewModel
     
     @State var isShowingJournalEditor = false
-    @State var isShowingTaskEditor = false
+    @State var isShowingTodoEditor = false
     @State var isShowingPersonEditor = false
     @State var isShowingBranchEditor = false
     
@@ -40,18 +40,18 @@ struct NewGridView: View {
                 
                 // MARK: - here we have a bug
                 
-                // New  Task
+                // New  Todo
                 Button(action: {
-                    isShowingTaskEditor = true
+                    isShowingTodoEditor = true
                     playSound(sound: "sound-ding", type: "mp3")
-                    taskvm.task.localTimestamp = Timestamp(date:Date())
+                    todovm.todo.localTimestamp = Timestamp(date:Date())
                 }, label: {
-                    NewButton(systemImageName: "checkmark", buttonName: "Task")
+                    NewButton(systemImageName: "checkmark", buttonName: "Todo")
                     
                 })
 
-                    .sheet(isPresented: $isShowingTaskEditor) {
-                        TaskEditorView(taskvm: taskvm)
+                    .sheet(isPresented: $isShowingTodoEditor) {
+                        TodoEditorView(todovm: todovm)
                     }
             }
             
@@ -130,7 +130,7 @@ struct NewGridView: View {
 
 struct NewGridView_Previews: PreviewProvider {
     static var previews: some View {
-        NewGridView(journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), branchvm: BranchViewModel())
+        NewGridView(journalvm: JournalViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), branchvm: BranchViewModel())
     }
 }
 

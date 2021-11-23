@@ -47,7 +47,7 @@ struct CurrentUserDefaults { // Fields for UserDefaults saved within app
     static let userID = "user_id"
     static let userName = "asiefhXLhf#221"
     static let nickName = "Iron Man"
-    static let profileImgURL = ""
+    static let profileImageURL = ""
 
 }
 
@@ -78,7 +78,7 @@ struct DatabaseJournalField { // Fields within Post Document in Database
 
 enum SearchType: String, CaseIterable {
     case journal
-    case task
+    case todo
     case person
     case branch
 }
@@ -86,7 +86,7 @@ enum SearchType: String, CaseIterable {
 
 enum ItemType: CaseIterable {
     case Journal
-    case Task
+    case Todo
     case Person
     case Branch
 }
@@ -94,7 +94,7 @@ enum ItemType: CaseIterable {
 enum UploadType:String, CaseIterable {
     case profile
     case journal
-    case task
+    case todo
     case person
     
     var filePath: StorageReference {
@@ -104,8 +104,8 @@ enum UploadType:String, CaseIterable {
             return Storage.storage().reference(withPath: "/profile_medias/\(filename)")
         case .journal:
             return Storage.storage().reference(withPath: "/journal_medias/\(filename)")
-        case .task:
-            return Storage.storage().reference(withPath: "/task_medias/\(filename)")
+        case .todo:
+            return Storage.storage().reference(withPath: "/todo_medias/\(filename)")
         case .person:
             return Storage.storage().reference(withPath: "/person_medias/\(filename)")
         }

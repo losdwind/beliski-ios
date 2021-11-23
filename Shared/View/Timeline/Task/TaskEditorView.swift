@@ -8,12 +8,12 @@ import SwiftUI
 
 
 
-struct TaskEditorView: View {
+struct TodoEditorView: View {
     // MARK: - PROPERTY
     
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     
-    @ObservedObject var taskvm:TaskViewModel
+    @ObservedObject var todovm:TodoViewModel
     
     
     @Environment(\.presentationMode) var presentationMode
@@ -30,7 +30,7 @@ struct TaskEditorView: View {
             Spacer()
             
             VStack(spacing: 16) {
-                TextField("Add Task", text: $taskvm.task.content, prompt: Text("What do you plan to do"))
+                TextField("Add Todo", text: $todovm.todo.content, prompt: Text("What do you plan to do"))
                     .foregroundColor(.pink)
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .padding()
@@ -41,7 +41,7 @@ struct TaskEditorView: View {
 
                 
 
-                    DatePicker(selection: $taskvm.reminder, in: Date()...) {
+                    DatePicker(selection: $todovm.reminder, in: Date()...) {
                         
                         Image(systemName: "bell")
                             .resizable()
@@ -55,10 +55,10 @@ struct TaskEditorView: View {
                 
                 Button(action: {
                     
-                    taskvm.uploadTask { success in
+                    todovm.uploadTodo { success in
                         if success {
-                            taskvm.task = Task()
-                            taskvm.fetchTasks{_ in}
+                            todovm.todo = Todo()
+                            todovm.fetchTodos{_ in}
                         }
                     }
                     playSound(sound: "sound-ding", type: "mp3")
@@ -70,12 +70,12 @@ struct TaskEditorView: View {
                     Text("SAVE")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .padding()
-//                        .foregroundColor(taskvm.task.content.count == 0 ? Color.gray : Color.pink)
+//                        .foregroundColor(todovm.todo.content.count == 0 ? Color.gray : Color.pink)
                     Spacer()
                 })
-                    .modifier(SaveButtonBackground(isButtonDisabled: taskvm.task.content.count == 0))
+                    .modifier(SaveButtonBackground(isButtonDisabled: todovm.todo.content.count == 0))
                     .onTapGesture {
-                        if taskvm.task.content.count == 0 {
+                        if todovm.todo.content.count == 0 {
                             playSound(sound: "sound-tap", type: "mp3")
                         }
                     }
@@ -95,11 +95,11 @@ struct TaskEditorView: View {
 
 // MARK: - PREVIEW
 
-struct TaskEditorView_Previews: PreviewProvider {
+struct TodoEditorView_Previews: PreviewProvider {
     
 
     static var previews: some View {
-        TaskEditorView(taskvm: TaskViewModel())
+        TodoEditorView(todovm: TodoViewModel())
             .preferredColorScheme(.light)
             .previewDevice("iPhone 13 Pro")
             .background(Color.gray.edgesIgnoringSafeArea(.all))

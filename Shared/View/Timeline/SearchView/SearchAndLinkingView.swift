@@ -47,7 +47,7 @@ struct SearchAndLinkingView<T:Item>: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        if searchvm.selectedJournals.isEmpty && searchvm.selectedTasks.isEmpty && searchvm.selectedPersons.isEmpty && searchvm.selectedBranches.isEmpty {
+                        if searchvm.selectedJournals.isEmpty && searchvm.selectedTodos.isEmpty && searchvm.selectedPersons.isEmpty && searchvm.selectedBranches.isEmpty {
                             isShowingFalseAlert.toggle()
                         } else {
                             searchvm.doubleLink(from: item) { success in

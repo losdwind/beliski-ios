@@ -11,7 +11,7 @@ struct SearchView: View {
     
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var journalvm: JournalViewModel
-    @ObservedObject var taskvm: TaskViewModel
+    @ObservedObject var todovm: TodoViewModel
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var dataLinkedManger:DataLinkedManager
     @ObservedObject var tagPanelvm:TagPanelViewModel
@@ -33,7 +33,7 @@ struct SearchView: View {
                         .frame(maxWidth: .infinity,alignment: .leading)
                         .padding()
                     
-                    SearchResultComplexView(timelineManager: timelineManager, searchvm: searchvm, journalvm: journalvm, taskvm: taskvm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, branchvm: branchvm)
+                    SearchResultComplexView(timelineManager: timelineManager, searchvm: searchvm, journalvm: journalvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, branchvm: branchvm)
                         
                 }
                 
@@ -59,7 +59,7 @@ struct SearchView: View {
                             if success {
                                 print("successfully get the filtered items and assign to item list view")
                                 journalvm.fetchedJournals = searchvm.filteredJournals
-                                taskvm.fetchedTasks = searchvm.filteredTasks
+                                todovm.fetchedTodos = searchvm.filteredTodos
                                 personvm.fetchedPersons = searchvm.filteredPersons
                                 branchvm.fetchedAllBranches = searchvm.filteredBranches
                                 isShowingSearchResultView = true
@@ -88,6 +88,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(searchvm: SearchViewModel(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel(), timelineManager: TimelineManager(), branchvm: BranchViewModel())
+        SearchView(searchvm: SearchViewModel(), journalvm: JournalViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel(), timelineManager: TimelineManager(), branchvm: BranchViewModel())
     }
 }

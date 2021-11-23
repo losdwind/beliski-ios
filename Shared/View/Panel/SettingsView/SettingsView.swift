@@ -50,17 +50,7 @@ struct SettingsView: View {
                     Button(action: {
                         
 
-                        AuthViewModel.shared.signout{ (success) in
-                            if success {
-                                print("Successfully logged out")
-                                presentationMode.wrappedValue.dismiss()
-                                // Dimiss settings view
-                                
-                            } else {
-                                print("Error logging out")
-                                self.showSignOutError.toggle()
-                            }
-                        }
+                        AuthViewModel.shared.signout()
 
                     }, label: {
                         SettingsRowView(leftIcon: "figure.walk", text: "Sign out", color: Color.pink)

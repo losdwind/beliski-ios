@@ -86,7 +86,7 @@ class SquadViewModel: ObservableObject {
         
     }
     
-    
+    // FIXME: - here this function will result in too much call to fetch messages, please check the console log
     func getMessages(branch:Branch, completion: @escaping (_ success: Bool) -> ()) {
         
         COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("messages")

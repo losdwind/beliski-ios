@@ -1,5 +1,5 @@
 //
-//  Task.swift
+//  Todo.swift
 //  Beliski
 //
 //  Created by Losd wind on 2021/10/8.
@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-struct Task:Identifiable, Codable, Hashable, Item {
+struct Todo:Identifiable, Codable, Hashable, Item {
     
     // Item Protocol
     var id:String = UUID().uuidString

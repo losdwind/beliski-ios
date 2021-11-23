@@ -11,7 +11,7 @@ struct SearchResultComplexView: View {
     @ObservedObject var timelineManager:TimelineManager
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var journalvm: JournalViewModel
-    @ObservedObject var taskvm: TaskViewModel
+    @ObservedObject var todovm: TodoViewModel
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var dataLinkedManger:DataLinkedManager
     @ObservedObject var tagPanelvm:TagPanelViewModel
@@ -25,8 +25,8 @@ struct SearchResultComplexView: View {
             
             JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
                 
-        case .task:
-            TaskListView(taskvm: taskvm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
+        case .todo:
+            TodoListView(todovm: todovm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
             
         case.person:
             PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, timelineManager: timelineManager)
@@ -39,6 +39,6 @@ struct SearchResultComplexView: View {
 
 struct SearchResultComplexView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultComplexView(timelineManager: TimelineManager(), searchvm: SearchViewModel(), journalvm: JournalViewModel(), taskvm: TaskViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
+        SearchResultComplexView(timelineManager: TimelineManager(), searchvm: SearchViewModel(), journalvm: JournalViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
     }
 }

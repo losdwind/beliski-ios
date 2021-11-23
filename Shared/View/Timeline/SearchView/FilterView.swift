@@ -59,8 +59,8 @@ struct FilterView: View {
                 Text("Journal").tag(SearchType.journal)
                     .foregroundColor(searchvm.searchType == .journal ? .blue : .red)
                 
-                Text("Task").tag(SearchType.task)
-                    .foregroundColor(searchvm.searchType == .task ? .blue : .red)
+                Text("Todo").tag(SearchType.todo)
+                    .foregroundColor(searchvm.searchType == .todo ? .blue : .red)
                 
                 Text("Person").tag(SearchType.person)
                     .foregroundColor(searchvm.searchType == .person ? .blue : .red)

@@ -16,7 +16,7 @@ struct DoubleBarGraph: View {
             
             HStack{
                 
-                Text("Task Completion Rate")
+                Text("Todo Completion Rate")
                     .fontWeight(.bold)
                 
                 Spacer()
