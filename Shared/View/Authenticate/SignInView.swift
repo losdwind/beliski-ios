@@ -17,6 +17,7 @@ struct SignInView: View {
     @State private var isShowingAlert = false
     @State private var isShowingLogInProgressView = false
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     
     
     
@@ -106,7 +107,7 @@ struct SignInView: View {
                     }
                     
                 })
-                    .signInWithAppleButtonStyle(.black)
+                    .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
                     .frame(width:300, height: 40)
                 
                 // Google Sign In

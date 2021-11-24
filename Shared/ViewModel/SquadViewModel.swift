@@ -66,8 +66,8 @@ class SquadViewModel: ObservableObject {
         }
         
         self.inputMessage.userID = userID
-        self.inputMessage.userProfileImageURL = AuthViewModel.shared.profileImageURL!
-        self.inputMessage.nickName = AuthViewModel.shared.nickName!
+        self.inputMessage.userProfileImageURL = AuthViewModel.shared.profileImageURL
+        self.inputMessage.nickName = AuthViewModel.shared.nickName
         self.inputMessage.branchID = self.currentBranch.id
         
         

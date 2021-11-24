@@ -15,7 +15,7 @@ import SwiftUI
 
 struct MediaUploader {
     
-    @AppStorage(CurrentUserDefaults.userID) var userID:String?
+    @AppStorage("userID") var userID:String?
     
     
     static func uploadImages(images: [UIImage], type: UploadType, handler: @escaping (_ imageURLs: [String]) -> ()) {

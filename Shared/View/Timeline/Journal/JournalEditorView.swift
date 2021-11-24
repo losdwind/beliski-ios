@@ -65,8 +65,9 @@ struct JournalEditorView: View {
                            let words = journalvm.journal.content.split { $0 == " " || $0.isNewline }
                            journalvm.journal.wordCount = words.count
                        }
+                       .disableAutocorrection(true)
                        .font(.system(size: 16).bold())
-                       .frame(maxWidth: 640, maxHeight:240)
+                       .frame(minHeight: 50, idealHeight: 100, maxHeight: .infinity)
                        .foregroundColor(.pink)
                        .padding(0)
                        .cornerRadius(10)
@@ -75,19 +76,6 @@ struct JournalEditorView: View {
                }
                .padding(.top,10)
                
-               
-                
-                Section {
-                    
-                    
-                    
-                } header: {
-                    
-                    
-                }
-                .padding()
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                
                
                
                VStack(alignment: .leading, spacing: 15) {

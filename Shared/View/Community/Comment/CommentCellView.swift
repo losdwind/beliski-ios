@@ -18,6 +18,9 @@ struct CommentCellView: View {
         HStack(alignment:.top) {
             KFImage(URL(string: comment.userProfileImageURL))
                 .resizable()
+                .placeholder({
+                    ProgressView()
+                })
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 40, height: 40)
                 .cornerRadius(20)

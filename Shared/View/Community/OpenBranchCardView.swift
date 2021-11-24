@@ -14,7 +14,7 @@ struct OpenBranchCardView: View {
     @ObservedObject var dataLinkedManager:DataLinkedManager
     
     @State var isShowingLinkedItemView = false
-    @AppStorage(CurrentUserDefaults.userID) var userID:String?
+    @AppStorage("userID") var userID:String?
     
     
     

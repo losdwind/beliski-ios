@@ -209,7 +209,8 @@ struct BranchCardEditorView: View {
             .onAppear {
                 
                 if branchvm.branch.ownerID == "" {
-                    branchvm.branch = Branch(ownerID:AuthViewModel.shared.userID!, memberIDs: [AuthViewModel.shared.userID!], memberIDsAvatar: [AuthViewModel.shared.profileImageURL!],memberIDsNickname: [AuthViewModel.shared.nickName!] )
+                    print(AuthViewModel.shared.profileImageURL)
+                    branchvm.branch = Branch(ownerID:AuthViewModel.shared.userID!, memberIDs: [AuthViewModel.shared.userID!], memberIDsAvatar: [AuthViewModel.shared.profileImageURL],memberIDsNickname: [AuthViewModel.shared.nickName] )
                 }
             }
         

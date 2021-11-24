@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PopularBranchView: View {
     
-    @AppStorage(CurrentUserDefaults.userID) var userID:String?
+    @AppStorage("userID") var userID:String?
     @ObservedObject var communityvm:CommunityViewModel
     @ObservedObject var dataLinkedManager:DataLinkedManager
 

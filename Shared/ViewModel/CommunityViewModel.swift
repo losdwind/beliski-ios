@@ -235,8 +235,8 @@ class CommunityViewModel: ObservableObject {
         }
         
         self.inputComment.userID = userID
-        self.inputComment.nickName = AuthViewModel.shared.nickName!
-        self.inputComment.userProfileImageURL = AuthViewModel.shared.profileImageURL!
+        self.inputComment.nickName = AuthViewModel.shared.nickName
+        self.inputComment.userProfileImageURL = AuthViewModel.shared.profileImageURL
         self.inputComment.branchID = currentBranch.id
         
         let document =  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")

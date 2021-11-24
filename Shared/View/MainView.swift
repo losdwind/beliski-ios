@@ -26,11 +26,10 @@ struct MainView: View {
     @StateObject var communityvm = CommunityViewModel()
     @StateObject var squadvm = SquadViewModel()
     
-    @AppStorage(CurrentUserDefaults.userID) var userID: String?
+    @AppStorage("userID") var userID: String?
 
     
     var body: some View {
-        
         if userID == nil {
             SignInView()
         } else {

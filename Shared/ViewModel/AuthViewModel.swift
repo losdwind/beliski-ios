@@ -23,10 +23,10 @@ class AuthViewModel: ObservableObject {
     
     static let shared = AuthViewModel()
     
-    @AppStorage(CurrentUserDefaults.userID) var userID: String?
-    @AppStorage(CurrentUserDefaults.nickName) var nickName:String?
-    @AppStorage(CurrentUserDefaults.profileImageURL) var profileImageURL:String?
-    
+
+    @AppStorage("userID") var userID: String?
+    @AppStorage("nickName") var nickName:String = ""
+    @AppStorage("profileImageURL") var profileImageURL:String = "https://avatars.dicebear.com/api/jdenticon/:seed.svg"
     
     // For Apple Signin...
     @Published var nonce = ""
@@ -192,7 +192,9 @@ class AuthViewModel: ObservableObject {
 
             let defaultsDictionary = UserDefaults.standard.dictionaryRepresentation()
             defaultsDictionary.keys.forEach { (key) in
-                UserDefaults.standard.removeObject(forKey: key)
+                withAnimation {
+                    UserDefaults.standard.removeObject(forKey: key)
+                }
             }
 
         } catch {
@@ -214,9 +216,15 @@ class AuthViewModel: ObservableObject {
                 // Success
                 print("Success getting user info while logging in")
                 // Set the users info into our app
-                UserDefaults.standard.set(user.id, forKey: CurrentUserDefaults.userID)
-                UserDefaults.standard.set(user.nickName, forKey: CurrentUserDefaults.nickName)
-                UserDefaults.standard.set(user.profileImageURL, forKey: CurrentUserDefaults.profileImageURL)
+                withAnimation {
+                    self.userID = user.id
+                }
+                if user.nickName != nil {
+                    self.nickName = user.nickName!
+                }
+                if user.profileImageURL != nil {
+                    self.profileImageURL = user.profileImageURL!
+                }
                 handler(true)
             } else {
                 handler(false)
