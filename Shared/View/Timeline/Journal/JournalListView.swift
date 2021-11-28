@@ -1,5 +1,5 @@
 //
-//  JournalView.swift
+//  MomentView.swift
 //  Beliski-Firebase
 //
 //  Created by Wind Losd on 2021/9/17.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct JournalListView: View {
+struct MomentListView: View {
 
-    @ObservedObject var journalvm: JournalViewModel
+    @ObservedObject var momentvm: MomentViewModel
     @ObservedObject var dataLinkedManager: DataLinkedManager
     @ObservedObject var searchvm: SearchViewModel
     @ObservedObject var tagPanelvm: TagPanelViewModel
 
-    @State var isUpdatingJournal = false
+    @State var isUpdatingMoment = false
     @State var isShowingLinkedItemView = false
     @State var isShowingLinkView: Bool = false
 
@@ -24,9 +24,9 @@ struct JournalListView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .center, spacing: 20) {
-                ForEach(journalvm.fetchedJournals, id: \.id) { journal in
+                ForEach(momentvm.fetchedMoments, id: \.id) { moment in
 
-                    JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
+                    MomentItemView(moment: moment, tagNames: moment.tagNames, OwnerItemID: moment.id)
 
 
                         .background {
@@ -37,9 +37,9 @@ struct JournalListView: View {
                         .contextMenu {
                         // Delete
                         Button(action: {
-                            journalvm.deleteJournal(journal: journal) { success in
+                            momentvm.deleteMoment(moment: moment) { success in
                                 if success {
-                                    journalvm.fetchJournals(handler: { _ in })
+                                    momentvm.fetchMoments(handler: { _ in })
                                 }
 
                             }
@@ -52,9 +52,9 @@ struct JournalListView: View {
 
                         // Edit
                         Button(action: {
-                            journalvm.journal = journal
-                            journalvm.localTimestamp = journal.localTimestamp?.dateValue() ?? Date(timeIntervalSince1970: 0)
-                            isUpdatingJournal = true
+                            momentvm.moment = moment
+                            momentvm.localTimestamp = moment.localTimestamp?.dateValue() ?? Date(timeIntervalSince1970: 0)
+                            isUpdatingMoment = true
 
                         }
                                , label: { Label(
@@ -74,7 +74,7 @@ struct JournalListView: View {
                     }
                         .onTapGesture(perform: {
                         isShowingLinkedItemView.toggle()
-                        dataLinkedManager.linkedIds = journal.linkedItems
+                        dataLinkedManager.linkedIds = moment.linkedItems
                         dataLinkedManager.fetchItems { success in
                             if success {
                                 print("successfully loaded the linked Items from DataLinkedManager")
@@ -86,14 +86,14 @@ struct JournalListView: View {
                     })
 
 
-                        .sheet(isPresented: $isUpdatingJournal) {
-                        // MARK: - think about the invalide id, because maybe the journal haven't yet been uploaded
-                        JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel(tagNamesOfItem: journalvm.journal.tagNames, ownerItemID: journalvm.journal.id, completion: { _ in }))
+                        .sheet(isPresented: $isUpdatingMoment) {
+                        // MARK: - think about the invalide id, because maybe the moment haven't yet been uploaded
+                        MomentEditorView(momentvm: momentvm, momentTagvm: TagViewModel(tagNamesOfItem: momentvm.moment.tagNames, ownerItemID: momentvm.moment.id, completion: { _ in }))
                     }
 
 
                         .sheet(isPresented: $isShowingLinkView) {
-                        SearchAndLinkingView(item: journal, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                        SearchAndLinkingView(item: moment, searchvm: searchvm, tagPanelvm: tagPanelvm)
                     }
 
                 }
@@ -107,8 +107,8 @@ struct JournalListView: View {
 
 }
 
-struct JournalView_Previews: PreviewProvider {
+struct MomentView_Previews: PreviewProvider {
     static var previews: some View {
-        JournalListView(journalvm: JournalViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
+        MomentListView(momentvm: MomentViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
     }
 }

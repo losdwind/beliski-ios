@@ -1,5 +1,5 @@
 //
-//  Journal.swift
+//  Moment.swift
 //  Beliski
 //
 //  Created by Losd wind on 2021/10/8.
@@ -11,7 +11,7 @@ import Firebase
 import CoreLocation
 import MapKit
 
-struct Journal:Identifiable, Codable, Hashable, Item{
+struct Moment:Identifiable, Codable, Hashable, Item{
     
     // Item Protocol
     var id: String = UUID().uuidString

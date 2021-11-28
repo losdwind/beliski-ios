@@ -15,7 +15,7 @@ struct MainView: View {
     @State var password: String = ""
     
     @StateObject var profilevm = ProfileViewModel()
-    @StateObject var journalvm = JournalViewModel()
+    @StateObject var momentvm = MomentViewModel()
     @StateObject var todovm = TodoViewModel()
     @StateObject var personvm = PersonViewModel()
     @StateObject var timelineManager = TimelineManager()
@@ -35,8 +35,8 @@ struct MainView: View {
         } else {
             TabView(selection: $selectedTab){
                 
-                // Show the timeline of user journals
-                TimelineView(timelineManger: timelineManager, journalvm: journalvm, todovm: todovm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm, profilevm: profilevm)
+                // Show the timeline of user moments
+                TimelineView(timelineManger: timelineManager, momentvm: momentvm, todovm: todovm, personvm: personvm, dataLinkedManager: dataLinkedManager, searchvm:searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm, profilevm: profilevm)
                     .tabItem{
                         VStack{
                             Image(systemName: "text.redaction")
@@ -44,7 +44,7 @@ struct MainView: View {
                         }
                     }.tag(MainTab.timeline)
                     
-                // Show the Panel of statistics based on the journals of the user
+                // Show the Panel of statistics based on the moments of the user
                 PanelView(profilevm: ProfileViewModel())
                     .tabItem {
                         VStack{
@@ -56,7 +56,7 @@ struct MainView: View {
                 
   
                 
-                // Show community information and open journals shared by internet users
+                // Show community information and open moments shared by internet users
                 SquadView(squadvm: squadvm, dataLinkedManager: dataLinkedManager)
                     .tabItem{
                         VStack{
@@ -89,11 +89,11 @@ struct MainView: View {
                 }
             }
             .onAppear {
-                journalvm.fetchJournals { success in
+                momentvm.fetchMoments { success in
                     if success {
-                        print("successfully loaded the journals from firebase")
+                        print("successfully loaded the moments from firebase")
                     } else {
-                        print("failed to load the journals from firebase")
+                        print("failed to load the moments from firebase")
                     }
                 }
             }

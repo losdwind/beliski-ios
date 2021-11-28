@@ -48,7 +48,7 @@ class CommunityViewModel: ObservableObject {
         
         
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchJournal function")
+            print("userID is not valid here in fetchMoment function")
             completion(nil)
             return
         }
@@ -136,7 +136,7 @@ class CommunityViewModel: ObservableObject {
                     }
                 case .failure(let error):
                     // A `User` value could not be initialized from the DocumentSnapshot.
-                    print("Error decoding journal: \(error)")
+                    print("Error decoding moment: \(error)")
                     completion(nil)
                     return
                 }
@@ -368,7 +368,7 @@ class CommunityViewModel: ObservableObject {
     // MARK: get public branches
     func fetchPublicBranches(completion: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchJournal function")
+            print("userID is not valid here in fetchMoment function")
             completion(false)
             return
         }
@@ -393,7 +393,7 @@ class CommunityViewModel: ObservableObject {
     // MARK: get subscribed branches
     func fetchSubscribedBranches(completion: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchJournal function")
+            print("userID is not valid here in fetchMoment function")
             completion(false)
             return
         }

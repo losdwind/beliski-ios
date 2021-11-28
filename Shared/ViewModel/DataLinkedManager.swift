@@ -15,7 +15,7 @@ class DataLinkedManager: ObservableObject {
     
 
     @Published var linkedIds:[String] = []
-    @Published var linkedJournals:[Journal] = [Journal]()
+    @Published var linkedMoments:[Moment] = [Moment]()
     @Published var linkedTodos:[Todo] = [Todo]()
     @Published var linkedPersons:[Person] = [Person]()
     
@@ -41,12 +41,12 @@ class DataLinkedManager: ObservableObject {
     func fetchItems(completion: @escaping (_ sucess: Bool) -> ()){
         
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchJournal function")
+            print("userID is not valid here in fetchMoment function")
             return
         }
         
         
-        self.linkedJournals = [Journal]()
+        self.linkedMoments = [Moment]()
         self.linkedTodos = [Todo]()
         self.linkedPersons = [Person]()
         
@@ -56,15 +56,15 @@ class DataLinkedManager: ObservableObject {
         for id in linkedIds {
             
             group.enter()
-            COLLECTION_USERS.document(userID).collection("journals").document(id).getDocument { (document, error) in
+            COLLECTION_USERS.document(userID).collection("moments").document(id).getDocument { (document, error) in
                 let result = Result {
-                      try document?.data(as: Journal.self)
+                      try document?.data(as: Moment.self)
                     }
                     switch result {
-                    case .success(let journal):
-                        if let journal = journal {
+                    case .success(let moment):
+                        if let moment = moment {
                             // A `City` value was successfully initialized from the DocumentSnapshot.
-                            self.linkedJournals.append(journal)
+                            self.linkedMoments.append(moment)
                         } else {
                             // A nil value was successfully initialized from the DocumentSnapshot,
                             // or the DocumentSnapshot was nil.
@@ -72,7 +72,7 @@ class DataLinkedManager: ObservableObject {
                         }
                     case .failure(let error):
                         // A `City` value could not be initialized from the DocumentSnapshot.
-                        print("Error decoding journal: \(error)")
+                        print("Error decoding moment: \(error)")
                     }
                 group.leave()
             }

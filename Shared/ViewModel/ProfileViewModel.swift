@@ -98,7 +98,7 @@ class ProfileViewModel: ObservableObject{
                     }
                 case .failure(let error):
                     // A `User` value could not be initialized from the DocumentSnapshot.
-                    print("Error decoding journal: \(error)")
+                    print("Error decoding moment: \(error)")
                     completion(true)
                     return
                 }
@@ -136,7 +136,7 @@ class ProfileViewModel: ObservableObject{
                     }
                 case .failure(let error):
                     // A `User` value could not be initialized from the DocumentSnapshot.
-                    print("Error decoding journal: \(error)")
+                    print("Error decoding moment: \(error)")
                     completion(true)
                     return
                 }

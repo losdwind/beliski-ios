@@ -1,5 +1,5 @@
 //
-//  JournalViewModel.swift
+//  MomentViewModel.swift
 //  Beliski
 //
 //  Created by Losd wind on 2021/10/8.
@@ -10,11 +10,11 @@ import Firebase
 import FirebaseFirestoreSwift
 import UIKit
 
-class JournalViewModel:ObservableObject {
+class MomentViewModel:ObservableObject {
     
     
-    @Published var journal = Journal()
-    @Published var fetchedJournals = [Journal]()
+    @Published var moment = Moment()
+    @Published var fetchedMoments = [Moment]()
     
     
     @Published var images:[UIImage] = [UIImage]()
@@ -25,26 +25,26 @@ class JournalViewModel:ObservableObject {
 
     
     
-    func uploadJournal(handler: @escaping (_ success: Bool) -> ()) {
+    func uploadMoment(handler: @escaping (_ success: Bool) -> ()) {
         
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid in uploadJournal func")
+            print("userID is not valid in uploadMoment func")
             handler(false)
             return }
-        if journal.ownerID == "" {
-            journal.ownerID = userID
+        if moment.ownerID == "" {
+            moment.ownerID = userID
         }
         
-        if journal.ownerID != userID{
+        if moment.ownerID != userID{
             handler(false)
-            print("this journal does not belong to you")
+            print("this moment does not belong to you")
             return
         }
 
-        let document = COLLECTION_USERS.document(userID).collection("journals").document(journal.id)
+        let document = COLLECTION_USERS.document(userID).collection("moments").document(moment.id)
        
         
-        print("check if there are image urls in the journal.imageURLs before upload------->\(journal.imageURLs)")
+        print("check if there are image urls in the moment.imageURLs before upload------->\(moment.imageURLs)")
         
         
         // MARK: - here I disabled the uploadImage because i want to upload right after the imagePicker
@@ -52,11 +52,11 @@ class JournalViewModel:ObservableObject {
 
         
         do {
-            try document.setData(from: journal)
+            try document.setData(from: moment)
             handler(true)
             
         } catch let error {
-            print("Error upload journal to Firestore: \(error)")
+            print("Error upload moment to Firestore: \(error)")
             handler(false)
         }
 
@@ -64,13 +64,13 @@ class JournalViewModel:ObservableObject {
     }
     
     
-    func deleteJournal(journal: Journal, handler: @escaping (_ success: Bool) -> ()){
+    func deleteMoment(moment: Moment, handler: @escaping (_ success: Bool) -> ()){
         
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid")
             return }
         
-            let document = COLLECTION_USERS.document(userID).collection("journals").document(journal.id)
+            let document = COLLECTION_USERS.document(userID).collection("moments").document(moment.id)
             document.delete() { err in
                 if let err = err {
                     print("Error removing document: \(err)")
@@ -89,31 +89,31 @@ class JournalViewModel:ObservableObject {
     
     
     
-    func fetchJournals(handler: @escaping (_ success: Bool) -> ()) {
+    func fetchMoments(handler: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchJournal function")
+            print("userID is not valid here in fetchMoment function")
             return
         }
         
-        COLLECTION_USERS.document(userID).collection("journals").order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("moments").order(by: "localTimestamp", descending: true).addSnapshotListener { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
-            self.fetchedJournals = documents.compactMap({try? $0.data(as: Journal.self)})
+            self.fetchedMoments = documents.compactMap({try? $0.data(as: Moment.self)})
             handler(true)
         }
     }
     
     
-    func fetchTodayJournals(handler: @escaping (_ success: Bool) -> ()) {
+    func fetchTodayMoments(handler: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchJournal function")
+            print("userID is not valid here in fetchMoment function")
             return
         }
         
         let dayStart = Calendar.current.startOfDay(for: Date())
         
-        COLLECTION_USERS.document(userID).collection("journals").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).addSnapshotListener{ snapshot, _ in
+        COLLECTION_USERS.document(userID).collection("moments").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).addSnapshotListener{ snapshot, _ in
             guard let documents = snapshot?.documents else { return }
-            self.fetchedJournals = documents.compactMap({try? $0.data(as: Journal.self)})
+            self.fetchedMoments = documents.compactMap({try? $0.data(as: Moment.self)})
             handler(true)
         }
     }

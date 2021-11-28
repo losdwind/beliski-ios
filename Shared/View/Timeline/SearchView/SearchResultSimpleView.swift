@@ -15,29 +15,29 @@ struct SearchResultView: View {
     
     var body: some View {
         switch searchvm.searchType {
-        case .journal:
+        case .moment:
             VStack{
-                ForEach(searchvm.filteredJournals, id: \.self){
-                    journal in
+                ForEach(searchvm.filteredMoments, id: \.self){
+                    moment in
                     
                         Button {
-                            if searchvm.selectedJournals.contains(journal){
-                                searchvm.selectedJournals.remove(journal)
+                            if searchvm.selectedMoments.contains(moment){
+                                searchvm.selectedMoments.remove(moment)
                             } else {
-                                searchvm.selectedJournals.insert(journal)
+                                searchvm.selectedMoments.insert(moment)
                             }
                         } label: {
                             ZStack(alignment:.center){
                                 
                     
-                                JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
+                                MomentItemView(moment: moment, tagNames: moment.tagNames, OwnerItemID: moment.id)
                                     .foregroundColor(.primary)
-                                    .blur(radius:  searchvm.selectedJournals.contains(journal) ? 5 : 0)
+                                    .blur(radius:  searchvm.selectedMoments.contains(moment) ? 5 : 0)
                                 
                                 Image(systemName: "checkmark")
                                     .font(.largeTitle)
                                     .foregroundColor(.pink)
-                                    .opacity(searchvm.selectedJournals.contains(journal) ? 1 : 0)
+                                    .opacity(searchvm.selectedMoments.contains(moment) ? 1 : 0)
                             }
                             .padding()
                         }

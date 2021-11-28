@@ -1,5 +1,5 @@
 //
-//  JournalEditorView.swift
+//  MomentEditorView.swift
 //  Beliski
 //
 //  Created by Losd wind on 2021/10/8.
@@ -10,9 +10,9 @@ import Firebase
 import FirebaseFirestoreSwift
 import UIKit
 
-struct JournalEditorView: View {
-    @ObservedObject var journalvm:JournalViewModel
-    @ObservedObject var journalTagvm: TagViewModel
+struct MomentEditorView: View {
+    @ObservedObject var momentvm:MomentViewModel
+    @ObservedObject var momentTagvm: TagViewModel
     @State var imagePickerPresented = false
     @State var isShowingImageToggle = false
     @State var alertMsg = ""
@@ -49,7 +49,7 @@ struct JournalEditorView: View {
                 Spacer()
             }
             .overlay(
-                Text("New Journal")
+                Text("New Moment")
                     .font(.system(size: 18))
             )
                
@@ -60,10 +60,10 @@ struct JournalEditorView: View {
                        .fontWeight(.semibold)
                        .foregroundColor(.gray)
                    
-                   TextEditor(text: $journalvm.journal.content)
-                       .onChange(of: journalvm.journal.content) { value in
-                           let words = journalvm.journal.content.split { $0 == " " || $0.isNewline }
-                           journalvm.journal.wordCount = words.count
+                   TextEditor(text: $momentvm.moment.content)
+                       .onChange(of: momentvm.moment.content) { value in
+                           let words = momentvm.moment.content.split { $0 == " " || $0.isNewline }
+                           momentvm.moment.wordCount = words.count
                        }
                        .disableAutocorrection(true)
                        .font(.system(size: 16).bold())
@@ -97,19 +97,19 @@ struct JournalEditorView: View {
                            
                            ZStack{
                                
-                               if journalvm.images.isEmpty && journalvm.journal.imageURLs.isEmpty{
+                               if momentvm.images.isEmpty && momentvm.moment.imageURLs.isEmpty{
                                    Image(systemName: "plus")
                                        .font(.largeTitle)
                                        .foregroundColor(.primary)
                                }
                                else{
-                                   if journalvm.journal.imageURLs.isEmpty == false{
+                                   if momentvm.moment.imageURLs.isEmpty == false{
                                        
-                                       ImageGridView(imageURLs: journalvm.journal.imageURLs)
+                                       ImageGridView(imageURLs: momentvm.moment.imageURLs)
                                    }
-                                   if journalvm.images.isEmpty == false{
+                                   if momentvm.images.isEmpty == false{
                                        
-                                       ImageGridDataView(images: journalvm.images)
+                                       ImageGridDataView(images: momentvm.images)
                                    }
                                }
                                
@@ -128,7 +128,7 @@ struct JournalEditorView: View {
                .padding(.top,10)
                 
                 
-                //                TimestampView(time:journalvm.journal.convertFIRTimestamptoString(timestamp: journalvm.journal.localTimestamp))
+                //                TimestampView(time:momentvm.moment.convertFIRTimestamptoString(timestamp: momentvm.moment.localTimestamp))
                 
                
                VStack(alignment: .leading, spacing: 15) {
@@ -137,7 +137,7 @@ struct JournalEditorView: View {
                        .fontWeight(.semibold)
                        .foregroundColor(.gray)
                    
-                   DatePicker("", selection: $journalvm.localTimestamp)
+                   DatePicker("", selection: $momentvm.localTimestamp)
                        .labelsHidden()
                        .font(.system(size: 16).bold())
                    
@@ -153,7 +153,7 @@ struct JournalEditorView: View {
                        .fontWeight(.semibold)
                        .foregroundColor(.gray)
                    
-                   TagEditorView(tagNamesOfItem: $journalvm.journal.tagNames, tagvm:journalTagvm)
+                   TagEditorView(tagNamesOfItem: $momentvm.moment.tagNames, tagvm:momentTagvm)
                        .font(.system(size: 16).bold())
                        .lineLimit(4)
                    
@@ -175,9 +175,9 @@ struct JournalEditorView: View {
                             .padding(.vertical,6)
                             .padding(.horizontal,30)
                     }
-                    .modifier(SaveButtonBackground(isButtonDisabled: journalvm.journal.wordCount == 0))
+                    .modifier(SaveButtonBackground(isButtonDisabled: momentvm.moment.wordCount == 0))
                     .onTapGesture {
-                        if journalvm.journal.wordCount == 0 {
+                        if momentvm.moment.wordCount == 0 {
                             playSound(sound: "sound-tap", type: "mp3")
                         }
                     }
@@ -194,7 +194,7 @@ struct JournalEditorView: View {
             }
             .sheet(isPresented: $imagePickerPresented
                    , content: {
-                ImagePickers(images: $journalvm.images)
+                ImagePickers(images: $momentvm.images)
                     .preferredColorScheme(colorScheme)
                     .accentColor(colorScheme == .light ? .primary: .secondary)
                 
@@ -205,16 +205,16 @@ struct JournalEditorView: View {
     private func save(){
         let group = DispatchGroup()
         group.enter()
-        MediaUploader.uploadImages(images: journalvm.images, type: .journal){
+        MediaUploader.uploadImages(images: momentvm.images, type: .moment){
             urls in
             print(urls)
-            journalvm.journal.imageURLs = urls
+            momentvm.moment.imageURLs = urls
             group.leave()
         }
         
-        let oldNames = journalvm.journal.tagNames
+        let oldNames = momentvm.moment.tagNames
         
-        let newNames = Array(journalTagvm.tagNames)
+        let newNames = Array(momentTagvm.tagNames)
         
         let difference = newNames.difference(from: oldNames)
         
@@ -222,31 +222,31 @@ struct JournalEditorView: View {
             group.enter()
             switch change {
             case let .remove(_, oldElement, _):
-                journalTagvm.deleteTag(tagName: oldElement, ownerItemID: journalvm.journal.id, handler: {_ in
+                momentTagvm.deleteTag(tagName: oldElement, ownerItemID: momentvm.moment.id, handler: {_ in
                     group.leave()
                     
                 })
             case let .insert(_, newElement, _):
-                journalTagvm.uploadTag(tagName: newElement, ownerItemID: journalvm.journal.id, handler: {_ in
+                momentTagvm.uploadTag(tagName: newElement, ownerItemID: momentvm.moment.id, handler: {_ in
                     group.leave()
                 })
             }
             
         }
-        journalvm.journal.tagNames = Array(journalTagvm.tagNames)
-        journalvm.journal.localTimestamp = Timestamp(date: journalvm.localTimestamp)
+        momentvm.moment.tagNames = Array(momentTagvm.tagNames)
+        momentvm.moment.localTimestamp = Timestamp(date: momentvm.localTimestamp)
         
         
         group.notify(queue: .main){
-            journalvm.uploadJournal { success in
+            momentvm.uploadMoment { success in
                 if success {
-                    print("Finished upload the journal to firebase")
-                    journalvm.journal = Journal()
-                    journalvm.images = [UIImage]()
-                    journalvm.audios = [NSData]()
-                    journalvm.videos = [NSData]()
-                    journalvm.localTimestamp = Date()
-                    journalvm.fetchJournals { _ in }
+                    print("Finished upload the moment to firebase")
+                    momentvm.moment = Moment()
+                    momentvm.images = [UIImage]()
+                    momentvm.audios = [NSData]()
+                    momentvm.videos = [NSData]()
+                    momentvm.localTimestamp = Date()
+                    momentvm.fetchMoments { _ in }
                 }
             }
             
@@ -255,8 +255,8 @@ struct JournalEditorView: View {
     }
 }
 
-struct JournalEditorView_Previews: PreviewProvider {
+struct MomentEditorView_Previews: PreviewProvider {
     static var previews: some View {
-        JournalEditorView(journalvm: JournalViewModel(), journalTagvm: TagViewModel())
+        MomentEditorView(momentvm: MomentViewModel(), momentTagvm: TagViewModel())
     }
 }

@@ -9,12 +9,12 @@ import SwiftUI
 import Firebase
 struct NewGridView: View {
     
-    @ObservedObject var journalvm: JournalViewModel
+    @ObservedObject var momentvm: MomentViewModel
     @ObservedObject var todovm: TodoViewModel
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var branchvm:BranchViewModel
     
-    @State var isShowingJournalEditor = false
+    @State var isShowingMomentEditor = false
     @State var isShowingTodoEditor = false
     @State var isShowingPersonEditor = false
     @State var isShowingBranchEditor = false
@@ -26,16 +26,16 @@ struct NewGridView: View {
     var body: some View {
         VStack(spacing:20) {
             HStack {
-                // New Journal
+                // New Moment
                 Button(action: {
-                    isShowingJournalEditor = true
+                    isShowingMomentEditor = true
                     playSound(sound: "sound-ding", type: "mp3")
-                    journalvm.localTimestamp = Date()
+                    momentvm.localTimestamp = Date()
                 }, label: {
-                    NewButton(systemImageName: "note.text", buttonName: "Journal")
+                    NewButton(systemImageName: "note.text", buttonName: "Moment")
                 })
-                    .sheet(isPresented: $isShowingJournalEditor){
-                        JournalEditorView(journalvm: journalvm, journalTagvm: TagViewModel())}
+                    .sheet(isPresented: $isShowingMomentEditor){
+                        MomentEditorView(momentvm: momentvm, momentTagvm: TagViewModel())}
                 
                 
                 // MARK: - here we have a bug
@@ -130,7 +130,7 @@ struct NewGridView: View {
 
 struct NewGridView_Previews: PreviewProvider {
     static var previews: some View {
-        NewGridView(journalvm: JournalViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), branchvm: BranchViewModel())
+        NewGridView(momentvm: MomentViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), branchvm: BranchViewModel())
     }
 }
 

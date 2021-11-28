@@ -29,7 +29,7 @@ class TimelineManager: ObservableObject {
 //
 //    func fetchTodayItems(handler: @escaping (_ success: Bool) -> ()) {
 //        guard let userID = AuthViewModel.shared.currentUser?.id else {
-//            print("userID is not valid here in fetchJournal function")
+//            print("userID is not valid here in fetchMoment function")
 //            return
 //        }
 //
@@ -39,9 +39,9 @@ class TimelineManager: ObservableObject {
 //
 //
 //        group.enter()
-//        COLLECTION_USERS.document(userID).collection("journals").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
+//        COLLECTION_USERS.document(userID).collection("moments").whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dayStart)).order(by: "localTimestamp", descending: true).getDocuments { snapshot, _ in
 //            guard let documents = snapshot?.documents else { return }
-//            self.todayItems.append(documents.compactMap({try? $0.data(as: Journal.self)}))
+//            self.todayItems.append(documents.compactMap({try? $0.data(as: Moment.self)}))
 //            group.leave()
 //        }
 //

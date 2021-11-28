@@ -56,8 +56,8 @@ struct FilterView: View {
                 .frame(maxWidth: .infinity,alignment: .leading)
             Picker("Filter", selection:$searchvm.searchType){
                 
-                Text("Journal").tag(SearchType.journal)
-                    .foregroundColor(searchvm.searchType == .journal ? .blue : .red)
+                Text("Moment").tag(SearchType.moment)
+                    .foregroundColor(searchvm.searchType == .moment ? .blue : .red)
                 
                 Text("Todo").tag(SearchType.todo)
                     .foregroundColor(searchvm.searchType == .todo ? .blue : .red)

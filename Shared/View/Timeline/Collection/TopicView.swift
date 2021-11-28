@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TopicView: View {
     @ObservedObject var timelineManager:TimelineManager
-    @ObservedObject var journalvm: JournalViewModel
+    @ObservedObject var momentvm: MomentViewModel
     @ObservedObject var todovm: TodoViewModel
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var dataLinkedManger:DataLinkedManager
@@ -34,8 +34,8 @@ struct TopicView: View {
             switch timelineManager.selectedMenu {
             case .person:
                 PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, timelineManager: timelineManager)
-            case .journal:
-                JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
+            case .moment:
+                MomentListView(momentvm: momentvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
             case .todo:
                 TodoListView(todovm: todovm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
             case .branch:
@@ -50,6 +50,6 @@ struct TopicView: View {
 
 struct TopicView_Previews: PreviewProvider {
     static var previews: some View {
-        TopicView(timelineManager: TimelineManager(), journalvm: JournalViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
+        TopicView(timelineManager: TimelineManager(), momentvm: MomentViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
     }
 }

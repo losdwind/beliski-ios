@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchResultComplexView: View {
     @ObservedObject var timelineManager:TimelineManager
     @ObservedObject var searchvm: SearchViewModel
-    @ObservedObject var journalvm: JournalViewModel
+    @ObservedObject var momentvm: MomentViewModel
     @ObservedObject var todovm: TodoViewModel
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var dataLinkedManger:DataLinkedManager
@@ -21,9 +21,9 @@ struct SearchResultComplexView: View {
     var body: some View {
         
         switch searchvm.searchType {
-        case .journal:
+        case .moment:
             
-            JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
+            MomentListView(momentvm: momentvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
                 
         case .todo:
             TodoListView(todovm: todovm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
@@ -39,6 +39,6 @@ struct SearchResultComplexView: View {
 
 struct SearchResultComplexView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultComplexView(timelineManager: TimelineManager(), searchvm: SearchViewModel(), journalvm: JournalViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
+        SearchResultComplexView(timelineManager: TimelineManager(), searchvm: SearchViewModel(), momentvm: MomentViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), dataLinkedManger: DataLinkedManager(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel())
     }
 }

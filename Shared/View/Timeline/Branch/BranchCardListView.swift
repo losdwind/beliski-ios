@@ -100,7 +100,7 @@ struct BranchCardListView: View {
                             } //: onTapGesture
                         
                             .sheet(isPresented: $isUpdatingBranch){
-                                // MARK: - think about the invalide id, because maybe the journal haven't yet been uploaded
+                                // MARK: - think about the invalide id, because maybe the moment haven't yet been uploaded
                                 
                                 BranchCardEditorView(branchvm: branchvm)
                             }

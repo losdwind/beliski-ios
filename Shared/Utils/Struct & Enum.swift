@@ -57,7 +57,7 @@ struct DatabaseUserField { // Fields within the User Document in Database
     
 }
 
-struct DatabaseJournalField { // Fields within Post Document in Database
+struct DatabaseMomentField { // Fields within Post Document in Database
     
     static let postID = "post_id"
     static let userID = "user_id"
@@ -68,7 +68,7 @@ struct DatabaseJournalField { // Fields within Post Document in Database
 }
 
 enum SearchType: String, CaseIterable {
-    case journal
+    case moment
     case todo
     case person
     case branch
@@ -76,7 +76,7 @@ enum SearchType: String, CaseIterable {
 
 
 enum ItemType: CaseIterable {
-    case Journal
+    case Moment
     case Todo
     case Person
     case Branch
@@ -84,7 +84,7 @@ enum ItemType: CaseIterable {
 
 enum UploadType:String, CaseIterable {
     case profile
-    case journal
+    case moment
     case todo
     case person
     
@@ -93,8 +93,8 @@ enum UploadType:String, CaseIterable {
         switch self {
         case .profile:
             return Storage.storage().reference(withPath: "/profile_medias/\(filename)")
-        case .journal:
-            return Storage.storage().reference(withPath: "/journal_medias/\(filename)")
+        case .moment:
+            return Storage.storage().reference(withPath: "/moment_medias/\(filename)")
         case .todo:
             return Storage.storage().reference(withPath: "/todo_medias/\(filename)")
         case .person:

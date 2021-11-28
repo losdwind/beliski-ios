@@ -24,23 +24,23 @@ class SearchViewModel: ObservableObject {
     @Published var tags:[String] = []
     @Published var dateStart:Date = Date(timeIntervalSince1970: 0)
     @Published var dateEnd:Date = Date()
-    @Published var searchType:SearchType = .journal
+    @Published var searchType:SearchType = .moment
     
     
     
     
-    @Published var filteredJournals: [Journal] = [Journal]()
+    @Published var filteredMoments: [Moment] = [Moment]()
     @Published var filteredTodos: [Todo] = [Todo]()
     @Published var filteredPersons:[Person] = [Person]()
     @Published var filteredBranches:[Branch] = [Branch]()
     
     
     //
-    //    @Published var journal:Journal = Journal()
+    //    @Published var moment:Moment = Moment()
     //    @Published var todo:Todo = Todo()
     //    @Published var person:Person = Person()
     //    @Published var branch:Branch = Branch()
-    @Published var selectedJournals: Set<Journal> = Set<Journal>()
+    @Published var selectedMoments: Set<Moment> = Set<Moment>()
     @Published var selectedTodos: Set<Todo> = Set<Todo>()
     @Published var selectedPersons:Set<Person> = Set<Person>()
     @Published var selectedBranches: Set<Branch> = Set<Branch>()
@@ -52,8 +52,8 @@ class SearchViewModel: ObservableObject {
         var sourceID = ""
         let group = DispatchGroup()
         
-        for journal in selectedJournals{
-            idSet.insert(journal.id)
+        for moment in selectedMoments{
+            idSet.insert(moment.id)
         }
         
         for todo in selectedTodos {
@@ -70,13 +70,13 @@ class SearchViewModel: ObservableObject {
         
         
         
-        if let source = item as? Journal {
+        if let source = item as? Moment {
             sourceID = source.id
-            let vm = JournalViewModel()
-            vm.journal = source
-            vm.journal.linkedItems = Array(idSet.union(Set(source.linkedItems)))
+            let vm = MomentViewModel()
+            vm.moment = source
+            vm.moment.linkedItems = Array(idSet.union(Set(source.linkedItems)))
             group.enter()
-            vm.uploadJournal { success in
+            vm.uploadMoment { success in
                 if success {
                     group.leave()
                 } else {
@@ -138,14 +138,14 @@ class SearchViewModel: ObservableObject {
         
         
         
-        for journal in selectedJournals{
-            if !journal.linkedItems.contains(sourceID){
+        for moment in selectedMoments{
+            if !moment.linkedItems.contains(sourceID){
                 group.enter()
-                var newJournal = journal
-                newJournal.linkedItems.append(sourceID)
-                let vm = JournalViewModel()
-                vm.journal = newJournal
-                vm.uploadJournal { success in
+                var newMoment = moment
+                newMoment.linkedItems.append(sourceID)
+                let vm = MomentViewModel()
+                vm.moment = newMoment
+                vm.uploadMoment { success in
                     if success {
                         group.leave()
                     } else {
@@ -222,7 +222,7 @@ class SearchViewModel: ObservableObject {
         
         group.notify(queue: .main){
             completion(true)
-            self.selectedJournals = Set<Journal>()
+            self.selectedMoments = Set<Moment>()
             self.selectedTodos = Set<Todo>()
             self.selectedPersons = Set<Person>()
             self.selectedBranches = Set<Branch>()
@@ -241,7 +241,7 @@ class SearchViewModel: ObservableObject {
     func fetchIDsFromFilter(handler: @escaping(_ success: Bool) -> ()){
         
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid in uploadJournal func")
+            print("userID is not valid in uploadMoment func")
             return }
         
         
@@ -249,7 +249,7 @@ class SearchViewModel: ObservableObject {
         
         group.enter()
         
-        COLLECTION_USERS.document(userID).collection("journals")
+        COLLECTION_USERS.document(userID).collection("moments")
             .whereField("localTimestamp", isGreaterThanOrEqualTo: Timestamp(date: dateStart))
             .whereField("localTimestamp", isLessThanOrEqualTo: Timestamp(date: dateEnd))
             .order(by: "localTimestamp", descending: true)
@@ -257,7 +257,7 @@ class SearchViewModel: ObservableObject {
                 guard let documents = snapshot?.documents else {
                     group.leave()
                     return }
-                self.filteredJournals = documents.compactMap({try? $0.data(as: Journal.self)})
+                self.filteredMoments = documents.compactMap({try? $0.data(as: Moment.self)})
                 group.leave()
             }
         
@@ -291,7 +291,7 @@ class SearchViewModel: ObservableObject {
             }
         
         group.notify(queue: .main){
-            print("successfully get the filtered items for each type (journals, todos and persons)")
+            print("successfully get the filtered items for each type (moments, todos and persons)")
             handler(true)
             return
         }
@@ -313,7 +313,7 @@ class SearchViewModel: ObservableObject {
             }
         
         group.notify(queue: .main){
-            print("successfully get the filtered items for each type (journals, todos and persons branches)")
+            print("successfully get the filtered items for each type (moments, todos and persons branches)")
             handler(true)
             return
         }

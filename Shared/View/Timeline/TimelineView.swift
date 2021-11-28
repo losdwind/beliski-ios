@@ -10,7 +10,7 @@ import SwiftUI
 struct TimelineView: View {
     
     @ObservedObject var timelineManager:TimelineManager
-    @ObservedObject var journalvm: JournalViewModel
+    @ObservedObject var momentvm: MomentViewModel
     @ObservedObject var todovm: TodoViewModel
     @ObservedObject var personvm: PersonViewModel
     @ObservedObject var dataLinkedManger:DataLinkedManager
@@ -20,9 +20,9 @@ struct TimelineView: View {
     @ObservedObject var profilevm:ProfileViewModel
     
     @State var isShowingCreateView:Bool = false
-    init(timelineManger:TimelineManager, journalvm:JournalViewModel, todovm:TodoViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel, branchvm:BranchViewModel, profilevm:ProfileViewModel){
+    init(timelineManger:TimelineManager, momentvm:MomentViewModel, todovm:TodoViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel, branchvm:BranchViewModel, profilevm:ProfileViewModel){
         self.timelineManager = timelineManger
-        self.journalvm = journalvm
+        self.momentvm = momentvm
         self.todovm = todovm
         self.personvm = personvm
         self.dataLinkedManger = dataLinkedManager
@@ -71,9 +71,9 @@ struct TimelineView: View {
                 
                 // TabView
                 TabView(selection: $timelineManager.selectedTab) {
-                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)
+                    MomentListView(momentvm: momentvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)
                     TodoListView(todovm: todovm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger).tag(TimelineTab.EVENTS)
-                    TopicView(timelineManager: timelineManager, journalvm: journalvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm).tag(TimelineTab.TOPICS)
+                    TopicView(timelineManager: timelineManager, momentvm: momentvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm).tag(TimelineTab.TOPICS)
                     
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
@@ -87,7 +87,7 @@ struct TimelineView: View {
                 ToolbarItem(placement:.navigationBarLeading){
                     
                     NavigationLink {
-                        SearchView(searchvm: searchvm, journalvm: journalvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager, branchvm: branchvm)
+                        SearchView(searchvm: searchvm, momentvm: momentvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager, branchvm: branchvm)
                     } label: {
                         Image(systemName: "magnifyingglass.circle")
                     }
@@ -125,7 +125,7 @@ struct TimelineView: View {
             
         }
         .fullScreenCover(isPresented: $isShowingCreateView) {
-            CreateView(journalvm: journalvm, todovm: todovm, personvm: personvm, branchvm: branchvm)
+            CreateView(momentvm: momentvm, todovm: todovm, personvm: personvm, branchvm: branchvm)
         }
         //        .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -133,7 +133,7 @@ struct TimelineView: View {
 
 struct TimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        TimelineView(timelineManger: TimelineManager(), journalvm: JournalViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel(), profilevm: ProfileViewModel())
+        TimelineView(timelineManger: TimelineManager(), momentvm: MomentViewModel(), todovm: TodoViewModel(), personvm: PersonViewModel(), dataLinkedManager: DataLinkedManager(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel(), branchvm: BranchViewModel(), profilevm: ProfileViewModel())
             .preferredColorScheme(.light)
             .environment(\.sizeCategory, .extraSmall)
     }

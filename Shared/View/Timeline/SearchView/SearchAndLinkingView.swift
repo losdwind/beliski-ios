@@ -1,5 +1,5 @@
 //
-//  SearchJournalView.swift
+//  SearchMomentView.swift
 //  Beliski
 //
 //  Created by Losd wind on 2021/10/15.
@@ -47,7 +47,7 @@ struct SearchAndLinkingView<T:Item>: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        if searchvm.selectedJournals.isEmpty && searchvm.selectedTodos.isEmpty && searchvm.selectedPersons.isEmpty && searchvm.selectedBranches.isEmpty {
+                        if searchvm.selectedMoments.isEmpty && searchvm.selectedTodos.isEmpty && searchvm.selectedPersons.isEmpty && searchvm.selectedBranches.isEmpty {
                             isShowingFalseAlert.toggle()
                         } else {
                             searchvm.doubleLink(from: item) { success in
@@ -105,6 +105,6 @@ struct SearchAndLinkingView<T:Item>: View {
 struct SearchAndLinkingView_Previews: PreviewProvider {
     @State static var linkedIDs: [String] = []
     static var previews: some View {
-        SearchAndLinkingView(item: Journal(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
+        SearchAndLinkingView(item: Moment(), searchvm: SearchViewModel(), tagPanelvm: TagPanelViewModel())
     }
 }

@@ -106,7 +106,7 @@ class SquadViewModel: ObservableObject {
    
     func fetchOnInviteBranches(completion: @escaping (_ success: Bool) -> ()) {
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchJournal function")
+            print("userID is not valid here in fetchMoment function")
             completion(false)
             return
         }

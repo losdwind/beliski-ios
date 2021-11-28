@@ -56,7 +56,7 @@ class TodoViewModel: ObservableObject {
             handler(true)
             
         } catch let error {
-            print("Error upload journal to Firestore: \(error)")
+            print("Error upload moment to Firestore: \(error)")
             handler(false)
         }
 

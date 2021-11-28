@@ -20,8 +20,8 @@ struct PrivateStatsBarView: View {
             // MARK: - No. Persons
             SingleEntryView(number: 14, text: "Branch")
             
-            // MARK: - No.journals
-            SingleEntryView(number: 131, text: "Journals")
+            // MARK: - No.moments
+            SingleEntryView(number: 131, text: "Moments")
             
             // MARK: - No. Completion/ Todos
             SingleEntryView(number: 15/20, text: "Todos")

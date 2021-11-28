@@ -1,5 +1,5 @@
 //
-//  JournalLinkedView.swift
+//  MomentLinkedView.swift
 //  Beliski
 //
 //  Created by Losd wind on 2021/10/15.
@@ -18,12 +18,12 @@ struct LinkedItemsView: View {
             LazyVStack(alignment:.leading) {
                 
                 
-                Text("Journals")
+                Text("Moments")
                     .font(.title3.bold())
                 
-                    ForEach(dataLinkedManager.linkedJournals){
-                        journal in
-                        JournalItemView(journal: journal, tagNames: journal.tagNames, OwnerItemID: journal.id)
+                    ForEach(dataLinkedManager.linkedMoments){
+                        moment in
+                        MomentItemView(moment: moment, tagNames: moment.tagNames, OwnerItemID: moment.id)
                     }
                 
 
