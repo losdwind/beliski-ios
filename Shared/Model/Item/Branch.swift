@@ -40,9 +40,6 @@ struct Branch:Identifiable, Codable, Hashable, Item {
     
     var description: String = ""
     
-    
-    
-    
     var memberIDs: [String] = []
     var memberIDsAvatar:[String] = []
     var memberIDsNickname:[String] = []
@@ -50,7 +47,7 @@ struct Branch:Identifiable, Codable, Hashable, Item {
     
     // FIXME: here we shall not store the strings, maybe in a subcollection, because the id is usually 20 character, while the 1MB limitation only allows maximum 400,000 users
     
-    var openess: String = "Private"
+    var openness: String = "Private"
     
     
     

@@ -20,6 +20,7 @@ struct TimelineView: View {
     @ObservedObject var profilevm:ProfileViewModel
     
     @State var isShowingCreateView:Bool = false
+    @State var isShowingSearchView:Bool = false
     init(timelineManger:TimelineManager, momentvm:MomentViewModel, todovm:TodoViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel, branchvm:BranchViewModel, profilevm:ProfileViewModel){
         self.timelineManager = timelineManger
         self.momentvm = momentvm
@@ -86,8 +87,8 @@ struct TimelineView: View {
             .toolbar {
                 ToolbarItem(placement:.navigationBarLeading){
                     
-                    NavigationLink {
-                        SearchView(searchvm: searchvm, momentvm: momentvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager, branchvm: branchvm)
+                    Button {
+                        isShowingSearchView.toggle()
                     } label: {
                         Image(systemName: "magnifyingglass.circle")
                     }
@@ -113,7 +114,9 @@ struct TimelineView: View {
                 } label: {
                     Image(systemName: "plus.circle")
                         .font(.title)
+                        .symbolVariant(SymbolVariants.fill)
                         .foregroundColor(.pink)
+
                         .padding(.bottom, 40)
                         .padding(.trailing, 40)
                 }
@@ -126,6 +129,9 @@ struct TimelineView: View {
         }
         .fullScreenCover(isPresented: $isShowingCreateView) {
             CreateView(momentvm: momentvm, todovm: todovm, personvm: personvm, branchvm: branchvm)
+        }
+        .fullScreenCover(isPresented: $isShowingSearchView){
+            SearchView(searchvm: searchvm, momentvm: momentvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager, branchvm: branchvm)
         }
         //        .navigationViewStyle(StackNavigationViewStyle())
     }

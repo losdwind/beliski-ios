@@ -93,7 +93,6 @@ struct FilterView: View {
             
             
         } //: VStack
-        .padding()
     }
 }
 

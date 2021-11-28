@@ -101,3 +101,25 @@ struct GradientButtonStyle: ButtonStyle {
             
     }
 }
+
+
+struct TodoTextFieldStyle:TextFieldStyle {
+    var isDarkMode = false
+    
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+            .foregroundColor(.pink)
+            .font(.system(size: 24, weight: .bold, design: .rounded))
+            .padding()
+            .background(
+                isDarkMode ? Color(UIColor.tertiarySystemBackground) : Color(UIColor.secondarySystemBackground)
+            )
+            .cornerRadius(10)
+    }
+    
+    
+    
+    
+}
+
+

@@ -172,7 +172,7 @@ struct BranchCardEditorView: View {
                         
                         ForEach(["Private","Public","OnInvite"],id: \.self){tab in
                             
-                            OpenessTabButton(title: tab, currentType: $branchvm.branch.openess)
+                            OpenessTabButton(title: tab, currentType: $branchvm.branch.openness)
                         }
                     }
                     

@@ -375,7 +375,7 @@ class CommunityViewModel: ObservableObject {
         
         
         COLLECTION_BRANCHES
-            .whereField("openess", isEqualTo: OpenType.Public.rawValue)
+            .whereField("openness", isEqualTo: OpenType.Public.rawValue)
             .order(by: "comments", descending: true)
             .limit(to: 20)
             .addSnapshotListener { snapshot, _ in
@@ -411,7 +411,7 @@ class CommunityViewModel: ObservableObject {
                 
                 if !subscribedBranchIDs.isEmpty{
                     COLLECTION_BRANCHES
-                        .whereField("openess", isEqualTo: OpenType.Public.rawValue)
+                        .whereField("openness", isEqualTo: OpenType.Public.rawValue)
                         .whereField("isSubed", isEqualTo: true)
                         .whereField("id", in: subscribedBranchIDs)
                         .getDocuments { snapshot, _ in

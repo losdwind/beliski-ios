@@ -24,9 +24,59 @@ struct SearchView: View {
     var body: some View {
             ScrollView(.vertical,showsIndicators: false){
                 
+                HStack{
+                    
+                    Button {
+                        
+                        withAnimation{
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.title2)
+                            .foregroundColor(.black)
+                    }
+                    
+                    Spacer()
+                
+                }
+                .overlay(
+                    
+                    Text("Search")
+                        .font(.system(size: 18))
+                )
+                .padding(.bottom, 20)
                 
                 FilterView(tagPanelvm: tagPanelvm, searchvm: searchvm)
 
+                
+                Button {
+                    searchvm.fetchIDsFromFilter { success in
+                        if success {
+                            print("successfully get the filtered items and assign to item list view")
+                            momentvm.fetchedMoments = searchvm.filteredMoments
+                            todovm.fetchedTodos = searchvm.filteredTodos
+                            personvm.fetchedPersons = searchvm.filteredPersons
+                            branchvm.fetchedAllBranches = searchvm.filteredBranches
+                            isShowingSearchResultView = true
+                        } else {
+                            print("failed to get the filtered items or assign to item list view ")
+                        }
+                        
+                        
+                    }
+                } label: {
+                    Text("Search")
+                        .padding(.vertical,6)
+                        .padding(.horizontal,30)
+                        
+                    
+                }
+                .modifier(SaveButtonBackground(isButtonDisabled: false))
+                
+                
+                
                 if isShowingSearchResultView{
                     Text("Results")
                         .font(.title3.bold())
@@ -43,44 +93,7 @@ struct SearchView: View {
                 
                 
             }
-            .frame(maxWidth:640)
-            
-            
-            
-            
-            
-            .navigationTitle("Search")
-            .toolbar {
-                
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        searchvm.fetchIDsFromFilter { success in
-                            if success {
-                                print("successfully get the filtered items and assign to item list view")
-                                momentvm.fetchedMoments = searchvm.filteredMoments
-                                todovm.fetchedTodos = searchvm.filteredTodos
-                                personvm.fetchedPersons = searchvm.filteredPersons
-                                branchvm.fetchedAllBranches = searchvm.filteredBranches
-                                isShowingSearchResultView = true
-                            } else {
-                                print("failed to get the filtered items or assign to item list view ")
-                            }
-                            
-                            
-                        }
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(Color.pink)
-                    }
-                }
-                
-                
-                
-                
-                
-                
-            }
+            .padding()
             
         
     }

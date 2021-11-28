@@ -112,7 +112,7 @@ class SquadViewModel: ObservableObject {
         }
         
         COLLECTION_BRANCHES
-            .whereField("openess", isEqualTo: OpenType.OnInvite.rawValue)
+            .whereField("openness", isEqualTo: OpenType.OnInvite.rawValue)
             .whereField("memberIDs", arrayContains: userID)
             .addSnapshotListener { snapshot, _ in
                 guard let documents = snapshot?.documents else {

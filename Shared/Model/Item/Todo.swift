@@ -19,12 +19,23 @@ struct Todo:Identifiable, Codable, Hashable, Item {
     var linkedItems:[String] = []
     
     var content:String = ""
+    
+    
+    var wish:String = ""
+    var outcome:String = ""
+    var obstacle:String = ""
+    var plan:String = ""
     var description:String = ""
+    
     var completion: Bool = false
+    
     var reminder: Timestamp?
+    var start:Timestamp?
+    var end:Timestamp?
     var tagNames:[String] = []
     
-    var openess:String = "Private"
+    var isUsingWoop:Bool = true
+    var openness:String = "Private"
 
     
     
