@@ -54,11 +54,7 @@ struct MainView: View {
                         
                     }.tag(MainTab.score)
                 
-                // Show the create launcher with multiple categories of journal type
-                CreateView(journalvm: journalvm, todovm: todovm, personvm: personvm, branchvm: branchvm)
-                    .tabItem {
-                        Image(systemName: "plus.circle")
-                    }.tag(MainTab.create)
+  
                 
                 // Show community information and open journals shared by internet users
                 SquadView(squadvm: squadvm, dataLinkedManager: dataLinkedManager)

@@ -18,8 +18,8 @@ struct TimelineView: View {
     @ObservedObject var tagPanelvm:TagPanelViewModel
     @ObservedObject var branchvm: BranchViewModel
     @ObservedObject var profilevm:ProfileViewModel
-
     
+    @State var isShowingCreateView:Bool = false
     init(timelineManger:TimelineManager, journalvm:JournalViewModel, todovm:TodoViewModel, personvm:PersonViewModel, dataLinkedManager: DataLinkedManager, searchvm:SearchViewModel, tagPanelvm:TagPanelViewModel, branchvm:BranchViewModel, profilevm:ProfileViewModel){
         self.timelineManager = timelineManger
         self.journalvm = journalvm
@@ -31,22 +31,21 @@ struct TimelineView: View {
         self.branchvm = branchvm
         self.profilevm = profilevm
         
-//        UIPageControl.appearance().currentPageIndicatorTintColor = .clear
-//        UIPageControl.appearance().pageIndicatorTintColor = .clear
+        //        UIPageControl.appearance().currentPageIndicatorTintColor = .clear
+        //        UIPageControl.appearance().pageIndicatorTintColor = .clear
         
-//        UITabBar.appearance().shadowImage = UIImage()
-//        UITabBar.appearance().backgroundImage = UIImage()
-//        UITabBar.appearance().isTranslucent = true
-//        UITabBar.appearance().backgroundColor = .white
+        //        UITabBar.appearance().shadowImage = UIImage()
+        //        UITabBar.appearance().backgroundImage = UIImage()
+        //        UITabBar.appearance().isTranslucent = true
+        //        UITabBar.appearance().backgroundColor = .white
     }
     
     var body: some View {
         NavigationView {
+            ZStack(alignment:.bottomTrailing) {
             VStack{
                 HStack{
-                    //                Button(action: {timelineManager.showFilterView.toggle()}, label: {Image(systemName: "line.horizontal.3.decrease.circle") })
-                    //                    .layoutPriority(1)
-                    //
+                    
                     Picker("Filter", selection:$timelineManager.selectedTab){
                         // Todo: - check the TimelineManager Enum
                         Text("Today").tag(TimelineTab.TODAY)
@@ -54,10 +53,10 @@ struct TimelineView: View {
                         
                         Text("Events").tag(TimelineTab.EVENTS)
                             .foregroundColor(timelineManager.selectedTab == .EVENTS ? .blue : .red)
-                                                
+                        
                         
                         Text("Topics")
-                        .tag(TimelineTab.TOPICS)
+                            .tag(TimelineTab.TOPICS)
                             .foregroundColor(timelineManager.selectedTab == .TOPICS ? .blue : .red)
                         
                         
@@ -65,59 +64,20 @@ struct TimelineView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal, 50)
-                    
-                    //                //
-                    //                Button(action: {timelineManager.showSearchView.toggle()}, label: {Image(systemName: "magnifyingglass.circle") })
-                    //                    .layoutPriority(1)
                 }
                 .padding(.horizontal,20)
                 
                 
-                //: Tabview
-                switch timelineManager.selectedTab {
-                case .TODAY:
-                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
-                case .EVENTS:
-                    TodoListView(todovm: todovm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger)
-                case .TOPICS:
-                    TopicView(timelineManager: timelineManager, journalvm: journalvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm)
-                    
-                    
-                   
-                }
                 
-//                Menu("something") {
-//                    Picker("Filter", selection:$timelineManager.selectedTab){
-//                        // Todo: - check the TimelineManager Enum
-//                        Text("Today").tag(TimelineTab.TODAY)
-//                            .foregroundColor(timelineManager.selectedTab == .TODAY ? .blue : .red)
-//
-//                        Text("Events").tag(TimelineTab.EVENTS)
-//                            .foregroundColor(timelineManager.selectedTab == .EVENTS ? .blue : .red)
-//
-//
-//                        Text("Topics")
-//                        .tag(TimelineTab.TOPICS)
-//                            .foregroundColor(timelineManager.selectedTab == .TOPICS ? .blue : .red)
-//
-//
-//
-//                    }
-//                    .pickerStyle(MenuPickerStyle())
-//                }
-//                TabView(selection: $timelineManager.selectedTab) {
-//
-//                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)
-//
-//
-//                    TodoListView(todovm: todovm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger).tag(TimelineTab.EVENTS)
-//
-//                    PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TOPICS)
-//
-//
-//                }
-//                .tabViewStyle(PageTabViewStyle())
-                //                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+                // TabView
+                TabView(selection: $timelineManager.selectedTab) {
+                    JournalListView(journalvm: journalvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)
+                    TodoListView(todovm: todovm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger).tag(TimelineTab.EVENTS)
+                    TopicView(timelineManager: timelineManager, journalvm: journalvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm).tag(TimelineTab.TOPICS)
+                    
+                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                
                 
             } //: VStack
             .frame(maxWidth:640)
@@ -125,24 +85,17 @@ struct TimelineView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement:.navigationBarLeading){
-
+                    
                     NavigationLink {
                         SearchView(searchvm: searchvm, journalvm: journalvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, tagPanelvm: tagPanelvm, timelineManager: timelineManager, branchvm: branchvm)
                     } label: {
                         Image(systemName: "magnifyingglass.circle")
                     }
-
+                    
                     
                 }
                 
                 ToolbarItem(placement:.navigationBarTrailing){
-//                    Menu {
-//                        Button("Compact", action: {timelineManager.theme = Theme.compact} )
-//                        Button("Full", action: {timelineManager.theme = Theme.full} )
-//                    } label: {
-//                        Label("Theme", systemImage: "sparkles")
-//                    }
-//
                     
                     NavigationLink {
                         InspireView(profilevm: profilevm)
@@ -151,11 +104,30 @@ struct TimelineView: View {
                     }
                 }
             }
-          
+            
+            
+                
+                
+                Button {
+                    isShowingCreateView.toggle()
+                } label: {
+                    Image(systemName: "plus.circle")
+                        .font(.title)
+                        .foregroundColor(.pink)
+                        .padding(.bottom, 40)
+                        .padding(.trailing, 40)
+                }
 
             
+                
+            
         }
-//        .navigationViewStyle(StackNavigationViewStyle())
+            
+        }
+        .fullScreenCover(isPresented: $isShowingCreateView) {
+            CreateView(journalvm: journalvm, todovm: todovm, personvm: personvm, branchvm: branchvm)
+        }
+        //        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

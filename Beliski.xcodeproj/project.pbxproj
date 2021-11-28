@@ -46,6 +46,17 @@
 		2942C858272010FF00ECD167 /* TagPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C856272010FF00ECD167 /* TagPanelView.swift */; };
 		2942C85A2721391E00ECD167 /* TagPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C8592721391E00ECD167 /* TagPanelViewModel.swift */; };
 		2942C85B2721391E00ECD167 /* TagPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C8592721391E00ECD167 /* TagPanelViewModel.swift */; };
+		2951CD8F274F7450008E283A /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD8E274F7450008E283A /* HeatMapView.swift */; };
+		2951CD90274F7450008E283A /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD8E274F7450008E283A /* HeatMapView.swift */; };
+		2951CD93274F8011008E283A /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD92274F8011008E283A /* MapViewModel.swift */; };
+		2951CD94274F8011008E283A /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD92274F8011008E283A /* MapViewModel.swift */; };
+		2951CD96275074F6008E283A /* AppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD95275074F6008E283A /* AppCheckProviderFactory.swift */; };
+		2951CD97275074F6008E283A /* AppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD95275074F6008E283A /* AppCheckProviderFactory.swift */; };
+		2951CD992751FFBF008E283A /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD982751FFBF008E283A /* Place.swift */; };
+		2951CD9A2751FFBF008E283A /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD982751FFBF008E283A /* Place.swift */; };
+		2951CD9D27520478008E283A /* GeoFireUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 2951CD9C27520478008E283A /* GeoFireUtils */; };
+		2951CD9F27533488008E283A /* WBScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD9E27533488008E283A /* WBScore.swift */; };
+		2951CDA027533488008E283A /* WBScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD9E27533488008E283A /* WBScore.swift */; };
 		29552A38270D89150056E675 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A37270D89150056E675 /* CustomTextField.swift */; };
 		29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */; };
 		29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A3D270D95900056E675 /* AuthViewModel.swift */; };
@@ -144,6 +155,7 @@
 		29824B94273C09B800868C9B /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B92273C09B800868C9B /* FilterView.swift */; };
 		29824B96273C0BF500868C9B /* SearchResultSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */; };
 		29824B97273C0BF500868C9B /* SearchResultSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */; };
+		2984E8D3274F5F160009F580 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2984E8D2274F5F160009F580 /* MapKit.framework */; };
 		29AC38C2273E938400CA1B98 /* OpenBranchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC38C1273E938400CA1B98 /* OpenBranchCardView.swift */; };
 		29AC38C3273E938400CA1B98 /* OpenBranchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC38C1273E938400CA1B98 /* OpenBranchCardView.swift */; };
 		29AC38C5273ECC4D00CA1B98 /* HalfSheetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC38C4273ECC4D00CA1B98 /* HalfSheetModal.swift */; };
@@ -350,6 +362,11 @@
 		2942C8532720099400ECD167 /* SubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViews.swift; sourceTree = "<group>"; };
 		2942C856272010FF00ECD167 /* TagPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPanelView.swift; sourceTree = "<group>"; };
 		2942C8592721391E00ECD167 /* TagPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPanelViewModel.swift; sourceTree = "<group>"; };
+		2951CD8E274F7450008E283A /* HeatMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
+		2951CD92274F8011008E283A /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		2951CD95275074F6008E283A /* AppCheckProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCheckProviderFactory.swift; sourceTree = "<group>"; };
+		2951CD982751FFBF008E283A /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		2951CD9E27533488008E283A /* WBScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBScore.swift; sourceTree = "<group>"; };
 		29552A37270D89150056E675 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureTextField.swift; sourceTree = "<group>"; };
 		29552A3D270D95900056E675 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -383,6 +400,7 @@
 		29824B90273BB6B700868C9B /* Beliski (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Beliski (iOS).entitlements"; sourceTree = "<group>"; };
 		29824B92273C09B800868C9B /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		29824B95273C0BF500868C9B /* SearchResultSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSimpleView.swift; sourceTree = "<group>"; };
+		2984E8D2274F5F160009F580 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		29AC38C1273E938400CA1B98 /* OpenBranchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenBranchCardView.swift; sourceTree = "<group>"; };
 		29AC38C4273ECC4D00CA1B98 /* HalfSheetModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfSheetModal.swift; sourceTree = "<group>"; };
 		29AC38CA273EF2FD00CA1B98 /* BlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlankView.swift; sourceTree = "<group>"; };
@@ -502,12 +520,14 @@
 				29552A48270F029F0056E675 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				296FA48F2732AF8400FEBF8A /* DequeModule in Frameworks */,
 				29552A4A270F029F0056E675 /* FirebaseStorage in Frameworks */,
+				2984E8D3274F5F160009F580 /* MapKit.framework in Frameworks */,
 				29F7D8F027495EA900B50844 /* HealthKit.framework in Frameworks */,
 				29552A44270F029F0056E675 /* FirebaseAuth in Frameworks */,
 				2964A30727464B4F002C2595 /* FirebaseAppCheck in Frameworks */,
 				2964A30927464B67002C2595 /* FirebaseFunctions in Frameworks */,
 				2964A31127464B8D002C2595 /* FirebaseMessaging in Frameworks */,
 				29552A46270F029F0056E675 /* FirebaseFirestore in Frameworks */,
+				2951CD9D27520478008E283A /* GeoFireUtils in Frameworks */,
 				29F7D8F5274A124600B50844 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,6 +594,14 @@
 			path = LinkView;
 			sourceTree = "<group>";
 		};
+		2951CD91274F745A008E283A /* HeatMap */ = {
+			isa = PBXGroup;
+			children = (
+				2951CD8E274F7450008E283A /* HeatMapView.swift */,
+			);
+			path = HeatMap;
+			sourceTree = "<group>";
+		};
 		29552A36270D88F90056E675 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,6 +616,7 @@
 				29ED111B271996E700E67D8B /* NewImagePicker.swift */,
 				29ED110B2713436B00E67D8B /* SoundPlayer.swift */,
 				29AC38C4273ECC4D00CA1B98 /* HalfSheetModal.swift */,
+				2951CD95275074F6008E283A /* AppCheckProviderFactory.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -603,6 +632,7 @@
 		29552A7427101B430056E675 /* WillbeingScore */ = {
 			isa = PBXGroup;
 			children = (
+				2951CD91274F745A008E283A /* HeatMap */,
 				29E1DD80272D3B0C00EC5E1D /* Community */,
 				29E1DD7F272D3AFE00EC5E1D /* Financial */,
 				29E1DD7E272D3AEE00EC5E1D /* Health */,
@@ -714,6 +744,8 @@
 				296FA49B27344EC000FEBF8A /* Sub.swift */,
 				296FA49E273457DE00FEBF8A /* Dislike.swift */,
 				2964A3232747D2BD002C2595 /* PPCard.swift */,
+				2951CD982751FFBF008E283A /* Place.swift */,
+				2951CD9E27533488008E283A /* WBScore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -735,6 +767,7 @@
 				29E1DD90272D54F900EC5E1D /* CommunityViewModel.swift */,
 				29E1DE162731463300EC5E1D /* SquadViewModel.swift */,
 				29F7D8E32749040900B50844 /* HealthStoreManager.swift */,
+				2951CD92274F8011008E283A /* MapViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -849,6 +882,7 @@
 		29D2BA912727D9E7007F76B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2984E8D2274F5F160009F580 /* MapKit.framework */,
 				29F7D8E12748D8A700B50844 /* HealthKit.framework */,
 			);
 			name = Frameworks;
@@ -1088,6 +1122,7 @@
 				2964A30827464B67002C2595 /* FirebaseFunctions */,
 				2964A31027464B8D002C2595 /* FirebaseMessaging */,
 				29F7D8F4274A124600B50844 /* GoogleSignIn */,
+				2951CD9C27520478008E283A /* GeoFireUtils */,
 			);
 			productName = "Beliski (iOS)";
 			productReference = 29C46BF4270D5E8A00754817 /* Beliski.app */;
@@ -1157,6 +1192,7 @@
 				29ED10F12710311A00E67D8B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				296FA48B2732AF8300FEBF8A /* XCRemoteSwiftPackageReference "swift-collections" */,
 				29F7D8F3274A124600B50844 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				2951CD9B27520478008E283A /* XCRemoteSwiftPackageReference "geofire-objc" */,
 			);
 			productRefGroup = 29C46BF5270D5E8A00754817 /* Products */;
 			projectDirPath = "";
@@ -1211,6 +1247,7 @@
 				29ED110E2713462700E67D8B /* CustomedViewModifier.swift in Sources */,
 				29ED111F2719B30E00E67D8B /* SearchViewModel.swift in Sources */,
 				2907B4C3272C0E7F001A3DA1 /* ProfileAvatarView.swift in Sources */,
+				2951CD96275074F6008E283A /* AppCheckProviderFactory.swift in Sources */,
 				29552A6527100CD70056E675 /* JournalViewModel.swift in Sources */,
 				29C46C30270D600900754817 /* CommunityView.swift in Sources */,
 				2907B4B6272AE377001A3DA1 /* ChatView.swift in Sources */,
@@ -1258,6 +1295,7 @@
 				29ED10F92710422600E67D8B /* JournalItemView.swift in Sources */,
 				29E1DDF0272E4FE300EC5E1D /* BranchCardListView.swift in Sources */,
 				29C46C28270D600900754817 /* SquadView.swift in Sources */,
+				2951CD992751FFBF008E283A /* Place.swift in Sources */,
 				29552A54270F0F2E0056E675 /* ImagePicker.swift in Sources */,
 				29C46BFD270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29E1DDD7272DB06100EC5E1D /* AllTagsView.swift in Sources */,
@@ -1307,14 +1345,17 @@
 				29ED111627189A3200E67D8B /* SearchAndLinkingView.swift in Sources */,
 				29E1DDD4272DB04600EC5E1D /* LinkNetworkView.swift in Sources */,
 				29E1DDFC272ED1CF00EC5E1D /* MBTIView.swift in Sources */,
+				2951CD93274F8011008E283A /* MapViewModel.swift in Sources */,
 				29E1DDF6272E591800EC5E1D /* SquadCardView.swift in Sources */,
 				29E1DDE9272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */,
 				29E1DDB8272D746C00EC5E1D /* LineChartView.swift in Sources */,
 				29D2BA8F2727D4DA007F76B8 /* SettingsView.swift in Sources */,
+				2951CD9F27533488008E283A /* WBScore.swift in Sources */,
 				29824B67273AC14200868C9B /* InviteUserView.swift in Sources */,
 				29ED1156271B42B600E67D8B /* PersonDetailView.swift in Sources */,
 				29ED10FC2710423800E67D8B /* JournalEditorView.swift in Sources */,
 				296FA4842731854700FEBF8A /* CommentCellView.swift in Sources */,
+				2951CD8F274F7450008E283A /* HeatMapView.swift in Sources */,
 				29E1DDCA272D746C00EC5E1D /* PieChartView.swift in Sources */,
 				29552A7127101A7C0056E675 /* ProfileDetailView.swift in Sources */,
 				29E1DDC6272D746C00EC5E1D /* PieChartHelpers.swift in Sources */,
@@ -1389,11 +1430,14 @@
 				29E1DE00272ED22900EC5E1D /* BigFiveView.swift in Sources */,
 				29824B97273C0BF500868C9B /* SearchResultSimpleView.swift in Sources */,
 				29ED11342719E49600E67D8B /* PersonEditorView.swift in Sources */,
+				2951CD94274F8011008E283A /* MapViewModel.swift in Sources */,
 				29824B7A273BACB700868C9B /* CustomTextField.swift in Sources */,
+				2951CD97275074F6008E283A /* AppCheckProviderFactory.swift in Sources */,
 				29E1DDCB272D746C00EC5E1D /* PieChartView.swift in Sources */,
 				29824B8A273BACE800868C9B /* JournalListView.swift in Sources */,
 				296FA487273187A100FEBF8A /* InPutCommentsView.swift in Sources */,
 				29552A3F270D95900056E675 /* AuthViewModel.swift in Sources */,
+				2951CDA027533488008E283A /* WBScore.swift in Sources */,
 				2969600B2739052A00C5A946 /* CommentsView.swift in Sources */,
 				29E1DE03273046E500EC5E1D /* CategoryView.swift in Sources */,
 				29824B73273BACB700868C9B /* Helplers.swift in Sources */,
@@ -1411,6 +1455,7 @@
 				29C46C00270D5E8A00754817 /* MainView.swift in Sources */,
 				29ED115D271D735000E67D8B /* TagViewModel.swift in Sources */,
 				296FA49A27330B8000FEBF8A /* BranchCardFooterView.swift in Sources */,
+				2951CD9A2751FFBF008E283A /* Place.swift in Sources */,
 				29824B7E273BACC600868C9B /* Tag.swift in Sources */,
 				29824B80273BACC600868C9B /* Dislike.swift in Sources */,
 				29E1DDC5272D746C00EC5E1D /* PieChartRow.swift in Sources */,
@@ -1434,6 +1479,7 @@
 				29824B79273BACB700868C9B /* Constants.swift in Sources */,
 				29ED11202719B30E00E67D8B /* SearchViewModel.swift in Sources */,
 				29ED11412719E4B400E67D8B /* CheckboxStyle.swift in Sources */,
+				2951CD90274F7450008E283A /* HeatMapView.swift in Sources */,
 				29ED113B2719E4B400E67D8B /* TaskEditorView.swift in Sources */,
 				29E1DDBD272D746C00EC5E1D /* Path+QuadCurve.swift in Sources */,
 				29824B88273BACC600868C9B /* Branch.swift in Sources */,
@@ -1627,6 +1673,8 @@
 				INFOPLIST_FILE = "Beliski--iOS--Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your daily acitivities including steps, sleep, exercise data will be fetched by our app for anlayzing physical wellbeing status. We will never share this data with third-party organization without your permission.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Your daily routine will be recorded at a low frequency to monitor physical and social wellbeing status. We will never share this data with third parties.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your daily routine will be recorded at a low frequency to monitor physical and social wellbeing status. We will never share this data with third parties.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1666,6 +1714,8 @@
 				INFOPLIST_FILE = "Beliski--iOS--Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your daily acitivities including steps, sleep, exercise data will be fetched by our app for anlayzing physical wellbeing status. We will never share this data with third-party organization without your permission.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Your daily routine will be recorded at a low frequency to monitor physical and social wellbeing status. We will never share this data with third parties.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your daily routine will be recorded at a low frequency to monitor physical and social wellbeing status. We will never share this data with third parties.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1784,6 +1834,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2951CD9B27520478008E283A /* XCRemoteSwiftPackageReference "geofire-objc" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/geofire-objc.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1819,6 +1877,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2951CD9C27520478008E283A /* GeoFireUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2951CD9B27520478008E283A /* XCRemoteSwiftPackageReference "geofire-objc" */;
+			productName = GeoFireUtils;
+		};
 		29552A43270F029F0056E675 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 29552A42270F029F0056E675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

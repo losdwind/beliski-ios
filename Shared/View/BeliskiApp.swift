@@ -14,20 +14,24 @@ struct BeliskiApp: App {
     
     
     init(){
-        let providerFactory = AppCheckDebugProviderFactory()
-        AppCheck.setAppCheckProviderFactory(providerFactory)
         
+#if targetEnvironment (simulator)
+        let providerFactory = AppCheckDebugProviderFactory ()
+#else
+        let providerFactory = BeliskiAppCheckProviderFactory ()
+#endif
+        AppCheck.setAppCheckProviderFactory (providerFactory)
         FirebaseApp.configure()
-
+        
     }
-
+    
     var body: some Scene {
         WindowGroup {
             MainView()
                 .font(.system(.body ,design: .rounded))
                 .font(.system(.footnote ,design: .rounded))
-
-
+            
+            
         }
     }
 }

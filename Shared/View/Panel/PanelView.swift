@@ -20,89 +20,96 @@ struct PanelView: View {
         NavigationView{
             ScrollView(.vertical,showsIndicators: false) {
                 
-            
-                                            
-                
-                    // MARK: Wellbeing Index
-                VStack{
-//                    Text("Wellbeing Index")
-//                        .font(.title3.bold())
-//                        .frame(maxWidth: .infinity,alignment: .leading)
-//
-                        WBScoreView()
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(18)
+                VStack(alignment: .leading){
                     
-                    Picker("Filter", selection:$selectedTab){
-                        // Todo: - check the WellbeingTab Enum
-                        Text("Career").tag(WellbeingTab.Career)
-                            .foregroundColor(selectedTab == WellbeingTab.Career ? .blue : .pink)
-                        Text("Social").tag(WellbeingTab.Social)
-                            .foregroundColor(selectedTab == WellbeingTab.Social ? .blue : .pink)
-                        Text("Physical").tag(WellbeingTab.Physical)
-                            .foregroundColor(selectedTab == WellbeingTab.Physical ? .blue : .pink)
-                        Text("Financial").tag(WellbeingTab.Financial)
-                            .foregroundColor(selectedTab == WellbeingTab.Financial ? .blue : .pink)
-                        Text("Community").tag(WellbeingTab.Community)
-                            .foregroundColor(selectedTab == WellbeingTab.Community ? .blue : .pink)
-                    }
-                    .pickerStyle(.segmented)
                     
-                    //: Tabview
-                        
-                        switch selectedTab {
-                        case .Career:
-                            CareerAbstractView().tag(WellbeingTab.Career)
-                        case .Social:
-                            SocialAbstractView().tag(WellbeingTab.Social)
-                        case .Physical:
-                            PhysicalAbstractView().tag(WellbeingTab.Physical)
-                        case .Financial:
-                            FinancialAbstractView().tag(WellbeingTab.Financial)
-                        case .Community:
-                            CommunityAbstractView().tag(WellbeingTab.Community)
+                    // MARK: - Wellbeing Index
+                    WBScoreView(wbScore: WBScore(career: 145, social: 133, physical: 178, financial: 108, community: 89))
+                    
+                    Text("Principal Component Analysis")
+                        .font(.title3.bold())
+                        .padding(.top)
+                    
+                    VStack {
+                        NavigationLink {
+                            CareerAbstractView()
+                        } label: {
+                            SettingsRowView(leftIcon: "case", text: "Career", color: .pink)
                         }
-                }
-
+                        
+                        NavigationLink {
+                            SocialAbstractView()
+                        } label: {
+                            SettingsRowView(leftIcon: "point.3.connected.trianglepath.dotted", text: "Social", color: .pink)
+                        }
+                        
+                        NavigationLink {
+                            PhysicalAbstractView()
+                        } label: {
+                            SettingsRowView(leftIcon: "heart.text.square", text: "Physical", color: .pink)
+                        }
+                        
+                        NavigationLink {
+                            FinancialAbstractView()
+                            
+                        } label: {
+                            SettingsRowView(leftIcon: "dollarsign.square", text: "Financial", color: .pink)
+                        }
+                        
+                        
+                        NavigationLink {
+                            CommunityAbstractView()
+                            
+                        } label: {
+                            SettingsRowView(leftIcon: "globe.asia.australia", text: "Community", color: .pink)
+                        }
+                        
+                    }
+                    
+                    // MARK: - HeatMap
+                    
+                    Text("Aditional Components")
+                        .font(.title3.bold())
+                        .padding(.top)
                     
                     
-                    // Survey Result
-                    VStack{
-                        Text("Survey Results")
-                            .font(.title3.bold())
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                        ScrollView(.horizontal, showsIndicators: false){
-                            HStack{
-                                NavigationLink {
-                                    VIAView()
-                                } label: {
-                                    CardView(image: "VIA", title: "VIA Character \nStrength Survey", price: "Free", color: Color.white)
-                                }
-                                
-                                NavigationLink {
-                                    MBTIView()
-                                } label: {
-                                    CardView(image: "mbti", title: "Myers-Briggs \nType Indicator", price: "Free", color: Color.white)
-                                }
-
-                                NavigationLink {
-                                    BigFiveView()
-                                } label: {
-                                    CardView(image: "bigfive", title: "Big Five \npersonality traits", price: "Free", color: Color.white)
-                                }
-
-                                
+                    NavigationLink {
+                        HeatMapView()
+                    } label: {
+                        SettingsRowView(leftIcon: "map", text: "Range of Activity", color: .pink)
+                    }
+                    
+                    
+                    
+                    
+                    Text("Survey Results")
+                        .font(.title3.bold())
+                        .padding(.top)
+                    
+                    ScrollView(.horizontal, showsIndicators: false){
+                        HStack{
+                            NavigationLink {
+                                VIAView()
+                            } label: {
+                                CardView(image: "VIA", title: "VIA Character \nStrength Survey", color: Color.white)
                             }
-                            .padding()
                             
+                            NavigationLink {
+                                MBTIView()
+                            } label: {
+                                CardView(image: "mbti", title: "Myers-Briggs \nType Indicator", color: Color.white)
+                            }
                             
+                            NavigationLink {
+                                BigFiveView()
+                            } label: {
+                                CardView(image: "bigfive", title: "Big Five \npersonality traits", color: Color.white)
+                            }
                         }
-                            
                         
                     }
-               
-                
+                    
+                }
                 
             }
             .padding()
@@ -137,9 +144,9 @@ struct PanelView: View {
                     print("successfully fetched current user profile")
                 }
             }
-
+            
         }
-//        .navigationViewStyle(StackNavigationViewStyle())
+        //        .navigationViewStyle(StackNavigationViewStyle())
         
     }
 }
@@ -189,7 +196,7 @@ struct TabButton: View{
             // Taking Available Width...
             .frame(maxWidth: .infinity)
         }
-
+        
     }
 }
 

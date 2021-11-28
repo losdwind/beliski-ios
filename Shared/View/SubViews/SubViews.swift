@@ -187,7 +187,7 @@ struct CardView: View{
 
     var image:String
     var title:String
-    var price:String
+//    var price:String
     var color:Color
     
     var body: some View{
@@ -196,24 +196,22 @@ struct CardView: View{
             Image(image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .foregroundColor(.white)
-                .frame(width: 50, height: 50)
+                .frame(width: 70, height: 70)
                 .padding()
                 .background(color, in: Circle())
             
             Text(title)
                 .font(.title3.bold())
-            
-            Text(price)
-                .fontWeight(.semibold)
-                .foregroundColor(.gray)
+                .foregroundColor(.primary)
+//
+//            Text(price)
+//                .fontWeight(.semibold)
+//                .foregroundColor(.gray)
         }
         .padding(.vertical)
         .padding(.horizontal,25)
-        .background(.white,in: RoundedRectangle(cornerRadius: 15))
-        // shadows...
-        .shadow(color: .black.opacity(0.05), radius: 5, x: 5, y: 5)
-        .shadow(color: .black.opacity(0.03), radius: 5, x: -5, y: -5)
+        .background(.gray.opacity(0.2),in: RoundedRectangle(cornerRadius: 15))
+ 
     }
     
 
@@ -222,6 +220,6 @@ struct CardView: View{
 struct CardView_Previews:PreviewProvider {
     
     static var previews: some View {
-        CardView(image: "VIA", title: "Character Strength", price: "Free", color: Color.white)
+        CardView(image: "VIA", title: "Character Strength", color: Color.green)
     }
 }
