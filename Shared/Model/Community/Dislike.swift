@@ -1,5 +1,5 @@
 //
-//  Sub.swift
+//  Dislike.swift
 //  Beliski
 //
 //  Created by Losd wind on 2021/11/5.
@@ -9,16 +9,10 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-struct Sub: Identifiable, Codable, Hashable {
-    
+
+struct Dislike: Identifiable, Codable {
     var id:String = UUID().uuidString
-    
     var userID:String = ""
-    
     var branchID:String = ""
-    
-    @ServerTimestamp var serverTimestamp: Timestamp?
-    
-    var isSubed: Bool = false
-    
+    @ServerTimestamp var serverTimestamp:Timestamp?
 }

@@ -15,6 +15,7 @@ struct Moment:Identifiable, Codable, Hashable, Item{
     
     // Item Protocol
     var id: String = UUID().uuidString
+    var dateCreated: Timestamp?
     @ServerTimestamp var serverTimestamp: Timestamp?
     var localTimestamp: Timestamp?
     var ownerID:String = ""

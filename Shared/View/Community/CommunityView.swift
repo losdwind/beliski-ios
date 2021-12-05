@@ -7,20 +7,11 @@
 
 import SwiftUI
 
-
-enum Area: String, CaseIterable {
-    case Beijing
-    case Shanghai
-    case Chongqing
-}
-
-
 struct CommunityView: View {
     @ObservedObject var communityvm:CommunityViewModel
     @ObservedObject var dataLinkedManager:DataLinkedManager
     
-    
-    @State var area:Area = .Beijing
+    @State var isShowingLocationPickerView:Bool = false
     @State var isShowingNotificationView:Bool = false
     
     
@@ -29,7 +20,7 @@ struct CommunityView: View {
         NavigationView{
             ScrollView(.vertical, showsIndicators: false){
                 CategoryView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
-
+                
                 VStack(alignment: .leading){
                     //                CarouselView(branches: $communityvm.openBranchs)
                     
@@ -38,21 +29,21 @@ struct CommunityView: View {
                         .font(.title3.bold())
                         .padding(.top)
                     
-                        PopularBranchView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
+                    PopularBranchView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
                     
                     
-
-
+                    
+                    
                     Text("Subscribed")
                         .font(.title3.bold())
                         .padding(.top)
-
+                    
                     ScrollView(.horizontal, showsIndicators: false){
                         SubscribedBranchView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
                     }
                     
-
-
+                    
+                    
                     
                     
                     //                Text("Top List")
@@ -65,22 +56,15 @@ struct CommunityView: View {
                 
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Menu {
-                            ForEach(Area.allCases, id:\.self){ areaName in
-                                Button {
-                                    area = areaName
-                                } label: {
-                                    Text(areaName.rawValue)
-                                }
-                            }
-                            
-                            
+                        Button {
+                            isShowingLocationPickerView.toggle()
                         } label: {
                             HStack{
                                 Image(systemName: "mappin.circle")
-                                Text(area.rawValue)
+                                Text(communityvm.selectedLocation?.m ?? "Solar System")
                             }
                         }
+                        
                         
                     }
                     
@@ -96,6 +80,9 @@ struct CommunityView: View {
                 }
                 .sheet(isPresented: $isShowingNotificationView){
                     NotificationView()
+                }
+                .fullScreenCover(isPresented: $isShowingLocationPickerView) {
+                    LocationPickerView(communityvm: communityvm)
                 }
             }
             .onAppear {
@@ -116,14 +103,14 @@ struct CommunityView: View {
                     }
                 }
                 
-//                
-//                communityvm.getUserSubscribe { success in
-//                    if success {
-//                        print("successfully fetched the subscribe history")
-//                    } else {
-//                        print("failed to fetch the subscribe history")
-//                    }
-//                }
+                //
+                //                communityvm.getUserSubscribe { success in
+                //                    if success {
+                //                        print("successfully fetched the subscribe history")
+                //                    } else {
+                //                        print("failed to fetch the subscribe history")
+                //                    }
+                //                }
             }
             .navigationTitle("Community")
             //        .navigationViewStyle(StackNavigationViewStyle())

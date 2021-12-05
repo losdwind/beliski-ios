@@ -55,7 +55,7 @@ struct User: Identifiable, Codable, Hashable {
 
 
 
-struct Private: Identifiable, Codable, Hashable{
+struct UserPrivate: Identifiable, Codable, Hashable{
     
     // can be retreive from the Auth.auth().currentUser : uid, email. photoURL
     var id: String = UUID().uuidString
@@ -88,14 +88,30 @@ struct Private: Identifiable, Codable, Hashable{
 }
 
 
-struct UserSubscibe: Identifiable, Codable, Hashable{
+struct UserGivenSubsList: Identifiable, Codable, Hashable{
     var id:String = UUID().uuidString
-    var profileImageURL: String?
-    var nickName: String? //first name, family name
-    
     var likes:[String] = []
     var disLikes:[String] = []
     var comments:[String] = []
     var shares:[String] = []
     var subs:[String] = []
 }
+
+struct UserGivenSubs: Identifiable, Codable, Hashable{
+    var id:String = UUID().uuidString
+    var likes:Int = 0
+    var disLikes:Int = 0
+    var comments:Int = 0
+    var shares:Int = 0
+    var subs:Int = 0
+}
+
+struct UserReceivedSubs: Identifiable, Codable, Hashable{
+    var id:String = UUID().uuidString
+    var likes:Int = 0
+    var disLikes:Int = 0
+    var comments:Int = 0
+    var shares:Int = 0
+    var subs:Int = 0
+}
+

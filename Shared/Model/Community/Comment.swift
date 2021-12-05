@@ -16,7 +16,6 @@ struct Comment: Identifiable, Codable, Hashable {
     @ServerTimestamp var serverTimestamp: Timestamp?
     var content: String = ""
     
-    
     var userID:String = ""
     var userProfileImageURL:String = ""
     var nickName:String = ""

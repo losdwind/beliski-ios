@@ -54,7 +54,7 @@ struct UserProgressView: View {
                     .foregroundColor(.gray)
             }
         }
-        .frame(maxWidth: .infinity,alignment: .leading)
+        .frame(maxWidth: .infinity,alignment: .center)
     }
 }
 

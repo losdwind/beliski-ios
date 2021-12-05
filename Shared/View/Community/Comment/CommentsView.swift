@@ -15,7 +15,7 @@ struct CommentsView: View {
         VStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 24) {
-                    ForEach(communityvm.fetchedComments) { comment in
+                    ForEach(communityvm.fetchedCurrentBranchComments) { comment in
                         CommentCellView(comment: comment)
                     }
 

@@ -16,8 +16,6 @@ struct SquadView: View {
     var body: some View {
         NavigationView{
             ScrollView(.vertical, showsIndicators: false){
-                
-                
                     
                     Text("Your Squads")
                         .font(.title3.bold())
@@ -33,15 +31,6 @@ struct SquadView: View {
                         
                     }
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                
-                
             }
             .padding()
             .navigationTitle("Squad")
@@ -55,6 +44,7 @@ struct SquadView: View {
                     }
                 }
             }
+          
         }
         //        .navigationViewStyle(StackNavigationViewStyle())
     }

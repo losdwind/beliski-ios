@@ -11,8 +11,37 @@ struct ProfileDetailView: View {
     @ObservedObject var profilevm:ProfileViewModel
     
     var body: some View {
-        Text("here is the form of detail user info, e.g., birthday, gender, interest")
-        
+        VStack{
+            HStack{
+                Text("Private")
+                    .font(.title3.bold())
+                    .foregroundColor(Color.pink)
+                    .frame(minWidth:80)
+                
+                Spacer()
+                PrivateStatsBarView(profilevm: profilevm)
+                
+            }
+            .padding()
+            .background(Color.gray.opacity(0.2))
+            .cornerRadius(18)
+            
+            HStack{
+                Text("Open")
+                    .font(.title3.bold())
+                    .foregroundColor(Color.pink)
+                    .frame(minWidth:80)
+                
+                Spacer()
+                OpenStatsBarView(profilevm: profilevm)
+                
+            }
+            .padding()
+            .background(Color.gray.opacity(0.2))
+            .cornerRadius(18)
+            
+        }
+        .padding()
     }
 }
 

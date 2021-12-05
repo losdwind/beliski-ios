@@ -75,9 +75,8 @@ struct BarGraph: View {
                         VStack(spacing: 0){
                             
                             VStack(spacing: 5){
-                                
-                                Rectangle()
-                                    .fill(Color.black)
+                                Color("socialOrange")
+                                    .cornerRadius(6)
                             }
                             .frame(width: 30)
                             .frame(height: getBarHeight(point: download.num, size: proxy.size))

@@ -13,42 +13,6 @@ struct InspireView: View {
     var body: some View {
        
             ScrollView(.vertical, showsIndicators: false){
-                VStack{
-                    
-//                        Text("Abstract")
-//                            .font(.title3.bold())
-//                            .frame(maxWidth: .infinity,alignment: .leading)
-//                        
-                        
-                        
-                        HStack{
-                            Text("Open")
-                                .font(.title3.bold())
-                                .foregroundColor(Color.pink)
-                                .frame(minWidth:80)
-                            
-                            Spacer()
-                            OpenStatsBarView(profilevm: profilevm)
-
-                        }
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                            .cornerRadius(18)
-                            
-                        HStack{
-                            Text("Private")
-                                .font(.title3.bold())
-                                .foregroundColor(Color.pink)
-                                .frame(minWidth:80)
-                            
-                            Spacer()
-                            PrivateStatsBarView(profilevm: profilevm)
-
-                        }
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                            .cornerRadius(18)
-                        
                         VStack{
                             
                             NavigationLink {
@@ -98,9 +62,8 @@ struct InspireView: View {
                         .padding()
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
-                    }
+                    
                 }
-            .padding()
             .navigationTitle("Inspirations")
             
         }

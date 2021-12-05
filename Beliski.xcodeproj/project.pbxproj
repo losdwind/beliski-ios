@@ -59,8 +59,20 @@
 		2951CDA027533488008E283A /* WBScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CD9E27533488008E283A /* WBScore.swift */; };
 		2951CDA227536B09008E283A /* WoopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDA127536B09008E283A /* WoopDetailView.swift */; };
 		2951CDA327536B09008E283A /* WoopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDA127536B09008E283A /* WoopDetailView.swift */; };
-		2951CDA5275385F7008E283A /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDA4275385F7008E283A /* Routine.swift */; };
-		2951CDA6275385F7008E283A /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDA4275385F7008E283A /* Routine.swift */; };
+		2951CDAA2758B3D2008E283A /* RoundedCornerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDA92758B3D2008E283A /* RoundedCornerModifier.swift */; };
+		2951CDAB2758B3D2008E283A /* RoundedCornerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDA92758B3D2008E283A /* RoundedCornerModifier.swift */; };
+		2951CDAF275BB9C6008E283A /*  china-city-list.json in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAC275BB9C6008E283A /*  china-city-list.json */; };
+		2951CDB0275BB9C6008E283A /*  china-city-list.json in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAC275BB9C6008E283A /*  china-city-list.json */; };
+		2951CDB1275BB9C6008E283A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAD275BB9C6008E283A /* README.md */; };
+		2951CDB2275BB9C6008E283A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAD275BB9C6008E283A /* README.md */; };
+		2951CDB3275BB9C6008E283A /* world-city-list.json in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAE275BB9C6008E283A /* world-city-list.json */; };
+		2951CDB4275BB9C6008E283A /* world-city-list.json in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAE275BB9C6008E283A /* world-city-list.json */; };
+		2951CDB6275C5BBB008E283A /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDB5275C5BBB008E283A /* LocationPickerView.swift */; };
+		2951CDB7275C5BBB008E283A /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDB5275C5BBB008E283A /* LocationPickerView.swift */; };
+		2951CDB9275C5D5D008E283A /* ChinaCityJsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDB8275C5D5D008E283A /* ChinaCityJsonReader.swift */; };
+		2951CDBA275C5D5D008E283A /* ChinaCityJsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDB8275C5D5D008E283A /* ChinaCityJsonReader.swift */; };
+		2951CDBC275C6859008E283A /* WorldCityJsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDBB275C6859008E283A /* WorldCityJsonReader.swift */; };
+		2951CDBD275C6859008E283A /* WorldCityJsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDBB275C6859008E283A /* WorldCityJsonReader.swift */; };
 		29552A38270D89150056E675 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A37270D89150056E675 /* CustomTextField.swift */; };
 		29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */; };
 		29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A3D270D95900056E675 /* AuthViewModel.swift */; };
@@ -372,7 +384,13 @@
 		2951CD982751FFBF008E283A /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		2951CD9E27533488008E283A /* WBScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBScore.swift; sourceTree = "<group>"; };
 		2951CDA127536B09008E283A /* WoopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoopDetailView.swift; sourceTree = "<group>"; };
-		2951CDA4275385F7008E283A /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
+		2951CDA92758B3D2008E283A /* RoundedCornerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerModifier.swift; sourceTree = "<group>"; };
+		2951CDAC275BB9C6008E283A /*  china-city-list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = " china-city-list.json"; sourceTree = "<group>"; };
+		2951CDAD275BB9C6008E283A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2951CDAE275BB9C6008E283A /* world-city-list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "world-city-list.json"; sourceTree = "<group>"; };
+		2951CDB5275C5BBB008E283A /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
+		2951CDB8275C5D5D008E283A /* ChinaCityJsonReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChinaCityJsonReader.swift; sourceTree = "<group>"; };
+		2951CDBB275C6859008E283A /* WorldCityJsonReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCityJsonReader.swift; sourceTree = "<group>"; };
 		29552A37270D89150056E675 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureTextField.swift; sourceTree = "<group>"; };
 		29552A3D270D95900056E675 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -608,6 +626,28 @@
 			path = HeatMap;
 			sourceTree = "<group>";
 		};
+		2951CDA72754C75A008E283A /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				29F7D8E9274939A300B50844 /* Comment.swift */,
+				29E1DE0A273121DF00EC5E1D /* Message.swift */,
+				29E1DE04273120BF00EC5E1D /* Like.swift */,
+				296FA49B27344EC000FEBF8A /* Sub.swift */,
+				296FA49E273457DE00FEBF8A /* Dislike.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		2951CDA82754C7AD008E283A /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				2951CD982751FFBF008E283A /* Place.swift */,
+				2964A3232747D2BD002C2595 /* PPCard.swift */,
+				2951CD9E27533488008E283A /* WBScore.swift */,
+			);
+			path = Panel;
+			sourceTree = "<group>";
+		};
 		29552A36270D88F90056E675 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +663,7 @@
 				29ED110B2713436B00E67D8B /* SoundPlayer.swift */,
 				29AC38C4273ECC4D00CA1B98 /* HalfSheetModal.swift */,
 				2951CD95275074F6008E283A /* AppCheckProviderFactory.swift */,
+				2951CDA92758B3D2008E283A /* RoundedCornerModifier.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -630,7 +671,12 @@
 		29552A56270F0FD30056E675 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				2951CDAC275BB9C6008E283A /*  china-city-list.json */,
+				2951CDAD275BB9C6008E283A /* README.md */,
+				2951CDAE275BB9C6008E283A /* world-city-list.json */,
 				29552A57270F0FEA0056E675 /* MediaUploader.swift */,
+				2951CDB8275C5D5D008E283A /* ChinaCityJsonReader.swift */,
+				2951CDBB275C6859008E283A /* WorldCityJsonReader.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -739,19 +785,12 @@
 		29C46C0E270D600900754817 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				29F7D8EC274939CE00B50844 /* Health */,
-				29ED1161271DB87000E67D8B /* Item */,
-				29ED115E271D8EF500E67D8B /* Protocols.swift */,
-				29F7D8E9274939A300B50844 /* Comment.swift */,
 				29C46C0F270D600900754817 /* User.swift */,
 				29ED11252719C3ED00E67D8B /* Tag.swift */,
-				29E1DE0A273121DF00EC5E1D /* Message.swift */,
-				29E1DE04273120BF00EC5E1D /* Like.swift */,
-				296FA49B27344EC000FEBF8A /* Sub.swift */,
-				296FA49E273457DE00FEBF8A /* Dislike.swift */,
-				2964A3232747D2BD002C2595 /* PPCard.swift */,
-				2951CD982751FFBF008E283A /* Place.swift */,
-				2951CD9E27533488008E283A /* WBScore.swift */,
+				2951CDA82754C7AD008E283A /* Panel */,
+				2951CDA72754C75A008E283A /* Community */,
+				29F7D8EC274939CE00B50844 /* Health */,
+				29ED1161271DB87000E67D8B /* Item */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -881,6 +920,7 @@
 				296FA49827330B8000FEBF8A /* BranchCardFooterView.swift */,
 				296960062738FC7500C5A946 /* SubscribedBranchView.swift */,
 				29AC38C1273E938400CA1B98 /* OpenBranchCardView.swift */,
+				2951CDB5275C5BBB008E283A /* LocationPickerView.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1083,11 +1123,11 @@
 		29ED1161271DB87000E67D8B /* Item */ = {
 			isa = PBXGroup;
 			children = (
+				29ED115E271D8EF500E67D8B /* Protocols.swift */,
 				29552A6727100E850056E675 /* Moment.swift */,
 				29552A6A271010070056E675 /* Todo.swift */,
 				29552A6D271010160056E675 /* Person.swift */,
 				2907B4A7272A7C6B001A3DA1 /* Branch.swift */,
-				2951CDA4275385F7008E283A /* Routine.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -1220,9 +1260,12 @@
 				29ED110A27133D6E00E67D8B /* sound-tap.mp3 in Resources */,
 				29ED110927133D6E00E67D8B /* sound-ding.mp3 in Resources */,
 				29C46C0C270D5FB200754817 /* Launch Screen.storyboard in Resources */,
+				2951CDAF275BB9C6008E283A /*  china-city-list.json in Resources */,
 				29ED110827133D6E00E67D8B /* sound-rise.mp3 in Resources */,
 				29552A5E270F10F60056E675 /* GoogleService-Info.plist in Resources */,
+				2951CDB1275BB9C6008E283A /* README.md in Resources */,
 				29C46C01270D5E8A00754817 /* Assets.xcassets in Resources */,
+				2951CDB3275BB9C6008E283A /* world-city-list.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1233,8 +1276,11 @@
 				29824B6E273BACAC00868C9B /* sound-ding.mp3 in Resources */,
 				29824B6D273BACAA00868C9B /* sound-rise.mp3 in Resources */,
 				29C46C02270D5E8A00754817 /* Assets.xcassets in Resources */,
+				2951CDB2275BB9C6008E283A /* README.md in Resources */,
 				29824B6F273BACAF00868C9B /* sound-tap.mp3 in Resources */,
 				29552A5F270F10F60056E675 /* GoogleService-Info.plist in Resources */,
+				2951CDB4275BB9C6008E283A /* world-city-list.json in Resources */,
+				2951CDB0275BB9C6008E283A /*  china-city-list.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1250,6 +1296,7 @@
 				29E1DDBC272D746C00EC5E1D /* Path+QuadCurve.swift in Sources */,
 				29E1DDB2272D746C00EC5E1D /* IndicatorPoint.swift in Sources */,
 				29552A6E271010160056E675 /* Person.swift in Sources */,
+				2951CDBC275C6859008E283A /* WorldCityJsonReader.swift in Sources */,
 				29ED1153271AE71E00E67D8B /* TimelineManager.swift in Sources */,
 				29E1DDF9272ED0FA00EC5E1D /* VIAView.swift in Sources */,
 				29ED110E2713462700E67D8B /* CustomedViewModifier.swift in Sources */,
@@ -1273,6 +1320,7 @@
 				29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */,
 				29ED11332719E49600E67D8B /* PersonEditorView.swift in Sources */,
 				2964A3212747D29A002C2595 /* PPCardView.swift in Sources */,
+				2951CDB6275C5BBB008E283A /* LocationPickerView.swift in Sources */,
 				29716176273D8C7A00D3964D /* InspireView.swift in Sources */,
 				2907B4A5272A7BEF001A3DA1 /* BranchCardView.swift in Sources */,
 				29ED113E2719E4B400E67D8B /* TaskListView.swift in Sources */,
@@ -1300,6 +1348,7 @@
 				29F7D8E42749040900B50844 /* HealthStoreManager.swift in Sources */,
 				29E1DDAE272D746C00EC5E1D /* LabelView.swift in Sources */,
 				29E1DD73272D307C00EC5E1D /* LineGraphtView.swift in Sources */,
+				2951CDAA2758B3D2008E283A /* RoundedCornerModifier.swift in Sources */,
 				29ED10F92710422600E67D8B /* MomentItemView.swift in Sources */,
 				29E1DDF0272E4FE300EC5E1D /* BranchCardListView.swift in Sources */,
 				29C46C28270D600900754817 /* SquadView.swift in Sources */,
@@ -1338,6 +1387,7 @@
 				29E1DDDA272DB07500EC5E1D /* MediaFileView.swift in Sources */,
 				2907B4AF272A832C001A3DA1 /* BranchViewModel.swift in Sources */,
 				29E1DDC2272D746C00EC5E1D /* Helpers.swift in Sources */,
+				2951CDB9275C5D5D008E283A /* ChinaCityJsonReader.swift in Sources */,
 				29C46C36270D658500754817 /* SignUpView.swift in Sources */,
 				29552A6B271010070056E675 /* Todo.swift in Sources */,
 				29E1DDAC272D746C00EC5E1D /* BarChartRow.swift in Sources */,
@@ -1363,7 +1413,6 @@
 				29824B67273AC14200868C9B /* InviteUserView.swift in Sources */,
 				29ED1156271B42B600E67D8B /* PersonDetailView.swift in Sources */,
 				29ED10FC2710423800E67D8B /* MomentEditorView.swift in Sources */,
-				2951CDA5275385F7008E283A /* Routine.swift in Sources */,
 				296FA4842731854700FEBF8A /* CommentCellView.swift in Sources */,
 				2951CD8F274F7450008E283A /* HeatMapView.swift in Sources */,
 				29E1DDCA272D746C00EC5E1D /* PieChartView.swift in Sources */,
@@ -1405,6 +1454,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2964A31A2747D10C002C2595 /* PPCarouselView.swift in Sources */,
+				2951CDB7275C5BBB008E283A /* LocationPickerView.swift in Sources */,
 				29552A6627100CD70056E675 /* MomentViewModel.swift in Sources */,
 				29E1DDB9272D746C00EC5E1D /* LineChartView.swift in Sources */,
 				29C46C37270D658500754817 /* SignUpView.swift in Sources */,
@@ -1416,10 +1466,12 @@
 				29E1DD7B272D326300EC5E1D /* BarGraphView.swift in Sources */,
 				29ED111727189A3200E67D8B /* SearchAndLinkingView.swift in Sources */,
 				29824B81273BACC600868C9B /* Moment.swift in Sources */,
+				2951CDAB2758B3D2008E283A /* RoundedCornerModifier.swift in Sources */,
 				2907B4D2272C1594001A3DA1 /* SettingsLabelView.swift in Sources */,
 				29AC38CC273EF2FE00CA1B98 /* BlankView.swift in Sources */,
 				29824B78273BACB700868C9B /* CustomSecureTextField.swift in Sources */,
 				29E1DDFD272ED1CF00EC5E1D /* MBTIView.swift in Sources */,
+				2951CDBA275C5D5D008E283A /* ChinaCityJsonReader.swift in Sources */,
 				29ED11472719E4CD00E67D8B /* PersonViewModel.swift in Sources */,
 				29E1DDEA272E41FF00EC5E1D /* PersonCompactItemView.swift in Sources */,
 				29E1DDAD272D746C00EC5E1D /* BarChartRow.swift in Sources */,
@@ -1479,7 +1531,6 @@
 				29824B75273BACB700868C9B /* CustomedViewModifier.swift in Sources */,
 				29824B94273C09B800868C9B /* FilterView.swift in Sources */,
 				2907B4CF272C1582001A3DA1 /* SettingsRowView.swift in Sources */,
-				2951CDA6275385F7008E283A /* Routine.swift in Sources */,
 				29E1DD74272D307D00EC5E1D /* LineGraphtView.swift in Sources */,
 				29E1DD83272D3B3D00EC5E1D /* SocialAbstractView.swift in Sources */,
 				296960092738FC8800C5A946 /* CommunityView.swift in Sources */,
@@ -1504,6 +1555,7 @@
 				29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */,
 				29ED10FA2710422600E67D8B /* MomentItemView.swift in Sources */,
 				29E1DDBF272D746C00EC5E1D /* MultiLineChartView.swift in Sources */,
+				2951CDBD275C6859008E283A /* WorldCityJsonReader.swift in Sources */,
 				2969600A2739052600C5A946 /* CommentCellView.swift in Sources */,
 				296FA48A2731A1C400FEBF8A /* PopularBranchView.swift in Sources */,
 				2924F1582729A789006CB556 /* SearchView.swift in Sources */,

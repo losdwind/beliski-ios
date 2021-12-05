@@ -44,7 +44,7 @@ struct DoubleBarGraph: View {
             HStack(spacing: 10){
                 
                 Capsule()
-                    .fill(Color("LightBlue"))
+                    .fill(Color("businessRed"))
                     .frame(width: 20, height: 8)
                 
                 Text("Remained")
@@ -52,7 +52,7 @@ struct DoubleBarGraph: View {
                     .foregroundColor(.gray)
                 
                 Capsule()
-                    .fill(Color("DarkBlue"))
+                    .fill(Color("businessBlue"))
                     .frame(width: 20, height: 8)
                 Text("Completed")
                     .font(.system(size: 14, weight: .bold))
@@ -104,12 +104,12 @@ struct DoubleBarGraph: View {
                         VStack(spacing: 0){
                             
                             VStack(spacing: 5){
-                                
                                 Capsule()
-                                    .fill(Color("LightBlue"))
-                                
+                                    .fill(Color( "businessRed"))
                                 Capsule()
-                                    .fill(Color("DarkBlue"))
+                                    .fill(Color("businessBlue"))
+                                
+                                
                             }
                             .frame(width: 8)
                             .frame(height: getBarHeight(point: download.downloads, size: proxy.size))

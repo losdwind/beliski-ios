@@ -13,19 +13,41 @@ struct CommunityAbstractView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-  
-                HStack(spacing: 0){
-                    
+            VStack(alignment: .leading, spacing: 20){
+                Text("Your Country: United States")
+                    .fontWeight(.semibold)
+                
+                Text("TBD.")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .frame(height:200)
+                    .frame(maxWidth: .infinity,alignment: .center)
+                Text("Your District: Madison, Wisconsin")
+                    .fontWeight(.semibold)
+                Text("TBD.")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .frame(height:200)
+                    .frame(maxWidth: .infinity,alignment: .center)
+                
+                
+                Text("Your Community: Startups ")
+                    .fontWeight(.semibold)
+                
+                HStack(alignment:.center){
                     // Progress View...
                     UserProgressView(title: "Male", color: Color.blue, image: "person", progress: 79)
                     UserProgressView(title: "Female", color: Color.pink, image: "person", progress: 21 )
-
+                    
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(18)
+                
             }
+            .navigationTitle("Statistics")
+            .navigationBarTitleDisplayMode(.inline)
         }
+        .padding()
+        
+    }
 }
 
 struct CommunityAbstractView_Previews: PreviewProvider {

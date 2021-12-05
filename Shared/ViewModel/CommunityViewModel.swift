@@ -12,166 +12,177 @@ import OrderedCollections
 
 class CommunityViewModel: ObservableObject {
     
-    @Published var fetchedSubscribedBranches:[Branch] = [Branch]()
     
-    @Published var fetchedPublicBranches:[Branch] = [Branch]()
-        
+    
     // for branch
-    @Published var fetchedLikes: [Like] = [Like]()
-    @Published var fetchedDislikes:[Dislike] = [Dislike]()
-    @Published var fetchedProfiles:[User] = [User]()
-    @Published var fetchedComments:[Comment] = [Comment]()
-    @Published var fetchedSubs:[Sub] = [Sub]()
-    
+    @Published var fetchedSubscribedBranches:[Branch] = [Branch]()
+    @Published var fetchedPublicBranches:[Branch] = [Branch]()
+    @Published var currentBranch:Branch = Branch()
+    @Published var fetchedCurrentBranchComments:[Comment] = [Comment]()
     
     // for user
-    @Published var fetchedUserSubscribedBranchIDs:[Sub] = [Sub]()
-    //get what branch ids do the user subscribed
+    @Published var fetchedUserGivenSubs:UserGivenSubs = UserGivenSubs()
+    @Published var fetchedUserGivenSubsList:UserGivenSubsList = UserGivenSubsList()
+    @Published var fetchedUserReceivedSubs:UserReceivedSubs = UserReceivedSubs()
     
-    
+    // for branch subcollection
     @Published var inputComment:Comment = Comment()
     @Published var inputLike:Like = Like()
     @Published var inputDislike:Dislike = Dislike()
     @Published var inputSub:Sub = Sub()
-    @Published var currentBranch:Branch = Branch()
-    
-    @Published var fetchedUserSubscribe:UserSubscibe = UserSubscibe()
     
     
+    lazy var worldCity = WorldCityJsonReader.shared.worldCity
+    lazy var chinaCity = ChinaCityJsonReader.shared.chinaCity
+    
+    @Published var selectedLocation:WorldCityJsonReader.N?
     @Published var selectedCategory:String = ""
     @Published var isShowingLinkedBranchView = false
     
-    func getStatus(branch:Branch,completion: @escaping (_ status: Dictionary<String, Bool>?) -> ()){
+    
+    
+    // this function check if the current user liked/disliked/subed current branch
+    func getStatus(branch:Branch) -> Dictionary<String, Bool>{
+        
+        var status:Dictionary<String, Bool> = ["isLiked":false, "isDisliked":false, "isSubed":false]
         
         
         
+        if self.fetchedUserGivenSubsList.likes.contains(branch.id) {
+            status["isLiked"] = true
+        }
         
+        if self.fetchedUserGivenSubsList.disLikes.contains(branch.id){
+            status["isDisliked"] = true
+        }
+        
+        if self.fetchedUserGivenSubsList.subs.contains(branch.id){
+            status["isSubed"] = true
+        }
+        
+        return status
+    }
+    
+    
+    
+    func getUserGivenSubsList(completion: @escaping (_ success: Bool) -> ()) {
         
         guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchMoment function")
-            completion(nil)
+            print("userID is not valid here in like function")
+            completion(false)
             return
         }
-
+                
         
-        var status:Dictionary<String, Bool> = ["isLike":false, "isDislike":false, "isSubed":false]
-        let group = DispatchGroup()
-
-
-        
-        // isLike
-        group.enter()
-        COLLECTION_USERS.document(branch.ownerID).collection("branches")
-            .document(branch.id).collection("likes").document(userID)
-        .getDocument { (document, error) in
-            if let document = document, document.exists {
-                if let like = try? document.data(as: Like.self){
-                    self.inputLike.isLike = like.isLike
-                    status["isLike"] = like.isLike
-                }
-            }
-            group.leave()
-        }
-
-
-        // isDislike
-        group.enter()
-        COLLECTION_USERS.document(branch.ownerID).collection("branches")
-            .document(branch.id).collection("dislikes").document(userID)
-        .getDocument { (document, error) in
-            if let document = document, document.exists {
-                if let dislike = try? document.data(as: Dislike.self){
-                    self.inputDislike.isDislike = dislike.isDislike
-                    status["isDislike"] = dislike.isDislike
-                }
-            }
-            group.leave()
-        }
-
-
-        // isSubed
-        group.enter()
-        COLLECTION_USERS.document(branch.ownerID).collection("branches")
-            .document(branch.id).collection("subs").document(userID)
-        .getDocument { (document, error) in
-            if let document = document, document.exists {
-                if let sub = try? document.data(as: Sub.self){
-                    self.inputSub.isSubed = sub.isSubed
-                    status["isSubed"] = sub.isSubed
-                }
-            }
-            group.leave()
-        }
-        
-
-
-        group.notify(queue: .main){
-            completion(status)
-            return
-        }
-        
-        
-    }
-    
-    
-    
-    
-    func getProfile(comment: Comment,completion: @escaping (_ user: User?) -> () ){
-        COLLECTION_USERS.document(comment.userID).getDocument  { (document, error) in
+        COLLECTION_USERS.document(userID).collection("privates").document("userGivenSubsList").addSnapshotListener { document, error in
             let result = Result {
-                  try document?.data(as: User.self)
-                }
-                switch result {
-                case .success(let user):
-                    if let user = user {
-                        // A `User` value was successfully initialized from the DocumentSnapshot.
-                        completion(user)
-                        return
-                    } else {
-                        // A nil value was successfully initialized from the DocumentSnapshot,
-                        // or the DocumentSnapshot was nil.
-                        print("Document does not exist")
-                        completion(nil)
-                        return
-                    }
-                case .failure(let error):
-                    // A `User` value could not be initialized from the DocumentSnapshot.
-                    print("Error decoding moment: \(error)")
-                    completion(nil)
+                try document?.data(as: UserGivenSubsList.self)
+            }
+            switch result {
+            case .success(let userSubsList):
+                if let userSubsList = userSubsList {
+                    // A `User` value was successfully initialized from the DocumentSnapshot.
+                    self.fetchedUserGivenSubsList = userSubsList
+                    completion(true)
+                    return
+                } else {
+                    // A nil value was successfully initialized from the DocumentSnapshot,
+                    // or the DocumentSnapshot was nil.
+                    print("Document does not exist")
+                    completion(false)
                     return
                 }
+            case .failure(let error):
+                // A `User` value could not be initialized from the DocumentSnapshot.
+                print("Error decoding moment: \(error)")
+                completion(false)
+                return
+            }
         }
     }
     
-//    func getUserSubscribe(completion: @escaping (_ success: Bool) -> ()) {
-//        
-//        guard let userID = AuthViewModel.shared.userID else {
-//            print("userID is not valid here in like function")
-//            completion(false)
-//            return
-//        }
-//        
-//        COLLECTION_USERS.document(userID).collection("usersubscribe")
-//            .addSnapshotListener { (snapshot, error) in
-//                    guard let documents = snapshot?.documents else {
-//                        completion(false)
-//                        return }
-//                self.fetchedUserSubscribe = documents.compactMap({try? $0.data(as: UserSubscibe.self)})[0]
-//                    completion(true)
-//                    return
-//        }
-//    }
     
-    
-    // MARK: Send
-    // !!!: here exists a performance issue: https://firebase.google.com/docs/firestore/solutions/counters#swift_1
-    func sendLike(completion: @escaping (_ success: Bool) -> ()){
+    func getUserGivenSubs(completion: @escaping (_ success: Bool) -> ()) {
+        
         guard let userID = AuthViewModel.shared.userID else {
             print("userID is not valid here in like function")
             completion(false)
             return
         }
         
+        COLLECTION_USERS.document(userID).collection("privates").document("userGivenSubs").addSnapshotListener { document, error in
+            let result = Result {
+                try document?.data(as: UserGivenSubs.self)
+            }
+            switch result {
+            case .success(let userSubs):
+                if let userSubs = userSubs {
+                    // A `User` value was successfully initialized from the DocumentSnapshot.
+                    self.fetchedUserGivenSubs = userSubs
+                    completion(true)
+                    return
+                } else {
+                    // A nil value was successfully initialized from the DocumentSnapshot,
+                    // or the DocumentSnapshot was nil.
+                    print("Document does not exist")
+                    completion(false)
+                    return
+                }
+            case .failure(let error):
+                // A `User` value could not be initialized from the DocumentSnapshot.
+                print("Error decoding moment: \(error)")
+                completion(false)
+                return
+            }
+        }
+    }
+    
+    func getUserReceivedSubs(completion: @escaping (_ success: Bool) -> ()) {
+        
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in like function")
+            completion(false)
+            return
+        }
+        
+        COLLECTION_USERS.document(userID).collection("privates").document("userReceivedSubs").addSnapshotListener { document, error in
+            let result = Result {
+                try document?.data(as: UserReceivedSubs.self)
+            }
+            switch result {
+            case .success(let userSubs):
+                if let userSubs = userSubs {
+                    // A `User` value was successfully initialized from the DocumentSnapshot.
+                    self.fetchedUserReceivedSubs = userSubs
+                    completion(true)
+                    return
+                } else {
+                    // A nil value was successfully initialized from the DocumentSnapshot,
+                    // or the DocumentSnapshot was nil.
+                    print("Document does not exist")
+                    completion(false)
+                    return
+                }
+            case .failure(let error):
+                // A `User` value could not be initialized from the DocumentSnapshot.
+                print("Error decoding moment: \(error)")
+                completion(false)
+                return
+            }
+        }
+    }
+    
+    
+    
+    // MARK: Send
+    // !!!: here exists a performance issue: https://firebase.google.com/docs/firestore/solutions/counters#swift_1
+    // TODO: - here we should use security rules to check the sended like has the right userID and branchID
+    func sendLike(completion: @escaping (_ success: Bool) -> ()){
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in like function")
+            completion(false)
+            return
+        }
         
         self.inputLike.userID = userID
         self.inputLike.branchID = self.currentBranch.id
@@ -191,8 +202,19 @@ class CommunityViewModel: ObservableObject {
             completion(false)
             return
         }
-    
         
+        
+    }
+    
+    func deleteLike(){
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in like function")
+            return
+        }
+
+       COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
+            .document(self.currentBranch.id).collection("likes").document(userID)
+            .delete()
     }
     
     
@@ -226,6 +248,18 @@ class CommunityViewModel: ObservableObject {
     }
     
     
+    func deleteDislike(){
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in like function")
+            return
+        }
+        
+
+       COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
+            .document(self.currentBranch.id).collection("dislikes").document(userID)
+            .delete()
+    }
+    
     
     func sendComment(completion: @escaping (_ success: Bool) -> ()){
         guard let userID = AuthViewModel.shared.userID else {
@@ -251,6 +285,18 @@ class CommunityViewModel: ObservableObject {
             completion(false)
             return
         }
+        
+    }
+    
+    
+    func deleteComment(){
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in like function")
+            return
+        }
+        
+  COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
+            .document(self.currentBranch.id).collection("comments").document(userID).delete()
         
     }
     
@@ -283,46 +329,23 @@ class CommunityViewModel: ObservableObject {
         
     }
     
+    func deleteSub(){
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in like function")
+            return
+        }
+        COLLECTION_USERS.document(self.currentBranch.ownerID).collection("branches")
+            .document(self.currentBranch.id).collection("subs").document(userID)
+            .delete()
+        
+    }
+    
     
     
     
     // MARK: get
     
     // FIXME: I think it is better to use cloud founctions to calculate the
-    
-    func getlikes(branch:Branch, completion: @escaping (_ success: Bool) -> ()){
-        
-        COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("likes")
-            .whereField("isLike", isEqualTo: true)
-            .limit(to:20)
-                .getDocuments { snapshot, _ in
-                    guard let documents = snapshot?.documents else { return }
-                    self.fetchedLikes = documents.compactMap({try? $0.data(as: Like.self)})
-                    
-                    completion(true)
-                    return
-                }
-            
-        
-    }
-    
-    
-    func getDislikes(branch:Branch, completion: @escaping (_ success: Bool) -> ()){
-        
-        COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("dislikes")
-            .whereField("isDislike", isEqualTo: true)
-            .limit(to:20)
-                .getDocuments { snapshot, _ in
-                    guard let documents = snapshot?.documents else { return }
-                    self.fetchedDislikes = documents.compactMap({try? $0.data(as: Dislike.self)})
-                    
-                    completion(true)
-                    return
-                }
-            
-        
-    }
-    
     
     func getComments(branch:Branch,completion: @escaping (_ success: Bool) -> ()) {
         
@@ -331,10 +354,7 @@ class CommunityViewModel: ObservableObject {
             .limit(to:20)
             .addSnapshotListener { snapshot, _ in
                 guard let documents = snapshot?.documents else { return }
-                self.fetchedComments = documents.compactMap({try? $0.data(as: Comment.self)})
-                for comment in self.fetchedComments {
-                    print(comment.content)
-                }
+                self.fetchedCurrentBranchComments = documents.compactMap({try? $0.data(as: Comment.self)})
                 completion(true)
                 
             }
@@ -343,24 +363,7 @@ class CommunityViewModel: ObservableObject {
         }
     }
     
-    
-    func getSubs(branch:Branch, completion: @escaping (_ success: Bool) -> ()){
-        
-        COLLECTION_USERS.document(branch.ownerID).collection("branches").document(branch.id).collection("subs")
-            .whereField("isSubed", isEqualTo: true)
-            .limit(to:20)
-            .getDocuments { snapshot, _ in
-                    guard let documents = snapshot?.documents else {
-                        completion(false)
-                        return }
-                    self.fetchedSubs = documents.compactMap({try? $0.data(as: Sub.self)})
-                    completion(true)
-                    return
-                }
-            
-        }
-    
-    
+
     
     
     
@@ -398,40 +401,23 @@ class CommunityViewModel: ObservableObject {
             return
         }
         
-        
-        COLLECTION_SUBS
-            .whereField("userID", isEqualTo: userID)
-            .addSnapshotListener { snapshot, error in
-                guard let documents = snapshot?.documents else {
-                    completion(false)
-                    return }
-                self.fetchedUserSubscribedBranchIDs = documents.compactMap({try? $0.data(as: Sub.self)})
+        if self.fetchedUserGivenSubsList.subs == [] {
+            self.fetchedSubscribedBranches = []
+            completion(true)
+            return
+        }
                 
-                let subscribedBranchIDs = self.fetchedUserSubscribedBranchIDs.map{$0.branchID}
-                
-                if !subscribedBranchIDs.isEmpty{
-                    COLLECTION_BRANCHES
-                        .whereField("openness", isEqualTo: OpenType.Public.rawValue)
-                        .whereField("isSubed", isEqualTo: true)
-                        .whereField("id", in: subscribedBranchIDs)
-                        .getDocuments { snapshot, _ in
-                            guard let documents = snapshot?.documents else {
-                                completion(false)
-                                return }
-                            self.fetchedSubscribedBranches = documents.compactMap({try? $0.data(as: Branch.self)})
-                            completion(true)
-                            return
-                        }
-                } else {
-                    completion(false)
+        COLLECTION_BRANCHES.whereField("id", in: self.fetchedUserGivenSubsList.subs)
+            .getDocuments { snapshot, _ in
+                    guard let documents = snapshot?.documents else {
+                        completion(false)
+                        return }
+                    self.fetchedSubscribedBranches = documents.compactMap({try? $0.data(as: Branch.self)})
+                    completion(true)
                     return
                 }
-                
-               
-                
             }
+        
+        
     }
     
-    
-    
-}

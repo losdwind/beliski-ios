@@ -29,6 +29,7 @@ struct CareerAbstractView: View {
     var body: some View {
             
             DoubleBarGraph(downloads:downloads )
+            .padding()
     }
 }
 

@@ -129,7 +129,7 @@ struct PanelView: View {
                     Button {
                         isShowingProfileDetailView.toggle()
                     } label: {
-                        ProfileAvatarView(profileImageURL: profilevm.user.profileImageURL)
+                        ProfileAvatarView(profileImageURL: AuthViewModel.shared.profileImageURL)
                     }
                 }
             }

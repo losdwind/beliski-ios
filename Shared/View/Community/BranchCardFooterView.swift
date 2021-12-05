@@ -31,23 +31,24 @@ struct BranchCardFooterView: View {
             HStack{
             Button {
                 communityvm.currentBranch = branch
-                communityvm.inputLike.isLike.toggle()
                 
                 // iterate between 0 1
-               
-                communityvm.sendLike{ success in
-                    if success {
-                        communityvm.inputLike = Like()
-                        self.communityvm.getStatus(branch: branch, completion: {status in
-                            if let status = status{
-                                self.status = status
-                            }
-                            })
+                if status["isLiked"]! {
+                    communityvm.deleteLike()
+                    self.status = communityvm.getStatus(branch: branch)
+                } else {
+                    communityvm.sendLike{ success in
+                        if success {
+                            communityvm.inputLike = Like()
+                            self.status = self.communityvm.getStatus(branch: branch)
+                    }
+                        
+                        
+                    }
                 }
-                    
-                    
-                } }label: {
-                    if status["isLike"] ?? false {
+               
+                 }label: {
+                    if status["isLiked"]! {
                         Image(systemName: "hand.thumbsup.fill")
                             .foregroundColor(.pink)
                     } else {
@@ -64,22 +65,20 @@ struct BranchCardFooterView: View {
             // MARK: downvote
             HStack{
             Button {
-                communityvm.inputDislike.isDislike.toggle()
                 communityvm.currentBranch = branch
-                
+                if status["isDisliked"]!{
+                    communityvm.deleteDislike()
+                    self.status = communityvm.getStatus(branch: branch)
+                }
                 communityvm.sendDislike{ success in
                     if success {
                         communityvm.inputDislike = Dislike()
-                        communityvm.getStatus(branch: branch, completion: {status in
-                            if let status = status{
-                                self.status = status
-                            }
-                            })
+                        self.status = communityvm.getStatus(branch: branch)
                 }
                     
                     
                 } }label: {
-                    if status["isDislike"] ?? false {
+                    if status["isDisliked"]!{
                         Image(systemName: "hand.thumbsdown.fill")
                             .foregroundColor(.pink)
                     } else {
@@ -139,24 +138,22 @@ struct BranchCardFooterView: View {
             // MARK: Sub
             
             Button {
-                communityvm.inputSub.isSubed.toggle()
 
                 communityvm.currentBranch = branch
-                
-                communityvm.sendSub{ success in
-                    if success {
-                        communityvm.inputSub = Sub()
-                        communityvm.getStatus(branch: branch, completion: {status in
-                            if let status = status{
-                                self.status = status
-                            }
-                            })
-//                        communityvm.fetchPublicBranches(completion: {_ in})
+                if status["isSubed"]! {
+                    communityvm.deleteSub()
+                    self.status = communityvm.getStatus(branch: branch)
+                } else {
+                    communityvm.sendSub{ success in
+                        if success {
+                            communityvm.inputSub = Sub()
+                            self.status = communityvm.getStatus(branch: branch)
+                    }
+                        
+                    }
                 }
-                    
-                    
-                } }label: {
-                    if status["isSubed"] ?? false{
+                 }label: {
+                    if status["isSubed"]!{
                         Text("Subed!")
                             .foregroundColor(.pink)
                     } else {
@@ -209,13 +206,7 @@ struct BranchCardFooterView: View {
         .font(.footnote)
         
         .onAppear(perform: {
-            communityvm.getStatus(branch: branch, completion: {status in
-                if let status = status {
-                    self.status = status
-                }else {
-                    print("failed to get the user subscribe status")
-                }
-            })
+            self.status =  communityvm.getStatus(branch: branch)
         })
         
         .sheet(isPresented: $isShowingCommentView){

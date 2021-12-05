@@ -17,7 +17,7 @@ class ProfileViewModel: ObservableObject{
         
     // MARK: - here is the issue that the use could be nil becuase the AuthViewModel may not initlize the currentUser correctly (on time)
     
-    @Published var userPrivate:Private = Private()
+    @Published var userPrivate:UserPrivate = UserPrivate()
     
     
     func uploadUser(completion: @escaping (_ success: Bool) -> ()){
@@ -80,7 +80,7 @@ class ProfileViewModel: ObservableObject{
         COLLECTION_USERS.document(userID).collection("privates").document(userPrivate.id)
             .getDocument { (document, error) in
             let result = Result {
-                  try document?.data(as: Private.self)
+                  try document?.data(as: UserPrivate.self)
                 }
                 switch result {
                 case .success(let p):

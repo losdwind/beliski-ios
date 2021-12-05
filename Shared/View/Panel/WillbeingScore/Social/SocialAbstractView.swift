@@ -14,14 +14,15 @@ struct SocialAbstractView: View {
         VStack(alignment:.leading){
             Text("Activeness")
                 .font(.title.bold())
-                .foregroundColor(.black)
+                .foregroundColor(.primary)
             
             Text("Messages in Squad")
                 .font(.callout)
-                .foregroundColor(.gray)
+                .foregroundColor(.gray.opacity(0.2))
             BarGraph(analytics: analytics)
         }
         }
+        .padding()
 
     }
 }
