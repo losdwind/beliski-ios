@@ -24,7 +24,7 @@ class ChinaCityJsonReader {
     
     static let shared:ChinaCityJsonReader = ChinaCityJsonReader()
     
-    lazy var chinaCity:ChinaCity = readFile(name: "china-city-list")!
+    lazy var chinaCity:ChinaCity = readFile(name: "chinacitylist")!
     
     func readFile(name:String) -> ChinaCity?{
         

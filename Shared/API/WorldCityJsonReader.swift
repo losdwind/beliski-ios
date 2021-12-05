@@ -12,7 +12,7 @@ class WorldCityJsonReader:ObservableObject {
     
     static let shared:WorldCityJsonReader = WorldCityJsonReader()
     
-    lazy var worldCity:WorldCity = readFile(name: "world-city-list")!
+    lazy var worldCity:WorldCity = readFile(name: "worldcitylist")!
     
 
     func readFile(name:String) -> WorldCity?{
