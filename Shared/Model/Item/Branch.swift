@@ -72,7 +72,10 @@ struct Branch:Identifiable, Codable, Hashable, Item {
     var rating:Double = 4.0
     
     
-    
-    
-    
+}
+
+extension Branch {
+    init(dictionary: [String: Any]) throws {
+            self = try JSONDecoder().decode(Branch.self, from: JSONSerialization.data(withJSONObject: dictionary))
+        }
 }

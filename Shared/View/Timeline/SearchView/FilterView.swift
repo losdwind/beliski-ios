@@ -81,7 +81,7 @@ struct FilterView: View {
             TextField("Search", text: $searchvm.keywords, prompt: Text("Put a keyword here"))
                 .textInputAutocapitalization(.never)
                 .disableAutocorrection(true)
-                .foregroundColor(.primary)
+                .foregroundColor(.accentColor)
                 .padding()
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(10)

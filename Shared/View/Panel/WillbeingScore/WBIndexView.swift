@@ -20,7 +20,7 @@ struct WBScoreView: View {
                 VStack(alignment:.center, spacing: 20){
                     Text("\(wbScore.career + wbScore.social + wbScore.physical + wbScore.financial + wbScore.community)")
                         .font(.custom("VeryLargeTitle", size: 70))
-                        .foregroundColor(.primary)
+                        .foregroundColor(.accentColor)
                     Text("Wellbeing Index")
                         .font(.headline.bold())
                         .foregroundColor(Color.pink)

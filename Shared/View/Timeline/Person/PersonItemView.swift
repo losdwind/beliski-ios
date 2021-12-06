@@ -77,7 +77,7 @@ struct PersonItemView: View {
                 VStack(alignment: .leading, spacing: 10){
                     Text("\(person.firstName) \(person.lastName)")
                         .font(.headline)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.accentColor)
                     
                     Text("\(timeConverter(timestamp: person.birthday))")
                         .font(.footnote)
@@ -93,7 +93,7 @@ struct PersonItemView: View {
                 Text(person.description)
                     .font(.body)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.accentColor)
                     .frame(maxWidth:.infinity, alignment: .leading)
             }
             

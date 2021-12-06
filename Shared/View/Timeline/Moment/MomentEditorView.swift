@@ -100,7 +100,7 @@ struct MomentEditorView: View {
                                if momentvm.images.isEmpty && momentvm.moment.imageURLs.isEmpty{
                                    Image(systemName: "plus")
                                        .font(.largeTitle)
-                                       .foregroundColor(.primary)
+                                       .foregroundColor(.accentColor)
                                }
                                else{
                                    if momentvm.moment.imageURLs.isEmpty == false{
@@ -196,7 +196,7 @@ struct MomentEditorView: View {
                    , content: {
                 ImagePickers(images: $momentvm.images)
                     .preferredColorScheme(colorScheme)
-                    .accentColor(colorScheme == .light ? .primary: .secondary)
+                    .accentColor(colorScheme == .light ? .accentColor: .secondary)
                 
             })
         

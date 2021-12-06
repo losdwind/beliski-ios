@@ -14,7 +14,7 @@ struct SocialAbstractView: View {
         VStack(alignment:.leading){
             Text("Activeness")
                 .font(.title.bold())
-                .foregroundColor(.primary)
+                .foregroundColor(.accentColor)
             
             Text("Messages in Squad")
                 .font(.callout)

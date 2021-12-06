@@ -18,6 +18,7 @@ class DataLinkedManager: ObservableObject {
     @Published var linkedMoments:[Moment] = [Moment]()
     @Published var linkedTodos:[Todo] = [Todo]()
     @Published var linkedPersons:[Person] = [Person]()
+    @Published var linkedItems:[Dictionary<String, Any>] = [Dictionary<String, Any>]()
     
     
     init(linkedIDs: [String]){
@@ -39,92 +40,25 @@ class DataLinkedManager: ObservableObject {
     
     // we can simplify by using print("\(String(describing: Self.self))")
     func fetchItems(completion: @escaping (_ sucess: Bool) -> ()){
-        
-        guard let userID = AuthViewModel.shared.userID else {
-            print("userID is not valid here in fetchMoment function")
-            return
+        Functions.functions().httpsCallable("onCallLinkedItems").call(linkedIds) { result, error in
+          if let error = error as NSError? {
+            if error.domain == FunctionsErrorDomain {
+              let code = FunctionsErrorCode(rawValue: error.code)
+              let message = error.localizedDescription
+              let details = error.userInfo[FunctionsErrorDetailsKey]
+                print(code!)
+                print(message)
+                print(details!)
+            }
+            // ...
+          }
+            if let data = result?.data as? [Dictionary<String, Any>] {
+              self.linkedItems = data
+              print(data)
+          }
         }
         
-        
-        self.linkedMoments = [Moment]()
-        self.linkedTodos = [Todo]()
-        self.linkedPersons = [Person]()
-        
-        
-        let group = DispatchGroup()
-        
-        for id in linkedIds {
-            
-            group.enter()
-            COLLECTION_USERS.document(userID).collection("moments").document(id).getDocument { (document, error) in
-                let result = Result {
-                      try document?.data(as: Moment.self)
-                    }
-                    switch result {
-                    case .success(let moment):
-                        if let moment = moment {
-                            // A `City` value was successfully initialized from the DocumentSnapshot.
-                            self.linkedMoments.append(moment)
-                        } else {
-                            // A nil value was successfully initialized from the DocumentSnapshot,
-                            // or the DocumentSnapshot was nil.
-                            print("Document does not exist")
-                        }
-                    case .failure(let error):
-                        // A `City` value could not be initialized from the DocumentSnapshot.
-                        print("Error decoding moment: \(error)")
-                    }
-                group.leave()
-            }
-            
-            group.enter()
-            COLLECTION_USERS.document(userID).collection("persons").document(id).getDocument { (document, error) in
-                let result = Result {
-                      try document?.data(as: Person.self)
-                    }
-                    switch result {
-                    case .success(let person):
-                        if let person = person {
-                            // A `City` value was successfully initialized from the DocumentSnapshot.
-                            self.linkedPersons.append(person)
-                        } else {
-                            // A nil value was successfully initialized from the DocumentSnapshot,
-                            // or the DocumentSnapshot was nil.
-                            print("Document does not exist")
-                        }
-                    case .failure(let error):
-                        // A `City` value could not be initialized from the DocumentSnapshot.
-                        print("Error decoding city: \(error)")
-                    }
-                group.leave()
-            }
-            
-            group.enter()
-            COLLECTION_USERS.document(userID).collection("todos").document(id).getDocument { (document, error) in
-                let result = Result {
-                      try document?.data(as: Todo.self)
-                    }
-                    switch result {
-                    case .success(let todo):
-                        if let todo = todo {
-                            // A `City` value was successfully initialized from the DocumentSnapshot.
-                            self.linkedTodos.append(todo)
-                        } else {
-                            // A nil value was successfully initialized from the DocumentSnapshot,
-                            // or the DocumentSnapshot was nil.
-                            print("Document does not exist")
-                        }
-                    case .failure(let error):
-                        // A `City` value could not be initialized from the DocumentSnapshot.
-                        print("Error decoding city: \(error)")
-                    }
-                group.leave()
-            }
-            
-        }
-        group.notify(queue: .main){
-            completion(true)
-        }
+
     }
     
     

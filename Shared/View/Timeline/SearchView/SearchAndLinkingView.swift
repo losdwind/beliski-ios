@@ -91,7 +91,7 @@ struct SearchAndLinkingView<T:Item>: View {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "xmark")
-                            .foregroundColor(Color.primary)
+                            .foregroundColor(Color.accentColor)
                     }
                     
                 }

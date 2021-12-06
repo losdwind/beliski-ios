@@ -107,10 +107,10 @@ struct SettingsView: View {
                                     }, label: {
                                         Image(systemName: "xmark")
                                     })
-                                    .accentColor(.primary)
+                                    .accentColor(.accentColor)
             )
         }
-        .accentColor(colorScheme == .light ? Color.primary : Color.secondary)
+        .accentColor(colorScheme == .light ? Color.accentColor : Color.secondary)
 
     }
     

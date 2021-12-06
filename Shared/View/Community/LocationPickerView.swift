@@ -28,7 +28,7 @@ struct LocationPickerView: View {
                                         HStack{
                                             Text("\(city.m)  \(city.x.uppercased())")
                                         }
-                                        .foregroundColor(.primary)
+                                        .foregroundColor(.accentColor)
                                     }
 
 

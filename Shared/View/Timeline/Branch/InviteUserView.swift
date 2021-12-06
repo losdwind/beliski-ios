@@ -22,7 +22,7 @@ struct InviteUserView: View {
         VStack{
             HStack(alignment: .center, spacing: 20){
                 TextField("Search", text: $email, prompt: Text("Put a email address"))
-                    .foregroundColor(.primary)
+                    .foregroundColor(.accentColor)
                     .textInputAutocapitalization(.never)
                     .disableAutocorrection(true)
                 
@@ -60,7 +60,7 @@ struct InviteUserView: View {
                     VStack(alignment: .leading, spacing: 10){
                         Text(user.nickName!)
                             .font(.headline)
-                            .foregroundColor(.primary)
+                            .foregroundColor(.accentColor)
                         
                         Text(user.email!)
                             .font(.footnote)

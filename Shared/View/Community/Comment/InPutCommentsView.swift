@@ -22,6 +22,7 @@ struct InputCommentView: View {
                 TextField("Post your comment", text: $communityvm.inputComment.content)
                     .textFieldStyle(PlainTextFieldStyle())
                     .font(.body)
+                    .foregroundColor(.accentColor)
                     .frame(minHeight: 30)
                 
                 Button{

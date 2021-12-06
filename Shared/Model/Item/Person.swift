@@ -39,5 +39,11 @@ struct Person: Identifiable, Codable, Hashable, Item {
     var tagNames:[String] = []
     var openness:String = "Private"
 
-    
+
+}
+
+extension Person {
+    init(dictionary: [String: Any]) throws {
+            self = try JSONDecoder().decode(Person.self, from: JSONSerialization.data(withJSONObject: dictionary))
+        }
 }

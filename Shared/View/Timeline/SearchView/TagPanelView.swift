@@ -25,7 +25,7 @@ struct TagPanelView: View {
                         
                     }
                     .tag("All")
-                    .foregroundColor(.primary)
+                    .foregroundColor(.accentColor)
                     
                     // Single tag
                     ForEach(tagPanelvm.fetchedAllTags!, id: \.self){tag in
@@ -36,7 +36,7 @@ struct TagPanelView: View {
                             
                         }
                         .tag(tag.name)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.accentColor)
                         
                 }
                     

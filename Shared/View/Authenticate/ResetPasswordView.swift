@@ -11,21 +11,32 @@ struct ResetPasswordView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State private var email: String = ""
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack {
-            Image("instagram_logo_white")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 220, height: 100)
-                .foregroundColor(.primary)
-            
+            if colorScheme == .dark {
+                Image("White logo - no background")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 220)
+
+
+            } else {
+                Image("Black logo - no background")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 220)
+
+
+            }
+             
             VStack(spacing: 20) {
                 CustomTextField(text: $email, placeholder:"Email", labelImage: "envelope")
                     .padding()
 
                     .cornerRadius(10)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.accentColor)
                     .padding(.horizontal, 32)
             }
             
@@ -35,7 +46,7 @@ struct ResetPasswordView: View {
             }, label: {
                 Text("Send Reset Password Link")
                     .font(.headline)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.accentColor)
                     .frame(width: 360, height: 50)
 
                     .clipShape(Capsule())
@@ -51,7 +62,7 @@ struct ResetPasswordView: View {
                     
                     Text("Sign In")
                         .font(.system(size: 14, weight: .semibold))
-                }.foregroundColor(.primary)
+                }.foregroundColor(.accentColor)
             })
         }
         .onReceive(AuthViewModel.shared.$didSendResetPasswordLink, perform: { _ in
@@ -63,5 +74,6 @@ struct ResetPasswordView: View {
 struct ResetPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         ResetPasswordView()
+            .preferredColorScheme(.light)
     }
 }

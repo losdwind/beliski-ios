@@ -49,7 +49,7 @@ struct TagEditorView: View {
                 // TextField...
                 
                 TextField("Tags", text: $tagvm.tagName, prompt: Text("Put Some Tags Here").foregroundColor(.secondary))
-                    .foregroundColor(.primary)
+                    .foregroundColor(.accentColor)
                     .lineLimit(1)
                     .font(.headline)
                     .padding(.all, 5.0)

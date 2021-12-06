@@ -34,5 +34,10 @@ struct Moment:Identifiable, Codable, Hashable, Item{
     //    https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
     //    var location: CLLocation? it is not support by codable protocal, pending solved
     
-    
+}
+
+extension Moment{
+    init(dictionary: [String: Any]) throws {
+            self = try JSONDecoder().decode(Moment.self, from: JSONSerialization.data(withJSONObject: dictionary))
+        }
 }

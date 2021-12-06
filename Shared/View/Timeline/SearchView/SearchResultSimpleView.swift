@@ -31,7 +31,7 @@ struct SearchResultView: View {
                                 
                     
                                 MomentItemView(moment: moment, tagNames: moment.tagNames, OwnerItemID: moment.id)
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(.accentColor)
                                     .blur(radius:  searchvm.selectedMoments.contains(moment) ? 5 : 0)
                                 
                                 Image(systemName: "checkmark")
@@ -62,7 +62,7 @@ struct SearchResultView: View {
                             
                 
                             TodoRowItemView(todo: todo)
-                                .foregroundColor(.primary)
+                                .foregroundColor(.accentColor)
                                 .blur(radius:  searchvm.selectedTodos.contains(todo) ? 5 : 0)
                             
                             Image(systemName: "checkmark")
@@ -93,7 +93,7 @@ struct SearchResultView: View {
                             
                 
                             PersonItemView(person: person, tagNames: person.tagNames, OwnerItemID: person.id, isShowingPhtos: false, isShowingDescription: false, isShowingTags: false)
-                                .foregroundColor(.primary)
+                                .foregroundColor(.accentColor)
                                 .blur(radius:  searchvm.selectedPersons.contains(person) ? 5 : 0)
                             
                             Image(systemName: "checkmark")
@@ -122,7 +122,7 @@ struct SearchResultView: View {
                             
                 
                             BranchCardView(branch: branch)
-                                .foregroundColor(.primary)
+                                .foregroundColor(.accentColor)
                                 .blur(radius:  searchvm.selectedBranches.contains(branch) ? 5 : 0)
                             
                             Image(systemName: "checkmark")

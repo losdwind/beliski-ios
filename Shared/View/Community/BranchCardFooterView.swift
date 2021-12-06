@@ -12,7 +12,7 @@ struct BranchCardFooterView: View {
     
     let branch:Branch
     
-    @State var status:Dictionary<String, Bool> = [:]
+    @State var status:Dictionary<String, Bool>
     
     @ObservedObject var communityvm:CommunityViewModel
     
@@ -20,7 +20,11 @@ struct BranchCardFooterView: View {
     @State var isShowingJoinButton:Bool = false
     @State var isShowingJoinView: Bool = false
     
-    
+    init(branch:Branch, communityvm:CommunityViewModel){
+        self.branch = branch
+        self.communityvm = communityvm
+        self.status = communityvm.getStatus(branch: self.branch)
+    }
     
     var body: some View {
         

@@ -19,10 +19,29 @@ struct TodoRowItemView: View {
     var body: some View {
         withAnimation {
             Toggle(isOn: $completion){
-                Text(todo.content)
-                    .font(.system(.body, design: .rounded))
-                    .foregroundColor(completion ? Color.pink : Color.primary)
+                if todo.content != "" {
+                    Text(todo.content)
+                        .font(.system(.body, design: .rounded))
+                        .foregroundColor(completion ? Color.pink : Color.accentColor)
+                } else {
+                    VStack{
+                        Text(todo.wish)
+                            .font(.system(.body, design: .rounded))
+                            .foregroundColor(completion ? Color.pink : Color.accentColor)
+                        Text(todo.outcome)
+                            .font(.system(.body, design: .rounded))
+                            .foregroundColor(completion ? Color.pink : Color.accentColor)
+                        Text(todo.obstacle)
+                            .font(.system(.body, design: .rounded))
+                            .foregroundColor(completion ? Color.pink : Color.accentColor)
+                        Text(todo.plan)
+                            .font(.system(.body, design: .rounded))
+                            .foregroundColor(completion ? Color.pink : Color.accentColor)
+                    }
+                    
+                }
                 Spacer()
+                
         } //: Toggle
         .toggleStyle(CheckboxStyle())
         .onChange(of: completion) { newValue in

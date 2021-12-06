@@ -24,10 +24,21 @@ struct SignInView: View {
     var body: some View {
         NavigationView {
             VStack(alignment:.center, spacing: 40){
-                Image("Color logo - no background")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200.0)
+                if colorScheme == .dark {
+                    Image("White logo - no background")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 220)
+
+
+                } else {
+                    Image("Black logo - no background")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 220)
+
+
+                }
 
                 
                 // Email/Password Sign In
@@ -73,7 +84,7 @@ struct SignInView: View {
                     } else {
                         Text("Sign In")
                             .font(.headline)
-                            .foregroundColor(.primary)
+                            .foregroundColor(.accentColor)
                     }
                 }
                 
@@ -148,7 +159,7 @@ struct SignInView: View {
                             
                             Text("Sign Up")
                                 .font(.system(size: 14, weight: .semibold))
-                        }.foregroundColor(.primary)
+                        }.foregroundColor(.accentColor)
                     }).padding(.bottom, 16)
                 
             }

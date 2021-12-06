@@ -43,7 +43,7 @@ struct CategoryView: View {
                                         Text(c)
                                             .font(.footnote)
                                             .fontWeight(.regular)
-                                            .foregroundColor(Color.primary)
+                                            .foregroundColor(Color.accentColor)
                                         
                                         
                                     }

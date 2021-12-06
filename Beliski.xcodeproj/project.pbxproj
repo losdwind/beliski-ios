@@ -61,8 +61,8 @@
 		2951CDA327536B09008E283A /* WoopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDA127536B09008E283A /* WoopDetailView.swift */; };
 		2951CDAA2758B3D2008E283A /* RoundedCornerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDA92758B3D2008E283A /* RoundedCornerModifier.swift */; };
 		2951CDAB2758B3D2008E283A /* RoundedCornerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDA92758B3D2008E283A /* RoundedCornerModifier.swift */; };
-		2951CDAF275BB9C6008E283A /*  chinacitylist.json in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAC275BB9C6008E283A /*  chinacitylist.json */; };
-		2951CDB0275BB9C6008E283A /*  chinacitylist.json in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAC275BB9C6008E283A /*  chinacitylist.json */; };
+		2951CDAF275BB9C6008E283A /* chinacitylist.json in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAC275BB9C6008E283A /* chinacitylist.json */; };
+		2951CDB0275BB9C6008E283A /* chinacitylist.json in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAC275BB9C6008E283A /* chinacitylist.json */; };
 		2951CDB1275BB9C6008E283A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAD275BB9C6008E283A /* README.md */; };
 		2951CDB2275BB9C6008E283A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAD275BB9C6008E283A /* README.md */; };
 		2951CDB3275BB9C6008E283A /* worldcitylist.json in Resources */ = {isa = PBXBuildFile; fileRef = 2951CDAE275BB9C6008E283A /* worldcitylist.json */; };
@@ -385,7 +385,7 @@
 		2951CD9E27533488008E283A /* WBScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBScore.swift; sourceTree = "<group>"; };
 		2951CDA127536B09008E283A /* WoopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoopDetailView.swift; sourceTree = "<group>"; };
 		2951CDA92758B3D2008E283A /* RoundedCornerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerModifier.swift; sourceTree = "<group>"; };
-		2951CDAC275BB9C6008E283A /*  chinacitylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = " chinacitylist.json"; sourceTree = "<group>"; };
+		2951CDAC275BB9C6008E283A /* chinacitylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chinacitylist.json; sourceTree = "<group>"; };
 		2951CDAD275BB9C6008E283A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2951CDAE275BB9C6008E283A /* worldcitylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = worldcitylist.json; sourceTree = "<group>"; };
 		2951CDB5275C5BBB008E283A /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
@@ -671,7 +671,7 @@
 		29552A56270F0FD30056E675 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				2951CDAC275BB9C6008E283A /*  chinacitylist.json */,
+				2951CDAC275BB9C6008E283A /* chinacitylist.json */,
 				2951CDAD275BB9C6008E283A /* README.md */,
 				2951CDAE275BB9C6008E283A /* worldcitylist.json */,
 				29552A57270F0FEA0056E675 /* MediaUploader.swift */,
@@ -1260,7 +1260,7 @@
 				29ED110A27133D6E00E67D8B /* sound-tap.mp3 in Resources */,
 				29ED110927133D6E00E67D8B /* sound-ding.mp3 in Resources */,
 				29C46C0C270D5FB200754817 /* Launch Screen.storyboard in Resources */,
-				2951CDAF275BB9C6008E283A /*  chinacitylist.json in Resources */,
+				2951CDAF275BB9C6008E283A /* chinacitylist.json in Resources */,
 				29ED110827133D6E00E67D8B /* sound-rise.mp3 in Resources */,
 				29552A5E270F10F60056E675 /* GoogleService-Info.plist in Resources */,
 				2951CDB1275BB9C6008E283A /* README.md in Resources */,
@@ -1280,7 +1280,7 @@
 				29824B6F273BACAF00868C9B /* sound-tap.mp3 in Resources */,
 				29552A5F270F10F60056E675 /* GoogleService-Info.plist in Resources */,
 				2951CDB4275BB9C6008E283A /* worldcitylist.json in Resources */,
-				2951CDB0275BB9C6008E283A /*  chinacitylist.json in Resources */,
+				2951CDB0275BB9C6008E283A /* chinacitylist.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

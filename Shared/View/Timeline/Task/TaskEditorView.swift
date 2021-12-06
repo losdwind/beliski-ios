@@ -143,12 +143,7 @@ struct TodoEditorView: View {
 //                        .foregroundColor(todovm.todo.content.count == 0 ? Color.gray : Color.pink)
                     Spacer()
                 })
-                    .modifier(SaveButtonBackground(isButtonDisabled: todovm.todo.content.count == 0))
-                    .onTapGesture {
-                        if todovm.todo.content.count == 0 {
-                            playSound(sound: "sound-tap", type: "mp3")
-                        }
-                    }
+                    .modifier(SaveButtonBackground(isButtonDisabled: (todovm.todo.content.count == 0 && todovm.todo.wish.count == 0)))
             } //: VSTACK
 //            .padding(.horizontal)
 //            .padding(.vertical, 20)

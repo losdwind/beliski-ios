@@ -42,7 +42,7 @@ struct MessageView: View {
                         .background(Color.gray.opacity(0.2))
                         .font(.body)
                         .clipShape(ChatBubble(isFromCurrentUser: false))
-                        .foregroundColor(.primary)
+                        .foregroundColor(.accentColor)
                     
                 }
                 .padding(.horizontal)

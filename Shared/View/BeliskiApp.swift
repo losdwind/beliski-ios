@@ -15,12 +15,13 @@ struct BeliskiApp: App {
     
     init(){
         
-#if targetEnvironment (simulator)
-        let providerFactory = AppCheckDebugProviderFactory ()
-#else
-        let providerFactory = BeliskiAppCheckProviderFactory ()
-#endif
-        AppCheck.setAppCheckProviderFactory (providerFactory)
+        #if targetEnvironment(simulator)
+                let providerFactory = AppCheckDebugProviderFactory()
+        #else
+                let providerFactory = BeliskiAppCheckProviderFactory()
+        #endif
+        AppCheck.setAppCheckProviderFactory(providerFactory)
+        
         FirebaseApp.configure()
         
     }

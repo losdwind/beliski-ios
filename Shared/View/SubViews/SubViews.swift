@@ -202,7 +202,7 @@ struct CardView: View{
             
             Text(title)
                 .font(.title3.bold())
-                .foregroundColor(.primary)
+                .foregroundColor(.accentColor)
 //
 //            Text(price)
 //                .fontWeight(.semibold)

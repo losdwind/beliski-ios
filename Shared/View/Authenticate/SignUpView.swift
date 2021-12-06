@@ -49,8 +49,7 @@ struct SignUpView: View {
                         
                     }.sheet(isPresented: $isShowingimagePicker, content: {
                         ImagePicker(image: $selectedImage)
-                            .preferredColorScheme(colorScheme)
-                            .accentColor(colorScheme == .light ? .primary: .secondary)
+                            .foregroundColor(.accentColor)
                     })
                 
             }
@@ -60,7 +59,7 @@ struct SignUpView: View {
                 CustomTextField(text: $email, placeholder: "Email", labelImage: "envelope")
                     .padding()
                     .cornerRadius(10)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.accentColor)
                     .padding(.horizontal, 32)
                 
                 
@@ -68,13 +67,13 @@ struct SignUpView: View {
                 CustomTextField(text: $nickname, placeholder: "Nick Name", labelImage: "person")
                     .padding()
                     .cornerRadius(10)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.accentColor)
                     .padding(.horizontal, 32)
                 
                 CustomSecureTextField(text: $password, placeholder: "Password", labelImage: "lock")
                     .padding()
                     .cornerRadius(10)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.accentColor)
                     .padding(.horizontal, 32)
             }
             
@@ -107,7 +106,7 @@ struct SignUpView: View {
                 } else {
                     Text("Sign Up")
                         .font(.headline)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.accentColor)
                         .frame(width: 360, height: 50)
                         .clipShape(Capsule())
                         .padding()
@@ -124,7 +123,7 @@ struct SignUpView: View {
                     
                     Text("Sign In")
                         .font(.system(size: 14, weight: .semibold))
-                }.foregroundColor(.primary)
+                }.foregroundColor(.accentColor)
             })
         }
         .alert("Successfully Registered", isPresented: $isShowingAlert, actions: {
@@ -141,5 +140,6 @@ struct SignUpView: View {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
+            .preferredColorScheme(.dark)
     }
 }

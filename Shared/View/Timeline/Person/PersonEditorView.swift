@@ -173,7 +173,7 @@ struct PersonEditorView: View {
                                 if personvm.person.photoURLs.isEmpty && personvm.images.isEmpty{
                                     Image(systemName: "plus")
                                         .font(.largeTitle)
-                                        .foregroundColor(.primary)
+                                        .foregroundColor(.accentColor)
                                 }
                                 else{
                                     
@@ -250,7 +250,7 @@ struct PersonEditorView: View {
                    , content: {
                 ImagePicker(image: $personvm.avatarImage)
                     .preferredColorScheme(colorScheme)
-                    .accentColor(colorScheme == .light ? .primary: .secondary)
+                    .accentColor(colorScheme == .light ? .accentColor: .secondary)
             })
             .sheet(isPresented: $photosPickerPresented) {
                 ImagePickers(images: $personvm.images)

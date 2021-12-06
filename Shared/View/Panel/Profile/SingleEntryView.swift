@@ -15,7 +15,7 @@ struct SingleEntryView: View {
             Text(String(number))
                 .font(.title2)
                 .fontWeight(.bold)
-                .foregroundColor(.primary)
+                .foregroundColor(.accentColor)
             
             Capsule()
                 .fill(Color.gray)

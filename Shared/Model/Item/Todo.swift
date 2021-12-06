@@ -22,11 +22,11 @@ struct Todo:Identifiable, Codable, Hashable, Item {
     
     var content:String = ""
     
-    
     var wish:String = ""
     var outcome:String = ""
     var obstacle:String = ""
     var plan:String = ""
+    
     var description:String = ""
     
     var completion: Bool = false
@@ -39,7 +39,14 @@ struct Todo:Identifiable, Codable, Hashable, Item {
     var isUsingWoop:Bool = true
     var openness:String = "Private"
 
+
     
+
     
-    
+}
+
+extension Todo {
+    init(dictionary: [String: Any]) throws {
+            self = try JSONDecoder().decode(Todo.self, from: JSONSerialization.data(withJSONObject: dictionary))
+        }
 }
