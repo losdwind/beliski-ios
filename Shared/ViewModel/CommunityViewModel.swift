@@ -41,6 +41,42 @@ class CommunityViewModel: ObservableObject {
     
     
     
+    func sendAction(branch:Branch, type:String, completion: @escaping (_ result: String?) -> () ){
+        
+        guard let userID = AuthViewModel.shared.userID else {
+            print("userID is not valid here in like function")
+            completion(nil)
+            return
+        }
+        
+        let action = Action(senderID: userID, objectID: branch.id, receiverID: branch.ownerID, onField:type)
+
+       
+        let actionData = try! Firestore.Encoder().encode(action)
+        print(actionData)
+        Functions.functions().httpsCallable("communityActionFunctions-onCallAction").call(actionData) { result, error in
+          if let error = error {
+            print(error)
+              completion(nil)
+              return
+          }
+            if let data = result?.data as? [String: Any], let actionResult = data["action"] as? String {
+                if actionResult == "added" {
+                    print("\(type) it")
+
+                } else {
+                    print("cancel \(type) it")
+                }
+                completion(actionResult)
+                return
+          }
+            print("returned result is not valid, check cloud function")
+            completion(nil)
+            return
+    }
+    }
+    
+    
     // this function check if the current user liked/disliked/subed current branch
     func getStatus(branch:Branch) -> Dictionary<String, Bool>{
         

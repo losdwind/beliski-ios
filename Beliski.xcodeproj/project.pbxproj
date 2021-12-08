@@ -73,6 +73,8 @@
 		2951CDBA275C5D5D008E283A /* ChinaCityJsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDB8275C5D5D008E283A /* ChinaCityJsonReader.swift */; };
 		2951CDBC275C6859008E283A /* WorldCityJsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDBB275C6859008E283A /* WorldCityJsonReader.swift */; };
 		2951CDBD275C6859008E283A /* WorldCityJsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDBB275C6859008E283A /* WorldCityJsonReader.swift */; };
+		2951CDC2275F3545008E283A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDC1275F3545008E283A /* Action.swift */; };
+		2951CDC3275F3545008E283A /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951CDC1275F3545008E283A /* Action.swift */; };
 		29552A38270D89150056E675 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A37270D89150056E675 /* CustomTextField.swift */; };
 		29552A3B270D8EBD0056E675 /* CustomSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */; };
 		29552A3E270D95900056E675 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29552A3D270D95900056E675 /* AuthViewModel.swift */; };
@@ -391,6 +393,7 @@
 		2951CDB5275C5BBB008E283A /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
 		2951CDB8275C5D5D008E283A /* ChinaCityJsonReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChinaCityJsonReader.swift; sourceTree = "<group>"; };
 		2951CDBB275C6859008E283A /* WorldCityJsonReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCityJsonReader.swift; sourceTree = "<group>"; };
+		2951CDC1275F3545008E283A /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		29552A37270D89150056E675 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		29552A3A270D8EBD0056E675 /* CustomSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureTextField.swift; sourceTree = "<group>"; };
 		29552A3D270D95900056E675 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -634,6 +637,7 @@
 				29E1DE04273120BF00EC5E1D /* Like.swift */,
 				296FA49B27344EC000FEBF8A /* Sub.swift */,
 				296FA49E273457DE00FEBF8A /* Dislike.swift */,
+				2951CDC1275F3545008E283A /* Action.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1313,6 +1317,7 @@
 				2964A3192747D10C002C2595 /* PPCarouselView.swift in Sources */,
 				29E1DE1A2731634A00EC5E1D /* MessageView.swift in Sources */,
 				2942C857272010FF00ECD167 /* TagPanelView.swift in Sources */,
+				2951CDC2275F3545008E283A /* Action.swift in Sources */,
 				29E1DDFF272ED22900EC5E1D /* BigFiveView.swift in Sources */,
 				29552A4E270F0BDE0056E675 /* SignInView.swift in Sources */,
 				29E1DDBE272D746C00EC5E1D /* MultiLineChartView.swift in Sources */,
@@ -1550,6 +1555,7 @@
 				2907B4CA272C106F001A3DA1 /* ProfileStandardView.swift in Sources */,
 				29ED11112718979100E67D8B /* LinkedItemsView.swift in Sources */,
 				29E1DDC3272D746C00EC5E1D /* Helpers.swift in Sources */,
+				2951CDC3275F3545008E283A /* Action.swift in Sources */,
 				29E1DDB3272D746C00EC5E1D /* IndicatorPoint.swift in Sources */,
 				2907B4C7272C1037001A3DA1 /* OpenStatsBarView.swift in Sources */,
 				29C46BFE270D5E8A00754817 /* BeliskiApp.swift in Sources */,

@@ -40,16 +40,9 @@ class DataLinkedManager: ObservableObject {
     
     // we can simplify by using print("\(String(describing: Self.self))")
     func fetchItems(completion: @escaping (_ sucess: Bool) -> ()){
-        Functions.functions().httpsCallable("onCallLinkedItems").call(linkedIds) { result, error in
-          if let error = error as NSError? {
-            if error.domain == FunctionsErrorDomain {
-              let code = FunctionsErrorCode(rawValue: error.code)
-              let message = error.localizedDescription
-              let details = error.userInfo[FunctionsErrorDetailsKey]
-                print(code!)
-                print(message)
-                print(details!)
-            }
+        Functions.functions().httpsCallable("linkedItemsFunctions-onCallLinkedItems").call(linkedIds) { result, error in
+          if let error = error {
+            print(error)
             // ...
           }
             if let data = result?.data as? [Dictionary<String, Any>] {

@@ -88,7 +88,7 @@ struct UserPrivate: Identifiable, Codable, Hashable{
 }
 
 
-struct UserGivenSubsList: Identifiable, Codable, Hashable{
+struct UserGivenSubsList: Identifiable, Codable, Hashable, Equatable{
     var id:String = UUID().uuidString
     var likes:[String] = []
     var disLikes:[String] = []
