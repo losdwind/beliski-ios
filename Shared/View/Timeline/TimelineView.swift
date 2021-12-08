@@ -49,16 +49,19 @@ struct TimelineView: View {
                     
                     Picker("Filter", selection:$timelineManager.selectedTab){
                         // Todo: - check the TimelineManager Enum
-                        Text("Today").tag(TimelineTab.TODAY)
-                            .foregroundColor(timelineManager.selectedTab == .TODAY ? .blue : .red)
+                        Text("Moment").tag(TimelineTab.MOMENTS)
+                            .foregroundColor(timelineManager.selectedTab == .MOMENTS ? .blue : .red)
                         
-                        Text("Events").tag(TimelineTab.EVENTS)
+                        Text("Event").tag(TimelineTab.EVENTS)
                             .foregroundColor(timelineManager.selectedTab == .EVENTS ? .blue : .red)
                         
                         
-                        Text("Topics")
-                            .tag(TimelineTab.TOPICS)
-                            .foregroundColor(timelineManager.selectedTab == .TOPICS ? .blue : .red)
+                        Text("Person")
+                            .tag(TimelineTab.PERSONS)
+                            .foregroundColor(timelineManager.selectedTab == .PERSONS ? .blue : .red)
+                        Text("Branch")
+                            .tag(TimelineTab.BRANCHES)
+                            .foregroundColor(timelineManager.selectedTab == .PERSONS ? .blue : .red)
                         
                         
                         
@@ -72,9 +75,12 @@ struct TimelineView: View {
                 
                 // TabView
                 TabView(selection: $timelineManager.selectedTab) {
-                    MomentListView(momentvm: momentvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.TODAY)
+                    MomentListView(momentvm: momentvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm).tag(TimelineTab.MOMENTS)
                     TodoListView(todovm: todovm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger).tag(TimelineTab.EVENTS)
-                    TopicView(timelineManager: timelineManager, momentvm: momentvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm).tag(TimelineTab.TOPICS)
+//                    TopicView(timelineManager: timelineManager, momentvm: momentvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm).tag(TimelineTab.PERSONS)
+                    PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, timelineManager: timelineManager)
+                    BranchCardListView(branchvm: branchvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                    
                     
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))

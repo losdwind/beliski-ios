@@ -180,6 +180,51 @@ struct BranchCardEditorView: View {
                 }
                 .padding(.top,10)
                 
+                VStack(alignment: .leading, spacing: 18) {
+                    
+                    Text("City")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.gray)
+                    
+                    Button {
+                        print("show placemark picker")
+                    } label: {
+                        Label {
+                            Text("Chongqing")
+                                .foregroundColor(.accentColor)
+                        } icon: {
+                            Image(systemName: "mappin.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(.accentColor)
+                                .frame(width: 30, height: 30)
+                        }
+                    }
+                    .buttonStyle(.bordered)
+                    
+                    Divider()
+                }
+                .padding(.top,10)
+                
+                VStack(alignment: .leading, spacing: 18) {
+                    
+                    Text("Category")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.gray)
+                    
+                    Picker("Select a topic", selection: $branchvm.branch.category) {
+                        ForEach(categoryOfBranch.allCases, id:\.self){ cat in
+                            Text(cat.rawValue)
+                                .font(.headline)
+                                .tag(cat)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+
+                    Divider()
+                }
+                .padding(.top,10)
+                
                 Spacer(minLength: 10)
                 
                 // Schedule Button...
@@ -213,6 +258,7 @@ struct BranchCardEditorView: View {
                     branchvm.branch = Branch(ownerID:AuthViewModel.shared.userID!, memberIDs: [AuthViewModel.shared.userID!], memberIDsAvatar: [AuthViewModel.shared.profileImageURL],memberIDsNickname: [AuthViewModel.shared.nickName] )
                 }
             }
+            
         
     }
 }

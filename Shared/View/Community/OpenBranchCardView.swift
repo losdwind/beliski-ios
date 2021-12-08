@@ -59,7 +59,7 @@ struct OpenBranchCardView: View {
                 
             
         }
-//        .modifier(BranchCardGradientBackground())
+        .modifier(BranchCardGradientBackground())
         
     }
 }

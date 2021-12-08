@@ -36,7 +36,7 @@ class CommunityViewModel: ObservableObject {
     lazy var chinaCity = ChinaCityJsonReader.shared.chinaCity
     
     @Published var selectedLocation:WorldCityJsonReader.N?
-    @Published var selectedCategory:String = ""
+    @Published var selectedCategory:categoryOfBranch = categoryOfBranch.Hobby
     @Published var isShowingLinkedBranchView = false
     
     

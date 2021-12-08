@@ -24,8 +24,16 @@ struct CommunityView: View {
                 VStack(alignment: .leading){
                     //                CarouselView(branches: $communityvm.openBranchs)
                     
+                    Text("Subscribed")
+                        .font(.title3.bold())
+                        .padding(.top)
                     
-                    Text("Popular Around")
+                    ScrollView(.horizontal, showsIndicators: false){
+                        SubscribedBranchView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
+                    }
+                    
+                    
+                    Text("Trending")
                         .font(.title3.bold())
                         .padding(.top)
                     
@@ -34,13 +42,7 @@ struct CommunityView: View {
                     
                     
                     
-                    Text("Subscribed")
-                        .font(.title3.bold())
-                        .padding(.top)
                     
-                    ScrollView(.horizontal, showsIndicators: false){
-                        SubscribedBranchView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
-                    }
                     
                     
                     

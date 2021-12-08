@@ -27,12 +27,14 @@ struct CommentCellView: View {
             VStack(alignment:.leading, spacing:8){
                 HStack {
                     Text(comment.nickName).font(.body.bold())
+                        .foregroundColor(.accentColor)
                     TimestampView(time: convertFIRTimestamptoString(timestamp: comment.serverTimestamp))
                         .foregroundColor(.gray)
                         .font(.body)
                 }
                 
                 Text(comment.content).font(.body)
+                    .foregroundColor(.accentColor)
 
             }
             

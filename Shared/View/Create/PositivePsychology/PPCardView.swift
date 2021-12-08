@@ -11,6 +11,8 @@ struct PPCardView: View {
     
     var card:PPCard
     
+    var progress:Int = 2
+    
     var body: some View {
             VStack(alignment: .leading, spacing: 20) {
                 
@@ -24,20 +26,27 @@ struct PPCardView: View {
                     .lineLimit(3)
                     .frame(height: 70, alignment: .top)
                 
-                HStack(spacing:40) {
+                HStack(spacing:5) {
 
-                    // add new pp item
-                    Button {
-                        print("here has a button")
-                    } label: {
-                        Image(systemName: "plus.circle")
-                            .font(.system(size: 15, weight: .semibold, design: .rounded))
-                        Text(card.category)
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                    }
-                    .padding(5)
-                    .foregroundColor(Color.white)
-                    .background(Color.pink, in:Capsule())
+                        HStack(alignment: .center, spacing: 3){
+//                            Color.red.frame(width: 10, height: 2)
+
+                            ForEach(1...7, id: \.self){i in
+                                Button {
+                                    print("here has a button")
+                                } label: {
+                                    Image(systemName: "checkmark")
+                                        .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                }
+                                .padding(5)
+                                .foregroundColor(Color.white)
+                                .background(i < (progress+1) ? Color.pink : Color.gray, in:Circle())
+                                .disabled(i != (progress+1))
+                            
+                            }
+                        }
+                    
+                    
                     
                     
                     Spacer()
@@ -62,9 +71,6 @@ struct PPCardView: View {
             .padding(.horizontal,20)
             .padding(.vertical, 15)
             .background(card.cardColor, in: RoundedRectangle(cornerRadius: 18))
-            
-            
-            
             
         
     }

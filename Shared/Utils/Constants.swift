@@ -45,3 +45,16 @@ let PPCards:[PPCard] = [
     
 
 ]
+
+
+enum categoryOfBranch:String,CaseIterable, Codable {
+    case Creation
+    case Competetion
+    case Startup
+    case Discussion
+    case Perfection
+    case Idol
+    case Hobby
+    case Game
+    case Study
+}

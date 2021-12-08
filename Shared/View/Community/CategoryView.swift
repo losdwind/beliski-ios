@@ -8,62 +8,47 @@
 import SwiftUI
 
 
-let category = [
-    ["Creation", "Competetion", "Startup"],
-    ["Discussion", "Perfection", "Idol"],
-    ["Hobby", "Game", "Study"]
-    
-]
+
 
 struct CategoryView: View {
     
     @ObservedObject var communityvm:CommunityViewModel
     @ObservedObject var dataLinkedManager: DataLinkedManager
-    
+    var columns: [GridItem] =
+             Array(repeating: .init(.flexible()), count: 3)
     var body: some View {
             
         // MARK: Category Grid
-            VStack(alignment: .center, spacing: 5){
-                ForEach(category, id:\.self){ cate in
-                    HStack(alignment: .bottom){
-                        ForEach(cate, id:\.self){ c in
-                            NavigationLink {
-                                PopularBranchView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
-                            } label: {
-                                Button {
-                                    communityvm.selectedCategory = c
-                                } label: {
-                                    VStack(alignment: .center){
-                                        Image(c)
-                                            .renderingMode(.original)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 30.0, height: 30.0)
-                                        
-                                        Text(c)
-                                            .font(.footnote)
-                                            .fontWeight(.regular)
-                                            .foregroundColor(Color.accentColor)
-                                        
-                                        
-                                    }
-                                    .frame(width: 100.0, height: 70.0)
 
-                                }
-                            }
-
+        LazyVGrid(columns: columns) {
+            ForEach(categoryOfBranch.allCases, id:\.self){
+                cate in
+                NavigationLink {
+                    PopularBranchView(communityvm: communityvm, dataLinkedManager: dataLinkedManager)
+                } label: {
+                    Button {
+                        communityvm.selectedCategory = cate
+                    } label: {
+                        VStack(alignment: .center){
+                            Image(cate.rawValue)
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30.0, height: 30.0)
+                            
+                            Text(cate.rawValue)
+                                .font(.footnote)
+                                .fontWeight(.regular)
+                                .foregroundColor(Color.accentColor)
+                            
                             
                         }
-                        
+                        .frame(width: 100.0, height: 70.0)
+
                     }
-                      
                 }
-                
-                
-                
             }
-            
-  
+        }
             
             
         

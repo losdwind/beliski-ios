@@ -15,7 +15,7 @@ class TimelineManager: ObservableObject {
     
     @Published var selectedMainTab:MainTab = .timeline
     
-    @Published var selectedTab:TimelineTab = .TODAY
+    @Published var selectedTab:TimelineTab = .MOMENTS
     @Published var selectedMenu:SearchType = .branch
 
     

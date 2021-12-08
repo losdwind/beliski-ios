@@ -30,31 +30,7 @@ struct CreateView: View {
                 Spacer()
                 
             }
-            
-            
             .padding()
-            //        .halfSheet(isPresented: $isShowingMomentEditor) {
-            //        } content: {
-            //            MomentEditorView(momentvm: momentvm, momentTagvm: TagViewModel())
-            //        }
-            //
-            //        .halfSheet(isPresented: $isShowingBranchEditor) {
-            //
-            //        } content: {
-            //            BranchCardEditorView(branchvm: branchvm)
-            //        }
-            //
-            //        .halfSheet(isPresented:$isShowingPersonEditor) {
-            //
-            //        } content: {
-            //            PersonEditorView(personTagvm: TagViewModel(), personvm: personvm)
-            //        }
-            //
-            //        .halfSheet(isPresented: $isShowingTodoEditor) {
-            //
-            //        } content: {
-            //            TodoEditorView(todovm: todovm)
-            //        }
             .navigationTitle("Create")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

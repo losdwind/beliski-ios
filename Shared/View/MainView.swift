@@ -46,6 +46,7 @@ struct MainView: View {
                     
                 // Show the Panel of statistics based on the moments of the user
                 PanelView(profilevm: ProfileViewModel())
+                    .badge(Text("↑5"))
                     .tabItem {
                         VStack{
                             Image(systemName: "chart.bar.xaxis")
@@ -58,6 +59,7 @@ struct MainView: View {
                 
                 // Show community information and open moments shared by internet users
                 SquadView(squadvm: squadvm, dataLinkedManager: dataLinkedManager)
+                    .badge(Text("15"))
                     .tabItem{
                         VStack{
                             Image(systemName: "circles.hexagongrid")

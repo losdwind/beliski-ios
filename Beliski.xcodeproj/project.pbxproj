@@ -635,9 +635,9 @@
 				29F7D8E9274939A300B50844 /* Comment.swift */,
 				29E1DE0A273121DF00EC5E1D /* Message.swift */,
 				29E1DE04273120BF00EC5E1D /* Like.swift */,
+				2951CDC1275F3545008E283A /* Action.swift */,
 				296FA49B27344EC000FEBF8A /* Sub.swift */,
 				296FA49E273457DE00FEBF8A /* Dislike.swift */,
-				2951CDC1275F3545008E283A /* Action.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";

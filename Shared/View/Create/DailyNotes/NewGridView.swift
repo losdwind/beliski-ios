@@ -18,6 +18,8 @@ struct NewGridView: View {
     @State var isShowingTodoEditor = false
     @State var isShowingPersonEditor = false
     @State var isShowingBranchEditor = false
+    @State var isShowingAlert = false
+
     
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     
@@ -75,15 +77,16 @@ struct NewGridView: View {
                 
                 // New Activity
                 Button(action: {
-                    isShowingPersonEditor = true
-                    playSound(sound: "sound-ding", type: "mp3")
-                    personvm.person.localTimestamp = Timestamp(date:Date())
+//                    isShowingPersonEditor = true
+//                    playSound(sound: "sound-ding", type: "mp3")
+//                    personvm.person.localTimestamp = Timestamp(date:Date())
+                    isShowingAlert = true
                 }, label: {
 
                     NewButton(systemImageName: "figure.walk", buttonName: "Activity")
                 })
-                    .sheet(isPresented: $isShowingPersonEditor){
-                        PersonEditorView(personTagvm: TagViewModel(), personvm: personvm)}
+                    .alert("Not yet ready😂", isPresented:$isShowingAlert) {
+                    }
                 
                 
             }
@@ -110,17 +113,14 @@ struct NewGridView: View {
                 
                 // New Collection
                 Button(action: {
-                    isShowingBranchEditor = true
-                    playSound(sound: "sound-ding", type: "mp3")
-                    branchvm.branch.localTimestamp = Timestamp(date:Date())
+                    isShowingAlert = true
                 }, label: {
                     NewButton(systemImageName: "archivebox.fill", buttonName: "Collection")
                     
                 })
-                    .sheet(isPresented: $isShowingBranchEditor) {
-                        BranchCardEditorView(branchvm: branchvm)
-                        
+                    .alert("Not yet ready😂", isPresented:$isShowingAlert) {
                     }
+                
                 
             }
             

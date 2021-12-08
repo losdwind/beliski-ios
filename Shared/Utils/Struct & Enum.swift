@@ -16,9 +16,10 @@ enum Filter {
 }
 
 enum TimelineTab {
-    case TODAY
+    case MOMENTS
     case EVENTS
-    case TOPICS
+    case PERSONS
+    case BRANCHES
 }
 
 enum MainTab {

@@ -11,15 +11,17 @@ struct PPCarouselView: View {
     var cards:[PPCard]
     
     var body: some View {
-        TabView {
-            ForEach(cards, id:\.self) { card in
-                PPCardView(card: card)
-                    .padding(.horizontal, 10)
-                    
+            TabView {
+                ForEach(cards, id:\.self) { card in
+                    PPCardView(card: card)
+                        .badge(10)
+                        .padding(.horizontal, 10)
+                        
+                }
             }
-        }
-        .tabViewStyle(.page(indexDisplayMode: .automatic))
-        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .tabViewStyle(.page(indexDisplayMode: .automatic))
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+
         
     }
     
