@@ -22,8 +22,14 @@ struct BeliskiApp: App {
 }
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
   let gcmMessageIDKey = "gcm.message_id"
+    
+#if os(macOS)
+    // Status Bar Item...
+    var statusItem: NSStatusItem?
+    // PopOver...
+    var popOver = NSPopover()
+    #endif
 
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication
@@ -34,8 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //#else
 //        let providerFactory = BeliskiAppCheckProviderFactory()
 //#endif
-      let providerFactory = BeliskiAppCheckProviderFactory()
-AppCheck.setAppCheckProviderFactory(providerFactory)
+//AppCheck.setAppCheckProviderFactory(providerFactory)
 
 FirebaseApp.configure()
 
@@ -63,6 +68,36 @@ FirebaseApp.configure()
     application.registerForRemoteNotifications()
 
     // [END register_for_notifications]
+      
+    // MARK: - macOS menu bar app
+#if os(macOS)
+      // Menu View...
+      let menuView = MenuView()
+      
+      // Creating PopOver....
+      popOver.behavior = .transient
+      popOver.animates = true
+      // Setting Empty View Controller...
+      // And Setting View as SwiftUI View...
+      // with the help of Hosting Controller...
+      popOver.contentViewController = NSViewController()
+      popOver.contentViewController?.view = NSHostingView(rootView: menuView)
+      
+      // also Making View as Main View...
+      popOver.contentViewController?.view.window?.makeKey()
+      
+      // Creating Status Bar Button....
+      statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+      
+      // Safe Check if status Button is Available or not...
+      if let MenuButton = statusItem?.button{
+          
+          MenuButton.image = NSImage(systemSymbolName: "icloud.and.arrow.up.fill", accessibilityDescription: nil)
+          MenuButton.action = #selector(MenuButtonToggle)
+      }
+      #endif
+      
+      
     return true
   }
 
@@ -119,6 +154,25 @@ FirebaseApp.configure()
     // With swizzling disabled you must set the APNs token here.
     // Messaging.messaging().apnsToken = deviceToken
   }
+    // Button Action...
+    #if os(macOS)
+    @objc func MenuButtonToggle(sender: AnyObject){
+        
+        // For Safer Side....
+        if self.popOver.isShown{
+            self.popOver.performClose(sender)
+        }
+        else{
+            // Showing PopOver....
+            if let menuButton = self.statusItem?.button{
+                
+                // Top Get Button Location For Popover Arrow....
+                self.popOver.show(relativeTo: menuButton.bounds, of: menuButton, preferredEdge: NSRectEdge.minY)
+            }
+        }
+    }
+    #endif
+    
 }
 
 // [START ios_10_message_handling]

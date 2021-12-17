@@ -32,6 +32,11 @@
 		2924F1582729A789006CB556 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F1562729A789006CB556 /* SearchView.swift */; };
 		2924F15A2729A8CE006CB556 /* SearchResultComplexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F1592729A8CE006CB556 /* SearchResultComplexView.swift */; };
 		2924F15B2729A8CE006CB556 /* SearchResultComplexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924F1592729A8CE006CB556 /* SearchResultComplexView.swift */; };
+		292634F52761B631007E8316 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292634F42761B631007E8316 /* MenuView.swift */; };
+		292634F72761BB30007E8316 /* GeoFire in Frameworks */ = {isa = PBXBuildFile; productRef = 292634F62761BB30007E8316 /* GeoFire */; };
+		292634F92761BB30007E8316 /* GeoFireUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 292634F82761BB30007E8316 /* GeoFireUtils */; };
+		292634FB2761BB3B007E8316 /* GeoFire in Frameworks */ = {isa = PBXBuildFile; productRef = 292634FA2761BB3B007E8316 /* GeoFire */; };
+		292635002761BD3C007E8316 /* GTMAppAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 292634FF2761BD3C007E8316 /* GTMAppAuth */; };
 		2942C80E271EB88800ECD167 /* DataLinkedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C80D271EB88800ECD167 /* DataLinkedManager.swift */; };
 		2942C80F271EB88800ECD167 /* DataLinkedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C80D271EB88800ECD167 /* DataLinkedManager.swift */; };
 		2942C848271FEA0900ECD167 /* TagEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942C847271FEA0900ECD167 /* TagEditorView.swift */; };
@@ -373,6 +378,7 @@
 		2907B4D0272C1593001A3DA1 /* SettingsLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLabelView.swift; sourceTree = "<group>"; };
 		2924F1562729A789006CB556 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		2924F1592729A8CE006CB556 /* SearchResultComplexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultComplexView.swift; sourceTree = "<group>"; };
+		292634F42761B631007E8316 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		2942C80D271EB88800ECD167 /* DataLinkedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLinkedManager.swift; sourceTree = "<group>"; };
 		2942C847271FEA0900ECD167 /* TagEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagEditorView.swift; sourceTree = "<group>"; };
 		2942C84A271FEA2B00ECD167 /* TagCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionView.swift; sourceTree = "<group>"; };
@@ -436,7 +442,6 @@
 		29C46BEF270D5E8A00754817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C46BF4270D5E8A00754817 /* Beliski.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beliski.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C46BFA270D5E8A00754817 /* Beliski.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beliski.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		29C46BFC270D5E8A00754817 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		29C46C0B270D5FB200754817 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		29C46C0F270D600900754817 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		29C46C10270D600900754817 /* Struct & Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Struct & Enum.swift"; sourceTree = "<group>"; };
@@ -556,6 +561,7 @@
 				29552A46270F029F0056E675 /* FirebaseFirestore in Frameworks */,
 				2951CD9D27520478008E283A /* GeoFireUtils in Frameworks */,
 				29F7D8F5274A124600B50844 /* GoogleSignIn in Frameworks */,
+				292634FB2761BB3B007E8316 /* GeoFire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +580,9 @@
 				2964A31527464BC3002C2595 /* FirebaseFunctions in Frameworks */,
 				2964A31327464BC3002C2595 /* FirebaseAppCheck in Frameworks */,
 				2964A31727464BC4002C2595 /* FirebaseMessaging in Frameworks */,
+				292635002761BD3C007E8316 /* GTMAppAuth in Frameworks */,
+				292634F72761BB30007E8316 /* GeoFire in Frameworks */,
+				292634F92761BB30007E8316 /* GeoFireUtils in Frameworks */,
 				29D2BA9D2727D9E8007F76B8 /* FirebaseStorageSwift-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -781,7 +790,7 @@
 		29C46BFB270D5E8A00754817 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				29C46BFC270D5E8A00754817 /* macOS.entitlements */,
+				292634F42761B631007E8316 /* MenuView.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -1175,6 +1184,7 @@
 				2964A31027464B8D002C2595 /* FirebaseMessaging */,
 				29F7D8F4274A124600B50844 /* GoogleSignIn */,
 				2951CD9C27520478008E283A /* GeoFireUtils */,
+				292634FA2761BB3B007E8316 /* GeoFire */,
 			);
 			productName = "Beliski (iOS)";
 			productReference = 29C46BF4270D5E8A00754817 /* Beliski.app */;
@@ -1206,6 +1216,9 @@
 				2964A31427464BC3002C2595 /* FirebaseFunctions */,
 				2964A31627464BC4002C2595 /* FirebaseMessaging */,
 				29F7D8F6274A125D00B50844 /* GoogleSignIn */,
+				292634F62761BB30007E8316 /* GeoFire */,
+				292634F82761BB30007E8316 /* GeoFireUtils */,
+				292634FF2761BD3C007E8316 /* GTMAppAuth */,
 			);
 			productName = "Beliski (macOS)";
 			productReference = 29C46BFA270D5E8A00754817 /* Beliski.app */;
@@ -1245,6 +1258,7 @@
 				296FA48B2732AF8300FEBF8A /* XCRemoteSwiftPackageReference "swift-collections" */,
 				29F7D8F3274A124600B50844 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				2951CD9B27520478008E283A /* XCRemoteSwiftPackageReference "geofire-objc" */,
+				292634FC2761BCEC007E8316 /* XCRemoteSwiftPackageReference "GTMAppAuth" */,
 			);
 			productRefGroup = 29C46BF5270D5E8A00754817 /* Products */;
 			projectDirPath = "";
@@ -1543,6 +1557,7 @@
 				29E1DDE7272DBF9600EC5E1D /* UserProgressView.swift in Sources */,
 				29E1DD86272D3B5300EC5E1D /* CareerAbstractView.swift in Sources */,
 				2942C852271FED2300ECD167 /* TagItemView.swift in Sources */,
+				292634F52761B631007E8316 /* MenuView.swift in Sources */,
 				29E1DE182731463300EC5E1D /* SquadViewModel.swift in Sources */,
 				29824B79273BACB700868C9B /* Constants.swift in Sources */,
 				29ED11202719B30E00E67D8B /* SearchViewModel.swift in Sources */,
@@ -1733,6 +1748,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Beliski (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -1765,7 +1781,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1774,6 +1790,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Beliski (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
@@ -1806,7 +1823,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1816,8 +1833,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1846,8 +1864,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1904,6 +1923,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		292634FC2761BCEC007E8316 /* XCRemoteSwiftPackageReference "GTMAppAuth" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GTMAppAuth.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		2951CD9B27520478008E283A /* XCRemoteSwiftPackageReference "geofire-objc" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/geofire-objc.git";
@@ -1947,6 +1974,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		292634F62761BB30007E8316 /* GeoFire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2951CD9B27520478008E283A /* XCRemoteSwiftPackageReference "geofire-objc" */;
+			productName = GeoFire;
+		};
+		292634F82761BB30007E8316 /* GeoFireUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2951CD9B27520478008E283A /* XCRemoteSwiftPackageReference "geofire-objc" */;
+			productName = GeoFireUtils;
+		};
+		292634FA2761BB3B007E8316 /* GeoFire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2951CD9B27520478008E283A /* XCRemoteSwiftPackageReference "geofire-objc" */;
+			productName = GeoFire;
+		};
+		292634FF2761BD3C007E8316 /* GTMAppAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 292634FC2761BCEC007E8316 /* XCRemoteSwiftPackageReference "GTMAppAuth" */;
+			productName = GTMAppAuth;
+		};
 		2951CD9C27520478008E283A /* GeoFireUtils */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2951CD9B27520478008E283A /* XCRemoteSwiftPackageReference "geofire-objc" */;

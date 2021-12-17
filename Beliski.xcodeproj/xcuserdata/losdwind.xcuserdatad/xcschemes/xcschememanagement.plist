@@ -9,11 +9,6 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>Beliski (macOS).xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 		<key>Promises (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -81,6 +76,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>29C46BF3270D5E8A00754817</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29C46BF9270D5E8A00754817</key>
 		<dict>
 			<key>primary</key>
 			<true/>

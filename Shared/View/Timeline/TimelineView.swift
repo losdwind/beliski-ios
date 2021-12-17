@@ -61,7 +61,7 @@ struct TimelineView: View {
                             .foregroundColor(timelineManager.selectedTab == .PERSONS ? .blue : .red)
                         Text("Branch")
                             .tag(TimelineTab.BRANCHES)
-                            .foregroundColor(timelineManager.selectedTab == .PERSONS ? .blue : .red)
+                            .foregroundColor(timelineManager.selectedTab == .BRANCHES ? .blue : .red)
                         
                         
                         
@@ -79,7 +79,9 @@ struct TimelineView: View {
                     TodoListView(todovm: todovm, searchvm: searchvm, tagPanelvm: tagPanelvm, dataLinkedManager: dataLinkedManger).tag(TimelineTab.EVENTS)
 //                    TopicView(timelineManager: timelineManager, momentvm: momentvm, todovm: todovm, personvm: personvm, dataLinkedManger: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, branchvm: branchvm).tag(TimelineTab.PERSONS)
                     PersonListView(personvm: personvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm, timelineManager: timelineManager)
+                        .tag(TimelineTab.PERSONS)
                     BranchCardListView(branchvm: branchvm, dataLinkedManager: dataLinkedManger, searchvm: searchvm, tagPanelvm: tagPanelvm)
+                        .tag(TimelineTab.BRANCHES)
                     
                     
                 }

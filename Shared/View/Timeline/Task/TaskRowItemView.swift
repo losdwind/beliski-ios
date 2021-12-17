@@ -24,19 +24,44 @@ struct TodoRowItemView: View {
                         .font(.system(.body, design: .rounded))
                         .foregroundColor(completion ? Color.pink : Color.accentColor)
                 } else {
-                    VStack{
-                        Text(todo.wish)
-                            .font(.system(.body, design: .rounded))
-                            .foregroundColor(completion ? Color.pink : Color.accentColor)
-                        Text(todo.outcome)
-                            .font(.system(.body, design: .rounded))
-                            .foregroundColor(completion ? Color.pink : Color.accentColor)
-                        Text(todo.obstacle)
-                            .font(.system(.body, design: .rounded))
-                            .foregroundColor(completion ? Color.pink : Color.accentColor)
-                        Text(todo.plan)
-                            .font(.system(.body, design: .rounded))
-                            .foregroundColor(completion ? Color.pink : Color.accentColor)
+                    VStack(alignment: .leading){
+                        
+                        HStack(alignment: .firstTextBaseline, spacing: 5){
+                            Text("W ->").font(.headline).fontWeight(.semibold)
+                                .frame(width:40,alignment: .leading)
+                            Text(todo.wish)
+                                .font(.system(.body, design: .rounded))
+                                .foregroundColor(completion ? Color.pink : Color.accentColor)
+                        }
+                       
+                        HStack(alignment: .firstTextBaseline, spacing: 5){
+                            Text("O ->").font(.headline).fontWeight(.semibold)
+                                .frame(width:40,alignment: .leading)
+
+                            Text(todo.outcome)
+                                .font(.system(.body, design: .rounded))
+                                .foregroundColor(completion ? Color.pink : Color.accentColor)
+                        }
+                        
+                        HStack(alignment: .firstTextBaseline, spacing: 5){
+                            Text("O -> ").font(.headline).fontWeight(.semibold)
+                                .frame(width:40,alignment: .leading)
+
+                            Text(todo.obstacle)
+                                .font(.system(.body, design: .rounded))
+                                .foregroundColor(completion ? Color.pink : Color.accentColor)
+                        }
+                        
+                        HStack(alignment: .firstTextBaseline, spacing: 5){
+                            Text("P -> ").font(.headline).fontWeight(.semibold)
+                                .frame(width:40,alignment: .leading)
+
+                            Text(todo.plan)
+                                .font(.system(.body, design: .rounded))
+                                .foregroundColor(completion ? Color.pink : Color.accentColor)
+                        }
+                        
+                        
                     }
                     
                 }
