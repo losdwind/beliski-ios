@@ -1,10 +1,12 @@
 # Beliski iOS App
 ## General
 Beliski is an iOS note-taking app used to collect data for mobile sensing and human behavior research.
+(This is an MVP app without future maintenance)
 ## Requirements
 - Swift 5.5
 - Xcode 12+
 - iOS 15+
+- SwiftUI 2.0
 - Firebase Authentication
 - Firebase App Check (buggy)
 - Firebase Firestore Database
